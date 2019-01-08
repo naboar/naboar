@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { ReactNode } from 'react'
 import styled, { css } from 'styled-components'
 
 /**
@@ -13,7 +13,7 @@ const Expand = (props: IProps) => (
 
 interface IProps {
   /** One or more elements */
-  children: JSX.Element | JSX.Element[]
+  children: ReactNode
   /** width or height(px) */
   from: number
   /** width or height(px) */
@@ -37,7 +37,9 @@ const horizontalStyle = css`
 const Expandable = styled.div`
   transition: height 0.2s, width 0.2s;
   overflow: hidden;
+  display: inline-block;
   ${(props: IProps) => (props.vertical ? verticalStyle : horizontalStyle)}
+  ${(props: IProps) => props.css && props.css}
 `
 
 export default Expand
