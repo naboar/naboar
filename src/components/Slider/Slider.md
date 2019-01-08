@@ -1,3 +1,3 @@
 ```js
-<Slider />
+<Slider foo="hey"/>
 ```

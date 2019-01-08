@@ -13,7 +13,7 @@ const Slider = (props: ISliderProps) => {
  * Slider prop interface
  */
 interface ISliderProps {
-    foo: string
+  foo: string
 }
 
 export default Slider
