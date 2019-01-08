@@ -44,6 +44,7 @@ interface IProps {
 const hiddenStyle = css`
   pointer-events: none;
   opacity: 0;
+  z-index: 10;
   > div {
     opacity: 0;
     transform: translateY(100px);
@@ -51,8 +52,6 @@ const hiddenStyle = css`
 ` as string[]
 
 const shownStyle = css`
-  height: 100vh;
-  width: 100vw;
   z-index: 10;
   opacity: 1;
   > div {
@@ -62,7 +61,9 @@ const shownStyle = css`
 ` as string[]
 
 const Outer = styled.div`
-  transition: all 0.2s ease-out;
+  height: 100vh;
+  width: 100vw;
+  transition: all 0.3s ease-out;
   position: fixed;
   top: 0;
   left: 0;
@@ -76,7 +77,7 @@ const Outer = styled.div`
 `
 
 const Inner = styled.div`
-  transition: all 0.2s;
+  transition: all 0.4s ease-out;
 `
 
 export default Modal
