@@ -39,6 +39,7 @@ const Expandable = styled.div`
   overflow: hidden;
   display: inline-block;
   ${(props: IProps) => (props.vertical ? verticalStyle : horizontalStyle)}
+  ${(props: IProps) => props.css && props.css}
 `
 
 export default Expand
