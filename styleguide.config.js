@@ -20,5 +20,11 @@ module.exports = {
       components: 'src/components/**/[A-Z]*.tsx',
       usageMode: 'expand',
     },
+    {
+      name: 'Effects',
+      description: 'Animation components',
+      components: 'src/effects/**/[A-Z]*.tsx',
+      usageMode: 'expand',
+    },
   ],
 }
