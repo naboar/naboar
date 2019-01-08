@@ -1,18 +1,17 @@
 {
-  "name": "afreda-poc",
-  "version": "1.0.3",
-  "description": "testing uploading ts react components to npm while auto generating docs",
+  "name": "naboar-ui",
+  "version": "1.0.0",
+  "description": "Component Lib",
   "main": "lib/index.js",
   "files": [
     "lib/"
   ],
-  "homepage": "https://afreda-poc.netlify.com",
   "repository": {
     "type": "git",
-    "url": "https://github.com/Afreda323/POC"
+    "url": "https://github.com/naboar/naboar"
   },
   "bugs": {
-    "url": "https://github.com/Afreda323/POC/issues"
+    "url": "https://github.com/naboar/naboar/issues"
   },
   "scripts": {
     "build": "tsc",
@@ -23,7 +22,7 @@
     "styleguide:dev": "styleguidist server",
     "styleguide:build": "styleguidist build"
   },
-  "author": "Anthony Freda",
+  "author": "NABOAR",
   "license": "ISC",
   "peerDependencies": {
     "react": "^16.4.0",

@@ -1,9 +1,8 @@
 /**
  * Import and export all components
  */
-import Button from './buttons/Button/'
-import TextInput from './inputs/TextInput/'
+import Button from './components/Button/'
 import Themer, { theme } from './theme'
 
 
-export { TextInput, Button, Themer, theme }
+export { Button, Themer, theme }
