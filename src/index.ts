@@ -2,6 +2,7 @@
  * Import and export all components
  */
 import Button from './components/Button/'
+import Slider from './components/Slider/'
 import Themer, { theme } from './theme'
 
 /**
@@ -11,4 +12,4 @@ import Expand from './effects/Expand/'
 import Modal from './effects/Modal/'
 
 
-export { Button, Themer, theme, Expand, Modal }
+export { Button, Themer, theme, Expand, Modal, Slider }
