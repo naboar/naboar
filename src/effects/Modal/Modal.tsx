@@ -3,6 +3,7 @@ import styled, { css } from 'styled-components'
 
 /**
  * Modal Component
+ * Fades in from bottom
  * @since v1.0.0
  * @author [Anthony Freda](https://github.com/Afreda323)
  */
