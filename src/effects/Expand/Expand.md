@@ -6,11 +6,13 @@ initialState = { isExpanded: false }
       <h1>Hello</h1>
     </div>
 </Expand>
+<br />
 <Expand vertical={true} isExpanded={state.isExpanded} from={0} to={100}>
     <div style={{height: 100, background: 'black', color: 'white'}}>
       <h1>Hello</h1>
     </div>
 </Expand>
+<br />
 <Button onClick={() => setState({ isExpanded: !state.isExpanded })}>Click</Button>
 </div>
 ```

@@ -37,6 +37,7 @@ const horizontalStyle = css`
 const Expandable = styled.div`
   transition: height 0.2s, width 0.2s;
   overflow: hidden;
+  display: inline-block;
   ${(props: IProps) => (props.vertical ? verticalStyle : horizontalStyle)}
 `
 
