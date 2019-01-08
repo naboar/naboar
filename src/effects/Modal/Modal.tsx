@@ -1,4 +1,4 @@
-import React, { Component, SyntheticEvent } from 'react'
+import React, { Component, ReactNode, SyntheticEvent  } from 'react'
 import styled, { css } from 'styled-components'
 
 /**
@@ -32,7 +32,7 @@ class Modal extends Component<IProps> {
 
 interface IProps {
   /** One or more elements */
-  children: JSX.Element | JSX.Element[]
+  children: ReactNode
   /** Whether or not the component is at full width/height */
   shouldShow?: boolean
   /** What happens when you click the outside */

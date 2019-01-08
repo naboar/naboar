@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { ReactNode } from 'react'
 import styled, { css } from 'styled-components'
 
 /**
@@ -13,7 +13,7 @@ const Expand = (props: IProps) => (
 
 interface IProps {
   /** One or more elements */
-  children: JSX.Element | JSX.Element[]
+  children: ReactNode
   /** width or height(px) */
   from: number
   /** width or height(px) */
