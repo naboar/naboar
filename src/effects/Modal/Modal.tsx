@@ -9,6 +9,11 @@ import styled, { css } from 'styled-components'
 class Modal extends Component<IProps> {
   private wrapperRef: React.ReactNode
 
+  /**
+   * Check if click is inside <Inner />
+   * if not call outer click prop
+   * @param e Event Object
+   */
   onOuterClick = (e: SyntheticEvent) => {
     const wrapper = this.wrapperRef as HTMLDivElement
     const target = e.target as HTMLInputElement
