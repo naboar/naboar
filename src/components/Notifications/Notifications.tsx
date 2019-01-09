@@ -1,5 +1,6 @@
 import React, { Component, ReactNode } from 'react'
 import styled from 'styled-components'
+import Fade from '../../effects/Fade'
 
 const PERMISSION = {
   DEFAULT: 'default',
@@ -21,6 +22,7 @@ class Notifications extends Component<IProps, IState> {
   state = {
     permission: PERMISSION.DEFAULT,
   }
+
   /** Call requestPermissions */
   componentDidMount() {
     this.requestPermissions()
@@ -83,9 +85,17 @@ class Notifications extends Component<IProps, IState> {
   }
 
   render() {
-    return <Wrapper />
+    return (
+      <Wrapper>
+        <Fade shouldShow={true} from="right" distance={30}>
+          <div>Hello</div>
+        </Fade>
+      </Wrapper>
+    )
   }
 }
+
+// Types -----
 
 /** Notification interface */
 interface INotification {
@@ -116,6 +126,46 @@ interface IState {
   permission: string
 }
 
-const Wrapper = styled.div``
+// Styled Components -----
+
+const Wrapper = styled.div`
+  display: inline-block;
+  position: fixed;
+  z-index: 10;
+  width: 400px;
+  max-width: calc(100vw - 32px);
+  right: 0;
+  top: 0;
+  bottom: auto;
+  max-height: 100vh;
+  overflow-x: hidden;
+  overflow-y: auto;
+`
+
+const StyledNotification = styled.div`
+  padding: 16px 24px;
+  border-radius: 4px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  background: #444;
+  color: white;
+  line-height: 1.5;
+  position: relative;
+  overflow: hidden;
+  margin: 0 24px 16px 8px;
+  max-width: 380px;
+`
+
+const Title = styled.h2`
+  font-size: 18px;
+  color: rgba(255, 255, 255, 0.85);
+  margin-bottom: 8px;
+  line-height: 24px;
+  display: inline-block;
+`
+
+const Body = styled.p`
+  color: rgba(255, 255, 255, 0.65);
+  font-size: 16px;
+`
 
 export default Notifications
