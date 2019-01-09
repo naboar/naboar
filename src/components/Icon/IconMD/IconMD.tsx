@@ -2,15 +2,15 @@ import React from 'react'
 import Icon from '../Icon'
 import { md } from '../IconTypes'
 
-
 /**
  * Icon Material Component
  * @since v1.0.0
  * @author Tracey King
  */
 
-const IconMD = (props: IProps)=> <Icon { ...props } className={`icon ion-md-${props.name}`} />
-
+const IconMD = (props: IProps) => (
+  <Icon {...props} className={`icon ion-md-${props.name}`} />
+)
 
 interface IProps {
   /** Color of icon */
