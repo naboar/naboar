@@ -19,6 +19,8 @@ interface IProps {
   color?: string
   /** CSS properties using css helper from styled-components */
   css?: string[]
+  /** Event fired on click */
+  onClick?: () => void
   /** Size of font in px */
   size?: number
   /** Theme */
