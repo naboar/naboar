@@ -2,6 +2,7 @@ import React from 'react'
 import SyntheticEvent from 'react'
 import styled from 'styled-components'
 import { ITheme } from '../../theme'
+import { IconIOS, iOS } from '../Icon'
 
 /**
  * Input Component
@@ -13,13 +14,13 @@ const Input = (props: IInputProps) => {
     <Wrapper css={props.css}>
       {props.iconName && (
         <IconWrapper>
-          <Icon>{props.iconName}</Icon>
+          <IconIOS name={props.iconName} size={19} color={'white'} />
         </IconWrapper>
       )}
       <StyledInput {...props} />
       {props.canClear && (
         <ClearWrapper>
-          <ClearIcon onClick={props.onClear}>X</ClearIcon>
+          <IconIOS name={'close'} size={25} color={'white'} />
         </ClearWrapper>
       )}
     </Wrapper>
@@ -39,7 +40,7 @@ interface IInputProps {
   /** Toggle input clickability */
   disabled?: boolean
   /** Name of left icon */
-  iconName?: string
+  iconName?: iOS
   /** Name of input field */
   name: string
   /** On Clear click */
@@ -62,13 +63,13 @@ const StyledInput = styled.input`
   background: transparent;
   border: none;
   box-sizing: border-box;
-  color: ${({ theme }: IProps) => theme.black};
-  font-size: 18px;
+  color: ${({ theme }: IProps) => theme.white};
+  font-size: 16px;
   height: 40px;
   outline: none;
   padding-left: ${({ iconName }: IProps) =>
-    iconName && iconName.length ? '35px' : '15px'};
-  padding-right: ${({ canClear }: IProps) => (canClear ? '35px' : '15px')};
+    iconName && iconName.length ? '48px' : '16px'};
+  padding-right: ${({ canClear }: IProps) => (canClear ? '44px' : '16px')};
   width: 100%;
 `
 
@@ -80,45 +81,21 @@ const Wrapper = styled.div`
   ${({ css }: IProps) => css && css}
 `
 
-const ClearIcon = styled.span`
-  color: black;
-  font-size: 13px;
-  padding-left: 1px;
-`
-
 const ClearWrapper = styled.div`
-  align-items: center;
-  background: lightgrey;
-  border-radius: 99em;
-  display: flex;
-  height: 18px;
-  justify-content: center;
-  padding: 1px;
   position: absolute;
-  right: 10px;
+  right: 16px;
   top: 50%;
   transform: translateY(-50%);
-  width: 18px;
   &:hover {
     cursor: pointer;
   }
 `
 
-const Icon = styled.span`
-  font-size: 13px;
-`
-
 const IconWrapper = styled.div`
-  align-items: center;
-  display: flex;
-  height: 15px;
-  left: 10px;
-  padding: 1px;
+  left: 16px;
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  width: 15px;
-  justify-content: center;
 `
 
 interface IProps {
