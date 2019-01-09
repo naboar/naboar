@@ -1,5 +1,5 @@
 import React from 'react'
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 
 /**
  * Slider Component
@@ -9,7 +9,7 @@ import styled from 'styled-components'
 const Slider = (props: ISliderProps) => {
   return (
     <Wrapper>
-      <Active width={10}/>
+      <Active width={(props.value / props.max) * 100} />
       <Range
         {...props}
         onChange={e => props.onChange(Number(e.target.value))}
@@ -44,6 +44,26 @@ interface ISliderProps {
 const Wrapper = styled.div`
   position: relative;
 `
+
+const thumbStyle = css`
+  appearance: none;
+  width: 15px;
+  height: 15px;
+  position: relative;
+  border-radius: 100%;
+  background: white;
+  cursor: pointer;
+  z-index: 2;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  background: #1de9b6;
+  :active,
+  :hover,
+  :focus {
+    background: #00bfa5;
+  }
+` as string[]
+
 const Range = styled.input.attrs({
   type: 'range',
 })`
@@ -56,39 +76,15 @@ const Range = styled.input.attrs({
   transition: opacity 0.2s;
 
   ::-webkit-slider-thumb {
-    appearance: none;
-    width: 15px;
-    height: 15px;
-    position: relative;
-    border-radius: 100%;
-    border: 1px solid red;
-    background: white;
-    cursor: pointer;
-    z-index: 2;
+    ${thumbStyle}
   }
 
   ::-moz-range-thumb {
-    appearance: none;
-    width: 15px;
-    height: 15px;
-    position: relative;
-    border-radius: 100%;
-    border: 1px solid red;
-    background: white;
-    cursor: pointer;
-    z-index: 2;
+    ${thumbStyle}
   }
 
   ::-ms-thumb {
-    appearance: none;
-    width: 15px;
-    height: 15px;
-    position: relative;
-    border-radius: 100%;
-    border: 1px solid red;
-    background: white;
-    cursor: pointer;
-    z-index: 2;
+    ${thumbStyle}
   }
 `
 const Active = styled.div`
@@ -97,7 +93,7 @@ const Active = styled.div`
   top: 60%;
   height: 3px;
   width: ${(props: { width: number }) => props.width}%;
-  background-color: red;
+  background-color: #1de9b6;
   border-radius: 20px 0 0 20px;
 `
 
