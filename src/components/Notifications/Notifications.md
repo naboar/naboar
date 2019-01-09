@@ -10,7 +10,7 @@ const removeAtIndex = (i, arr) => [...arr.slice(0, i), ...arr.slice(i + 1)]
 />
 
 
-// Button generates notifs
+{/** Button generates notifs */}
 <Button 
   onClick={() => setState({
     notifs: [
