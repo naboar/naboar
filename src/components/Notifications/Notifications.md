@@ -4,8 +4,9 @@ const removeAtIndex = (i, arr) => [...arr.slice(0, i), ...arr.slice(i + 1)]
 ;<div>
 
 <Notifications 
+  native
   notifications={state.notifs}
-  onClick={console.log}
+  onClick={(e, i) => alert(`Notfi ${i} clicked`)}
   onClose={(e, i) => setState({ notifs: removeAtIndex(i, state.notifs)})}
 />
 

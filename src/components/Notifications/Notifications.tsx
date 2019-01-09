@@ -14,7 +14,7 @@ const PERMISSION = {
  * Ask for push notifications permission,
  * if it's granted use native notifications,
  * if not use a custom in browser solution ones.
- * 
+ *
  * @since v1.0.0
  * @author [Anthony Freda](https://github.com/Afreda323)
  */
@@ -29,21 +29,23 @@ class Notifications extends Component<IProps, IState> {
   }
   /** Ask the user for permission to send push notifications */
   requestPermissions() {
-    if (!Notification) {
-      return
-    }
-    if (Notification.permission === PERMISSION.GRANTED) {
-      return this.setState({ permission: PERMISSION.GRANTED })
-    }
-    if (Notification.permission === PERMISSION.DENIED) {
-      return this.setState({ permission: PERMISSION.DENIED })
-    }
-
-    Notification.requestPermission().then(permission => {
-      if (permission === PERMISSION.GRANTED) {
-        this.setState({ permission: PERMISSION.GRANTED })
+    if (this.props.native) {
+      if (!Notification) {
+        return
       }
-    })
+      if (Notification.permission === PERMISSION.GRANTED) {
+        return this.setState({ permission: PERMISSION.GRANTED })
+      }
+      if (Notification.permission === PERMISSION.DENIED) {
+        return this.setState({ permission: PERMISSION.DENIED })
+      }
+
+      Notification.requestPermission().then(permission => {
+        if (permission === PERMISSION.GRANTED) {
+          this.setState({ permission: PERMISSION.GRANTED })
+        }
+      })
+    }
   }
 
   componentDidUpdate(prevProps: IProps) {
@@ -52,6 +54,11 @@ class Notifications extends Component<IProps, IState> {
 
     const newNotifs = next.filter(val => prev.indexOf(val) === -1)
 
+    // Add (notifs.length) to doc title
+    if (this.props.notifications.length) {
+      const title = document.title.replace(/\s*\(.*?\)\s*/g, '')
+      document.title = `(${this.props.notifications.length}) ${title}`
+    }
     newNotifs.forEach(this.notify)
   }
 
@@ -59,8 +66,12 @@ class Notifications extends Component<IProps, IState> {
    * Generate and emit either a native or in browser notification
    */
   notify = (notif: INotification) => {
-    if (!Notification || this.state.permission !== PERMISSION.GRANTED) {
-      // custom notif
+    if (
+      !Notification ||
+      this.state.permission !== PERMISSION.GRANTED ||
+      !this.props.native
+    ) {
+      return
     } else {
       const options = notif as NotificationOptions
       const n = new Notification(notif.title, { ...options })
@@ -116,7 +127,7 @@ class Notifications extends Component<IProps, IState> {
   }
 
   renderWrapper = () => {
-    return this.state.permission !== PERMISSION.GRANTED ? (
+    return document.hasFocus() ? (
       <Wrapper>
         {this.props.notifications.map((notif, i) => (
           <Fade key={'notif' + i} shouldShow={true} from="right" distance={100}>
@@ -158,6 +169,7 @@ interface INotification {
 
 /** Notifications props interface */
 interface IProps {
+  native?: boolean
   notifications: INotification[]
   onClose?: (
     e?: Event | React.MouseEvent<HTMLButtonElement>,
