@@ -1,17 +1,23 @@
 import React, { Component } from 'react'
-import { Button, Slider } from '../../src'
-
-const noop = () => null
+import { Button, Notifications } from '../../src'
 
 class App extends Component {
   state = {
-    val: 0
+    notifs: [],
+  }
+  addNotif = () => {
+    this.setState({
+      notifs: [
+        ...this.state.notifs,
+        { title: 'Hello', body: 'Testing some stuff' },
+      ],
+    })
   }
   render() {
     return (
       <div>
-        <Slider value={this.state.val} onChange={val => this.setState({ val })}/>
-        <Button onClick={alert}>Click Me</Button>
+        <Notifications notifications={this.state.notifs} />
+        <Button onClick={this.addNotif}>Click Me</Button>
       </div>
     )
   }
