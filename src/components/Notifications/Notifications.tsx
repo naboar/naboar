@@ -127,7 +127,7 @@ class Notifications extends Component<IProps, IState> {
   }
 
   renderWrapper = () => {
-    return document.hasFocus() ? (
+    return (
       <Wrapper>
         {this.props.notifications.map((notif, i) => (
           <Fade key={'notif' + i} shouldShow={true} from="right" distance={100}>
@@ -141,7 +141,7 @@ class Notifications extends Component<IProps, IState> {
           </Fade>
         ))}
       </Wrapper>
-    ) : null
+    )
   }
   render() {
     return this.renderWrapper()
