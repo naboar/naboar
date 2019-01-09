@@ -1,6 +1,7 @@
 import React, { Component, ReactNode, SyntheticEvent } from 'react'
-import styled, { css } from 'styled-components'
+import styled, { css, keyframes } from 'styled-components'
 
+type foo = 'left' | 'top' | 'right' | 'bottom'
 /**
  * Fade Component
  * Fades in a component
@@ -16,16 +17,16 @@ interface IProps {
   /** How far off is the component */
   distance: number
   /** The direction it fades from */
-  from: 'left' | 'top' | 'right' | 'bottom'
+  from: foo
   /** Whether or not the component is at full width/height */
   shouldShow?: boolean
 }
 
 const fromLeft = css`
-  transform: translateX(${({ distance }: IProps) => distance}px);
+  transform: translateX(-${({ distance }: IProps) => distance}px);
 ` as string[]
 const fromRight = css`
-  transform: translateX(-${({ distance }: IProps) => distance}px);
+  transform: translateX(${({ distance }: IProps) => distance}px);
 ` as string[]
 const fromTop = css`
   transform: translateY(-${({ distance }: IProps) => distance}px);
@@ -48,21 +49,23 @@ const getFrom = (from: string) => {
       return fromLeft
   }
 }
-const shownStyle = css`
-  opacity: 1;
-  pointer-events: all;
-  transform: none;
-` as string[]
+const shownAnimation = keyframes`
+  to {
+    opacity: 1;
+    pointer-events: all;
+    transform: none;
+  }
+`
 
-const hiddenStyle = css`
-  opacity: 0;
-  ${({ from }: IProps) => getFrom(from)}
-` as string[]
+const animString = css`
+  animation: ${shownAnimation} .3s forwards;
+`
 
 const StyledFade = styled.div`
   display: inline-block;
-  transition: all 0.3s ease-out;
-  ${(props: IProps) => (props.shouldShow ? shownStyle : hiddenStyle)}
+  opacity: 0;
+  ${({ from }: IProps) => getFrom(from)}
+  ${(props: IProps) => (props.shouldShow && animString)}
 `
 
 export default Fade

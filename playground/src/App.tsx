@@ -1,23 +1,14 @@
 import React, { Component } from 'react'
-import { Button, Notifications } from '../../src'
+import { Button } from '../../src'
 
 class App extends Component {
   state = {
     notifs: [],
   }
-  addNotif = () => {
-    this.setState({
-      notifs: [
-        ...this.state.notifs,
-        { title: 'Hello', body: 'Testing some stuff' },
-      ],
-    })
-  }
   render() {
     return (
       <div>
-        <Notifications notifications={this.state.notifs} />
-        <Button onClick={this.addNotif}>Click Me</Button>
+        <Button onClick={alert}>Click Me</Button>
       </div>
     )
   }

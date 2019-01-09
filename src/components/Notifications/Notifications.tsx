@@ -12,7 +12,7 @@ const PERMISSION = {
  * Notifications Component
  *
  * Ask for push notifications permission,
- * if it's granted use native notificationss,
+ * if it's granted use native notifications,
  * if not use a custom in browser solution ones.
  *
  * @since v1.0.0
@@ -84,14 +84,53 @@ class Notifications extends Component<IProps, IState> {
     }
   }
 
-  render() {
-    return (
+  /**
+   * Called when clicking an in app notification
+   */
+  onClick = (e: React.MouseEvent<HTMLDivElement>, i: number) => {
+    if (!this.props.onClick) {
+      return
+    }
+
+    e.preventDefault()
+    e.stopPropagation()
+
+    this.props.onClick(e, i)
+  }
+
+  /**
+   * Called when closing the in app notification
+   */
+  onClose = (e: React.MouseEvent<HTMLButtonElement>, i: number) => {
+    if (!this.props.onClose) {
+      return
+    }
+
+    e.preventDefault()
+    e.stopPropagation()
+
+    this.props.onClose(e, i)
+  }
+
+  renderWrapper = () => {
+    return this.state.permission !== PERMISSION.GRANTED ? (
       <Wrapper>
-        <Fade shouldShow={true} from="right" distance={30}>
-          <div>Hello</div>
-        </Fade>
+        {this.props.notifications.map((notif, i) => (
+          <Fade key={'notif' + i} shouldShow={true} from="right" distance={100}>
+            <StyledNotification onClick={e => this.onClick(e, i)}>
+              {this.props.onClose && (
+                <CloseButton onClick={e => this.onClose(e, i)}>x</CloseButton>
+              )}
+              <Title>{notif.title}</Title>
+              <Body>{notif.body}</Body>
+            </StyledNotification>
+          </Fade>
+        ))}
       </Wrapper>
-    )
+    ) : null
+  }
+  render() {
+    return this.renderWrapper()
   }
 }
 
@@ -117,8 +156,11 @@ interface INotification {
 /** Notifications props interface */
 interface IProps {
   notifications: INotification[]
-  onClose?: (e?: Event) => void
-  onClick?: (e?: Event) => void
+  onClose?: (
+    e?: Event | React.MouseEvent<HTMLButtonElement>,
+    i?: number,
+  ) => void
+  onClick?: (e?: Event | React.MouseEvent<HTMLDivElement>, i?: number) => void
   onError?: (e?: Event) => void
 }
 
@@ -130,6 +172,7 @@ interface IState {
 
 const Wrapper = styled.div`
   display: inline-block;
+  font-family: Open-Sans, sans-serif;
   position: fixed;
   z-index: 10;
   width: 400px;
@@ -140,9 +183,17 @@ const Wrapper = styled.div`
   max-height: 100vh;
   overflow-x: hidden;
   overflow-y: auto;
+  > div {
+    width: 100%;
+    @media (min-width: 390px) {
+      max-width: 380px;
+    }
+  }
 `
 
 const StyledNotification = styled.div`
+  transition: box-shadow 0.2s;
+  cursor: pointer;
   padding: 16px 24px;
   border-radius: 4px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
@@ -152,7 +203,9 @@ const StyledNotification = styled.div`
   position: relative;
   overflow: hidden;
   margin: 0 24px 16px 8px;
-  max-width: 380px;
+  :hover {
+    box-shadow: 0 10px 16px rgba(0, 0, 0, 0.2);
+  }
 `
 
 const Title = styled.h2`
@@ -166,6 +219,23 @@ const Title = styled.h2`
 const Body = styled.p`
   color: rgba(255, 255, 255, 0.65);
   font-size: 16px;
+`
+
+const CloseButton = styled.button`
+  transition: background 0.2s;
+  position: absolute;
+  top: 0;
+  right: 0;
+  background: none;
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 16px;
+  font-weight: bold;
+  padding: 0px 7px 4px 7px;
+  border: none;
+  cursor: pointer;
+  :hover {
+    background: #555;
+  }
 `
 
 export default Notifications
