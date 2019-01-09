@@ -46,5 +46,5 @@ module.exports = {
       ribbonBackground: '#00bfa5',
       ribbonText: '#fff',
     }
-  }
+  },
 }

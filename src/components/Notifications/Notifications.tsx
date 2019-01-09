@@ -1,6 +1,7 @@
 import React, { Component, ReactNode } from 'react'
 import styled from 'styled-components'
 import Fade from '../../effects/Fade'
+import { IconIOS } from '../Icon'
 
 const PERMISSION = {
   DEFAULT: 'default',
@@ -55,7 +56,7 @@ class Notifications extends Component<IProps, IState> {
     const newNotifs = next.filter(val => prev.indexOf(val) === -1)
 
     // Add (notifs.length) to doc title
-    if (this.props.notifications.length) {
+    if (this.props.notifications.length > 0) {
       const title = document.title.replace(/\s*\(.*?\)\s*/g, '')
       document.title = `(${this.props.notifications.length}) ${title}`
     }
@@ -133,7 +134,9 @@ class Notifications extends Component<IProps, IState> {
           <Fade key={'notif' + i} shouldShow={true} from="right" distance={100}>
             <StyledNotification onClick={e => this.onClick(e, i)}>
               {this.props.onClose && (
-                <CloseButton onClick={e => this.onClose(e, i)}>x</CloseButton>
+                <CloseButton onClick={e => this.onClose(e, i)}>
+                  <IconIOS name="close" size={24} color={'white'}/>
+                </CloseButton>
               )}
               <Title>{notif.title}</Title>
               <Body>{notif.body}</Body>
@@ -169,13 +172,18 @@ interface INotification {
 
 /** Notifications props interface */
 interface IProps {
+  /** Use Native push notifs */
   native?: boolean
+  /**  Array of INotification[] */
   notifications: INotification[]
+  /** Called when close button is clicked */
   onClose?: (
     e?: Event | React.MouseEvent<HTMLButtonElement>,
     i?: number,
   ) => void
+  /** Called when notif is clicked */
   onClick?: (e?: Event | React.MouseEvent<HTMLDivElement>, i?: number) => void
+  /** Called when error making notif */
   onError?: (e?: Event) => void
 }
 
@@ -245,7 +253,7 @@ const CloseButton = styled.button`
   color: rgba(255, 255, 255, 0.85);
   font-size: 16px;
   font-weight: bold;
-  padding: 0px 7px 4px 7px;
+  padding: 0px 11px 9px 11px;
   border: none;
   cursor: pointer;
   :hover {
