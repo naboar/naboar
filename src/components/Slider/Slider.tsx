@@ -70,7 +70,7 @@ const Range = styled.input.attrs({
   appearance: none;
   width: 100%;
   height: 3px;
-  background: #ddd;
+  background: #555;
   outline: none;
   border-radius: 20px;
   transition: opacity 0.2s;

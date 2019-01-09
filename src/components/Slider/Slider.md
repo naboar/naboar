@@ -9,7 +9,7 @@ initialState = { val1: 0, val2: 0 }
   onChange={val => setState({ val1: val })}
 />
 
-<p style={{ margin: '20px 0' }}>Value: {state.val1}</p>
+<p style={{ margin: '20px 0', color: 'white' }}>Value: {state.val1}</p>
 
 {/** Max 50, 5 step **/}
 <Slider 
@@ -19,6 +19,6 @@ initialState = { val1: 0, val2: 0 }
   step={5}
 />
 
-<p style={{ margin: '10px 0' }}>Value: {state.val2}</p>
+<p style={{ margin: '10px 0', color: 'white' }}>Value: {state.val2}</p>
 </div>
 ```
