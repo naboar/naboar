@@ -9,6 +9,7 @@
     "exclude": ["config/**/*.js", "node_modules/**/*.ts"]
   },
   "rules": {
+    "jsx-no-lambda": false,
     "member-access": [true, "no-public"],
     "comment-format": [true, "check-space"],
     "indent": [true, "spaces"],
