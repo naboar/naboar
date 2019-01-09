@@ -12,12 +12,12 @@ install these peer deps.
 
 Install the components
 
-```npm install --save afreda-poc```
+```npm install --save naboar```
 
 Wrap app in Themer
 
 ```js
-import { Themer, theme } from 'afreda-poc'
+import { Themer, theme } from 'naboar'
 
 function App() {
   return (

@@ -1,24 +1,18 @@
 import React, { Component } from 'react'
-import { Button, Input } from '../../src'
-import { css } from 'styled-components'
-
-const noop = () => null
+import { Button, Slider, IconIOS, IconLogo, IconMD } from '../../src'
 
 class App extends Component {
+  state = {
+    val: 0
+  }
   render() {
     return (
       <div>
+        <Slider value={this.state.val} onChange={val => this.setState({ val })}/>
         <Button onClick={alert}>Click Me</Button>
-        <div style={{width: 800}}>
-        <Input
-          name="tets" 
-          canClear
-          onClick={() => console.log()}
-          onBlur={(e) => console.log(e.target.value)} 
-          onFocus={(e) => console.log(e.target.value)} 
-          onChange={(e) => console.log(e.target.value)} />
-        </div>
-        
+        <IconIOS name='open' size={35} />
+        <IconLogo name="github" color="blue" size={35} />
+        <IconMD name="close" color="red" size={35} />
       </div>
     )
   }
