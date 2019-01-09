@@ -5,10 +5,12 @@ const removeAtIndex = (i, arr) => [...arr.slice(0, i), ...arr.slice(i + 1)]
 
 <Notifications 
   notifications={state.notifs}
-  onClick={alert}
+  onClick={console.log}
   onClose={(e, i) => setState({ notifs: removeAtIndex(i, state.notifs)})}
 />
 
+
+// Button generates notifs
 <Button 
   onClick={() => setState({
     notifs: [
