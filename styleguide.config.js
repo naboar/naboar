@@ -1,6 +1,7 @@
 const path = require('path')
 
 module.exports = {
+  title: "Style-Guide",
   propsParser: require('react-docgen-typescript').parse,
   styleguideComponents: {
     Wrapper: path.join(__dirname, 'styleguide/Wrapper'),
@@ -27,4 +28,23 @@ module.exports = {
       usageMode: 'expand',
     },
   ],
+  theme: {
+    color: {
+      base: '#eee',
+      light: '#f0f0f0',
+      lightest: '#fff',
+      link: '#1de9b6',
+      linkHover: '#00bfa5',
+      focus: 'rgba(22, 115, 177, 0.25)',
+      border: '#555',
+      name: '#b388ff',
+      type: '#ffeb3b',
+      error: '#d50000',
+      baseBackground: '#222',
+      codeBackground: '#333',
+      sidebarBackground: '#333',
+      ribbonBackground: '#00bfa5',
+      ribbonText: '#fff',
+    }
+  }
 }

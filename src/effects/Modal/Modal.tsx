@@ -50,7 +50,7 @@ interface IProps {
 const hiddenStyle = css`
   pointer-events: none;
   opacity: 0;
-  z-index: 10;
+  z-index: 100;
   > div {
     opacity: 0;
     transform: translateY(100px);
