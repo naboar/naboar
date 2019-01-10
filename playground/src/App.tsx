@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
-import { Button, IconIOS, IconLogo, IconMD, Radial, RadialMenuItem } from '../../src'
+
+import { Button, IconIOS, IconLogo, IconMD, Input } from '../../src'
 
 class App extends Component {
   state = {
@@ -12,14 +13,7 @@ class App extends Component {
         <IconIOS name="open" size={35} />
         <IconLogo name="github" color="blue" size={35} />
         <IconMD name="close" color="red" size={35} />
-        <Radial coords={{ top: 200, left: 200 }}>
-          <RadialMenuItem title="Click Me" iconName="add" />
-          <RadialMenuItem title="Click Me" iconName="add"/>
-          <RadialMenuItem title="Click Me" iconName="add" />
-          <RadialMenuItem title="Click Me" iconName="add"/>
-          <RadialMenuItem title="Click Me" iconName="add" />
-          <RadialMenuItem title="Click Me" iconName="add"/>
-        </Radial>
+        <Input  name="test" placeholder="changeme" type="number" min={34} max={50}/>
       </div>
     )
   }
