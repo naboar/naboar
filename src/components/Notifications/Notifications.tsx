@@ -12,9 +12,9 @@ const PERMISSION = {
 /**
  * Notifications Component
  *
- * Ask for push notifications permission,
- * if it's granted use native notifications,
- * if not use a custom in browser solution ones.
+ * - Ask for push notifications permission
+ * - If permission granted use native notifications
+ * - If not use a custom in browser solution ones
  *
  * @since v1.0.0
  * @author [Anthony Freda](https://github.com/Afreda323)

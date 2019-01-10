@@ -5,7 +5,9 @@ import { iOS } from '../../Icon/IconTypes'
 
 /**
  * Radial Menu Item Component
- *
+ * 
+ * To be implmented as a child of ```<Radial />```
+ * 
  * @since v1.0.0
  * @author [Anthony Freda](https://github.com/Afreda323)
  */
@@ -31,12 +33,18 @@ export const RadialMenuItem = ({
 )
 
 export interface IItemProps {
+  /** Title displayed on hover */
   title: string
+  /** IOS icon name to be displayed in button */
   iconName: iOS
-  active?: boolean
-  index?: number
-  total?: number
+  /** Event fired on click of button */
   onClick?: MouseEventHandler<HTMLButtonElement>
+  /** @ignore */
+  active?: boolean
+  /** @ignore */
+  index?: number
+  /** @ignore */
+  total?: number
 }
 
 const iconCss = css`

@@ -4,7 +4,9 @@ import { IItemProps } from '../RadialMenuItem/RadialMenuItem'
 
 /**
  * Radial Menu Component
- *
+ * 
+ * Takes children of type ```<RadialMenuItem />```
+ * 
  * @since v1.0.0
  * @author [Anthony Freda](https://github.com/Afreda323)
  */
@@ -74,7 +76,7 @@ class Radial extends Component<IRadialProps, IRadialState> {
 }
 
 interface IRadialProps {
-  children: JSX.Element[]
+  children: Array<ReactElement<IItemProps>>
   coords?: { left?: number; top?: number; bottom?: number; right?: number }
   defaultActive?: boolean
   onClick?: () => void
