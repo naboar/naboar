@@ -1,7 +1,10 @@
 import React, { Component } from 'react'
 import { Button, Slider } from '../../src'
 
-const noop = () => null
+/**
+ * const noop = () => null
+ */
+
 
 class App extends Component {
   state = {
