@@ -1,5 +1,6 @@
 import React, { Component, ReactNode } from 'react'
 import styled from 'styled-components'
+import Controls from './Components/Controls'
 import Timeline from './Components/Timeline'
 
 /**
@@ -24,6 +25,7 @@ class Wizard extends Component<IProps, IState> {
           allowedIndex={3}
         />
         {children}
+        <Controls />
       </Wrapper>
     )
   }

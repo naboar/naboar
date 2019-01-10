@@ -51,9 +51,13 @@ const Timeline = ({ allowedIndex, items, selectedIndex, onClick }: IProps) => {
 }
 
 interface IProps {
+  /** What is the slected index of the wiz */
   selectedIndex: number
+  /** How many of the indexes does the user have access to */
   allowedIndex: number
+  /** Array of titles */
   items: string[]
+  /** Called when a title is clicked */
   onClick: (i: number) => void
 }
 
