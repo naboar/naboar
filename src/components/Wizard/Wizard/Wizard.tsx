@@ -18,7 +18,7 @@ class Wizard extends Component<IProps, IState> {
     return (
       <Wrapper>
         <Timeline
-          items={['Step 1 of 3', 'Step 2 of 3', 'Step 3 of 3']}
+          items={['Step 1 of 4', 'Step 2 of 4', 'Step 3 of 4', 'Step 4 of 4']}
           selectedIndex={selectedIndex}
           onClick={i => this.setState({ selectedIndex: i })}
           allowedIndex={3}

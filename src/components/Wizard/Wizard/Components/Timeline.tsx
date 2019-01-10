@@ -16,7 +16,7 @@ const Timeline = ({ allowedIndex, items, selectedIndex, onClick }: IProps) => {
           isLast={i === items.length - 1}
           isActive={i <= selectedIndex}
           onClick={() => i <= selectedIndex || allowedIndex > i ? onClick(i) : null}
-          canClick={i <= selectedIndex || allowedIndex >= i}
+          canClick={i <= selectedIndex || allowedIndex > i}
         >
           {i !== 0 && (
             <div>
@@ -83,7 +83,6 @@ const Item = styled.div<{
     display: flex;
     align-items: center;
     flex-direction: column;
-
     > span {
       display: flex;
       flex-shrink: 0;
@@ -91,7 +90,7 @@ const Item = styled.div<{
       ${({ isFirst, isLast }) => !isFirst && !isLast && `padding-right: 0;`}
       > svg {
         fill: currentColor;
-        color: rgba(255, 255, 255, 0.1);
+        color: rgba(0, 0, 0, 0.4);
         display: block;
         width: 24px;
         height: 24px;
