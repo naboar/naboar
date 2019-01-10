@@ -6,6 +6,8 @@ import IconIOS from './components/Icon/IconIOS/IconIOS'
 import IconLogo from './components/Icon/IconLogo/IconLogo'
 import IconMD from './components/Icon/IconMD/IconMD'
 import Notifications from './components/Notifications/'
+import Radial from './components/Radial/Radial/'
+import RadialMenuItem from './components/Radial/RadialMenuItem'
 import Slider from './components/Slider/'
 import Themer, { theme } from './theme'
 
@@ -24,6 +26,8 @@ export {
   theme,
   Expand,
   Modal,
+  Radial,
+  RadialMenuItem,
   Slider,
   Notifications
 }
