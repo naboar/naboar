@@ -56,10 +56,12 @@ class Notifications extends Component<IProps, IState> {
     const newNotifs = next.filter(val => prev.indexOf(val) === -1)
 
     // Add (notifs.length) to doc title
-    if (this.props.notifications.length > 0) {
-      const title = document.title.replace(/\s*\(.*?\)\s*/g, '')
-      document.title = `(${this.props.notifications.length}) ${title}`
-    }
+    const title = document.title.replace(/\s*\(.*?\)\s*/g, '')
+    document.title =
+      this.props.notifications.length > 0
+        ? `(${this.props.notifications.length}) ${title}`
+        : title
+
     newNotifs.forEach(this.notify)
   }
 
@@ -135,7 +137,7 @@ class Notifications extends Component<IProps, IState> {
             <StyledNotification onClick={e => this.onClick(e, i)}>
               {this.props.onClose && (
                 <CloseButton onClick={e => this.onClose(e, i)}>
-                  <IconIOS name="close" size={24} color={'white'}/>
+                  <IconIOS name="close" size={24} color={'white'} />
                 </CloseButton>
               )}
               <Title>{notif.title}</Title>
@@ -203,6 +205,7 @@ const Wrapper = styled.div`
   right: 0;
   top: 0;
   bottom: auto;
+  height: 100vh;
   max-height: 100vh;
   overflow-x: hidden;
   overflow-y: auto;
