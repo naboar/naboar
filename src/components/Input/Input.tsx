@@ -1,7 +1,7 @@
 import React from 'react'
 import SyntheticEvent from 'react'
 import styled from 'styled-components'
-import { ITheme } from '../../theme'
+import { ITheme, theme } from '../../theme'
 import { IconIOS, iOS } from '../Icon'
 
 /**
@@ -13,15 +13,11 @@ const Input = (props: IInputProps) => {
   return (
     <Wrapper css={props.css}>
       {props.iconName && (
-        <IconWrapper>
-          <IconIOS name={props.iconName} size={19} color={'white'} />
-        </IconWrapper>
+        <IconIOS name={props.iconName} size={19} color={theme.white} />
       )}
       <StyledInput {...props} />
       {props.canClear && (
-        <ClearWrapper>
-          <IconIOS name={'close'} size={25} color={'white'} />
-        </ClearWrapper>
+        <IconIOS name={'close'} size={25} color={theme.white} />
       )}
     </Wrapper>
   )
@@ -41,6 +37,10 @@ interface IInputProps {
   disabled?: boolean
   /** Name of left icon */
   iconName?: iOS
+  /** Minimum value for number input */
+  min?: number
+  /** Maximum value for number input */
+  max?: number
   /** Name of input field */
   name: string
   /** On Clear click */
@@ -53,8 +53,18 @@ interface IInputProps {
   onFocus?: (value: React.ChangeEvent<HTMLInputElement>) => void
   /** On Click callback */
   onClick?: (e?: React.MouseEvent<HTMLInputElement>) => void
+  /** Placeholder text */
+  placeholder?: string
+  /**
+   * A stepping interval to use when
+   * using up and down arrows to adjust the value,
+   * as well as for validation
+   * */
+  step?: number
   /** HTML style object */
   style?: object
+  /** Type of input field */
+  type?: string
   /** Value of input field */
   value?: string
 }
@@ -68,34 +78,21 @@ const StyledInput = styled.input`
   height: 40px;
   outline: none;
   padding-left: ${({ iconName }: IProps) =>
-    iconName && iconName.length ? '48px' : '16px'};
-  padding-right: ${({ canClear }: IProps) => (canClear ? '44px' : '16px')};
+    iconName && iconName.length ? '16px' : '0'};
+  padding-right: ${({ canClear }: IProps) => (canClear ? '16px' : '0')};
   width: 100%;
 `
 
 const Wrapper = styled.div`
   border: 1px solid;
   border-radius: 4px;
-  position: relative;
+  border-color: ${theme.white};
+  padding: 0 16px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 
   ${({ css }: IProps) => css && css}
-`
-
-const ClearWrapper = styled.div`
-  position: absolute;
-  right: 16px;
-  top: 50%;
-  transform: translateY(-50%);
-  &:hover {
-    cursor: pointer;
-  }
-`
-
-const IconWrapper = styled.div`
-  left: 16px;
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
 `
 
 interface IProps {
