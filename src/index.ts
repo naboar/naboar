@@ -5,6 +5,7 @@ import Button from './components/Button/'
 import IconIOS from './components/Icon/IconIOS/IconIOS'
 import IconLogo from './components/Icon/IconLogo/IconLogo'
 import IconMD from './components/Icon/IconMD/IconMD'
+import Input from './components/Input'
 import Notifications from './components/Notifications/'
 import Radial from './components/Radial/Radial/'
 import RadialMenuItem from './components/Radial/RadialMenuItem'
@@ -24,6 +25,7 @@ export {
   IconIOS,
   IconLogo,
   IconMD,
+  Input,
   Themer,
   theme,
   Expand,
