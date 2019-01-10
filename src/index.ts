@@ -9,6 +9,8 @@ import Notifications from './components/Notifications/'
 import Radial from './components/Radial/Radial/'
 import RadialMenuItem from './components/Radial/RadialMenuItem'
 import Slider from './components/Slider/'
+import Wizard from './components/Wizard/Wizard/'
+import WizardStep from './components/Wizard/WizardStep/'
 import Themer, { theme } from './theme'
 
 /**
@@ -29,5 +31,7 @@ export {
   Radial,
   RadialMenuItem,
   Slider,
-  Notifications
+  Notifications,
+  Wizard,
+  WizardStep,
 }
