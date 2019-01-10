@@ -1,3 +1,5 @@
+#### Example
+
 ```js
 initialState = { notifs: [] }
 const removeAtIndex = (i, arr) => arr[i] ? [...arr.slice(0, i), ...arr.slice(i + 1)] : arr
