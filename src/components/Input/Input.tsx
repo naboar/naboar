@@ -1,7 +1,6 @@
 import React from 'react'
-import SyntheticEvent from 'react'
 import styled from 'styled-components'
-import { ITheme, theme } from '../../theme'
+import { ITheme } from '../../theme'
 import { IconIOS, iOS } from '../Icon'
 
 /**
@@ -13,11 +12,11 @@ const Input = (props: IInputProps) => {
   return (
     <Wrapper css={props.css}>
       {props.iconName && (
-        <IconIOS name={props.iconName} size={19} color={theme.white} />
+        <IconIOS name={props.iconName} size={19} color={'white'} />
       )}
       <StyledInput {...props} />
       {props.canClear && (
-        <IconIOS name={'close'} size={25} color={theme.white} />
+        <IconIOS name={'close'} size={25} color={'white'} />
       )}
     </Wrapper>
   )
@@ -59,7 +58,7 @@ interface IInputProps {
    * A stepping interval to use when
    * using up and down arrows to adjust the value,
    * as well as for validation
-   * */
+   */
   step?: number
   /** HTML style object */
   style?: object
@@ -86,7 +85,7 @@ const StyledInput = styled.input`
 const Wrapper = styled.div`
   border: 1px solid;
   border-radius: 4px;
-  border-color: ${theme.white};
+  border-color: white;
   padding: 0 16px;
   display: flex;
   flex-direction: row;
