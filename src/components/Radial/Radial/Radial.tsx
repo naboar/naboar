@@ -1,93 +1,6 @@
-import React, { Component, MouseEventHandler, ReactElement } from 'react'
+import React, { Component, CSSProperties, ReactElement } from 'react'
 import styled, { css } from 'styled-components'
-import { IconIOS } from '../Icon'
-import { iOS } from '../Icon/IconTypes'
-
-interface IItemProps {
-  title: string
-  iconName: iOS
-  onClick: MouseEventHandler<HTMLButtonElement>
-  active: boolean
-  index: number
-  total: number
-}
-
-const RadialMenuItem = ({
-  iconName,
-  onClick,
-  active,
-  title,
-  index,
-  total,
-}: IItemProps) => (
-  <ItemWrapper index={index} total={total}>
-    <ItemButton
-      onClick={onClick}
-      active={active}
-      title={title}
-      index={index}
-      total={total}
-    >
-      <IconIOS name={iconName} css={iconCss} />
-    </ItemButton>
-  </ItemWrapper>
-)
-
-const iconCss = css`
-  color: white;
-  font-size: 20px;
-` as string[]
-
-const ItemWrapper = styled.div`
-  position: absolute;
-  height: 100%;
-  width: 100%;
-  top: 0;
-  left: 0;
-  pointer-events: none;
-  ${({ index, total }: { index: number; total: number }) =>
-    `transform: rotate(${(360 / total) * index + 5}deg)`};
-`
-
-const ItemButton = styled.button<{
-  index: number
-  total: number
-  active?: boolean
-}>`
-  position: absolute;
-  transition-property: top, opacity;
-  transition-duration: 0.3s;
-  height: 30px;
-  width: 30px;
-  border-radius: 100%;
-  cursor: pointer;
-  border: none;
-  display: none;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
-
-  ${({ index, total }) =>
-    `transform: rotate(-${(360 / total) * index +
-      5}deg); transition-delay: ${(index * 0.45) / total}s`};
-
-  ${({ active }) =>
-    active
-      ? `top: -108%; opacity: 1; pointer-events: all;`
-      : `top: 0; opacity: 0; pointer-events: none;`};
-
-  background: red;
-
-  :focus {
-    outline: none;
-    box-sizing: border-box;
-  }
-  :active {
-    ${({ index, total }) =>
-      `transform: scale(.95) rotate(-${(360 / total) * index + 5}deg)`};
-    box-shadow: none;
-  }
-`
+import { IItemProps } from '../RadialMenuItem/RadialMenuItem'
 
 /**
  * Radial Menu Component
@@ -96,10 +9,6 @@ const ItemButton = styled.button<{
  * @author [Anthony Freda](https://github.com/Afreda323)
  */
 class Radial extends Component<IRadialProps, IRadialState> {
-  static Item: (
-    { iconName, onClick, active, title, index, total }: IItemProps,
-  ) => JSX.Element
-
   state: IRadialState = {
     active: this.props.defaultActive || false,
   }
@@ -128,8 +37,20 @@ class Radial extends Component<IRadialProps, IRadialState> {
   render() {
     const { children, coords } = this.props
     const { active } = this.state
+    const divStyle: CSSProperties = coords
+      ? {
+          display: 'inline-block',
+          position: 'absolute',
+          zIndex: 3,
+          ...coords,
+        }
+      : {
+          display: 'inline-block',
+          position: 'relative',
+          zIndex: 3,
+        }
     return (
-      <div style={{ position: 'relative', display: 'inline-block', ...coords }}>
+      <div style={divStyle}>
         <RadialButton onClick={this.onButtonClick}>
           <Effect isActive={active} />
           <Burger>
@@ -153,8 +74,8 @@ class Radial extends Component<IRadialProps, IRadialState> {
 }
 
 interface IRadialProps {
-  children: Array<ReactElement<IItemProps>>
-  coords?: { x: number; y: number }
+  children: JSX.Element[]
+  coords?: { left?: number; top?: number; bottom?: number; right?: number }
   defaultActive?: boolean
   onClick?: () => void
   onOpen?: () => void
@@ -175,9 +96,10 @@ const Effect = styled.div`
   height: 40px;
   width: 40px;
   pointer-events: none;
-  background: red;
-  opacity: 0.5s;
+  background: #1de9b6;
+  opacity: 0.5;
   position: absolute;
+  z-index: -1;
   top: 0;
   left: 0;
   border-radius: 100%;
@@ -194,7 +116,7 @@ const RadialButton = styled.button`
   border-radius: 100%;
   cursor: pointer;
   border: none;
-  background: blue;
+  background: #555;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -291,7 +213,5 @@ const BurgerInner = styled.div`
       isActive ? afterActiveStyle : null};
   }
 `
-
-Radial.Item = RadialMenuItem
 
 export default Radial
