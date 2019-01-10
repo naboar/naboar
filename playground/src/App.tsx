@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+
 import { Button, IconIOS, IconLogo, IconMD, Input } from '../../src'
 
 class App extends Component {
