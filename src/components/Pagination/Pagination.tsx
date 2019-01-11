@@ -83,8 +83,8 @@ const Pagination = ({
       <PageControl key="skip-right" onClick={e => handleSkip(1, e)}>
         1
       </PageControl>,
-      <PageControl key="left-ellipses" noBorder={true}>
-        <IconIOS name="more" size={30} color={'rgba(0,0,0,.65)'} />
+      <PageControl style={{ width: 32 }} key="left-ellipses" noBorder={true}>
+        <IconIOS name="more" size={30} color={'rgba(255,255,255,.8)'} />
       </PageControl>,
     ]
   }
@@ -101,8 +101,8 @@ const Pagination = ({
     }
 
     return [
-      <PageControl key="right-ellipses" noBorder={true}>
-        <IconIOS name="more" size={30} color={'rgba(0,0,0,.65)'} />
+      <PageControl style={{ width: 32 }} key="right-ellipses" noBorder={true}>
+        <IconIOS name="more" size={30} color={'rgba(255,255,255,.8)'} />
       </PageControl>,
       <PageControl key="skip-right" onClick={e => handleSkip(pageCount, e)}>
         {pageCount}
@@ -189,11 +189,11 @@ const Pagination = ({
 Pagination.defaultProps = {
   firstText: 'First',
   lastText: 'Last',
-  nextText: <IconIOS name={'arrow-forward'} />,
+  nextText: <IconIOS name={'arrow-forward'} color={'rgba(255,255,255,.8)'} />,
   page: 1,
   pageCount: 1,
   pageSkip: 1,
-  prevText: <IconIOS name={'arrow-back'} />,
+  prevText: <IconIOS name={'arrow-back'} color={'rgba(255,255,255,.8)'} />,
   showEllipses: false,
   showFirst: false,
   showLast: false,
@@ -225,12 +225,12 @@ const List = styled.ul`
   user-select: none;
 `
 const PageControl = styled.li<{
-  noBorder?: boolean,
-  disabled?: boolean,
+  noBorder?: boolean
+  disabled?: boolean
   selected?: boolean
 }>`
-  background-color: #ffffff;
-  color: #000000;
+  transition: color 0.2s, background-color 0.2s;
+  color: rgba(255, 255, 255, 0.8);
   border-radius: 4px;
   height: 32px;
   text-align: center;
@@ -238,7 +238,8 @@ const PageControl = styled.li<{
   margin-right: 8px;
   cursor: ${({ noBorder }) => (noBorder ? 'default' : 'pointer')};
   min-width: ${({ noBorder }) => (noBorder ? '24px' : '32px')};
-  border: ${({ noBorder }) => (noBorder ? 'none' : '1px solid #d9d9d9')};
+  border: ${({ noBorder }) => (noBorder ? 'none' : '1px solid #444')};
+  background-color: ${({ noBorder }) => (noBorder ? 'none' : '#363636')};
   font-family: Lato-Light, sans-serif;
   ${({ disabled }) =>
     disabled &&
@@ -252,11 +253,11 @@ const PageControl = styled.li<{
   ${({ selected }) =>
     selected &&
     `
-    border-color: red;
-    color: red
+    border-color: #1de9b6;
+    color: #1de9b6
   `};
   &:hover {
-    opacity: 0.8;
+    background: ${({ noBorder }) => (noBorder ? 'inherit' : '#404040')};
   }
 `
 
