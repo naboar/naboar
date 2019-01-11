@@ -1,6 +1,5 @@
-import React, { ReactNode } from 'react'
-import styled from 'styled-components'
-import { ITheme } from '../../theme'
+import React from 'react'
+import styled, { FlattenSimpleInterpolation } from 'styled-components'
 
 /**
  * Button Component
@@ -13,10 +12,10 @@ const Button = (props: IButtonProps) => {
 }
 
 Button.defaultProps = {
-  type: 'submit'
+  type: 'submit',
 }
 
-const StyledButton = styled.button`
+const StyledButton = styled.button<IButtonProps>`
   flex-grow: 0;
   padding: 8px;
   outline: none;
@@ -33,6 +32,7 @@ const StyledButton = styled.button`
     opacity: 0.5;
     cursor: default;
   }
+  ${({ css }) => css && css}
 `
 
 type ButtonTypes = 'button' | 'reset' | 'submit'
@@ -43,19 +43,21 @@ interface IButtonProps {
   /** onClick callback */
   onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void
   /** Name for javascript reference or form-data */
-  name: string
+  name?: string
   /** 
    * specify button type
    */
-  type: ButtonTypes
+  type?: ButtonTypes
   /**
    * value attribute
    */
-  value: string
+  value?: string
   /**
    * disabled attribute
    */
   disabled?: boolean
+  /** CSS styling using styled-components css */
+  css?: FlattenSimpleInterpolation
 }
 
 
