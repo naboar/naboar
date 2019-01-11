@@ -69,8 +69,13 @@ const inputStyles = css`
   color: black;
   border: 1px solid;
   width: 300px;
-  i {
+  i, input {
     color: black;
+  }
+  input {
+    &:disabled {
+      color: grey;
+    }
   }
 `
 

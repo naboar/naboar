@@ -97,6 +97,9 @@ const Wrapper = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
+  input {
+    color: ${({ theme }: IProps) => theme.white};
+  }
 
   ${(props: IProps) => props.css && props.css}
 `
