@@ -1,5 +1,6 @@
-import React, { Component, ReactNode } from 'react'
+import React, { Component, ReactElement, ReactNode } from 'react'
 import styled from 'styled-components'
+import { IStepProps } from '../WizardStep/WizardStep'
 import Controls from './Components/Controls'
 import Inner from './Components/Inner'
 import Timeline from './Components/Timeline'
@@ -54,18 +55,29 @@ class Wizard extends Component<IProps, IState> {
       previousText,
       completeText,
       shouldShowTimeline,
+      css,
     } = this.props
+
+    const items = children.map(
+      (child: ReactElement<IStepProps>) =>
+        child.props.timelineTitle || child.props.title,
+    )
+
     return (
-      <Wrapper>
+      <Wrapper css={css}>
         {shouldShowTimeline && (
           <Timeline
-            items={['Step 1 of 4', 'Step 2 of 4', 'Step 3 of 4', 'Step 4 of 4']}
+            items={items}
             selectedIndex={selectedIndex}
             onClick={i => this.setState({ selectedIndex: i })}
             isNextActive={this.isNextActive}
           />
         )}
-        <Inner>{children}</Inner>
+        <Inner>
+          {React.Children.map(children, (child, i) =>
+            React.cloneElement(child, { isActive: i === selectedIndex, isPrev: i < selectedIndex }),
+          )}
+        </Inner>
         <Controls
           isNextActive={this.isNextActive}
           selectedIndex={selectedIndex}
@@ -101,7 +113,7 @@ Wizard.defaultProps = {
 }
 
 interface IProps {
-  children?: ReactNode[]
+  children?: Array<ReactElement<IStepProps>>
   controls?: ReactNode[] | ReactNode
   previousText?: string
   nextText?: string
@@ -111,18 +123,20 @@ interface IProps {
   onNext?: () => void
   onPrevious?: () => void
   shouldShowTimeline?: boolean
+  css?: string[]
 }
 
 interface IState {
   selectedIndex: number
 }
 
-const Wrapper = styled.div`
+const Wrapper = styled.div<{ css?: string[] }>`
   display: flex;
   flex-direction: column;
   background-color: #333;
   width: 100%;
   height: 400px;
+  ${({ css }) => css && css};
 `
 
 export default Wizard

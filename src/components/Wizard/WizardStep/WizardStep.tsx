@@ -10,8 +10,20 @@ import styled from 'styled-components'
  * @author [Anthony Freda](https://github.com/Afreda323)
  */
 
-const WizardStep = (props: IStepProps) => {
-  return <Wrapper>WizardStep</Wrapper>
+const WizardStep = ({
+  timelineTitle,
+  title,
+  children,
+  hideTitle,
+  isActive,
+  isPrev
+}: IStepProps) => {
+  return (
+    <Wrapper isActive={isActive} isPrev={isPrev}>
+      {!hideTitle && <Title>{timelineTitle || title}</Title>}
+      {children}
+    </Wrapper>
+  )
 }
 
 export interface IStepProps {
@@ -19,14 +31,20 @@ export interface IStepProps {
   title: string
   timelineTitle?: string
   name: string
+  hideTitle?: boolean
+  /** @ignore */
+  isActive?: boolean
+  /** @ignore */
+  isPrev?: boolean
 }
 
-const Wrapper = styled.div`
+const Wrapper = styled.div<{ isActive?: boolean, isPrev?: boolean }>`
+  transition: opacity 0.5s, transform .6s;
   margin: 0;
   padding: 30px;
-  background-color: #262626;
+  background-color: #242424;
   box-sizing: border-box;
-  color: rgba(255,255,255, .8);
+  color: rgba(255, 255, 255, 0.8);
   font-family: Open-Sans, sans-serif;
 
   position: absolute;
@@ -35,6 +53,13 @@ const Wrapper = styled.div`
   top: 0;
   left: 0;
   z-index: 1;
+  ${({ isActive }) => !isActive && `pointer-events: none; transform: translateX(100%)`}
+  ${({ isPrev }) => isPrev && `pointer-events: none; transform: translateX(-100%)`}
+`
+
+const Title = styled.h3`
+  font-size: 24px;
+  margin-bottom: 16px;
 `
 
 export default WizardStep
