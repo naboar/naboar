@@ -7,7 +7,7 @@ import styled from 'styled-components'
  * @author [Anthony Freda](https://github.com/Afreda323)
  */
 
-const Timeline = ({ allowedIndex, items, selectedIndex, onClick }: IProps) => {
+const Timeline = ({ isNextActive, items, selectedIndex, onClick }: IProps) => {
   return (
     <Wrapper>
       {items.map((item, i) => (
@@ -15,8 +15,8 @@ const Timeline = ({ allowedIndex, items, selectedIndex, onClick }: IProps) => {
           isFirst={i === 0}
           isLast={i === items.length - 1}
           isActive={i <= selectedIndex}
-          onClick={() => i <= selectedIndex || allowedIndex > i ? onClick(i) : null}
-          canClick={i <= selectedIndex || allowedIndex > i}
+          onClick={() => i <= selectedIndex || isNextActive ? onClick(i) : null}
+          canClick={i <= selectedIndex || isNextActive}
         >
           {i !== 0 && (
             <div>
@@ -53,8 +53,8 @@ const Timeline = ({ allowedIndex, items, selectedIndex, onClick }: IProps) => {
 interface IProps {
   /** What is the slected index of the wiz */
   selectedIndex: number
-  /** How many of the indexes does the user have access to */
-  allowedIndex: number
+  /** Is current pane complete? */
+  isNextActive: boolean
   /** Array of titles */
   items: string[]
   /** Called when a title is clicked */
@@ -65,8 +65,15 @@ const Wrapper = styled.div`
   display: flex;
   align-items: flex-start;
   flex-direction: row;
-  padding: 24px;
+  padding: 24px 24px 40px;
   background-color: #272727;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+  position: relative;
+  z-index: 2;
+
+  @media (max-width: 700px){
+    padding: 24px;
+  }
 `
 
 const Item = styled.div<{
@@ -118,9 +125,13 @@ const Item = styled.div<{
       font-weight: 400;
       line-height: 1.5;
       color: rgba(255, 255, 255, 0.54);
-      margin-top: 16px;
+      margin-top: 8px;
       font-family: Open-Sans, sans-serif;
       text-align: center;
+
+      @media (max-width: 700px){
+        display: none;
+      }
     }
   }
 

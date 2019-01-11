@@ -1,5 +1,5 @@
 import React, { ReactNode } from 'react'
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 import { IconIOS } from '../../../..'
 /**
  * Controls Component
@@ -10,43 +10,45 @@ const Controls = (props: IProps) => {
   return (
     <Wrapper>
       <div>{props.children}</div>
-      <div>
+      <ButtonWrap>
         {props.selectedIndex === 0 ? (
-          <button disabled={true} onClick={() => null}>
-            <p>
-              <IconIOS name={'arrow-back'} />
-              {props.previousText}
-            </p>
-          </button>
+          <BackButton disabled={true} onClick={null}>
+            <IconIOS css={iconLeftCss} color="#1de9b6" name={'arrow-back'} />
+            {props.previousText}
+          </BackButton>
         ) : (
-          <button onClick={() => props.previousClick()}>
-            <p>
-              <IconIOS name={'arrow-back'} />
-              {props.previousText}
-            </p>
-          </button>
+          <BackButton onClick={() => props.previousClick()}>
+            <IconIOS css={iconLeftCss} color="#1de9b6" name={'arrow-back'} />
+            {props.previousText}
+          </BackButton>
         )}
         <span style={{ display: 'inline-block', width: 8 }} />
         {props.steps === props.selectedIndex + 1 ? (
-          <button onClick={props.completeClick}>
-            <p>
-              <IconIOS name={'checkmark-circle'} />
-              {props.completeText}
-            </p>
-          </button>
+          <NextButton onClick={props.completeClick}>
+            {props.completeText}
+            <IconIOS
+              css={iconRightCss}
+              color="white"
+              name={'checkmark-circle-outline'}
+            />
+          </NextButton>
         ) : (
-          <button onClick={props.nextClick} disabled={!props.isNextActive}>
-            <p>
-              {props.nextText}
-              <IconIOS name={'arrow-forward'} />
-            </p>
-          </button>
+          <NextButton
+            onClick={!props.isNextActive ? null : props.nextClick}
+            disabled={!props.isNextActive}
+          >
+            {props.nextText}
+            <IconIOS css={iconRightCss} color="white" name={'arrow-forward'} />
+          </NextButton>
         )}
-      </div>
+      </ButtonWrap>
     </Wrapper>
   )
 }
 
+/**
+ * All props here are self explanitory
+ */
 interface IProps {
   children?: ReactNode | ReactNode[]
   isNextActive?: boolean
@@ -60,12 +62,62 @@ interface IProps {
   steps: number
 }
 
+const iconLeftCss = css`
+  margin-right: 10px;
+` as string[]
+const iconRightCss = css`
+  margin-left: 10px;
+` as string[]
+
 const Wrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 16px;
   background-color: #272727;
+  box-shadow: 0 -1px 5px rgba(0,0,0,0.12), 0 0 2px rgba(0,0,0,0.14);
+  position: relative;
+  z-index: 2;
+`
+const ButtonWrap = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+`
+const baseButtonStyle = css`
+font-size: 14px;
+border-radius: 2px;
+transition: all 0.3s;
+border: none;
+cursor: pointer;
+display: flex;
+align-items: center;
+justify-content: space-between;
+padding: 5px 16px;
+box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+
+:hover {
+  opacity: .8;
+}
+`
+const NextButton = styled.button`
+  ${baseButtonStyle}
+  background-color: #008270;
+  color: white;
+  :disabled {
+    pointer-events: none;
+    opacity: 0.6;
+  }
+`
+const BackButton = styled.button`
+  ${baseButtonStyle};
+  background-color: #555;
+  color: #1de9b6;
+
+  :disabled {
+    pointer-events: none;
+    opacity: .3;
+  }
 `
 
 export default Controls

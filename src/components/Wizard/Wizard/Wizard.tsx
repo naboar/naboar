@@ -1,6 +1,7 @@
 import React, { Component, ReactNode } from 'react'
 import styled from 'styled-components'
 import Controls from './Components/Controls'
+import Inner from './Components/Inner'
 import Timeline from './Components/Timeline'
 
 /**
@@ -61,11 +62,10 @@ class Wizard extends Component<IProps, IState> {
             items={['Step 1 of 4', 'Step 2 of 4', 'Step 3 of 4', 'Step 4 of 4']}
             selectedIndex={selectedIndex}
             onClick={i => this.setState({ selectedIndex: i })}
-            allowedIndex={3}
+            isNextActive={this.isNextActive}
           />
         )}
-
-        {children}
+        <Inner>{children}</Inner>
         <Controls
           isNextActive={this.isNextActive}
           selectedIndex={selectedIndex}
@@ -117,6 +117,12 @@ interface IState {
   selectedIndex: number
 }
 
-const Wrapper = styled.div``
+const Wrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  background-color: #333;
+  width: 100%;
+  height: 400px;
+`
 
 export default Wizard
