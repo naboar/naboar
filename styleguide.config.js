@@ -3,6 +3,7 @@ const path = require('path')
 module.exports = {
   title: "Style-Guide",
   propsParser: require('react-docgen-typescript').parse,
+  skipComponentsWithoutExample: true,
   styleguideComponents: {
     Wrapper: path.join(__dirname, 'styleguide/Wrapper'),
   },

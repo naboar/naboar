@@ -34,8 +34,8 @@ const StyledDropdownNode = styled.div`
   border-radius: 0;
   cursor: pointer;
   box-sizing: border-box;
-  color: black;
-  background-color: white;
+  color: rgba(255,255,255, .8);
+  background-color: #444;
 
   ${({ css }: IProps) => css && css}
 `

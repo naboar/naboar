@@ -34,16 +34,16 @@ const StyledDropdownItem = styled.div.attrs({
   cursor: pointer;
   transition: 0.2s all;
   background-color: ${({ isActive }: IProps) =>
-    isActive ? '#f9f9f9' : '#ffffff'};
+    isActive ? '#333' : '#444'};
   border-bottom: 1px solid #dcdcdc;
-  color: black;
+  color: rgba(255,255,255, .8);
   &:hover {
-    background-color: #f9f9f9;
+    background-color: #555;
     cursor: pointer;
   }
 
   &:disabled {
-    background-color: #dcdcdc;
+    background-color: #2222;
     cursor: default;
   }
 

@@ -32,6 +32,8 @@ const buttonStyle = css`
   cursor: pointer;
   outline: none;
   border: none;
+  background: #444;
+  color: rgba(255,255,255, .8);
 `
 
 const iconStyle = css`
