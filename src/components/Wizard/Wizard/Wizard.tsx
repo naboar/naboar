@@ -17,11 +17,41 @@ class Wizard extends Component<IProps, IState> {
   }
 
   state = {
+    nextActive: false,
     selectedIndex: 0,
+    selectedName: '',
+  }
+
+  componentWillMount() {
+    this.setState({
+      selectedName: this.props.children
+        ? this.props.children[0].props.name
+        : '',
+    })
+  }
+
+  componentDidMount() {
+    const { selectedName } = this.state
+    const validation = this.props.validation[selectedName]
+    this.validateSteps(validation)
+  }
+
+  componentDidUpdate(prevProps: IProps, prevState: IState) {
+    const { selectedName } = prevState
+    const validation = prevProps.validation[selectedName]
+    const nextValidation = this.props.validation[this.state.selectedName]
+
+    if (validation !== nextValidation) {
+      this.validateSteps(nextValidation)
+    }
+  }
+
+  validateSteps = (validation: [] = []) => {
+    this.setState({ nextActive: validation.every(item => item) })
   }
 
   get isNextActive() {
-    return true
+    return this.state.nextActive
   }
 
   nextIndex = () => {
@@ -29,7 +59,8 @@ class Wizard extends Component<IProps, IState> {
     const { children } = this.props
     const nextIndex =
       selectedIndex < children.length - 1 ? selectedIndex + 1 : selectedIndex
-    this.setState({ selectedIndex: nextIndex })
+    const nextName = this.props.children[nextIndex].props.name
+    this.setState({ selectedIndex: nextIndex, selectedName: nextName })
 
     this.props.onNext()
   }
@@ -37,7 +68,8 @@ class Wizard extends Component<IProps, IState> {
   previousIndex = () => {
     const { selectedIndex } = this.state
     const nextIndex = selectedIndex === 0 ? selectedIndex : selectedIndex - 1
-    this.setState({ selectedIndex: nextIndex })
+    const nextName = this.props.children[nextIndex].props.name
+    this.setState({ selectedIndex: nextIndex, selectedName: nextName })
 
     this.props.onPrevious()
   }
@@ -75,7 +107,10 @@ class Wizard extends Component<IProps, IState> {
         )}
         <Inner>
           {React.Children.map(children, (child, i) =>
-            React.cloneElement(child, { isActive: i === selectedIndex, isPrev: i < selectedIndex }),
+            React.cloneElement(child, {
+              isActive: i === selectedIndex,
+              isPrev: i < selectedIndex,
+            }),
           )}
         </Inner>
         <Controls
@@ -128,6 +163,8 @@ interface IProps {
 
 interface IState {
   selectedIndex: number
+  selectedName: string
+  nextActive: boolean
 }
 
 const Wrapper = styled.div<{ css?: string[] }>`
