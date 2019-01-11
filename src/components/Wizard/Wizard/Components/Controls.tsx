@@ -24,11 +24,11 @@ const Controls = (props: IProps) => {
         )}
         <span style={{ display: 'inline-block', width: 8 }} />
         {props.steps === props.selectedIndex + 1 ? (
-          <NextButton onClick={props.completeClick}>
+          <NextButton onClick={props.completeClick} isSubmit={true}>
             {props.completeText}
             <IconIOS
               css={iconRightCss}
-              color="white"
+              color="#333"
               name={'checkmark-circle-outline'}
             />
           </NextButton>
@@ -75,7 +75,7 @@ const Wrapper = styled.div`
   justify-content: space-between;
   padding: 16px;
   background-color: #272727;
-  box-shadow: 0 -1px 5px rgba(0,0,0,0.12), 0 0 2px rgba(0,0,0,0.14);
+  box-shadow: 0 -1px 5px rgba(0, 0, 0, 0.12), 0 0 2px rgba(0, 0, 0, 0.14);
   position: relative;
   z-index: 2;
 `
@@ -85,25 +85,26 @@ const ButtonWrap = styled.div`
   justify-content: space-between;
 `
 const baseButtonStyle = css`
-font-size: 14px;
-border-radius: 2px;
-transition: all 0.3s;
-border: none;
-cursor: pointer;
-display: flex;
-align-items: center;
-justify-content: space-between;
-padding: 5px 16px;
-box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+  font-size: 14px;
+  border-radius: 2px;
+  transition: all 0.3s;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 5px 16px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
 
-:hover {
-  opacity: .8;
-}
+  :hover {
+    opacity: 0.8;
+  }
 `
-const NextButton = styled.button`
+const NextButton = styled.button<{ isSubmit?: boolean }>`
   ${baseButtonStyle}
   background-color: #008270;
   color: white;
+  ${({ isSubmit }) => isSubmit && `background-color: #1de9b6; color: #333;`}
   :disabled {
     pointer-events: none;
     opacity: 0.6;
@@ -116,7 +117,7 @@ const BackButton = styled.button`
 
   :disabled {
     pointer-events: none;
-    opacity: .3;
+    opacity: 0.3;
   }
 `
 

@@ -5,7 +5,9 @@ initialState = { val: '', val2: '' }
   validation={{
     "step-1": [state.val.length > 3],
     "step-2": [state.val2.length > 3],
-  }}>
+  }}
+  onComplete={() => alert("Submitted")}
+>
   <WizardStep name="step-1" title="Do some stuff 1">
     <div>
       <Input
