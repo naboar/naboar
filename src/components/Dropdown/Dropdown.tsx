@@ -1,6 +1,5 @@
 import React from 'react'
-import styled from 'styled-components'
-import { FlattenSimpleInterpolation } from 'styled-components'
+import styled, { FlattenSimpleInterpolation } from 'styled-components'
 import { ITheme } from '../../theme'
 
 /**

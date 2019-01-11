@@ -1,6 +1,5 @@
 import React from 'react'
-import styled from 'styled-components'
-import { FlattenSimpleInterpolation } from 'styled-components'
+import styled, { FlattenSimpleInterpolation } from 'styled-components'
 
 /**
  * DropdownMenu Component
@@ -13,6 +12,12 @@ interface IDropdownMenuProps {
   children?: JSX.Element[] | JSX.Element | string,
   /** CSS styling using css from styled-components */
   css?: FlattenSimpleInterpolation
+  /** Boolean identifying wheather the item is the active one */
+  isActive?: boolean
+  /** Boolean identifying wheather the item is disabled or not */
+  isDisabled?: boolean
+  /** Value of item */
+  value?: string | number
 }
 
 const DropdownMenu = (props: IDropdownMenuProps) => (

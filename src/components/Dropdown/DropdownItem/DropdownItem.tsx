@@ -1,6 +1,5 @@
 import React from 'react'
-import styled from 'styled-components'
-import { FlattenSimpleInterpolation } from 'styled-components'
+import styled, { FlattenSimpleInterpolation } from 'styled-components'
 
 /**
  * DropdownItem Component
@@ -15,6 +14,12 @@ import { FlattenSimpleInterpolation } from 'styled-components'
    css?: FlattenSimpleInterpolation,
    /** Fired click event */
    onClick?: () => void
+  /** Boolean identifying wheather the item is the active one */
+  isActive?: boolean
+  /** Boolean identifying wheather the item is disabled or not */
+  isDisabled?: boolean
+  /** Value of item */
+  value?: string | number
  }
 
 const DropdownItem = (props: IDropdownItemProps) => (
@@ -60,6 +65,8 @@ interface IProps {
   css?: FlattenSimpleInterpolation
   /** Boolean identifying wheather the item is the active one */
   isActive?: boolean
+  /** Boolean identifying wheather the item is disabled or not */
+  isDisabled?: boolean
   /** Fired click event */
   onClick?: (e?: React.MouseEvent<HTMLDivElement>) => void
   /** Value of item */

@@ -2,7 +2,8 @@
  * Import and export all components
  */
 import Button from './components/Button/'
-import Dropdown, {
+import {
+  Dropdown,
   DropdownButton,
   DropdownItem,
   DropdownMenu,

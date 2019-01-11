@@ -1,6 +1,5 @@
 import React from 'react'
-import styled from 'styled-components'
-import { FlattenSimpleInterpolation } from 'styled-components'
+import styled, { FlattenSimpleInterpolation } from 'styled-components'
 
 /**
  * DropdownNode Component
@@ -10,9 +9,17 @@ import { FlattenSimpleInterpolation } from 'styled-components'
 
 interface IDropdownNodeProps {
   /** Children */
-  children?: JSX.Element | string
+  children?: JSX.Element[] | JSX.Element | string
   /** CSS styling using css from styled-components */
   css?: FlattenSimpleInterpolation
+  /** Boolean identifying wheather the item is the active one */
+  isActive?: boolean
+  /** Boolean identifying wheather the item is disabled or not */
+  isDisabled?: boolean
+  /** Fired click event */
+  onClick?: () => void
+  /** Value of item */
+  value?: string | number
 }
 const DropdownNode = (props: IDropdownNodeProps) => (
   <StyledDropdownNode {...props}>{props.children}</StyledDropdownNode>
@@ -40,10 +47,10 @@ interface IProps {
   isActive?: boolean
   /** Boolean identifying wheather the item is disabled or not */
   isDisabled?: boolean
+  /** Fired click event */
+  onClick?: () => void
   /** Value of item */
   value?: string | number
-  /** Element or String */
-  children?: JSX.Element | string
 }
 
 export default DropdownNode
