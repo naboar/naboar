@@ -14,6 +14,7 @@ import IconLogo from './components/Icon/IconLogo/IconLogo'
 import IconMD from './components/Icon/IconMD/IconMD'
 import Input from './components/Input'
 import Notifications from './components/Notifications/'
+import Pagination from './components/Pagination/'
 import Radial from './components/Radial/Radial/'
 import RadialMenuItem from './components/Radial/RadialMenuItem'
 import Slider from './components/Slider/'
@@ -42,6 +43,7 @@ export {
   theme,
   Expand,
   Modal,
+  Pagination,
   Radial,
   RadialMenuItem,
   Slider,
