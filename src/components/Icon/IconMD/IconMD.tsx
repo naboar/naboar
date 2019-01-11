@@ -1,4 +1,5 @@
 import React from 'react'
+import { FlattenSimpleInterpolation } from 'styled-components'
 import Icon from '../Icon'
 import { md } from '../IconTypes'
 
@@ -16,7 +17,7 @@ interface IProps {
   /** Color of icon */
   color?: string
   /** CSS properties using css helper from styled-components */
-  css?: string[]
+  css?: FlattenSimpleInterpolation
   /** Ionicon icon name */
   name: md
   /** Event fired on click */

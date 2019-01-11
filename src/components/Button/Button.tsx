@@ -1,5 +1,5 @@
 import React from 'react'
-import styled from 'styled-components'
+import styled, { FlattenSimpleInterpolation } from 'styled-components'
 import { ITheme } from '../../theme'
 
 /**
@@ -15,6 +15,8 @@ const Button = (props: IButtonProps) => {
  * Button prop interface
  */
 interface IButtonProps {
+  /** CSS styling using styled-components css */
+  css?: FlattenSimpleInterpolation
   /**
    * Event fired on click
    */
@@ -32,9 +34,14 @@ interface IButtonProps {
 const StyledButton = styled.button`
   background-color: ${({ theme }: IProps) => theme.black};
   color: ${({ theme }: IProps) => theme.white};
+
+  ${({ css }: IProps) => css && css}
 `
 
 interface IProps {
+  /** CSS styling using styled-components css */
+  css?: FlattenSimpleInterpolation
+  /** Theme */
   theme: ITheme
 }
 
