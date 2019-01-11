@@ -43,7 +43,7 @@ const StyledDropdownItem = styled.div.attrs({
   }
 
   &:disabled {
-    background-color: #2222;
+    background-color: #222;
     cursor: default;
   }
 

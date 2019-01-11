@@ -15,7 +15,7 @@ Button.defaultProps = {
   type: 'submit',
 }
 
-const StyledButton = styled.button<{ css: FlattenSimpleInterpolation }>`
+const StyledButton = styled.button<IButtonProps>`
   flex-grow: 0;
   padding: 8px;
   outline: none;
