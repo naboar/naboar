@@ -22,7 +22,8 @@ const Wrapper = styled.div`
   width: 100%;
   height: 400px;
   max-height: 400px;
-  overflow: auto;
+  overflow-y: auto;
+  overflow-x: hidden;
   background-color: #242424;
 `
 
