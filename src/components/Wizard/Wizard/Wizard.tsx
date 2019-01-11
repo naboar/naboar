@@ -14,6 +14,15 @@ import Timeline from './Components/Timeline'
 class Wizard extends Component<IProps, IState> {
   static defaultProps: IProps = {
     children: [],
+    completeText: 'Complete',
+    controls: [],
+    nextText: 'Next',
+    onComplete: null,
+    onNext: null,
+    onPrevious: null,
+    previousText: 'Previous',
+    shouldShowTimeline: true,
+    validation: {},
   }
 
   state = {
@@ -22,6 +31,9 @@ class Wizard extends Component<IProps, IState> {
     selectedName: '',
   }
 
+  /**
+   * Set initial name to first pane
+   */
   componentWillMount() {
     this.setState({
       selectedName: this.props.children
@@ -30,12 +42,21 @@ class Wizard extends Component<IProps, IState> {
     })
   }
 
+  /**
+   * Run validators on selected index
+   */
   componentDidMount() {
     const { selectedName } = this.state
     const validation = this.props.validation[selectedName]
     this.validateSteps(validation)
   }
 
+  /**
+   * Check if validation has changed,
+   * if so revalidate
+   * @param prevProps
+   * @param prevState
+   */
   componentDidUpdate(prevProps: IProps, prevState: IState) {
     const { selectedName } = prevState
     const validation = prevProps.validation[selectedName]
@@ -46,7 +67,11 @@ class Wizard extends Component<IProps, IState> {
     }
   }
 
-  validateSteps = (validation: [] = []) => {
+  /**
+   * Make sure all are truthy
+   * @param validation - Array of bools
+   */
+  validateSteps = (validation: boolean[] = []) => {
     this.setState({ nextActive: validation.every(item => item) })
   }
 
@@ -54,17 +79,27 @@ class Wizard extends Component<IProps, IState> {
     return this.state.nextActive
   }
 
+  /**
+   * set new index and name to state
+   * call onNext() prop
+   */
   nextIndex = () => {
     const { selectedIndex } = this.state
     const { children } = this.props
+
     const nextIndex =
       selectedIndex < children.length - 1 ? selectedIndex + 1 : selectedIndex
     const nextName = this.props.children[nextIndex].props.name
+
     this.setState({ selectedIndex: nextIndex, selectedName: nextName })
 
     this.props.onNext()
   }
 
+  /**
+   * set new index and name to state
+   * call onPrevious() prop
+   */
   previousIndex = () => {
     const { selectedIndex } = this.state
     const nextIndex = selectedIndex === 0 ? selectedIndex : selectedIndex - 1
@@ -74,6 +109,9 @@ class Wizard extends Component<IProps, IState> {
     this.props.onPrevious()
   }
 
+  /**
+   * call onComplete() prop
+   */
   completeWizard = () => {
     this.props.onComplete()
   }
@@ -131,33 +169,28 @@ class Wizard extends Component<IProps, IState> {
   }
 }
 
-const noop = () => {
-  return
-}
-
-Wizard.defaultProps = {
-  completeText: 'Complete',
-  controls: [],
-  nextText: 'Next',
-  onComplete: noop,
-  onNext: noop,
-  onPrevious: noop,
-  previousText: 'Previous',
-  shouldShowTimeline: true,
-  validation: {},
-}
-
 interface IProps {
+  /** Children of type ```<WizardStep />``` */
   children?: Array<ReactElement<IStepProps>>
+  /** Content displayed in bottom left of wizard */
   controls?: ReactNode[] | ReactNode
+  /**  Text in previous button */
   previousText?: string
+  /**  Text in next button */
   nextText?: string
+  /**  Text in complete button */
   completeText?: string
-  validation?: { [key: string]: any }
+  /** objects keyed with the names of steps, array of boolean vals */
+  validation?: { [key: string]: boolean[] }
+  /** function called when wizard is completed */
   onComplete?: () => void
+  /** function called when index increases */
   onNext?: () => void
+  /** function called when index decreases */
   onPrevious?: () => void
+  /** should the timeline be displayed */
   shouldShowTimeline?: boolean
+  /** css`` */
   css?: string[]
 }
 

@@ -27,10 +27,15 @@ const WizardStep = ({
 }
 
 export interface IStepProps {
+  /** Can be anything */
   children: ReactNode
+  /** Title to be displayed on pane */
   title: string
+  /** Title to be displayed on top bar */
   timelineTitle?: string
+  /** key for validation */
   name: string
+  /** Should the title be displayed on the pane */
   hideTitle?: boolean
   /** @ignore */
   isActive?: boolean
