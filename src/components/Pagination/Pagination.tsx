@@ -2,6 +2,14 @@ import React, { ReactNode } from 'react'
 import styled from 'styled-components'
 import { IconIOS } from '../..'
 
+/**
+ * Pagination Component
+ *
+ * Used for long lists and tables
+ *
+ * @since v1.0.0
+ * @author [Anthony Freda](https://github.com/Afreda323)
+ */
 const Pagination = ({
   page,
   pageCount,
@@ -16,6 +24,7 @@ const Pagination = ({
   maintainSkipWidth,
   onClick,
 }: IProps) => {
+  /** call props.onClick with next page */
   const handleNext = (e: React.MouseEvent<HTMLLIElement>) => {
     const pageNumber = page + 1
     if (pageNumber > pageCount) {
@@ -23,6 +32,8 @@ const Pagination = ({
     }
     onClick(pageNumber, e)
   }
+
+  /** call props.onClick with previous page */
   const handlePrev = (e: React.MouseEvent<HTMLLIElement>) => {
     const pageNumber = page - 1
     if (pageNumber < 1) {
@@ -31,6 +42,7 @@ const Pagination = ({
     onClick(pageNumber, e)
   }
 
+  /** call props.onClick with selected page */
   const handleSkip = (
     pageNumber: number,
     e: React.MouseEvent<HTMLLIElement>,
@@ -41,14 +53,17 @@ const Pagination = ({
     onClick(pageNumber, e)
   }
 
+  /** call props.onClick with first page */
   const handleFirst = (e: React.MouseEvent<HTMLLIElement>) => {
     onClick(1, e)
   }
 
+  /** call props.onClick with last page */
   const handleLast = (e: React.MouseEvent<HTMLLIElement>) => {
     onClick(pageCount, e)
   }
 
+  /** render page one control */
   const First = () => {
     if (!showFirst) {
       return null
@@ -60,6 +75,7 @@ const Pagination = ({
     )
   }
 
+  /** render back control */
   const Prev = () => {
     return (
       <PageControl disabled={page <= 1} onClick={handlePrev}>
@@ -68,6 +84,7 @@ const Pagination = ({
     )
   }
 
+  /** render triple dot for left side */
   const LeftEllipses = () => {
     if (!showEllipses) {
       return null
@@ -89,6 +106,7 @@ const Pagination = ({
     ]
   }
 
+  /** render triple dot for right side */
   const RightEllipses = () => {
     if (!showEllipses) {
       return null
@@ -110,6 +128,7 @@ const Pagination = ({
     ]
   }
 
+  /** decide what page numbers to render */
   const buildPages = () => {
     if (pageSkip <= 0) {
       return null
@@ -154,6 +173,7 @@ const Pagination = ({
     ))
   }
 
+  /** render next page control */
   const Next = () => {
     return (
       <PageControl disabled={page >= pageCount} onClick={handleNext}>
@@ -162,6 +182,7 @@ const Pagination = ({
     )
   }
 
+  /** render last page control */
   const Last = () => {
     if (!showLast) {
       return null
@@ -201,17 +222,29 @@ Pagination.defaultProps = {
 
 // Types ----
 interface IProps {
+  /** current page */
   page: number
+  /** amount of pages to control */
   pageCount: number
+  /** called with selected page and event */
   onClick: (page?: number, e?: React.MouseEvent<HTMLLIElement>) => void
+  /** amount of pages displayed */
   pageSkip?: number
+  /** should first page num always be rendered */
   showFirst?: boolean
+  /** should last page num always be rendered */
   showLast?: boolean
+  /** should ellipses be rendered for long amounts */
   showEllipses?: boolean
+  /** text for first control */
   firstText?: ReactNode
+  /** text for last control */
   lastText?: ReactNode
+  /** text for next control */
   nextText?: ReactNode
+  /** text for previous control */
   prevText?: ReactNode
+  /** maintain the amount of pages on both sides */
   maintainSkipWidth?: boolean
 }
 
