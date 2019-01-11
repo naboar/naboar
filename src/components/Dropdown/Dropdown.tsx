@@ -3,12 +3,6 @@ import styled, { FlattenSimpleInterpolation } from 'styled-components'
 import { ITheme } from '../../theme'
 
 /**
- * Dropdown Component
- * @since v1.0.0
- * @author Tracey King
- */
-
-/**
  * Dropdown prop interface
  */
 interface IState {
@@ -28,6 +22,11 @@ interface IProps {
   onClickOutside?: (e?: Event) => void
 }
 
+/**
+ * Dropdown Component
+ * @since v1.0.0
+ * @author Tracey King
+ */
 class Dropdown extends React.Component<IProps, IState> {
   state: IState = {
     isActive: false,

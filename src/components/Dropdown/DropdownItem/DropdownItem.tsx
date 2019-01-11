@@ -1,27 +1,26 @@
 import React from 'react'
 import styled, { FlattenSimpleInterpolation } from 'styled-components'
 
-/**
- * DropdownItem Component
- * @since v1.0.0
- * @author Tracey King
- */
-
- interface IDropdownItemProps {
-   /** Children */
-   children?: JSX.Element[] | JSX.Element | string
-   /** CSS styling using css from styled-components */
-   css?: FlattenSimpleInterpolation,
-   /** Fired click event */
-   onClick?: () => void
+interface IDropdownItemProps {
+  /** Children */
+  children?: JSX.Element[] | JSX.Element | string
+  /** CSS styling using css from styled-components */
+  css?: FlattenSimpleInterpolation
+  /** Fired click event */
+  onClick?: () => void
   /** Boolean identifying wheather the item is the active one */
   isActive?: boolean
   /** Boolean identifying wheather the item is disabled or not */
   isDisabled?: boolean
   /** Value of item */
   value?: string | number
- }
+}
 
+/**
+ * DropdownItem Component
+ * @since v1.0.0
+ * @author Tracey King
+ */
 const DropdownItem = (props: IDropdownItemProps) => (
   <StyledDropdownItem {...props}>{props.children}</StyledDropdownItem>
 )

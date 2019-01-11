@@ -1,3 +1,3 @@
-```javascript
-<DropdownButton title={'Test'} onClick={console.log}/>
-```
+#### Example
+
+See Dropdown doc

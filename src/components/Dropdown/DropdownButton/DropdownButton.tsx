@@ -2,12 +2,6 @@ import React, { Fragment } from 'react'
 import { css, FlattenSimpleInterpolation } from 'styled-components'
 import { Button, IconMD } from '../../../index'
 
-/**
- * DropdownButton Component
- * @since v1.0.0
- * @author Tracey King
- */
-
 interface IButtonProps {
   /** CSS styling using styled-components css */
   css?: FlattenSimpleInterpolation
@@ -17,6 +11,11 @@ interface IButtonProps {
   title: string
 }
 
+/**
+ * DropdownButton Component
+ * @since v1.0.0
+ * @author Tracey King
+ */
 const DropdownButton = (props: IButtonProps) => (
   <Button onClick={props.onClick} css={buttonStyle}>
     <Fragment>

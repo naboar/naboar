@@ -1,12 +1,6 @@
 import React from 'react'
 import styled, { FlattenSimpleInterpolation } from 'styled-components'
 
-/**
- * DropdownMenu Component
- * @since v1.0.0
- * @author Tracey King
- */
-
 interface IDropdownMenuProps {
   /** Children */
   children?: JSX.Element[] | JSX.Element | string,
@@ -20,9 +14,15 @@ interface IDropdownMenuProps {
   value?: string | number
 }
 
+/**
+ * DropdownMenu Component
+ * @since v1.0.0
+ * @author Tracey King
+ */
 const DropdownMenu = (props: IDropdownMenuProps) => (
   <StyledDropdownMenu {...props}>{props.children}</StyledDropdownMenu>
 )
+
 const StyledDropdownMenu = styled.div`
   position: absolute;
   width: auto;

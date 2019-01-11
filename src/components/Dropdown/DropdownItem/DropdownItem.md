@@ -1,3 +1,3 @@
-```javascript
-<DropdownItem>Example dropdown item</DropdownItem>
-```
+#### Example
+
+See Dropdown doc
