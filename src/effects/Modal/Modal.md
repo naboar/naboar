@@ -1,3 +1,5 @@
+#### Example
+
 ```js
 initialState = { shouldShow: false }
 ;<div>

@@ -1,5 +1,5 @@
 import React from 'react'
-import styled from 'styled-components'
+import styled, { css, FlattenSimpleInterpolation } from 'styled-components'
 import { ITheme } from '../../theme'
 import { IconIOS, iOS } from '../Icon'
 
@@ -8,15 +8,22 @@ import { IconIOS, iOS } from '../Icon'
  * @since v1.0.0
  * @author Tracey King
  */
+
 const Input = (props: IInputProps) => {
   return (
     <Wrapper css={props.css}>
       {props.iconName && (
         <IconIOS name={props.iconName} size={19} color={'white'} />
       )}
-      <StyledInput {...props} />
+      <StyledInput {...props } />
       {props.canClear && (
-        <IconIOS name={'close'} size={25} color={'white'} />
+        <IconIOS
+          css={clearIconStyle}
+          name={'close'}
+          size={25}
+          color={'white'}
+          onClick={props.onClear}
+        />
       )}
     </Wrapper>
   )
@@ -29,7 +36,7 @@ interface IInputProps {
   /** Toggle input clear option */
   canClear?: boolean
   /** Custom CSS */
-  css?: string[]
+  css?: FlattenSimpleInterpolation
   /** Default Value of input field */
   defaultValue?: string
   /** Toggle input clickability */
@@ -72,7 +79,6 @@ const StyledInput = styled.input`
   background: transparent;
   border: none;
   box-sizing: border-box;
-  color: ${({ theme }: IProps) => theme.white};
   font-size: 16px;
   height: 40px;
   outline: none;
@@ -86,17 +92,24 @@ const Wrapper = styled.div`
   border: 1px solid;
   border-radius: 4px;
   border-color: white;
+  color: ${({ theme }: IProps) => theme.white};
   padding: 0 16px;
   display: flex;
   flex-direction: row;
   align-items: center;
 
-  ${({ css }: IProps) => css && css}
+  ${(props: IProps) => props.css && props.css}
+`
+
+const clearIconStyle = css`
+  &:hover {
+    cursor: pointer;
+  }
 `
 
 interface IProps {
   canClear?: boolean
-  css?: string[]
+  css?: FlattenSimpleInterpolation
   iconName?: string
   theme: ITheme
 }

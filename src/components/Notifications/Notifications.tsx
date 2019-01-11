@@ -131,7 +131,7 @@ class Notifications extends Component<IProps, IState> {
 
   renderWrapper = () => {
     return (
-      <Wrapper>
+      <Wrapper canClick={this.props.notifications.length > 0}>
         {this.props.notifications.map((notif, i) => (
           <Fade key={'notif' + i} shouldShow={true} from="right" distance={100}>
             <StyledNotification onClick={e => this.onClick(e, i)}>
@@ -195,7 +195,7 @@ interface IState {
 
 // Styled Components -----
 
-const Wrapper = styled.div`
+const Wrapper = styled.div<{ canClick: boolean }>`
   display: inline-block;
   font-family: Open-Sans, sans-serif;
   position: fixed;
@@ -209,6 +209,7 @@ const Wrapper = styled.div`
   max-height: 100vh;
   overflow-x: hidden;
   overflow-y: auto;
+  ${({ canClick }) => !canClick && `pointer-events: none;`}
   > div {
     width: 100%;
     @media (min-width: 390px) {

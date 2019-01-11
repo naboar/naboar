@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled, { FlattenSimpleInterpolation } from 'styled-components'
 import { ITheme } from '../../theme'
 
 /**
@@ -18,7 +18,7 @@ interface IProps {
   /** Color of icon */
   color?: string
   /** CSS properties using css helper from styled-components */
-  css?: string[]
+  css?: FlattenSimpleInterpolation
   /** Event fired on click */
   onClick?: () => void
   /** Size of font in px */
