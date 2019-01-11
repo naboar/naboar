@@ -16,6 +16,55 @@ initialState = { val: '', val2: '' }
         value={state.val} 
         onChange={({target}) => setState({val: target.value})} 
       />
+      <Input
+        iconName="checkbox-outline"
+        placeholder="Fill me in to validate" 
+        value={state.val} 
+        onChange={({target}) => setState({val: target.value})} 
+      />
+      v
+      <Input
+        iconName="checkbox-outline"
+        placeholder="Fill me in to validate" 
+        value={state.val} 
+        onChange={({target}) => setState({val: target.value})} 
+      />
+      <Input
+        iconName="checkbox-outline"
+        placeholder="Fill me in to validate" 
+        value={state.val} 
+        onChange={({target}) => setState({val: target.value})} 
+      />
+      <Input
+        iconName="checkbox-outline"
+        placeholder="Fill me in to validate" 
+        value={state.val} 
+        onChange={({target}) => setState({val: target.value})} 
+      />
+      <Input
+        iconName="checkbox-outline"
+        placeholder="Fill me in to validate" 
+        value={state.val} 
+        onChange={({target}) => setState({val: target.value})} 
+      />
+      <Input
+        iconName="checkbox-outline"
+        placeholder="Fill me in to validate" 
+        value={state.val} 
+        onChange={({target}) => setState({val: target.value})} 
+      />
+      <Input
+        iconName="checkbox-outline"
+        placeholder="Fill me in to validate" 
+        value={state.val} 
+        onChange={({target}) => setState({val: target.value})} 
+      />
+      <Input
+        iconName="checkbox-outline"
+        placeholder="Fill me in to validate" 
+        value={state.val} 
+        onChange={({target}) => setState({val: target.value})} 
+      />
     </div>
   </WizardStep>
   <WizardStep name="step-2" title="Do some stuff 2">

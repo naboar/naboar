@@ -46,7 +46,7 @@ export interface IStepProps {
 const Wrapper = styled.div<{ isActive?: boolean, isPrev?: boolean }>`
   transition: opacity 0.5s, transform .6s;
   margin: 0;
-  padding: 30px;
+  padding: 30px 30px;
   background-color: #242424;
   box-sizing: border-box;
   color: rgba(255, 255, 255, 0.8);
@@ -54,7 +54,6 @@ const Wrapper = styled.div<{ isActive?: boolean, isPrev?: boolean }>`
 
   position: absolute;
   width: 100%;
-  height: 100%;
   top: 0;
   left: 0;
   z-index: 1;

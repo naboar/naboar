@@ -20,8 +20,10 @@ const Wrapper = styled.div`
   display: flex;
   position: relative;
   width: 100%;
-  height: 100%;
-  overflow: hidden;
+  height: 400px;
+  max-height: 400px;
+  overflow: auto;
+  background-color: #242424;
 `
 
 export default Inner
