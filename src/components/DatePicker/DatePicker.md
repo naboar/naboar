@@ -1,5 +1,5 @@
 #### Example
 
 ```js
-<DatePicker />
+<DatePicker since={Date.now()} onChange={console.log}/>
 ```

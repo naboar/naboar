@@ -71,42 +71,20 @@ class Wizard extends Component<IProps, IState> {
    * Make sure all are truthy
    * @param validation - Array of bools
    */
-  validateSteps = (validation: boolean[] = []) => {
-    this.setState({ nextActive: validation.every(item => item) })
-  }
+  validateSteps = (validation: boolean[] = []) => this.setState({ nextActive: validation.every(item => item) })
 
   get isNextActive() {
     return this.state.nextActive
   }
 
   /**
-   * set new index and name to state
-   * call onNext() prop
+   * Calls curried callback after setting newly selected index & selectedName
    */
-  nextIndex = () => {
-    const { selectedIndex } = this.state
-    const { children } = this.props
-
-    const nextIndex =
-      selectedIndex < children.length - 1 ? selectedIndex + 1 : selectedIndex
-    const nextName = this.props.children[nextIndex].props.name
-
-    this.setState({ selectedIndex: nextIndex, selectedName: nextName })
-
-    this.props.onNext()
-  }
-
-  /**
-   * set new index and name to state
-   * call onPrevious() prop
-   */
-  previousIndex = () => {
-    const { selectedIndex } = this.state
-    const nextIndex = selectedIndex === 0 ? selectedIndex : selectedIndex - 1
+  getPreviousOrNextIndex = (cb: () => void = () => undefined, nextIndex: number) => () => {
     const nextName = this.props.children[nextIndex].props.name
     this.setState({ selectedIndex: nextIndex, selectedName: nextName })
 
-    this.props.onPrevious()
+    cb()
   }
 
   /**
@@ -126,12 +104,20 @@ class Wizard extends Component<IProps, IState> {
       completeText,
       shouldShowTimeline,
       css,
+      onPrevious,
+      onNext,
     } = this.props
 
     const items = children.map(
       (child: ReactElement<IStepProps>) =>
         child.props.timelineTitle || child.props.title,
     )
+
+    const previousIndex = selectedIndex === 0 ? selectedIndex : selectedIndex - 1
+
+    const nextIndex = selectedIndex < children.length - 1
+      ? selectedIndex + 1
+      : selectedIndex
 
     return (
       <Wrapper css={css}>
@@ -155,8 +141,8 @@ class Wizard extends Component<IProps, IState> {
           isNextActive={this.isNextActive}
           selectedIndex={selectedIndex}
           steps={children.length || 0}
-          nextClick={this.nextIndex}
-          previousClick={this.previousIndex}
+          nextClick={this.getPreviousOrNextIndex(onNext, nextIndex)}
+          previousClick={this.getPreviousOrNextIndex(onPrevious, previousIndex)}
           completeClick={this.completeWizard}
           nextText={nextText}
           previousText={previousText}
