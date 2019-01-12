@@ -3,7 +3,6 @@ import { Button, IconIOS, IconLogo, IconMD } from '../../src'
 
 class App extends Component {
   state = {
-    notifs: [],
   }
   render() {
     return (

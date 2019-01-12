@@ -1,6 +1,7 @@
 /**
  * Import and export all components
  */
+import Badge from './components/Badge'
 import Button from './components/Button/'
 import IconIOS from './components/Icon/IconIOS/IconIOS'
 import IconLogo from './components/Icon/IconLogo/IconLogo'
@@ -16,6 +17,7 @@ import Expand from './effects/Expand/'
 import Modal from './effects/Modal/'
 
 export {
+  Badge,
   Button,
   IconIOS,
   IconLogo,
