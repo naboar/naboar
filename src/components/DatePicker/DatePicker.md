@@ -1,5 +1,23 @@
 #### Example
 
 ```js
-<DatePicker isTimePicker since={'2018-12-25 12:22'} onChange={console.log}/>
+<DatePicker 
+  onChange={console.log}
+/>
+<br />
+<DatePicker 
+  isTimePicker
+  onChange={console.log}
+/>
+<br />
+<DatePicker
+  isRangePicker
+  onChange={console.log}
+/>
+<br />
+<DatePicker
+  isTimePicker
+  isRangePicker 
+  onChange={console.log}
+/>
 ```

@@ -9,6 +9,12 @@ import { IconIOS, Input } from '../..'
  * @author [Anthony Freda](https://github.com/Afreda)
  */
 class DatePicker extends Component<IProps> {
+  static defaultProps = {
+    onChange: (): void => null,
+    sinceName: 'since',
+    untilName: 'until',
+  }
+
   state = {
     since: '',
     until: '',
@@ -78,7 +84,7 @@ class DatePicker extends Component<IProps> {
   }
 
   render() {
-    const { isRangePicker, isTimePicker, sinceRequired, untilRequired } = this.props
+    const { isRangePicker, isTimePicker, sinceRequired, untilRequired, sinceName, untilName } = this.props
     const { since, until } = this.state
     return (
       <Wrapper>
@@ -86,7 +92,7 @@ class DatePicker extends Component<IProps> {
           value={String(since)}
           onChange={this.handleSinceChange}
           css={inputCss}
-          name="since"
+          name={sinceName}
           iconName="calendar"
           type={isTimePicker ? 'datetime-local' : 'date'}
           required={sinceRequired}
@@ -98,7 +104,7 @@ class DatePicker extends Component<IProps> {
               value={String(until)}
               onChange={this.handleUntilChange}
               css={inputCss}
-              name="until"
+              name={untilName}
               iconName="calendar"
               type={isTimePicker ? 'datetime-local' : 'date'}
               required={untilRequired}
@@ -126,6 +132,10 @@ interface IProps {
   sinceRequired?: boolean
   /** is until required */
   untilRequired?: boolean
+  /** override default since name */
+  sinceName: string,
+  /** override default until name */
+  untilName: string
 }
 
 // Styled Components
