@@ -28,13 +28,11 @@ class DatePicker extends Component<IProps> {
   }
 
   componentDidUpdate(prevProps: IProps) {
-    if (
-      this.props.since !== prevProps.since ||
-      this.props.until !== prevProps.until
-    ) {
+    const { since, until } = this.props
+    if (since !== prevProps.since || until !== prevProps.until) {
       this.setState({
-        since: this.formatDate(this.props.since),
-        until: this.formatDate(this.props.until),
+        since: this.formatDate(since),
+        until: this.formatDate(until),
       })
     }
   }
@@ -73,18 +71,28 @@ class DatePicker extends Component<IProps> {
    * Call props.onChange
    */
   onDateChange = () => {
+    const dateSince = new Date(this.state.since)
+    const dateUntil = new Date(this.state.until)
+
     if (this.props.isRangePicker) {
       this.props.onChange({
-        since: this.state.since ? new Date(this.state.since) : null,
-        until: this.state.until ? new Date(this.state.until) : null,
+        since: this.state.since ? dateSince : null,
+        until: this.state.until ? dateUntil : null,
       })
     } else {
-      this.props.onChange(new Date(this.state.since))
+      this.props.onChange(dateSince)
     }
   }
 
   render() {
-    const { isRangePicker, isTimePicker, sinceRequired, untilRequired, sinceName, untilName } = this.props
+    const {
+      isRangePicker,
+      isTimePicker,
+      sinceRequired,
+      untilRequired,
+      sinceName,
+      untilName,
+    } = this.props
     const { since, until } = this.state
     return (
       <Wrapper>
@@ -133,7 +141,7 @@ interface IProps {
   /** is until required */
   untilRequired?: boolean
   /** override default since name */
-  sinceName: string,
+  sinceName: string
   /** override default until name */
   untilName: string
 }
