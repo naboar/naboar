@@ -42,33 +42,29 @@ class DatePicker extends Component<IProps> {
     format(date, this.props.isTimePicker ? 'YYYY-MM-DDTHH:mm' : 'YYYY-MM-DD')
 
   /**
-   * Check whether or not the selected since is after the since
+   * Check whether or not the selected date overlaps the current date
    * if so flip them, if not set the state and call the onChange
    */
-  handleSinceChange = (e: ChangeEvent<HTMLInputElement>) => {
-    const since = e.target.value
-    if (isAfter(since, this.state.until)) {
-      this.setState({ since: this.state.until, until: since })
+  handleChangeDate = (val: 'since' | 'until', e: ChangeEvent<HTMLInputElement>) => {
+    const selectedDate = e.target.value
+    const oppositeDate = val === 'since' ? 'until' : 'since'
+    const shouldFlipDates =
+      val === 'since'
+        ? isAfter(selectedDate, this.state[oppositeDate])
+        : isBefore(selectedDate, this.state[oppositeDate])
+
+    if (shouldFlipDates) {
+      this.setState({
+        [val]: this.state[oppositeDate],
+        [oppositeDate]: selectedDate,
+      })
     } else {
-      this.setState({ since }, this.onDateChange)
+      this.setState({ [val]: selectedDate }, this.onDateChange)
     }
   }
 
   /**
-   * Check whether or not the selected until is before the since
-   * if so flip them, if not set the state and call the onChange
-   */
-  handleUntilChange = (e: ChangeEvent<HTMLInputElement>) => {
-    const until = e.target.value
-    if (isBefore(until, this.state.since)) {
-      this.setState({ since: until, until: this.state.since })
-    } else {
-      this.setState({ until }, this.onDateChange)
-    }
-  }
-
-  /**
-   * Call props.onChange
+   * Call props.onChange with updated state vars
    */
   onDateChange = () => {
     const dateSince = new Date(this.state.since)
@@ -98,7 +94,7 @@ class DatePicker extends Component<IProps> {
       <Wrapper>
         <Input
           value={String(since)}
-          onChange={this.handleSinceChange}
+          onChange={e => this.handleChangeDate('since', e)}
           css={inputCss}
           name={sinceName}
           iconName="calendar"
@@ -110,7 +106,7 @@ class DatePicker extends Component<IProps> {
             <IconIOS css={iconCss} size={24} color="white" name="remove" />
             <Input
               value={String(until)}
-              onChange={this.handleUntilChange}
+              onChange={e => this.handleChangeDate('until', e)}
               css={inputCss}
               name={untilName}
               iconName="calendar"
