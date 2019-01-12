@@ -2,6 +2,7 @@
  * Import and export all components
  */
 import Button from './components/Button/'
+import DatePicker from './components/DatePicker/'
 import {
   Dropdown,
   DropdownButton,
@@ -30,6 +31,7 @@ import Modal from './effects/Modal/'
 
 export {
   Button,
+  DatePicker,
   Dropdown,
   DropdownButton,
   DropdownItem,

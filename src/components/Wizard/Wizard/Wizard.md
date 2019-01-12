@@ -7,6 +7,8 @@ initialState = { val: '', val2: '' }
     "step-2": [state.val2.length > 3],
   }}
   onComplete={() => alert("Submitted")}
+  onPrevious={() =>  console.log("back")}
+  onNext={() =>  console.log("next")}
 >
   <WizardStep name="step-1" title="Do some stuff 1">
     <div>
