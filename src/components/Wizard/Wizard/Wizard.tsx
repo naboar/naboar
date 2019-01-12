@@ -71,7 +71,8 @@ class Wizard extends Component<IProps, IState> {
    * Make sure all are truthy
    * @param validation - Array of bools
    */
-  validateSteps = (validation: boolean[] = []) => this.setState({ nextActive: validation.every(item => item) })
+  validateSteps = (validation: boolean[] = []) =>
+    this.setState({ nextActive: validation.every(item => item) })
 
   get isNextActive() {
     return this.state.nextActive
@@ -80,7 +81,10 @@ class Wizard extends Component<IProps, IState> {
   /**
    * Calls curried callback after setting newly selected index & selectedName
    */
-  getPreviousOrNextIndex = (cb: () => void = () => undefined, nextIndex: number) => () => {
+  getPreviousOrNextIndex = (
+    cb: () => void = () => undefined,
+    nextIndex: number,
+  ) => () => {
     const nextName = this.props.children[nextIndex].props.name
     this.setState({ selectedIndex: nextIndex, selectedName: nextName })
 
@@ -113,11 +117,11 @@ class Wizard extends Component<IProps, IState> {
         child.props.timelineTitle || child.props.title,
     )
 
-    const previousIndex = selectedIndex === 0 ? selectedIndex : selectedIndex - 1
+    const previousIndex =
+      selectedIndex === 0 ? selectedIndex : selectedIndex - 1
 
-    const nextIndex = selectedIndex < children.length - 1
-      ? selectedIndex + 1
-      : selectedIndex
+    const nextIndex =
+      selectedIndex < children.length - 1 ? selectedIndex + 1 : selectedIndex
 
     return (
       <Wrapper css={css}>

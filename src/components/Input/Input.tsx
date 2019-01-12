@@ -73,6 +73,8 @@ interface IInputProps {
   type?: string
   /** Value of input field */
   value?: string
+  /** is this input required */
+  required?: boolean
 }
 
 const StyledInput = styled.input`

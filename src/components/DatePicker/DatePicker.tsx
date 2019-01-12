@@ -1,7 +1,7 @@
-import React, { ChangeEvent, Component } from 'react'
+import { format, isAfter, isBefore } from 'date-fns'
+import React, { ChangeEvent, Component, Fragment } from 'react'
 import styled, { css } from 'styled-components'
 import { IconIOS, Input } from '../..'
-import { isAfter, isBefore } from 'date-fns'
 
 /**
  * DatePicker Component
@@ -10,9 +10,32 @@ import { isAfter, isBefore } from 'date-fns'
  */
 class DatePicker extends Component<IProps> {
   state = {
-    since: this.props.since || '',
-    until: this.props.until || '',
+    since: '',
+    until: '',
   }
+
+  componentDidMount() {
+    this.setState({
+      since: this.props.since ? this.formatDate(this.props.since) : '',
+      until: this.props.until ? this.formatDate(this.props.until) : '',
+    })
+  }
+
+  componentDidUpdate(prevProps: IProps) {
+    if (
+      this.props.since !== prevProps.since ||
+      this.props.until !== prevProps.until
+    ) {
+      this.setState({
+        since: this.formatDate(this.props.since),
+        until: this.formatDate(this.props.until),
+      })
+    }
+  }
+
+  /** Format dates to datepicker accepting string */
+  formatDate = (date: string | Date | number): string =>
+    format(date, this.props.isTimePicker ? 'YYYY-MM-DDTHH:mm' : 'YYYY-MM-DD')
 
   /**
    * Check whether or not the selected since is after the since
@@ -44,32 +67,44 @@ class DatePicker extends Component<IProps> {
    * Call props.onChange
    */
   onDateChange = () => {
-    this.props.onChange({
-      since: this.state.since ? new Date(this.state.since) : null,
-      until: this.state.until ? new Date(this.state.until) : null,
-    })
+    if (this.props.isRangePicker) {
+      this.props.onChange({
+        since: this.state.since ? new Date(this.state.since) : null,
+        until: this.state.until ? new Date(this.state.until) : null,
+      })
+    } else {
+      this.props.onChange(new Date(this.state.since))
+    }
   }
 
   render() {
+    const { isRangePicker, isTimePicker, sinceRequired, untilRequired } = this.props
+    const { since, until } = this.state
     return (
       <Wrapper>
         <Input
-          value={String(this.state.since)}
+          value={String(since)}
           onChange={this.handleSinceChange}
           css={inputCss}
           name="since"
           iconName="calendar"
-          type="date"
+          type={isTimePicker ? 'datetime-local' : 'date'}
+          required={sinceRequired}
         />
-        <IconIOS css={iconCss} size={24} color="white" name="remove" />
-        <Input
-          value={String(this.state.until)}
-          onChange={this.handleUntilChange}
-          css={inputCss}
-          name="until"
-          iconName="calendar"
-          type="date"
-        />
+        {isRangePicker && (
+          <Fragment>
+            <IconIOS css={iconCss} size={24} color="white" name="remove" />
+            <Input
+              value={String(until)}
+              onChange={this.handleUntilChange}
+              css={inputCss}
+              name="until"
+              iconName="calendar"
+              type={isTimePicker ? 'datetime-local' : 'date'}
+              required={untilRequired}
+            />
+          </Fragment>
+        )}
       </Wrapper>
     )
   }
@@ -81,12 +116,16 @@ interface IProps {
   isRangePicker?: boolean
   /** Can the user select a time */
   isTimePicker?: boolean
-  /** TODO */
+  /** Date object for since or single date */
   since?: Date
-  /** TODO */
+  /** Date object for until */
   until?: Date
   /** function called when any date is changed */
-  onChange: (dates: { since: Date; until: Date }) => void
+  onChange: (dates?: { since: Date; until: Date } | Date) => void
+  /** is since required */
+  sinceRequired?: boolean
+  /** is until required */
+  untilRequired?: boolean
 }
 
 // Styled Components
