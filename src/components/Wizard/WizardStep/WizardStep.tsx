@@ -57,7 +57,7 @@ const Wrapper = styled.div<{ isActive?: boolean, isPrev?: boolean }>`
   top: 0;
   left: 0;
   z-index: 1;
-  ${({ isActive }) => !isActive && `pointer-events: none; transform: translateX(100%)`}
+  ${({ isActive }) => !isActive && `pointer-events: none; visibility: hidden; transform: translateX(100%)`}
   ${({ isPrev }) => isPrev && `pointer-events: none; transform: translateX(-100%)`}
 `
 
