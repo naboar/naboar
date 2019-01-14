@@ -14,7 +14,12 @@ import IconIOS from './components/Icon/IconIOS/IconIOS'
 import IconLogo from './components/Icon/IconLogo/IconLogo'
 import IconMD from './components/Icon/IconMD/IconMD'
 import Input from './components/Input'
-import { NavDrawer, NavDrawerDivider, NavDrawerLink } from './components/NavDrawer'
+import { NavBar, NavBarDivider, NavBarLink } from './components/NavBar'
+import {
+  NavDrawer,
+  NavDrawerDivider,
+  NavDrawerLink,
+} from './components/NavDrawer'
 import Notifications from './components/Notifications/'
 import Pagination from './components/Pagination/'
 import Radial from './components/Radial/Radial/'
@@ -42,6 +47,9 @@ export {
   IconLogo,
   IconMD,
   Input,
+  NavBar,
+  NavBarDivider,
+  NavBarLink,
   NavDrawer,
   NavDrawerDivider,
   NavDrawerLink,

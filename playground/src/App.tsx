@@ -11,6 +11,8 @@ import {
   IconLogo,
   IconMD,
   Input,
+  NavBar,
+  NavBarLink,
   NavDrawer,
   NavDrawerDivider,
   NavDrawerLink,
@@ -30,6 +32,38 @@ class App extends Component {
   render() {
     return (
       <div>
+        <NavBar onClick={() => alert('redirect')} title={'Dashboard'}>
+          <NavBarLink
+            title={'First Item'}
+            isActive={this.state.activeIndex === 0}
+            onClick={() => this.updateActiveIndex(0)}
+          />
+          <NavBarLink
+            title={'Second Item'}
+            isActive={this.state.activeIndex === 1}
+            onClick={() => this.updateActiveIndex(1)}
+          />
+          <NavBarLink
+            title={'Third Item'}
+            isActive={this.state.activeIndex === 2}
+            onClick={() => this.updateActiveIndex(2)}
+          />
+          <NavBarLink
+            title={'First Item'}
+            isActive={this.state.activeIndex === 0}
+            onClick={() => this.updateActiveIndex(0)}
+          />
+          <NavBarLink
+            title={'Second Item'}
+            isActive={this.state.activeIndex === 1}
+            onClick={() => this.updateActiveIndex(1)}
+          />
+          <NavBarLink
+            title={'Third Item'}
+            isActive={this.state.activeIndex === 2}
+            onClick={() => this.updateActiveIndex(2)}
+          />
+        </NavBar>
         <Button onClick={alert}>Click Me</Button>
         <IconIOS name="open" size={35} />
         <IconLogo name="github" color="blue" size={35} />
