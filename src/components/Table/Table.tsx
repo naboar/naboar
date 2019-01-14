@@ -182,7 +182,9 @@ interface ICell {
 }
 
 interface IProps {
-  /** List of columns, either strings or cells with config options */
+  /** List of columns, either strings or cells with config options. 
+   * Documented below 
+   */
   columns: ICell[]
   /**
    * An array of objects all containing keys

@@ -1,4 +1,24 @@
 #### Example
+```ts
+interface ICell {
+  key: string
+  heading?: string
+  renderHeading?: (
+    heading: string,
+    index?: number,
+    col?: ICell,
+  ) => ReactElement<any>
+  renderCell?: (
+    cell: string,
+    index?: number,
+    data?: Array<{ [key: string]: any }>,
+    col?: ICell,
+  ) => ReactElement<any>
+  onClick?: (...args: any[]) => void
+  isChecked?: boolean | null | undefined
+  isSortable?: boolean
+}
+```
 
 ```js
 initialState = {
