@@ -18,7 +18,8 @@ interface IProps {
 const Wrapper = styled.div.attrs({
   role: 'row',
 })<{ css?: FlattenSimpleInterpolation }>`
-  display: table-row;
+  display: flex;
+  flex: 1;
   border-bottom: 1px solid #555;
 
   :nth-child(even) {

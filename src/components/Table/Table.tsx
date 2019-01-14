@@ -1,5 +1,8 @@
 import React, { Component, ReactElement } from 'react'
 import styled, { css } from 'styled-components'
+import DatePicker from '../DatePicker/DatePicker'
+import { Dropdown, DropdownItem, DropdownMenu, DropdownNode } from '../Dropdown'
+import Input from '../Input/Input'
 import Pagination from '../Pagination'
 import Th from './Components/Th'
 import Thead from './Components/Thead'
@@ -30,6 +33,18 @@ class Table extends Component<IProps> {
 
   handleUpdatePage = (page: number) => {
     this.props.onUpdatePage(page)
+  }
+
+  handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    this.props.onSearchChange(e.target.value)
+  }
+
+  handleDateChange = (since: Date, until: Date) => {
+    this.props.onDateChange(since, until)
+  }
+
+  handleLimitChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    this.props.onLimitChange(e.target.value)
   }
 
   renderHead = () => {
@@ -65,7 +80,7 @@ class Table extends Component<IProps> {
                 onClick={this.handleSort}
                 isSortable={column.key !== 'isChecked'}
                 css={css`
-                  ${column.key === 'isChecked' && `width: 35px;`}
+                  ${column.key === 'isChecked' && `flex: initial;`}
                 `}
                 heading={
                   column.key !== 'isChecked' ? (
@@ -89,6 +104,40 @@ class Table extends Component<IProps> {
   render() {
     return (
       <Wrapper>
+        <Controls>
+          {this.props.showSearch && (
+            <Input
+              name="table_search"
+              iconName="search"
+              value={this.props.term}
+              onChange={this.handleSearchChange}
+              type="text"
+              canClear={true}
+              onClear={() => this.props.onSearchChange('')}
+            />
+          )}
+          {this.props.showDatePicker && (
+            <DatePicker
+              isRangePicker={true}
+              onChange={this.handleDateChange}
+              since={this.props.since}
+              until={this.props.until}
+            />
+          )}
+
+          {this.props.showLimit && (
+            <LimitWrap>
+              Show:{' '}
+              <select onChange={this.handleLimitChange}>
+                <option value={10}>10</option>
+                <option value={25}>25</option>
+                <option value={50}>50</option>
+                <option value={100}>100</option>
+              </select>
+            </LimitWrap>
+          )}
+        </Controls>
+
         {this.renderHead()}
         {this.props.showPagination && (
           <PaginationWrap>
@@ -149,6 +198,26 @@ interface IProps {
   page?: number
   /**  */
   pageCount?: number
+  /**  */
+  showSearch?: boolean
+  /**  */
+  term?: string
+  /**  */
+  onSearchChange?: (val: string) => void
+  /**  */
+  showDatePicker?: boolean
+  /**  */
+  onDateChange?: (since: Date, until: Date) => void
+  /**  */
+  since?: Date
+  /**  */
+  until?: Date
+  /**  */
+  showLimit?: boolean
+  /**  */
+  onLimitChange?: (limit: number | string) => void
+  /**  */
+  limit?: number | string
 }
 
 // Styled Components -----
@@ -159,10 +228,24 @@ const Wrapper = styled.div.attrs({
   overflow-x: auto;
   border-collapse: collapse;
 `
+const Controls = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8px;
+`
 const PaginationWrap = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 16px;
+`
+const LimitWrap = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-family: Open-Sans,sans-serif;
+  color: rgba(255,255,255,.8);
+  width: 100px;
 `
 export default Table

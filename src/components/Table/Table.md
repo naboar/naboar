@@ -4,8 +4,14 @@
 initialState = {
   sort: "",
   order: "",
+
   page: 1,
   pageCount: 100,
+
+  term: "",
+
+  limit: 10,
+
   columns: [
     {key: "isChecked", heading: "headerTest"},
     {key: "1", heading: "headerTest"},
@@ -30,5 +36,16 @@ initialState = {
   page={state.page}
   pageCount={state.pageCount}
   onUpdatePage={page => setState({ page })}
+
+  showSearch
+  term={state.term}
+  onSearchChange={(term) => setState({ term })}
+
+  showDatePicker
+  onDateChange={(since, until) => setState({ since, until })}
+
+  showLimit
+  limit={state.limit}
+  onLimitChange={(limit) => setState({ limit })}
 />
 ```

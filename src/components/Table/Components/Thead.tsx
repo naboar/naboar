@@ -12,7 +12,7 @@ const Thead = ({
 }
 
 const Wrapper = styled.div<{ css?: FlattenSimpleInterpolation }>`
-  display: table-header-group;
+  display: flex;
   ${({ css }) => css}
 `
 

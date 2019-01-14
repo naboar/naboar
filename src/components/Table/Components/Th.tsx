@@ -49,9 +49,10 @@ const Base = styled.div.attrs({
   padding: 10px;
   font-size: 16px;
   font-weight: bold;
-  white-space: no-wrap;
+  white-space: nowrap;
   vertical-align: center;
   color: rgba(255, 255, 255, .8);
+  flex: 1;
   ${({ css }) => css}
 `
 
