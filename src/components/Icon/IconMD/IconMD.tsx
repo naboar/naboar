@@ -21,7 +21,7 @@ interface IProps {
   /** Ionicon icon name */
   name: md
   /** Event fired on click */
-  onClick?: () => void
+  onClick?: (e: any) => void
   /** Size of font in px */
   size?: number
 }
