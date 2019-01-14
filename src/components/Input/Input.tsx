@@ -73,6 +73,8 @@ interface IInputProps {
   type?: string
   /** Value of input field */
   value?: string
+  /** is this input required */
+  required?: boolean
 }
 
 const StyledInput = styled.input`
@@ -86,6 +88,11 @@ const StyledInput = styled.input`
     iconName && iconName.length ? '16px' : '0'};
   padding-right: ${({ canClear }: IProps) => (canClear ? '16px' : '0')};
   width: 100%;
+
+  ::-webkit-calendar-picker-indicator {
+    background: none;
+    cursor: pointer;
+  }
 `
 
 const Wrapper = styled.div`

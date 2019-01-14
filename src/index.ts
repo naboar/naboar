@@ -3,6 +3,7 @@
  */
 import Badge from './components/Badge'
 import Button from './components/Button/'
+import DatePicker from './components/DatePicker/'
 import {
   Dropdown,
   DropdownButton,
@@ -32,6 +33,7 @@ import Modal from './effects/Modal/'
 export {
   Badge,
   Button,
+  DatePicker,
   Dropdown,
   DropdownButton,
   DropdownItem,
