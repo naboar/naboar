@@ -76,11 +76,17 @@ class Radial extends Component<IRadialProps, IRadialState> {
 }
 
 interface IRadialProps {
+  /** Array of Radial Items */
   children: Array<ReactElement<IItemProps>>
+  /** Css position obj */
   coords?: { left?: number; top?: number; bottom?: number; right?: number }
+  /** Is it open by default */
   defaultActive?: boolean
+  /** Called on button click */
   onClick?: () => void
+  /** Called on button click to open */
   onOpen?: () => void
+  /** Called on button click to close */
   onClose?: () => void
 }
 
