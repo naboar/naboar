@@ -1,7 +1,7 @@
 import React, { Component, ReactElement } from 'react'
 import styled, { css } from 'styled-components'
+import Checkbox from '../Checkbox'
 import DatePicker from '../DatePicker/DatePicker'
-import { Dropdown, DropdownItem, DropdownMenu, DropdownNode } from '../Dropdown'
 import Input from '../Input/Input'
 import Pagination from '../Pagination'
 import Th from './Components/Th'
@@ -19,6 +19,9 @@ class Table extends Component<IProps> {
     columns: [],
     data: [],
     onAllCheckboxes: () => undefined,
+    onDateChange: () => undefined,
+    onLimitChange: () => undefined,
+    onSearchChange: () => undefined,
     onSort: () => undefined,
     onUpdatePage: () => undefined,
   }
@@ -86,10 +89,9 @@ class Table extends Component<IProps> {
                   column.key !== 'isChecked' ? (
                     column.heading || column.key
                   ) : (
-                    <input
-                      type="checkbox"
+                    <Checkbox
                       checked={data.every(item => item.isChecked)}
-                      onClick={this.handleAllCheckboxes}
+                      onChange={this.handleAllCheckboxes}
                     />
                   )
                 }
@@ -99,6 +101,10 @@ class Table extends Component<IProps> {
         </Tr>
       </Thead>
     )
+  }
+
+  renderData = (): null => {
+    return null
   }
 
   render() {
@@ -139,6 +145,7 @@ class Table extends Component<IProps> {
         </Controls>
 
         {this.renderHead()}
+        {this.renderData()}
         {this.props.showPagination && (
           <PaginationWrap>
             <Pagination
@@ -182,41 +189,41 @@ interface IProps {
    * that match up to the defined columns
    */
   data?: Array<{ [key: string]: any }> | []
-  /**  */
+  /** key to sort by */
   sort?: string
-  /**  */
+  /** order to sort key by */
   order?: 'asc' | 'desc'
-  /**  */
+  /** called with key and order */
   onSort?: (key?: string, order?: 'asc' | 'desc') => void
-  /**  */
+  /** called when top level checkbox is clicked */
   onAllCheckboxes?: () => void
-  /**  */
+  /** whether or not to render the pagination component */
   showPagination?: boolean
-  /**  */
+  /** called on page number click */
   onUpdatePage?: (page: number) => void
-  /**  */
+  /** current page */
   page?: number
-  /**  */
+  /** total number of pages */
   pageCount?: number
-  /**  */
+  /** whether or not to render search input */
   showSearch?: boolean
-  /**  */
+  /** search input current value */
   term?: string
-  /**  */
+  /** called when search input is updated */
   onSearchChange?: (val: string) => void
-  /**  */
+  /** whether or not to render datepicker component */
   showDatePicker?: boolean
-  /**  */
+  /** called on date change */
   onDateChange?: (since: Date, until: Date) => void
-  /**  */
+  /** current since value */
   since?: Date
-  /**  */
+  /** current until vlue */
   until?: Date
-  /**  */
+  /** whether or not to show limit selection */
   showLimit?: boolean
-  /**  */
+  /** called when limit is updated */
   onLimitChange?: (limit: number | string) => void
-  /**  */
+  /** current limit */
   limit?: number | string
 }
 
@@ -244,8 +251,8 @@ const LimitWrap = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  font-family: Open-Sans,sans-serif;
-  color: rgba(255,255,255,.8);
+  font-family: Open-Sans, sans-serif;
+  color: rgba(255, 255, 255, 0.8);
   width: 100px;
 `
 export default Table

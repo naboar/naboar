@@ -2,6 +2,7 @@
  * Import and export all components
  */
 import Button from './components/Button/'
+import Checkbox from './components/Checkbox/'
 import DatePicker from './components/DatePicker/'
 import {
   Dropdown,
@@ -32,6 +33,7 @@ import Modal from './effects/Modal/'
 
 export {
   Button,
+  Checkbox,
   DatePicker,
   Dropdown,
   DropdownButton,
