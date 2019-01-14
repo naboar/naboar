@@ -156,7 +156,7 @@ class Notifications extends Component<IProps, IState> {
 // Types -----
 
 /** Notification interface */
-interface INotification {
+export interface INotification {
   title: string
   body: string
   icon?: string

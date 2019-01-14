@@ -20,7 +20,7 @@ interface IProps {
   /** CSS properties using css helper from styled-components */
   css?: FlattenSimpleInterpolation
   /** Event fired on click */
-  onClick?: () => void
+  onClick?: (e: any) => void
   /** Size of font in px */
   size?: number
   /** Theme */
