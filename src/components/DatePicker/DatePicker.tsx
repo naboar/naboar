@@ -45,7 +45,10 @@ class DatePicker extends Component<IProps> {
    * Check whether or not the selected date overlaps the current date
    * if so flip them, if not set the state and call the onChange
    */
-  handleChangeDate = (val: 'since' | 'until', e: ChangeEvent<HTMLInputElement>) => {
+  handleChangeDate = (
+    val: 'since' | 'until',
+    e: ChangeEvent<HTMLInputElement>,
+  ) => {
     const selectedDate = e.target.value
     const oppositeDate = val === 'since' ? 'until' : 'since'
     const shouldFlipDates =
@@ -70,14 +73,10 @@ class DatePicker extends Component<IProps> {
     const dateSince = new Date(this.state.since)
     const dateUntil = new Date(this.state.until)
 
-    if (this.props.isRangePicker) {
-      this.props.onChange({
-        since: this.state.since ? dateSince : null,
-        until: this.state.until ? dateUntil : null,
-      })
-    } else {
-      this.props.onChange(dateSince)
-    }
+    this.props.onChange(
+      this.state.since ? dateSince : null,
+      this.state.until ? dateUntil : null,
+    )
   }
 
   render() {
@@ -131,7 +130,7 @@ interface IProps {
   /** Date object for until */
   until?: Date
   /** function called when any date is changed */
-  onChange: (dates?: { since: Date; until: Date } | Date) => void
+  onChange: (since: Date, until?: Date) => void
   /** is since required */
   sinceRequired?: boolean
   /** is until required */
