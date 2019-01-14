@@ -6,6 +6,7 @@ import IconIOS from './components/Icon/IconIOS/IconIOS'
 import IconLogo from './components/Icon/IconLogo/IconLogo'
 import IconMD from './components/Icon/IconMD/IconMD'
 import Input from './components/Input'
+import { NavDrawer, NavDrawerDivider, NavDrawerLink } from './components/NavDrawer'
 import Notifications from './components/Notifications/'
 import Radial from './components/Radial/Radial/'
 import RadialMenuItem from './components/Radial/RadialMenuItem'
@@ -24,6 +25,9 @@ export {
   IconLogo,
   IconMD,
   Input,
+  NavDrawer,
+  NavDrawerDivider,
+  NavDrawerLink,
   Themer,
   theme,
   Expand,
