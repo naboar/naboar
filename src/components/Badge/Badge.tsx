@@ -1,7 +1,7 @@
 import React from 'react'
-import styled from 'styled-components'
+import styled, { css, FlattenSimpleInterpolation } from 'styled-components'
 import { ITheme } from '../../theme'
-import { IconIOS } from '../Icon'
+import { IconIOS, iOS } from '../Icon'
 
 /**
  * Badge Component
@@ -10,20 +10,17 @@ import { IconIOS } from '../Icon'
  */
 
 const Badge = (props: IBadgeProps) => {
-  const onClose = (e: React.MouseEvent<HTMLButtonElement>) => {
-    e.preventDefault()
-    e.stopPropagation()
-    props.onClose(e)
-  }
   return (
-    <StyledBadge {...props}>
+    <StyledBadge css={props.css}>
       {props.children}
-      {props.onClose && (
-        <CloseButton
-          onClick={(e: React.MouseEvent<HTMLButtonElement>) => onClose(e.target as any)}
-        >
-          <IconIOS name={'close'} size={24} color={'white'} />
-        </CloseButton>
+      {props.canClose && (
+        <IconIOS
+          css={closeIconStyle}
+          name={'close'}
+          size={25}
+          color={'white'}
+          onClick={props.onClose}
+        />
       )}
     </StyledBadge>
   )
@@ -33,51 +30,43 @@ const Badge = (props: IBadgeProps) => {
  * Badge prop interface
  */
 interface IBadgeProps {
-  /**
-   * Event fired on click
-   */
-  onClick: () => void
-  /**
-   * Text displayed inside of the badge
-   */
+  /** Toggle Badge close option */
+  canClose?: boolean
+  /** Text displayed inside of the badge */
   children: JSX.Element | string
-  /**
-   * Toggle badge clickability
-   */
+  /** CSS */
+  css?: FlattenSimpleInterpolation
+  /** Toggle badge clickability */
   disabled?: boolean
-  /**
-   * Toggle if badge can close
-   */
-  onClose?: (e?: Event | React.MouseEvent<HTMLButtonElement>) => void
-  /**
-   * CSS
-   */
-  css?: string[]
+  /** On Close click */
+  onClose?: (e?: React.MouseEvent<HTMLButtonElement>) => void
 }
 
-const StyledBadge = styled.span`
-  background-color: ${({ theme }: IProps) => theme.black};
-  color: ${({ theme }: IProps) => theme.white};
-`
-const CloseButton = styled.button`
-  transition: background 0.2s;
-  position: absolute;
-  top: 0;
-  right: 0;
-  background: none;
-  color: rgba(255, 255, 255, 0.85);
+const StyledBadge = styled.div`
+  flex-grow: 0;
+  background-color: #8DA6C3;
   font-size: 16px;
-  font-weight: bold;
-  padding: 0px 11px 9px 11px;
-  border: none;
-  cursor: pointer;
-  :hover {
-    background: #555;
+  border: 1px solid;
+  border-radius: 4px;
+  color: ${({ theme }: IProps) => theme.white};
+  padding: 8px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: fit-content;
+  ${(props: IProps) => props.css && props.css}
+`
+const closeIconStyle = css`
+  margin: 0;
+  padding: 0 0 0 8px;
+  &:hover {
+    cursor: pointer;
   }
-  ${(props: IBadgeProps) => props.css && props.css};
 `
 interface IProps {
+  css?: FlattenSimpleInterpolation
   theme: ITheme
+  disabled?: boolean
 }
 
 export default Badge
