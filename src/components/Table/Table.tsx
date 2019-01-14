@@ -26,30 +26,40 @@ class Table extends Component<IProps> {
     onUpdatePage: () => undefined,
   }
 
+  /** call props onSort  */
   handleSort = (key: string, order: 'asc' | 'desc') => {
     this.props.onSort(key, order)
   }
 
+  /** call props onAllCheckboxes  */
   handleAllCheckboxes = () => {
     this.props.onAllCheckboxes()
   }
 
+  /** call props onUpdatePage  */
   handleUpdatePage = (page: number) => {
     this.props.onUpdatePage(page)
   }
 
+  /** call props onSeaechChange  */
   handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     this.props.onSearchChange(e.target.value)
   }
 
+  /** call props onDateChange  */
   handleDateChange = (since: Date, until: Date) => {
     this.props.onDateChange(since, until)
   }
 
+  /** call props onLimitChange  */
   handleLimitChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     this.props.onLimitChange(e.target.value)
   }
 
+  /**
+   * Render table headers using either the
+   * key/heading or custom renderHeading method
+   */
   renderHead = () => {
     const { columns, sort, order, data } = this.props
     return (
@@ -103,6 +113,10 @@ class Table extends Component<IProps> {
     )
   }
 
+  /**
+   * Render table cells using either the
+   * value or custom renderCell method
+   */
   renderData = (): null => {
     return null
   }
@@ -118,7 +132,7 @@ class Table extends Component<IProps> {
               value={this.props.term}
               onChange={this.handleSearchChange}
               type="text"
-              canClear={true}
+              canClear={this.props.term !== ""}
               onClear={() => this.props.onSearchChange('')}
             />
           )}
@@ -182,8 +196,8 @@ interface ICell {
 }
 
 interface IProps {
-  /** List of columns, either strings or cells with config options. 
-   * Documented below 
+  /** List of columns, either strings or cells with config options.
+   * Documented below
    */
   columns: ICell[]
   /**

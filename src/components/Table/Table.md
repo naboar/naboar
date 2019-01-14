@@ -1,4 +1,4 @@
-#### Example
+#### ICell
 ```ts
 interface ICell {
   key: string
@@ -19,6 +19,8 @@ interface ICell {
   isSortable?: boolean
 }
 ```
+
+#### Example
 
 ```js
 initialState = {
