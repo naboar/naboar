@@ -52,12 +52,8 @@ const NavDrawerLink = (props: INavDrawerLinkProps) => {
  * NavDrawerLink prop interface
  */
 interface INavDrawerLinkProps {
-  /** Toggle input clear option */
-  canClear?: boolean
   /** Custom CSS */
   css?: FlattenSimpleInterpolation
-  /** Default Value of input field */
-  defaultValue?: string
   /** Toggle input clickability */
   disabled?: boolean
   /** Expanded width */
@@ -84,6 +80,9 @@ const Wrapper = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: center;
+  &:hover {
+    cursor: pointer;
+  }
 
   ${(props: IProps) => props.css && props.css}
 `

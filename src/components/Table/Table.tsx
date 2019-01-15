@@ -4,6 +4,7 @@ import Checkbox from '../Checkbox'
 import DatePicker from '../DatePicker/DatePicker'
 import Input from '../Input/Input'
 import Pagination from '../Pagination'
+import Select from '../Select/Select'
 import Td from './Components/Td'
 import Th from './Components/Th'
 import Thead from './Components/Thead'
@@ -202,13 +203,13 @@ class Table extends Component<IProps> {
 
           {this.props.showLimit && (
             <LimitWrap>
-              Show:{' '}
-              <select onChange={this.handleLimitChange}>
+              <span style={{ marginRight: 8 }}>Show:</span>{' '}
+              <Select onChange={this.handleLimitChange}>
                 <option value={10}>10</option>
                 <option value={25}>25</option>
                 <option value={50}>50</option>
                 <option value={100}>100</option>
-              </select>
+              </Select>
             </LimitWrap>
           )}
         </Controls>
@@ -333,6 +334,6 @@ const LimitWrap = styled.div`
   justify-content: space-between;
   font-family: Open-Sans, sans-serif;
   color: rgba(255, 255, 255, 0.8);
-  width: 100px;
+  width: 116px;
 `
 export default Table

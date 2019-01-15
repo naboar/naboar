@@ -16,6 +16,7 @@ import IconIOS from './components/Icon/IconIOS/IconIOS'
 import IconLogo from './components/Icon/IconLogo/IconLogo'
 import IconMD from './components/Icon/IconMD/IconMD'
 import Input from './components/Input'
+import { NavBar, NavBarDivider, NavBarLink } from './components/NavBar'
 import {
   NavDrawer,
   NavDrawerDivider,
@@ -26,6 +27,7 @@ import Pagination from './components/Pagination/'
 import Radial from './components/Radial/Radial/'
 import RadialMenuItem from './components/Radial/RadialMenuItem'
 import Radio from './components/Radio/'
+import Select from './components/Select/Select'
 import Slider from './components/Slider/'
 import Table, { Td, Th, Thead, Tr } from './components/Table/'
 import Wizard from './components/Wizard/Wizard/'
@@ -52,6 +54,9 @@ export {
   IconLogo,
   IconMD,
   Input,
+  NavBar,
+  NavBarDivider,
+  NavBarLink,
   NavDrawer,
   NavDrawerDivider,
   NavDrawerLink,
@@ -63,6 +68,7 @@ export {
   Radial,
   RadialMenuItem,
   Radio,
+  Select,
   Slider,
   Table,
   Td,

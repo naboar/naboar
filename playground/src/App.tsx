@@ -11,9 +11,12 @@ import {
   IconLogo,
   IconMD,
   Input,
+  NavBar,
+  NavBarLink,
   NavDrawer,
   NavDrawerDivider,
   NavDrawerLink,
+  Select
 } from '../../src'
 
 class App extends Component {
@@ -30,6 +33,23 @@ class App extends Component {
   render() {
     return (
       <div>
+        <NavBar onClick={() => alert('redirect')} title={'Dashboard'}>
+          <NavBarLink
+            title={'First Item'}
+            isActive={this.state.activeIndex === 0}
+            onClick={() => this.updateActiveIndex(0)}
+          />
+          <NavBarLink
+            title={'Second Item'}
+            isActive={this.state.activeIndex === 1}
+            onClick={() => this.updateActiveIndex(1)}
+          />
+          <NavBarLink
+            title={'Third Item'}
+            isActive={this.state.activeIndex === 2}
+            onClick={() => this.updateActiveIndex(2)}
+          />
+        </NavBar>
         <Button onClick={alert}>Click Me</Button>
         <IconIOS name="open" size={35} />
         <IconLogo name="github" color="blue" size={35} />
@@ -96,6 +116,11 @@ class App extends Component {
             onClick={() => this.updateActiveIndex(3)}
           />
         </NavDrawer>
+        <Select css={selectStyles}>
+          <option value='option1'>Option One</option>
+          <option value='option2'>Option Two</option>
+          <option value='option3'>Option Three</option>
+        </Select>
       </div>
     )
   }
@@ -127,6 +152,12 @@ const linkStyles = css`
     background: #11a07c;
     cursor: pointer;
   }
+`
+
+const selectStyles = css`
+  color: black;
+  border-color: black;
+  width: 300px;
 `
 
 export default App
