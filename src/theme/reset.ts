@@ -14,6 +14,7 @@ footer, header, hgroup, menu, nav, section {
 }
 body {
     line-height: 1;
+    font-family: Open Sans, sans-serif;
 }
 ol, ul {
     list-style: none;

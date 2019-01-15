@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { ChangeEventHandler } from 'react'
 import styled, { FlattenSimpleInterpolation } from 'styled-components'
 
 /**
@@ -35,6 +35,10 @@ interface ISelectProps {
   css?: FlattenSimpleInterpolation
   /** Fired click event */
   onClick?: () => void
+  /** called when input changes */
+  onChange?: (e: React.ChangeEvent<HTMLSelectElement>) => void
+  /** called when input changes */
+  value?: string | number
 }
 
 export default Select

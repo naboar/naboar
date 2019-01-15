@@ -1,4 +1,4 @@
-## Proof of concept
+## NABOAR UI Component Library
 
 install these peer deps.
 
