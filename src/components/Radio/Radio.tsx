@@ -70,7 +70,7 @@ const Wrapper = styled.label<{ disabled: boolean }>`
     content: '';
     display: inline-block;
     position: absolute;
-    top: 4px;
+    top: 5px;
     left: 3px;
     width: 10px;
     height: 10px;
