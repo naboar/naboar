@@ -16,6 +16,7 @@ import {
   NavDrawer,
   NavDrawerDivider,
   NavDrawerLink,
+  Select
 } from '../../src'
 
 class App extends Component {
@@ -115,6 +116,11 @@ class App extends Component {
             onClick={() => this.updateActiveIndex(3)}
           />
         </NavDrawer>
+        <Select css={selectStyles}>
+          <option value='option1'>Option One</option>
+          <option value='option2'>Option Two</option>
+          <option value='option3'>Option Three</option>
+        </Select>
       </div>
     )
   }
@@ -146,6 +152,12 @@ const linkStyles = css`
     background: #11a07c;
     cursor: pointer;
   }
+`
+
+const selectStyles = css`
+  color: black;
+  border-color: black;
+  width: 300px;
 `
 
 export default App
