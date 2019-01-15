@@ -1,4 +1,11 @@
-#### ICell
+##### IObj
+```ts
+interface IObj {
+  [key: string]: any
+}
+```
+
+##### ICell
 ```ts
 interface ICell {
   key: string
@@ -13,7 +20,7 @@ interface ICell {
   renderCell?: (
     cell: string,
     index?: number,
-    data?: Array<{ [key: string]: any }>,
+    data?: Obj[],
     col?: ICell,
   ) => ReactElement<any>
   onClick?: (...args: any[]) => void
