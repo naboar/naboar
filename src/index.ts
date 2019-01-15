@@ -25,6 +25,7 @@ import Notifications from './components/Notifications/'
 import Pagination from './components/Pagination/'
 import Radial from './components/Radial/Radial/'
 import RadialMenuItem from './components/Radial/RadialMenuItem'
+import Radio from './components/Radio/'
 import Slider from './components/Slider/'
 import Table, { Td, Th, Thead, Tr } from './components/Table/'
 import Wizard from './components/Wizard/Wizard/'
@@ -61,6 +62,7 @@ export {
   Pagination,
   Radial,
   RadialMenuItem,
+  Radio,
   Slider,
   Table,
   Td,
