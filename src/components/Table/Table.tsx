@@ -39,7 +39,7 @@ class Table extends Component<IProps> {
     this.props.onAllCheckboxes()
   }
 
-  /**  */
+  /** call props onCheckbox */
   handleCheckbox = (val: boolean, cellIndex: number) => {
     this.props.onCheckbox(val, cellIndex)
   }

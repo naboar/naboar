@@ -2,6 +2,12 @@ import React, { ReactNode } from 'react'
 import styled, { FlattenSimpleInterpolation } from 'styled-components'
 import SortIcon from './SortIcon'
 
+/**
+ * Th Component
+ *
+ * @since v1.0.0
+ * @author [Anthony Freda](https://github.com/Afreda323)
+ */
 const Th = (props: IProps) => {
   const handleSort = () => {
     const nextOrder = props.order === 'asc' ? 'desc' : 'asc'

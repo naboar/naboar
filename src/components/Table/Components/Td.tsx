@@ -1,6 +1,12 @@
 import React, { ReactNode } from 'react'
 import styled, { FlattenSimpleInterpolation } from 'styled-components'
 
+/**
+ * Td Component
+ *
+ * @since v1.0.0
+ * @author [Anthony Freda](https://github.com/Afreda323)
+ */
 const Td = (props: IProps) => {
   return <Wrapper css={props.css}>{props.children}</Wrapper>
 }

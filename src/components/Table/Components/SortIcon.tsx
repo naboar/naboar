@@ -2,6 +2,12 @@ import React from 'react'
 import styled, { css } from 'styled-components'
 import { IconIOS } from '../../Icon'
 
+/**
+ * SortIcon Component
+ *
+ * @since v1.0.0
+ * @author [Anthony Freda](https://github.com/Afreda323)
+ */
 const SortIcon = (props: IProps) => {
   if (!props.isSortable) {
     return null

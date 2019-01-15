@@ -1,6 +1,12 @@
 import React, { ReactNode } from 'react'
 import styled, { FlattenSimpleInterpolation } from 'styled-components'
 
+/**
+ * Tr Component
+ *
+ * @since v1.0.0
+ * @author [Anthony Freda](https://github.com/Afreda323)
+ */
 const Tr = (props: IProps) => {
   return (
     <Wrapper css={props.css} onClick={props.onClick}>

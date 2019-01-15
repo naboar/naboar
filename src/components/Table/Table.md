@@ -3,11 +3,13 @@
 interface ICell {
   key: string
   heading?: string
+  /** Function that returns your own custom <Th /> */
   renderHeading?: (
     heading: string,
     index?: number,
     col?: ICell,
   ) => ReactElement<any>
+  /** Function that returns your own custom <Td /> */
   renderCell?: (
     cell: string,
     index?: number,
