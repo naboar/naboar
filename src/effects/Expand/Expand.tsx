@@ -1,5 +1,5 @@
 import React, { ReactNode } from 'react'
-import styled, { css } from 'styled-components'
+import styled, { css, FlattenSimpleInterpolation } from 'styled-components'
 
 /**
  * Expand Component
@@ -23,7 +23,7 @@ interface IProps {
   /** Whether or not the component is at full width/height */
   isExpanded?: boolean
   /** custom css */
-  css?: string[]
+  css?: FlattenSimpleInterpolation
 }
 
 const verticalStyle = css`

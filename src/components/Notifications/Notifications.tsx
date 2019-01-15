@@ -156,7 +156,7 @@ class Notifications extends Component<IProps, IState> {
 // Types -----
 
 /** Notification interface */
-interface INotification {
+export interface INotification {
   title: string
   body: string
   icon?: string
@@ -205,7 +205,6 @@ const Wrapper = styled.div<{ canClick: boolean }>`
   right: 0;
   top: 0;
   bottom: auto;
-  height: 100vh;
   max-height: 100vh;
   overflow-x: hidden;
   overflow-y: auto;
