@@ -23,6 +23,8 @@ interface ICell {
 #### Example
 
 ```js
+const fakeData = { isChecked: false, 1: "test", 2: "test", 3: "test", 4: "test", 5: "test" }
+
 initialState = {
   sort: "",
   order: "",
@@ -42,13 +44,30 @@ initialState = {
     {key: "4", heading: "headerTest"},
     {key: "5", heading: "headerTest"},
   ],
-  data: []
+  data: [fakeData, fakeData, fakeData, fakeData]
 }
+
+// Helpers for updating state ---
+const check = (obj) => ({ ...obj, isChecked: true })
+const unCheck = (obj) => ({ ...obj, isChecked: false })
+const handleCheckbox = (val, cellIndex) =>
+  setState({
+    data: state.data.map((item, i) =>
+      i === cellIndex ? (item.isChecked ? unCheck(item) : check(item)) : item,
+    ),
+  })
+const handleAllCheckboxes = () =>
+  state.data.some(item => item.isChecked)
+   ? setState({ data: state.data.map(unCheck) })
+   : setState({ data: state.data.map(check) })
 ;
 
 <Table 
   columns={state.columns}
   data={state.data}
+  onAllCheckboxes={handleAllCheckboxes}
+  onCheckbox={handleCheckbox}
+  onRowClick={console.log}
 
   sort={state.sort} 
   order={state.order}
