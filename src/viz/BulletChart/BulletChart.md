@@ -3,17 +3,17 @@
 ```js
 const scale = [
   {
-    color: 'rgba(255, 0, 0, .4)',
+    color: 'rgba(255, 0, 0, .1)',
     borderColor: 'red',
     amount: 50
   },
   {
-    color: 'rgba(255, 255, 0, .4)',
+    color: 'rgba(255, 255, 0, .1)',
     borderColor: 'yellow',
     amount: 70
   },
   {
-    color: 'rgba(0, 255, 0, .4)',
+    color: 'rgba(0, 255, 0, .1)',
     borderColor: 'green',
     amount: 90
   },

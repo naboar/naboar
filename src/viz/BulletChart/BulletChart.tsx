@@ -47,8 +47,9 @@ class BulletChart extends Component<IProps, IState> {
         height: 100%;
         background-color: ${item.color};
         border: 1px solid ${item.borderColor || item.color};
-        ${i !== 0 && `border-left: none; border-right: none;`}
+        ${i !== 0 && i !== scale.length - 1 && `border-left: none; border-right: none;`}
         ${i === 0 && `border-right: none;`}
+        ${i === scale.length - 1 && `border-left: none;`}
         display: inline-block;
         z-index: ${scale.length + 1 - i};
       `
@@ -83,6 +84,16 @@ class BulletChart extends Component<IProps, IState> {
     })
   }
 
+  getAmountColor = () => {
+    let color = 'white'
+    this.props.scale.forEach(item => {
+      if (this.props.amount >= item.amount) {
+        color = item.borderColor || item.color
+      }
+    })
+    return color
+  }
+
   render() {
     const {
       amount,
@@ -96,7 +107,7 @@ class BulletChart extends Component<IProps, IState> {
     } = this.props
     return (
       <Wrapper>
-        {label && <Label>Label{metric && <small>{metric}</small>}</Label>}
+        {label && <Label>{label}{metric && <small>{metric}</small>}</Label>}
         <ChartWrap
           id="chart-wrap"
           onMouseMove={({ clientX }) => this.handleMouseIn(clientX)}
@@ -126,7 +137,8 @@ class BulletChart extends Component<IProps, IState> {
             }}
           >
             <span>
-              <b>Amount:</b> {amount}
+              <b>Amount:</b>{' '}
+              <span style={{ color: this.getAmountColor() }}>{amount}</span>
             </span>
             {target && (
               <span>
@@ -141,25 +153,25 @@ class BulletChart extends Component<IProps, IState> {
 }
 
 interface IProps {
-  /**  */
+  /** Array of objects that dictate the sections and colors of the chart */
   scale: Array<{ color: string; amount: number; borderColor?: string }>
-  /**  */
+  /** target number, rendered as vertical line in chart */
   target?: number
-  /**  */
+  /** color of target line */
   targetColor?: string
-  /**  */
+  /** value used to render center bar of chart */
   amount?: number
-  /**  */
+  /** color of amount bar */
   amountColor?: string
-  /**  */
+  /** minimum number for chart */
   min: number
-  /**  */
+  /** maximum number for chart */
   max: number
-  /**  */
+  /** label for right side of chart */
   label?: ReactNode
-  /**  */
+  /** metric for chart(%, ft, yards) */
   metric?: string
-  /**  */
+  /** how many ticks should be rendered */
   scaleTicks?: number
 }
 
@@ -171,13 +183,21 @@ interface IState {
 const Wrapper = styled.div`
   position: relative;
   display: flex;
-  align-items: center;
   justify-content: space-between;
+  @media (max-width: 800px) {
+    display: block;
+
+    > div:first-of-type {
+      margin-bottom: 8px;
+    }
+  }
 `
 
 const Label = styled.div`
   min-width: 100px;
   max-width: 150px;
+  padding: 10px 10px 0 0;
+
   color: rgba(255, 255, 255, 0.8);
   > small {
     display: block;
@@ -195,7 +215,6 @@ const Tool = styled.div`
   min-width: 100px;
   color: rgba(255, 255, 255, 0.8);
   font-size: 14px;
-  font-weight: lighter;
   box-shadow: 0 10px 16px rgba(0, 0, 0, 0.2);
   transition: left 0.1s, opacity 0.3s;
 
