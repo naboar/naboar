@@ -69,7 +69,6 @@ const scale3 = [
 <br />
 <BulletChart 
   scale={scale2}
-  target={85}
   amount={90}
   amountColor={"black"}
   targetColor={"red"}
@@ -81,7 +80,6 @@ const scale3 = [
   max={200}
   scaleTicks={10}
   scale={scale3}
-  target={125}
   amount={130}
   amountColor={"rgba(0,0,0,.9)"}
   targetColor={"rgba(0,0,0,.9)"}

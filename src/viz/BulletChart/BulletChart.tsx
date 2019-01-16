@@ -115,18 +115,22 @@ class BulletChart extends Component<IProps, IState> {
         >
           <Chart>
             {this.renderScale()}
-            <Target
-              max={max}
-              target={target}
-              color={targetColor}
-              zIndex={scale.length + 1}
-            />
-            <Bar
-              amount={amount}
-              max={max}
-              color={amountColor}
-              zIndex={scale.length + 2}
-            />
+            {target && (
+              <Target
+                max={max}
+                target={target}
+                color={targetColor}
+                zIndex={scale.length + 1}
+              />
+            )}
+            {amount && (
+              <Bar
+                amount={amount}
+                max={max}
+                color={amountColor}
+                zIndex={scale.length + 2}
+              />
+            )}
           </Chart>
           <Ticks>{this.renderTicks()}</Ticks>
           <Tool
@@ -136,9 +140,11 @@ class BulletChart extends Component<IProps, IState> {
               position: 'absolute',
             }}
           >
-            <span>
-              <b>Amount:</b> <span>{amount}</span>
-            </span>
+            {amount && (
+              <span>
+                <b>Amount:</b> {amount}
+              </span>
+            )}
             {target && (
               <span>
                 <b>Target:</b> {target}
@@ -177,7 +183,6 @@ interface IState {
   isHovered: boolean
   mouseX: number
 }
-
 
 // Styled Components -----
 const Wrapper = styled.div`
