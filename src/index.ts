@@ -12,10 +12,12 @@ import {
   DropdownMenu,
   DropdownNode,
 } from './components/Dropdown'
+import FormElementError from './components/FormElementError'
 import IconIOS from './components/Icon/IconIOS/IconIOS'
 import IconLogo from './components/Icon/IconLogo/IconLogo'
 import IconMD from './components/Icon/IconMD/IconMD'
 import Input from './components/Input'
+import Label from './components/Label'
 import { NavBar, NavBarDivider, NavBarLink } from './components/NavBar'
 import {
   NavDrawer,
@@ -49,10 +51,12 @@ export {
   DropdownItem,
   DropdownMenu,
   DropdownNode,
+  FormElementError,
   IconIOS,
   IconLogo,
   IconMD,
   Input,
+  Label,
   NavBar,
   NavBarDivider,
   NavBarLink,

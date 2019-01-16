@@ -51,7 +51,7 @@ class App extends Component {
           />
         </NavBar>
         <Button onClick={alert}>Click Me</Button>
-        <IconIOS name="open" size={35} />
+        <IconIOS name="open" size={35}/>
         <IconLogo name="github" color="blue" size={35} />
         <IconMD name="close" color="red" size={35} />
         <Input css={inputStyles} name="test" type="number" min={34} max={50} />
@@ -77,6 +77,8 @@ class App extends Component {
           value={this.state.text}
           canClear={!!this.state.text}
           onClear={this.clearText}
+          errorMessage={!this.state.text ? 'Please enter some text' : ''}
+          label={'Will error if left blank'}
           onChange={e => this.updateText(e.target.value)}
         />
         <Input
@@ -116,7 +118,7 @@ class App extends Component {
             onClick={() => this.updateActiveIndex(3)}
           />
         </NavDrawer>
-        <Select css={selectStyles}>
+        <Select css={selectStyles} name={'exampleSelect'} label={'Test Me'}>
           <option value='option1'>Option One</option>
           <option value='option2'>Option Two</option>
           <option value='option3'>Option Three</option>
@@ -127,11 +129,11 @@ class App extends Component {
 }
 
 const inputStyles = css`
-  color: black;
-  border: 1px solid;
   width: 300px;
+  border: 1px solid black;
   i,
-  input {
+  input,
+  {
     color: black;
   }
   input {
@@ -155,9 +157,11 @@ const linkStyles = css`
 `
 
 const selectStyles = css`
-  color: black;
   border-color: black;
   width: 300px;
+  select, i {
+    color: black;
+  }
 `
 
 export default App
