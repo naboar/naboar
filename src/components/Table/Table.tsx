@@ -4,6 +4,8 @@ import Checkbox from '../Checkbox'
 import DatePicker from '../DatePicker/DatePicker'
 import Input from '../Input/Input'
 import Pagination from '../Pagination'
+import Select from '../Select/Select'
+import Td from './Components/Td'
 import Th from './Components/Th'
 import Thead from './Components/Thead'
 import Tr from './Components/Tr'
@@ -19,8 +21,10 @@ class Table extends Component<IProps> {
     columns: [],
     data: [],
     onAllCheckboxes: () => undefined,
+    onCheckbox: () => undefined,
     onDateChange: () => undefined,
     onLimitChange: () => undefined,
+    onRowClick: () => undefined,
     onSearchChange: () => undefined,
     onSort: () => undefined,
     onUpdatePage: () => undefined,
@@ -34,6 +38,16 @@ class Table extends Component<IProps> {
   /** call props onAllCheckboxes  */
   handleAllCheckboxes = () => {
     this.props.onAllCheckboxes()
+  }
+
+  /** call props onCheckbox */
+  handleCheckbox = (val: boolean, cellIndex: number) => {
+    this.props.onCheckbox(val, cellIndex)
+  }
+
+  /** call props onRowClick */
+  handleRowClick = (item: IObj, cellIndex: number) => {
+    this.props.onRowClick(item, cellIndex)
   }
 
   /** call props onUpdatePage  */
@@ -64,7 +78,14 @@ class Table extends Component<IProps> {
     const { columns, sort, order, data } = this.props
     return (
       <Thead>
-        <Tr>
+        <Tr
+          css={css`
+            :hover {
+              cursor: default;
+              background-color: initial;
+            }
+          `}
+        >
           {[...columns].map((column: ICell, colIndex) => {
             if (column.renderHeading) {
               const element = column.renderHeading(
@@ -117,8 +138,43 @@ class Table extends Component<IProps> {
    * Render table cells using either the
    * value or custom renderCell method
    */
-  renderData = (): null => {
-    return null
+  renderData = () => {
+    const { data, columns } = this.props
+
+    if (!data.length) {
+      return null
+    }
+
+    return [...data].map((item, i) => (
+      <Tr key={i} onClick={() => this.handleRowClick(item, i)}>
+        {columns.map((col, cellIndex) => {
+          if (col.renderCell) {
+            const element = col.renderCell(item[col.key], i, data, col)
+            return React.cloneElement(element, {
+              key: col.key,
+            })
+          }
+
+          return (
+            <Td
+              key={cellIndex}
+              css={css`
+                ${col.key === 'isChecked' && `flex: initial;`}
+              `}
+            >
+              {col.key !== 'isChecked' ? (
+                item[col.key]
+              ) : (
+                <Checkbox
+                  checked={item.isChecked}
+                  onChange={val => this.handleCheckbox(val, i)}
+                />
+              )}
+            </Td>
+          )
+        })}
+      </Tr>
+    ))
   }
 
   render() {
@@ -132,7 +188,7 @@ class Table extends Component<IProps> {
               value={this.props.term}
               onChange={this.handleSearchChange}
               type="text"
-              canClear={this.props.term !== ""}
+              canClear={this.props.term !== ''}
               onClear={() => this.props.onSearchChange('')}
             />
           )}
@@ -147,13 +203,13 @@ class Table extends Component<IProps> {
 
           {this.props.showLimit && (
             <LimitWrap>
-              Show:{' '}
-              <select onChange={this.handleLimitChange}>
+              <span style={{ marginRight: 8 }}>Show:</span>{' '}
+              <Select onChange={this.handleLimitChange}>
                 <option value={10}>10</option>
                 <option value={25}>25</option>
                 <option value={50}>50</option>
                 <option value={100}>100</option>
-              </select>
+              </Select>
             </LimitWrap>
           )}
         </Controls>
@@ -187,12 +243,16 @@ interface ICell {
   renderCell?: (
     cell: string,
     index?: number,
-    data?: Array<{ [key: string]: any }>,
+    data?: IObj[],
     col?: ICell,
   ) => ReactElement<any>
   onClick?: (...args: any[]) => void
   isChecked?: boolean | null | undefined
   isSortable?: boolean
+}
+
+interface IObj {
+  [key: string]: any
 }
 
 interface IProps {
@@ -204,7 +264,7 @@ interface IProps {
    * An array of objects all containing keys
    * that match up to the defined columns
    */
-  data?: Array<{ [key: string]: any }> | []
+  data?: IObj[] | []
   /** key to sort by */
   sort?: string
   /** order to sort key by */
@@ -213,6 +273,10 @@ interface IProps {
   onSort?: (key?: string, order?: 'asc' | 'desc') => void
   /** called when top level checkbox is clicked */
   onAllCheckboxes?: () => void
+  /** called when checkbox cell is changed */
+  onCheckbox?: (val: boolean, cellIndex: number) => void
+  /** called when cell is clicked */
+  onRowClick?: (cell?: IObj, cellIndex?: number) => void
   /** whether or not to render the pagination component */
   showPagination?: boolean
   /** called on page number click */
@@ -250,6 +314,7 @@ const Wrapper = styled.div.attrs({
   width: 100%;
   overflow-x: auto;
   border-collapse: collapse;
+  background: #222;
 `
 const Controls = styled.div`
   display: flex;
@@ -269,6 +334,6 @@ const LimitWrap = styled.div`
   justify-content: space-between;
   font-family: Open-Sans, sans-serif;
   color: rgba(255, 255, 255, 0.8);
-  width: 100px;
+  width: 116px;
 `
 export default Table

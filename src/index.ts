@@ -28,9 +28,10 @@ import Notifications from './components/Notifications/'
 import Pagination from './components/Pagination/'
 import Radial from './components/Radial/Radial/'
 import RadialMenuItem from './components/Radial/RadialMenuItem'
+import Radio from './components/Radio/'
 import Select from './components/Select/Select'
 import Slider from './components/Slider/'
-import Table from './components/Table/'
+import Table, { Td, Th, Thead, Tr } from './components/Table/'
 import Wizard from './components/Wizard/Wizard/'
 import WizardStep from './components/Wizard/WizardStep/'
 import Themer, { theme } from './theme'
@@ -70,9 +71,14 @@ export {
   Pagination,
   Radial,
   RadialMenuItem,
+  Radio,
   Select,
   Slider,
   Table,
+  Td,
+  Th,
+  Thead,
+  Tr,
   Notifications,
   Wizard,
   WizardStep,

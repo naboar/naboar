@@ -78,6 +78,10 @@ interface ISelectProps {
   name: string
   /** Fired on click */
   onClick?: () => void
+  /** called when input changes */
+  onChange?: (e: React.ChangeEvent<HTMLDivElement>) => void
+  /** called when input changes */
+  value?: string | number
 }
 
 export default Select
