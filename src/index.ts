@@ -4,6 +4,7 @@
 import Badge from './components/Badge'
 import Button from './components/Button/'
 import Checkbox from './components/Checkbox/'
+import Datalist from './components/Datalist'
 import DatePicker from './components/DatePicker/'
 import {
   Dropdown,
@@ -47,6 +48,7 @@ export {
   Badge,
   Button,
   Checkbox,
+  Datalist,
   DatePicker,
   Dropdown,
   DropdownButton,
