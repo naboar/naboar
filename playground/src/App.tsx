@@ -16,7 +16,7 @@ import {
   NavDrawer,
   NavDrawerDivider,
   NavDrawerLink,
-  Select
+  Select,
 } from '../../src'
 
 class App extends Component {
@@ -51,7 +51,7 @@ class App extends Component {
           />
         </NavBar>
         <Button onClick={alert}>Click Me</Button>
-        <IconIOS name="open" size={35}/>
+        <IconIOS name="open" size={35} />
         <IconLogo name="github" color="blue" size={35} />
         <IconMD name="close" color="red" size={35} />
         <Input css={inputStyles} name="test" type="number" min={34} max={50} />
@@ -119,9 +119,9 @@ class App extends Component {
           />
         </NavDrawer>
         <Select css={selectStyles} name={'exampleSelect'} label={'Test Me'}>
-          <option value='option1'>Option One</option>
-          <option value='option2'>Option Two</option>
-          <option value='option3'>Option Three</option>
+          <option value="option1">Option One</option>
+          <option value="option2">Option Two</option>
+          <option value="option3">Option Three</option>
         </Select>
       </div>
     )
@@ -132,8 +132,7 @@ const inputStyles = css`
   width: 300px;
   border: 1px solid black;
   i,
-  input,
-  {
+  input {
     color: black;
   }
   input {
@@ -159,7 +158,8 @@ const linkStyles = css`
 const selectStyles = css`
   border-color: black;
   width: 300px;
-  select, i {
+  select,
+  i {
     color: black;
   }
 `
