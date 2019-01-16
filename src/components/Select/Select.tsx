@@ -16,13 +16,22 @@ const Select = (props: ISelectProps) => (
     css={['width: 100%']}
   >
     <Wrapper css={props.css} errorMessage={props.errorMessage}>
-      <StyledSelect name={props.name} onClick={props.onClick}>{props.children}</StyledSelect>
+      <StyledSelect
+        name={props.name}
+        onClick={props.onClick}
+        onChange={(e?: React.ChangeEvent<HTMLSelectElement>) => props.onChange(e)}
+      >
+        {props.children}
+      </StyledSelect>
       <IconIOS name={'arrow-down'} css={iconStyles} />
     </Wrapper>
   </FormElementWrapper>
 )
 
-const Wrapper = styled.div<{ css?: FlattenSimpleInterpolation , errorMessage?: string}>`
+const Wrapper = styled.div<{
+  css?: FlattenSimpleInterpolation
+  errorMessage?: string
+}>`
   border: 1px solid white;
   border-radius: 4px;
   position: relative;
@@ -66,7 +75,7 @@ const iconStyles = css`
 /**
  * Select prop interface
  */
-interface ISelectProps extends React.HTMLAttributes<HTMLSelectElement> {
+interface ISelectProps {
   /** Children must be HTMLOptionElements */
   children?: Array<React.ReactElement<HTMLOptionElement>>
   /** CSS styling using css from styled-components */
@@ -79,6 +88,7 @@ interface ISelectProps extends React.HTMLAttributes<HTMLSelectElement> {
   name: string
   /** Fired on click */
   onClick?: () => void
+  onChange?: (e?: React.ChangeEvent<HTMLSelectElement>) => void
   /** called when input changes */
   value?: string | number
 }
