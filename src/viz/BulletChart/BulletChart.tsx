@@ -7,7 +7,7 @@ import styled, {
 
 /**
  * BulletChart Component
- *
+ * @see [Bullet Chart](https://en.wikipedia.org/wiki/Bullet_graph)
  *
  * @since v1.0.0
  * @author [Anthony Freda](https://github.com/Afreda323)
