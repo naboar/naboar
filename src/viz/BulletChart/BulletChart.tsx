@@ -26,9 +26,11 @@ class BulletChart extends Component<IProps, IState> {
     mouseX: 0,
   }
 
+  /** generate the width of scale blocks */
   calcWidth = (amount: number): number =>
     ((this.props.max - amount) / this.props.max) * 100
 
+  /** render the scale block by calculating width percentages */
   renderScale = () => {
     const { scale, max } = this.props
     return scale.map((item, i) => {
@@ -59,6 +61,7 @@ class BulletChart extends Component<IProps, IState> {
     })
   }
 
+  /** render ticks at bottom of chart */
   renderTicks = () => {
     const { scaleTicks, max, metric } = this.props
     const ticks = []
@@ -74,6 +77,7 @@ class BulletChart extends Component<IProps, IState> {
     ))
   }
 
+  /** track mouse movement */
   handleMouseIn = (clientX: number) => {
     const { left } = document
       .getElementById('chart-wrap')
@@ -147,6 +151,7 @@ class BulletChart extends Component<IProps, IState> {
   }
 }
 
+// Interfaces -----
 interface IProps {
   /** Array of objects that dictate the sections and colors of the chart */
   scale: Array<{ color: string; amount: number; borderColor?: string }>
@@ -173,6 +178,8 @@ interface IState {
   mouseX: number
 }
 
+
+// Styled Components -----
 const Wrapper = styled.div`
   position: relative;
   display: flex;
