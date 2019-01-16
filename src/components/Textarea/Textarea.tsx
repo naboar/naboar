@@ -22,7 +22,7 @@ interface IStyledTextareaProps
   extends React.HTMLAttributes<HTMLTextAreaElement>,
     IFormElementProps,
     IStyledComponentProps {
-  /** Name of select */
+  /** Name of textarea */
   name: string
   /** Fired onChange event */
   onChange?: (e?: React.ChangeEvent<HTMLTextAreaElement>) => void
