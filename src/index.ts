@@ -40,8 +40,14 @@ import Themer, { theme } from './theme'
 import Expand from './effects/Expand/'
 import Modal from './effects/Modal/'
 
+/**
+ * Import Viz
+ */
+import BulletChart from './viz/BulletChart/'
+
 export {
   Badge,
+  BulletChart,
   Button,
   Checkbox,
   DatePicker,
