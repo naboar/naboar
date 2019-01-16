@@ -16,14 +16,13 @@ class BulletChart extends Component<IProps, IState> {
   static defaultProps: IProps = {
     amountColor: 'white',
     max: 100,
-    min: 0,
     scale: [],
     scaleTicks: 5,
     targetColor: 'white',
   }
 
   state = {
-    isHovered: true,
+    isHovered: false,
     mouseX: 0,
   }
 
@@ -39,15 +38,17 @@ class BulletChart extends Component<IProps, IState> {
 
       const calcedWidth =
         i === scale.length - 1
-          ? this.calcWidth(widthsWithoutLast)
+          ? max - scale[scale.length - 2].amount
           : this.calcWidth(item.amount)
 
       const itemStyle = cssOverride`
-        flex: ${calcedWidth}%;
+        width: ${calcedWidth}%;
         height: 100%;
         background-color: ${item.color};
         border: 1px solid ${item.borderColor || item.color};
-        ${i !== 0 && i !== scale.length - 1 && `border-left: none; border-right: none;`}
+        ${i !== 0 &&
+          i !== scale.length - 1 &&
+          `border-left: none; border-right: none;`}
         ${i === 0 && `border-right: none;`}
         ${i === scale.length - 1 && `border-left: none;`}
         display: inline-block;
@@ -84,16 +85,6 @@ class BulletChart extends Component<IProps, IState> {
     })
   }
 
-  getAmountColor = () => {
-    let color = 'white'
-    this.props.scale.forEach(item => {
-      if (this.props.amount >= item.amount) {
-        color = item.borderColor || item.color
-      }
-    })
-    return color
-  }
-
   render() {
     const {
       amount,
@@ -107,7 +98,12 @@ class BulletChart extends Component<IProps, IState> {
     } = this.props
     return (
       <Wrapper>
-        {label && <Label>{label}{metric && <small>{metric}</small>}</Label>}
+        {label && (
+          <Label>
+            {label}
+            {metric && <small>{metric}</small>}
+          </Label>
+        )}
         <ChartWrap
           id="chart-wrap"
           onMouseMove={({ clientX }) => this.handleMouseIn(clientX)}
@@ -137,8 +133,7 @@ class BulletChart extends Component<IProps, IState> {
             }}
           >
             <span>
-              <b>Amount:</b>{' '}
-              <span style={{ color: this.getAmountColor() }}>{amount}</span>
+              <b>Amount:</b> <span>{amount}</span>
             </span>
             {target && (
               <span>
@@ -163,8 +158,6 @@ interface IProps {
   amount?: number
   /** color of amount bar */
   amountColor?: string
-  /** minimum number for chart */
-  min: number
   /** maximum number for chart */
   max: number
   /** label for right side of chart */
