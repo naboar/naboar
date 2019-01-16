@@ -16,7 +16,8 @@ import {
   NavDrawer,
   NavDrawerDivider,
   NavDrawerLink,
-  Select
+  Select,
+  Textarea
 } from '../../src'
 
 class App extends Component {
@@ -77,6 +78,8 @@ class App extends Component {
           value={this.state.text}
           canClear={!!this.state.text}
           onClear={this.clearText}
+          errorMessage={!this.state.text ? 'Please enter some text' : ''}
+          label={'Will error if left blank'}
           onChange={e => this.updateText(e.target.value)}
         />
         <Input
@@ -116,20 +119,20 @@ class App extends Component {
             onClick={() => this.updateActiveIndex(3)}
           />
         </NavDrawer>
-        <Select css={selectStyles}>
-          <option value='option1'>Option One</option>
-          <option value='option2'>Option Two</option>
-          <option value='option3'>Option Three</option>
+        <Select css={selectStyles} name={'exampleSelect'} label={'Test Me'}>
+          <option value="option1">Option One</option>
+          <option value="option2">Option Two</option>
+          <option value="option3">Option Three</option>
         </Select>
+        <Textarea name={'textarea'} />
       </div>
     )
   }
 }
 
 const inputStyles = css`
-  color: black;
-  border: 1px solid;
   width: 300px;
+  border: 1px solid black;
   i,
   input {
     color: black;
@@ -155,9 +158,12 @@ const linkStyles = css`
 `
 
 const selectStyles = css`
-  color: black;
   border-color: black;
   width: 300px;
+  select,
+  i {
+    color: black;
+  }
 `
 
 export default App
