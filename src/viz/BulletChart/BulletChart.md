@@ -73,7 +73,7 @@ const scale3 = [
   amount={90}
   amountColor={"black"}
   targetColor={"red"}
-  label={"RGB alt"}
+  label={"Rainbow"}
   metric={"colors"}
 />
 <br />
