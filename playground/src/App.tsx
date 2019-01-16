@@ -17,6 +17,7 @@ import {
   NavDrawerDivider,
   NavDrawerLink,
   Select,
+  Textarea
 } from '../../src'
 
 class App extends Component {
@@ -123,6 +124,7 @@ class App extends Component {
           <option value="option2">Option Two</option>
           <option value="option3">Option Three</option>
         </Select>
+        <Textarea name={'textarea'} />
       </div>
     )
   }
