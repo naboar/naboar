@@ -204,7 +204,7 @@ class Table extends Component<IProps> {
           {this.props.showLimit && (
             <LimitWrap>
               <span style={{ marginRight: 8 }}>Show:</span>{' '}
-              <Select onChange={this.handleLimitChange}>
+              <Select name={'limit'} onChange={this.handleLimitChange}>
                 <option value={10}>10</option>
                 <option value={25}>25</option>
                 <option value={50}>50</option>
@@ -334,6 +334,6 @@ const LimitWrap = styled.div`
   justify-content: space-between;
   font-family: Open-Sans, sans-serif;
   color: rgba(255, 255, 255, 0.8);
-  width: 116px;
+  width: 135px;
 `
 export default Table

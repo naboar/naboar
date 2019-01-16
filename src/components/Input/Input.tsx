@@ -1,8 +1,8 @@
 import React from 'react'
-import styled, { css, FlattenSimpleInterpolation } from 'styled-components'
-import { ITheme } from '../../theme'
+import styled, { FlattenSimpleInterpolation } from 'styled-components'
+import { IFormElementProps, IStyledComponentProps } from '../../interfaces'
+import FormElementWrapper from '../FormElementWrapper/FormElementWrapper'
 import { IconIOS, iOS } from '../Icon'
-
 /**
  * Input Component
  * @since v1.0.0
@@ -11,34 +11,40 @@ import { IconIOS, iOS } from '../Icon'
 
 const Input = (props: IInputProps) => {
   return (
-    <Wrapper css={props.css}>
-      {props.iconName && (
-        <IconIOS name={props.iconName} size={19} color={'white'} />
-      )}
-      <StyledInput {...props } />
-      {props.canClear && (
-        <IconIOS
-          css={clearIconStyle}
-          name={'close'}
-          size={25}
-          color={'white'}
-          onClick={props.onClear}
-        />
-      )}
-    </Wrapper>
+    <FormElementWrapper
+      label={props.label}
+      name={props.name}
+      errorMessage={props.errorMessage}
+    >
+      <Wrapper css={props.css} isErrored={!!props.errorMessage}>
+        {props.iconName && (
+          <IconIOS name={props.iconName} size={19} color={'white'} />
+        )}
+        <StyledInput {...{ ...props, css: [] }} />
+        {props.canClear && (
+          <IconIOS
+            css={clearIconStyle}
+            name={'close'}
+            size={25}
+            color={'white'}
+            onClick={props.onClear}
+          />
+        )}
+      </Wrapper>
+    </FormElementWrapper>
   )
 }
 
 /**
  * Input prop interface
  */
-interface IInputProps {
+interface IInputProps
+  extends IFormElementProps,
+    React.HTMLAttributes<HTMLInputElement> {
   /** Toggle input clear option */
   canClear?: boolean
   /** Custom CSS */
   css?: FlattenSimpleInterpolation
-  /** Default Value of input field */
-  defaultValue?: string
   /** Toggle input clickability */
   disabled?: boolean
   /** Name of left icon */
@@ -47,34 +53,23 @@ interface IInputProps {
   min?: number
   /** Maximum value for number input */
   max?: number
-  /** Name of input field */
-  name: string
   /** On Clear click */
   onClear?: () => void
   /** On Change callback */
   onChange?: (value: React.ChangeEvent<HTMLInputElement>) => void
-  /** On Blur callback */
-  onBlur?: (value: React.ChangeEvent<HTMLInputElement>) => void
-  /** On Focus callback */
-  onFocus?: (value: React.ChangeEvent<HTMLInputElement>) => void
   /** On Click callback */
   onClick?: (e?: React.MouseEvent<HTMLInputElement>) => void
-  /** Placeholder text */
-  placeholder?: string
-  /**
-   * A stepping interval to use when
-   * using up and down arrows to adjust the value,
-   * as well as for validation
-   */
-  step?: number
-  /** HTML style object */
-  style?: object
   /** Type of input field */
   type?: string
   /** Value of input field */
   value?: string
   /** is this input required */
   required?: boolean
+}
+
+interface IProps extends IStyledComponentProps {
+  canClear?: boolean
+  iconName?: string
 }
 
 const StyledInput = styled.input`
@@ -95,7 +90,10 @@ const StyledInput = styled.input`
   }
 `
 
-const Wrapper = styled.div`
+const Wrapper = styled.div<{
+  isErrored: boolean
+  css?: FlattenSimpleInterpolation
+}>`
   border: 1px solid;
   border-radius: 4px;
   border-color: white;
@@ -108,20 +106,24 @@ const Wrapper = styled.div`
     color: ${({ theme }: IProps) => theme.white};
   }
 
-  ${(props: IProps) => props.css && props.css}
+  ${({ css }) => css};
+
+  ${({ isErrored }) =>
+    isErrored &&
+    `
+    border-color: red;
+    input, i {
+      color: red;
+    }
+  `};
 `
 
-const clearIconStyle = css`
+const clearIconStyle = [
+  `
   &:hover {
     cursor: pointer;
   }
-`
-
-interface IProps {
-  canClear?: boolean
-  css?: FlattenSimpleInterpolation
-  iconName?: string
-  theme: ITheme
-}
+`,
+]
 
 export default Input
