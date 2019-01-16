@@ -19,7 +19,7 @@ const Select = (props: ISelectProps) => (
       <StyledSelect
         name={props.name}
         onClick={props.onClick}
-        onChange={(e?: React.ChangeEvent<HTMLSelectElement>) => props.onChange(e.target.value)}
+        onChange={(e?: React.ChangeEvent<HTMLSelectElement>) => props.onChange(e)}
       >
         {props.children}
       </StyledSelect>
@@ -88,7 +88,7 @@ interface ISelectProps {
   name: string
   /** Fired on click */
   onClick?: () => void
-  onChange?: (e?: string) => void
+  onChange?: (e?: React.ChangeEvent<HTMLSelectElement>) => void
   /** called when input changes */
   value?: string | number
 }
