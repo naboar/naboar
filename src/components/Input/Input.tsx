@@ -1,7 +1,7 @@
 import React from 'react'
 import styled, { FlattenSimpleInterpolation } from 'styled-components'
 import { IFormElementProps, IStyledComponentProps } from '../../interfaces'
-import FormElementWrapper from '../hocs/FormElementWrapper'
+import FormElementWrapper from '../FormElementWrapper/FormElementWrapper'
 import { IconIOS, iOS } from '../Icon'
 /**
  * Input Component

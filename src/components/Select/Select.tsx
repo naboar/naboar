@@ -1,6 +1,6 @@
 import React from 'react'
 import styled, { css, FlattenSimpleInterpolation } from 'styled-components'
-import FormElementWrapper from '../hocs/FormElementWrapper'
+import FormElementWrapper from '../FormElementWrapper/FormElementWrapper'
 import { IconIOS } from '../Icon'
 
 /**
@@ -13,15 +13,16 @@ const Select = (props: ISelectProps) => (
     label={props.label}
     name={props.name}
     errorMessage={props.errorMessage}
+    css={['width: 100%']}
   >
-    <Wrapper {...props}>
-      <StyledSelect name={props.name}>{props.children}</StyledSelect>
+    <Wrapper css={props.css} errorMessage={props.errorMessage}>
+      <StyledSelect name={props.name} onClick={props.onClick}>{props.children}</StyledSelect>
       <IconIOS name={'arrow-down'} css={iconStyles} />
     </Wrapper>
   </FormElementWrapper>
 )
 
-const Wrapper = styled.div<ISelectProps>`
+const Wrapper = styled.div<{ css?: FlattenSimpleInterpolation , errorMessage?: string}>`
   border: 1px solid white;
   border-radius: 4px;
   position: relative;
@@ -65,7 +66,7 @@ const iconStyles = css`
 /**
  * Select prop interface
  */
-interface ISelectProps {
+interface ISelectProps extends React.HTMLAttributes<HTMLSelectElement> {
   /** Children must be HTMLOptionElements */
   children?: Array<React.ReactElement<HTMLOptionElement>>
   /** CSS styling using css from styled-components */
@@ -78,8 +79,6 @@ interface ISelectProps {
   name: string
   /** Fired on click */
   onClick?: () => void
-  /** called when input changes */
-  onChange?: (e: React.ChangeEvent<HTMLDivElement>) => void
   /** called when input changes */
   value?: string | number
 }
