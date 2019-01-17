@@ -28,6 +28,12 @@ module.exports = {
       components: 'src/effects/**/[A-Z]*.tsx',
       usageMode: 'expand',
     },
+    {
+      name: 'Visualization',
+      description: 'Data viz components',
+      components: 'src/viz/**/[A-Z]*.tsx',
+      usageMode: 'expand',
+    },
   ],
   theme: {
     color: {

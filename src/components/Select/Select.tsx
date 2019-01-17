@@ -19,6 +19,7 @@ const Select = (props: ISelectProps) => (
       <StyledSelect
         name={props.name}
         onClick={props.onClick}
+        value={props.value}
         onChange={(e?: React.ChangeEvent<HTMLSelectElement>) => props.onChange(e)}
       >
         {props.children}

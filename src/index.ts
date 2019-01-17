@@ -4,6 +4,7 @@
 import Badge from './components/Badge'
 import Button from './components/Button/'
 import Checkbox from './components/Checkbox/'
+import Datalist from './components/Datalist'
 import DatePicker from './components/DatePicker/'
 import {
   Dropdown,
@@ -44,10 +45,17 @@ import Themer, { theme } from './theme'
 import Expand from './effects/Expand/'
 import Modal from './effects/Modal/'
 
+/**
+ * Import Viz
+ */
+import BulletChart from './viz/BulletChart/'
+
 export {
   Badge,
+  BulletChart,
   Button,
   Checkbox,
+  Datalist,
   DatePicker,
   Dropdown,
   DropdownButton,
