@@ -33,6 +33,7 @@ import RadialMenuItem from './components/Radial/RadialMenuItem'
 import Radio from './components/Radio/'
 import Select from './components/Select/Select'
 import Slider from './components/Slider/'
+import Spinner from './components/Spinner'
 import Table, { Td, Th, Thead, Tr } from './components/Table/'
 import Textarea from './components/Textarea'
 import Tooltip from './components/Tooltip'
@@ -86,6 +87,7 @@ export {
   Radio,
   Select,
   Slider,
+  Spinner,
   Table,
   Td,
   Textarea,
