@@ -47,6 +47,7 @@ const Tip = styled.div<IStyledTooltipProps>`
   text-align: center;
   box-shadow: ${({ theme }) => 'none' || theme.shadows.one};
   opacity: 0;
+  width: max-content;
   word-break: break-word;
   max-width: 300px;
   z-index: 9999;
@@ -144,8 +145,6 @@ interface IStyledTooltipProps
   text?: string
   position: 'top' | 'bottom' | 'left' | 'right'
   children?: React.ReactElement<Element> | string
-  /** Fired onChange event */
-  onChange?: (e?: React.ChangeEvent<HTMLDivElement>) => void
 }
 
 export default Tooltip
