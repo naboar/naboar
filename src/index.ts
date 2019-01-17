@@ -34,6 +34,7 @@ import Select from './components/Select/Select'
 import Slider from './components/Slider/'
 import Table, { Td, Th, Thead, Tr } from './components/Table/'
 import Textarea from './components/Textarea'
+import Tooltip from './components/Tooltip'
 import Wizard from './components/Wizard/Wizard/'
 import WizardStep from './components/Wizard/WizardStep/'
 import Themer, { theme } from './theme'
@@ -88,6 +89,7 @@ export {
   Textarea,
   Th,
   Thead,
+  Tooltip,
   Tr,
   Notifications,
   Wizard,

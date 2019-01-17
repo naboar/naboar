@@ -24,6 +24,7 @@ interface IStyledTextareaProps
     IStyledComponentProps {
   /** Fired onChange event */
   onChange?: (e?: React.ChangeEvent<HTMLTextAreaElement>) => void
+  variant?: 'primary' |  'secondary' | 'tertiary'
 }
 
 const StyledTextarea = styled.textarea<IStyledTextareaProps>`

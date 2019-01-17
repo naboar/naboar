@@ -17,7 +17,8 @@ import {
   NavDrawerDivider,
   NavDrawerLink,
   Select,
-  Textarea
+  Textarea,
+  Tooltip
 } from '../../src'
 
 class App extends Component {
@@ -124,7 +125,14 @@ class App extends Component {
           <option value="option2">Option Two</option>
           <option value="option3">Option Three</option>
         </Select>
-        <Textarea name={'textarea'} />
+        <Textarea name={'textarea'}/>
+        <Tooltip
+          position={'right'}
+          title={'Example Tooltip'}
+          text={'Thank you for checking out the tooltip. Put some helpful tips here.'}
+          >
+            <p>Hover for tooltip information</p>
+          </Tooltip>
       </div>
     )
   }
