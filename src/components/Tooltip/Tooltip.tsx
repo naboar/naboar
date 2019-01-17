@@ -145,8 +145,6 @@ interface IStyledTooltipProps
   text?: string
   position: 'top' | 'bottom' | 'left' | 'right'
   children?: React.ReactElement<Element> | string
-  /** Fired onChange event */
-  onChange?: (e?: React.ChangeEvent<HTMLDivElement>) => void
 }
 
 export default Tooltip
