@@ -47,6 +47,7 @@ const Tip = styled.div<IStyledTooltipProps>`
   text-align: center;
   box-shadow: ${({ theme }) => 'none' || theme.shadows.one};
   opacity: 0;
+  width: max-content;
   word-break: break-word;
   max-width: 300px;
   z-index: 9999;
