@@ -1,5 +1,7 @@
 import React, { ChangeEvent } from 'react'
 import styled from 'styled-components'
+import { IFormElementProps } from '../../interfaces/'
+import FormElementWrapper from '../FormElementWrapper/FormElementWrapper'
 
 /**
  * Radio Component
@@ -9,14 +11,20 @@ import styled from 'styled-components'
  */
 const Radio = (props: IProps) => {
   return (
-    <Wrapper disabled={props.disabled}>
-      <Input {...props} onClick={e => props.onClick(props.value)} />
-      <span />
-    </Wrapper>
+    <FormElementWrapper
+      name={props.name}
+      label={props.label}
+      errorMessage={props.errorMessage}
+    >
+      <Wrapper disabled={props.disabled}>
+        <Input {...props} onClick={e => props.onClick(props.value)} />
+        <span />
+      </Wrapper>
+    </FormElementWrapper>
   )
 }
 
-interface IProps {
+interface IProps extends IFormElementProps {
   /** value */
   value: string | number
   /** whether or not the box is checked */
@@ -25,8 +33,6 @@ interface IProps {
   disabled?: boolean
   /** on click called with value */
   onClick?: (value?: string | number, e?: ChangeEvent<HTMLInputElement>) => void
-  /** Name for form validation */
-  name?: string
 }
 
 const Wrapper = styled.label<{ disabled: boolean }>`

@@ -14,6 +14,7 @@ import {
   DropdownNode,
 } from './components/Dropdown'
 import FormElementError from './components/FormElementError'
+import FormElementWrapper from './components/FormElementWrapper/FormElementWrapper'
 import IconIOS from './components/Icon/IconIOS/IconIOS'
 import IconLogo from './components/Icon/IconLogo/IconLogo'
 import IconMD from './components/Icon/IconMD/IconMD'
@@ -63,6 +64,7 @@ export {
   DropdownMenu,
   DropdownNode,
   FormElementError,
+  FormElementWrapper,
   IconIOS,
   IconLogo,
   IconMD,

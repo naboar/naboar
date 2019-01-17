@@ -7,7 +7,7 @@ import styled, { FlattenSimpleInterpolation } from 'styled-components'
  * @author Tracey King
  */
 const Label = (props: IStyledLabelProps) => (
-  <StyledLabel {...props}>{props.title}</StyledLabel>
+  <StyledLabel {...props}>{props.text}</StyledLabel>
 )
 
 interface IStyledLabelProps extends React.HTMLAttributes<HTMLLabelElement> {
@@ -16,7 +16,7 @@ interface IStyledLabelProps extends React.HTMLAttributes<HTMLLabelElement> {
   /** CSS Styling using css from styled-components */
   css?: FlattenSimpleInterpolation
   /** Text for label */
-  title: string
+  text: string
 }
 
 const StyledLabel = styled.label<IStyledLabelProps>`

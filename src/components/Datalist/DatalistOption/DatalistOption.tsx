@@ -19,11 +19,11 @@ import styled, { FlattenSimpleInterpolation } from 'styled-components'
    /** specifies option value */
    value: string | number | string[]
    /** specify if option should be disabled */
-   disabled: boolean
+   disabled?: boolean
    /** specify a shorter label for option */
-   label: string
+   label?: string
  }
 
- export const StyledOption = styled.option``
+ const StyledOption = styled.option``
 
  export default DatalistOption

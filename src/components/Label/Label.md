@@ -1,3 +1,3 @@
 ```js
-<Label title={'Example Label'} />
+<Label text={'Example Label'} />
 ```
