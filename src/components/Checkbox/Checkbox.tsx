@@ -1,5 +1,7 @@
 import React, { ChangeEvent } from 'react'
 import styled from 'styled-components'
+import { IFormElementProps } from '../../interfaces/'
+import FormElementWrapper from '../FormElementWrapper/'
 
 /**
  * Checkbox Component
@@ -9,22 +11,26 @@ import styled from 'styled-components'
  */
 const Checkbox = (props: IProps) => {
   return (
-    <Wrapper disabled={props.disabled}>
-      <Input {...props} onChange={e => props.onChange(!props.checked, e)} />
-      <span />
-    </Wrapper>
+    <FormElementWrapper
+      name={props.name}
+      label={props.label}
+      errorMessage={props.errorMessage}
+    >
+      <Wrapper disabled={props.disabled}>
+        <Input {...props} onChange={e => props.onChange(!props.checked, e)} />
+        <span />
+      </Wrapper>
+    </FormElementWrapper>
   )
 }
 
-interface IProps {
+interface IProps extends IFormElementProps {
   /** whether or not the box is checked */
   checked?: boolean
   /** toggle active state of input */
   disabled?: boolean
   /** on click called with opposite of current val and event obj */
   onChange?: (newVal?: boolean, e?: ChangeEvent<HTMLInputElement>) => void
-  /** Name for form validation */
-  name?: string
 }
 
 const Wrapper = styled.label<{ disabled: boolean }>`

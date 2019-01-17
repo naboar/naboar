@@ -1,7 +1,7 @@
 ```js 
 <div>
     <Dropdown>
-        <DropdownButton title={'Test'} onClick={console.log}/>
+        <DropdownButton text={'Test'} onClick={console.log} name={'button'}/>
         <DropdownMenu>
             <DropdownItem>Hello</DropdownItem>
         </DropdownMenu>

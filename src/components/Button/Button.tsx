@@ -43,7 +43,7 @@ interface IButtonProps {
   /** onClick callback */
   onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void
   /** Name for javascript reference or form-data */
-  name?: string
+  name: string
   /** 
    * specify button type
    */

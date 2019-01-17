@@ -2,7 +2,7 @@ import React, { Component, ReactElement } from 'react'
 import styled, { css } from 'styled-components'
 import Checkbox from '../Checkbox'
 import DatePicker from '../DatePicker/DatePicker'
-import Input from '../Input/Input'
+import Input from '../Input'
 import Pagination from '../Pagination'
 import Select from '../Select/Select'
 import Td from './Components/Td'
@@ -122,6 +122,7 @@ class Table extends Component<IProps> {
                   ) : (
                     <Checkbox
                       checked={data.every(item => item.isChecked)}
+                      name={column.key}
                       onChange={this.handleAllCheckboxes}
                     />
                   )
@@ -167,6 +168,7 @@ class Table extends Component<IProps> {
               ) : (
                 <Checkbox
                   checked={item.isChecked}
+                  name={col.key + cellIndex}
                   onChange={val => this.handleCheckbox(val, i)}
                 />
               )}
@@ -194,6 +196,7 @@ class Table extends Component<IProps> {
           )}
           {this.props.showDatePicker && (
             <DatePicker
+              name="datapicker"
               isRangePicker={true}
               onChange={this.handleDateChange}
               since={this.props.since}

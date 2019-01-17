@@ -1,7 +1,7 @@
 import React from 'react'
 import styled, { FlattenSimpleInterpolation } from 'styled-components'
 import { IFormElementProps, IStyledComponentProps } from '../../interfaces'
-import FormElementWrapper from '../FormElementWrapper/FormElementWrapper'
+import FormElementWrapper from '../FormElementWrapper/'
 import { IconIOS, iOS } from '../Icon'
 /**
  * Input Component
@@ -49,6 +49,8 @@ interface IInputProps
   disabled?: boolean
   /** Name of left icon */
   iconName?: iOS
+  /** Target datalist with same id */
+  list?: string
   /** Minimum value for number input */
   min?: number
   /** Maximum value for number input */

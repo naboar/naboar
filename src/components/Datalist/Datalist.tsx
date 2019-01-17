@@ -2,7 +2,7 @@
 
 import React, { ReactChild } from 'react'
 import styled, { FlattenSimpleInterpolation } from 'styled-components'
-import { Input } from '../../index'
+import Input from '../Input'
 import DatalistOption from './DatalistOption/DatalistOption'
 
 /**

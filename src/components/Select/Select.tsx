@@ -1,5 +1,6 @@
 import React from 'react'
 import styled, { css, FlattenSimpleInterpolation } from 'styled-components'
+import { IFormElementProps, IStyledComponentProps } from '../../interfaces'
 import FormElementWrapper from '../FormElementWrapper/FormElementWrapper'
 import { IconIOS } from '../Icon'
 
@@ -20,7 +21,9 @@ const Select = (props: ISelectProps) => (
         name={props.name}
         onClick={props.onClick}
         value={props.value}
-        onChange={(e?: React.ChangeEvent<HTMLSelectElement>) => props.onChange(e)}
+        onChange={(e?: React.ChangeEvent<HTMLSelectElement>) =>
+          props.onChange(e)
+        }
       >
         {props.children}
       </StyledSelect>
@@ -76,17 +79,9 @@ const iconStyles = css`
 /**
  * Select prop interface
  */
-interface ISelectProps {
+interface ISelectProps extends IFormElementProps, IStyledComponentProps {
   /** Children must be HTMLOptionElements */
   children?: Array<React.ReactElement<HTMLOptionElement>>
-  /** CSS styling using css from styled-components */
-  css?: FlattenSimpleInterpolation
-  /** Label text */
-  label?: string
-  /** Error message */
-  errorMessage?: string
-  /** Name of select */
-  name: string
   /** Fired on click */
   onClick?: () => void
   onChange?: (e?: React.ChangeEvent<HTMLSelectElement>) => void

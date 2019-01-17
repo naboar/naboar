@@ -26,7 +26,7 @@ class DatalistExample extends React.Component {
     const example = ['Chocolate','Coconut','Mint','Strawberry','Vanilla']
     return (
       <>
-        <Datalist.Input 
+        <Datalist.Input
           type={'input'} 
           canClear={true} 
           list={'example'} 

@@ -2,6 +2,8 @@ import { format, isAfter, isBefore } from 'date-fns'
 import React, { ChangeEvent, Component, Fragment } from 'react'
 import styled, { css } from 'styled-components'
 import { IconIOS, Input } from '../..'
+import { IFormElementProps } from '../../interfaces/IFormElementProps'
+import FormElementWrapper from '../FormElementWrapper/'
 
 /**
  * DatePicker Component
@@ -81,8 +83,10 @@ class DatePicker extends Component<IProps> {
 
   render() {
     const {
+      errorMessage,
       isRangePicker,
       isTimePicker,
+      label,
       sinceRequired,
       untilRequired,
       sinceName,
@@ -90,37 +94,39 @@ class DatePicker extends Component<IProps> {
     } = this.props
     const { since, until } = this.state
     return (
-      <Wrapper>
-        <Input
-          value={String(since)}
-          onChange={e => this.handleChangeDate('since', e)}
-          css={inputCss}
-          name={sinceName}
-          iconName="calendar"
-          type={isTimePicker ? 'datetime-local' : 'date'}
-          required={sinceRequired}
-        />
-        {isRangePicker && (
-          <Fragment>
-            <IconIOS css={iconCss} size={24} color="white" name="remove" />
-            <Input
-              value={String(until)}
-              onChange={e => this.handleChangeDate('until', e)}
-              css={inputCss}
-              name={untilName}
-              iconName="calendar"
-              type={isTimePicker ? 'datetime-local' : 'date'}
-              required={untilRequired}
-            />
-          </Fragment>
-        )}
-      </Wrapper>
+        <Wrapper>
+          <Input
+            label={label}
+            errorMessage={errorMessage}
+            value={String(since)}
+            onChange={e => this.handleChangeDate('since', e)}
+            css={inputCss}
+            name={sinceName}
+            iconName="calendar"
+            type={isTimePicker ? 'datetime-local' : 'date'}
+            required={sinceRequired}
+          />
+          {isRangePicker && (
+            <Fragment>
+              <IconIOS css={iconCss} size={24} color="white" name="remove" />
+              <Input
+                value={String(until)}
+                onChange={e => this.handleChangeDate('until', e)}
+                css={inputCss}
+                name={untilName}
+                iconName="calendar"
+                type={isTimePicker ? 'datetime-local' : 'date'}
+                required={untilRequired}
+              />
+            </Fragment>
+          )}
+        </Wrapper>
     )
   }
 }
 
 // Types
-interface IProps {
+interface IProps extends IFormElementProps {
   /** does it have a since and until */
   isRangePicker?: boolean
   /** Can the user select a time */

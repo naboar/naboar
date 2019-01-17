@@ -1,5 +1,7 @@
 import React from 'react'
 import styled, { css } from 'styled-components'
+import { IFormElementProps } from '../../interfaces/'
+import FormElementWrapper from '../FormElementWrapper/FormElementWrapper'
 
 /**
  * Slider Component
@@ -8,13 +10,19 @@ import styled, { css } from 'styled-components'
  */
 const Slider = (props: ISliderProps) => {
   return (
-    <Wrapper>
-      <Active width={(props.value / props.max) * 100} />
-      <Range
-        {...props}
-        onChange={e => props.onChange(Number(e.target.value))}
-      />
-    </Wrapper>
+    <FormElementWrapper
+      name={props.name}
+      label={props.label}
+      errorMessage={props.errorMessage}
+    >
+      <Wrapper>
+        <Active width={(props.value / props.max) * 100} />
+        <Range
+          {...props}
+          onChange={e => props.onChange(Number(e.target.value))}
+        />
+      </Wrapper>
+    </FormElementWrapper>
   )
 }
 
@@ -28,7 +36,7 @@ Slider.defaultProps = {
 /**
  * Slider prop interface
  */
-interface ISliderProps {
+interface ISliderProps extends IFormElementProps {
   /** Called with new value of slider */
   onChange: (val: number) => void
   /** Value of slider */
