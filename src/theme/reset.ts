@@ -36,4 +36,7 @@ html {
 *, *:before, *:after {
 box-sizing: inherit;
 }
+input[type="button" i], input[type="submit" i], input[type="reset" i], input[type="file" i]::-webkit-file-upload-button, button {
+    padding: 0;
+}
 `

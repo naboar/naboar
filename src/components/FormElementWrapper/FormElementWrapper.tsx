@@ -1,13 +1,14 @@
-import React, { Fragment } from 'react'
+import React from 'react'
 import styled, { FlattenSimpleInterpolation } from 'styled-components'
-import { FormElementError, Label } from '../..'
 import { IFormElementProps } from '../../interfaces/IFormElementProps'
+import FormElementError from '../FormElementError/FormElementError'
+import Label from '../Label/Label'
 
 const FormElementWrapper = (props: IFormElementWrapperProps) => (
   <Wrapper css={props.css}>
-    <Label title={props.label} htmlFor={props.name} />
+    {props.label && <Label text={props.label} htmlFor={props.name} />}
     {props.children}
-    <FormElementError text={props.errorMessage} />
+    {props.errorMessage && <FormElementError text={props.errorMessage} />}
   </Wrapper>
 )
 

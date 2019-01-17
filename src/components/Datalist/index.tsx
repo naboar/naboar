@@ -1,3 +1,1 @@
-import Datalist from './Datalist'
-
-export default Datalist
+export { default as default } from './Datalist'
