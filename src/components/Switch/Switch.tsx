@@ -43,7 +43,7 @@ const Slider = styled.span<{ isOn: boolean }>`
   bottom: 0;
   border-radius: 24px;
   transition: 0.4s;
-  background-color: ${({ isOn }) => isOn ? 'blue' : 'red'};
+  background-color: ${({ isOn, theme }) => !isOn ? theme.palette.common.red : theme.palette.common.teal };
   &:before {
     position: absolute;
     content: ' ';
