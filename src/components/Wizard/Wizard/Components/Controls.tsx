@@ -113,11 +113,11 @@ const NextButton = styled.button<{ isSubmit?: boolean }>`
         color: ${theme.palette.common.white};
       }
     `}
-    :disabled {
-      pointer-events: none;
-      opacity: 0.6;
-    }
   `}
+:disabled {
+    pointer-events: none;
+    opacity: 0.6;
+  }
 `
 const BackButton = styled.button`
   ${baseButtonStyle};
