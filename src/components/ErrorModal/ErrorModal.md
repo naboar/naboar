@@ -12,8 +12,7 @@ initialState = { shouldShow: false }
     onClick={() => setState({ shouldShow: !state.shouldShow })}
   />
 </Modal>
-<br />
-<Button onClick={() => setState({ shouldShow: !state.shouldShow })}>Click To Show</Button>
+<Button.Main onClick={() => setState({ shouldShow: !state.shouldShow })}>Click To Show</Button.Main>
 </div>
 
 ```

@@ -193,7 +193,6 @@ interface IState {
 const Wrapper = styled.div<{ css?: string[] }>`
   display: flex;
   flex-direction: column;
-  background-color: #242424;
   width: 100%;
   ${({ css }) => css && css};
 `

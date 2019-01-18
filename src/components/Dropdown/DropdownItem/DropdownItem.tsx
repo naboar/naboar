@@ -1,5 +1,6 @@
 import React from 'react'
 import styled, { FlattenSimpleInterpolation } from 'styled-components'
+import { IStyledComponentProps } from '../../../interfaces/IStyledComponentProps'
 
 interface IDropdownItemProps {
   /** Children */
@@ -22,46 +23,50 @@ interface IDropdownItemProps {
  * @author Tracey King
  */
 const DropdownItem = (props: IDropdownItemProps) => (
-  <StyledDropdownItem {...props}>{props.children}</StyledDropdownItem>
+  <StyledDropdownItem
+    {...props}
+    onClick={props.isDisabled ? null : props.onClick}
+  >{props.children}</StyledDropdownItem>
 )
 
-const StyledDropdownItem = styled.div.attrs({
-  onClick: ({ onClick }: IProps) => onClick,
-  value: ({ value }: IProps) => value,
-})`
-  padding: 10px;
-  font-size: 16px;
-  cursor: pointer;
-  transition: 0.2s all;
-  background-color: ${({ isActive }: IProps) =>
-    isActive ? '#333' : '#444'};
-  border-bottom: 1px solid #dcdcdc;
-  color: rgba(255,255,255, .8);
-  &:hover {
-    background-color: #555;
+const StyledDropdownItem = styled.div<IProps>`
+  ${({ css, isActive, isDisabled, theme }: IProps) => `
+    padding: ${theme.spacing.base}px;
+    font-size: 16px;
     cursor: pointer;
-  }
+    transition: 0.2s all;
+    background-color: ${isActive ? theme.palette.common.white : theme.palette.grey[300]};
+    border-bottom: 1px solid #dcdcdc;
+    color: ${theme.palette.common.black};
+    &:hover {
+      background-color: ${theme.palette.common.white};
+      cursor: pointer;
+    }
 
-  &:disabled {
-    background-color: #222;
-    cursor: default;
-  }
+    ${isDisabled && `
+      opacity: .7;
+      background: ${theme.palette.grey[700]};
+      cursor: default;
+      &:hover {
+        cursor: default;
+        background: ${theme.palette.grey[700]};
+      }
+    `}
 
-  &:first-child {
-    border-radius: 2px 2px 0 0;
-  }
+    &:first-child {
+      border-radius: 2px 2px 0 0;
+    }
 
-  &:last-child {
-    border-bottom: none;
-    border-radius: 0 0 2px 2px;
-  }
+    &:last-child {
+      border-bottom: none;
+      border-radius: 0 0 2px 2px;
+    }
 
-  ${({ css }: IProps) => css && css}
+    ${css}
+  `}
 `
 
-interface IProps {
-  /** CSS styling use css from styled-components */
-  css?: FlattenSimpleInterpolation
+interface IProps extends IStyledComponentProps {
   /** Boolean identifying wheather the item is the active one */
   isActive?: boolean
   /** Boolean identifying wheather the item is disabled or not */

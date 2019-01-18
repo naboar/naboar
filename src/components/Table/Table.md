@@ -71,6 +71,22 @@ const handleAllCheckboxes = () =>
    : setState({ data: state.data.map(check) })
 ;
 
+<>
+<h1 style={{ margin: '0 0 8px', color: 'white', fontSize: 16 }}>
+  Basic Usage:
+</h1>
+<Table 
+  columns={state.columns}
+  data={state.data}
+  onAllCheckboxes={handleAllCheckboxes}
+  onCheckbox={handleCheckbox}
+  onRowClick={console.log}
+/>
+
+<h1 style={{ margin: '24px 0 8px', color: 'white', fontSize: 16 }}>
+  With Controls:
+</h1>
+
 <Table 
   columns={state.columns}
   data={state.data}
@@ -98,4 +114,5 @@ const handleAllCheckboxes = () =>
   limit={state.limit}
   onLimitChange={(limit) => setState({ limit })}
 />
+</>
 ```

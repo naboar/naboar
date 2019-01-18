@@ -4,6 +4,7 @@
 import Badge from './components/Badge'
 import Button from './components/Button/'
 import Checkbox from './components/Checkbox/'
+import Datalist from './components/Datalist'
 import DatePicker from './components/DatePicker/'
 import {
   Dropdown,
@@ -13,6 +14,7 @@ import {
   DropdownNode,
 } from './components/Dropdown'
 import FormElementError from './components/FormElementError'
+import FormElementWrapper from './components/FormElementWrapper/FormElementWrapper'
 import IconIOS from './components/Icon/IconIOS/IconIOS'
 import IconLogo from './components/Icon/IconLogo/IconLogo'
 import IconMD from './components/Icon/IconMD/IconMD'
@@ -31,7 +33,10 @@ import RadialMenuItem from './components/Radial/RadialMenuItem'
 import Radio from './components/Radio/'
 import Select from './components/Select/Select'
 import Slider from './components/Slider/'
+import Spinner from './components/Spinner'
 import Table, { Td, Th, Thead, Tr } from './components/Table/'
+import Textarea from './components/Textarea'
+import Tooltip from './components/Tooltip'
 import Wizard from './components/Wizard/Wizard/'
 import WizardStep from './components/Wizard/WizardStep/'
 import Themer, { theme } from './theme'
@@ -42,10 +47,17 @@ import Themer, { theme } from './theme'
 import Expand from './effects/Expand/'
 import Modal from './effects/Modal/'
 
+/**
+ * Import Viz
+ */
+import BulletChart from './viz/BulletChart/'
+
 export {
   Badge,
+  BulletChart,
   Button,
   Checkbox,
+  Datalist,
   DatePicker,
   Dropdown,
   DropdownButton,
@@ -53,6 +65,7 @@ export {
   DropdownMenu,
   DropdownNode,
   FormElementError,
+  FormElementWrapper,
   IconIOS,
   IconLogo,
   IconMD,
@@ -74,10 +87,13 @@ export {
   Radio,
   Select,
   Slider,
+  Spinner,
   Table,
   Td,
+  Textarea,
   Th,
   Thead,
+  Tooltip,
   Tr,
   Notifications,
   Wizard,

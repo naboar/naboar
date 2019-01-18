@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { css } from 'styled-components'
 import {
   Button,
+  Datalist,
   Dropdown,
   DropdownButton,
   DropdownItem,
@@ -16,12 +17,15 @@ import {
   NavDrawer,
   NavDrawerDivider,
   NavDrawerLink,
-  Select
+  Select,
+  Textarea,
+  Tooltip,
 } from '../../src'
 
 class App extends Component {
   state = {
     activeIndex: 0,
+    datalistValue: '',
     notifs: [],
     text: 'Clear Me',
   }
@@ -29,8 +33,11 @@ class App extends Component {
   clearText = () => this.setState({ text: '' })
   updateText = text => this.setState({ text })
   updateActiveIndex = activeIndex => this.setState({ activeIndex })
+  updateDatalistValue = value => this.setState({ datalistValue: value })
 
   render() {
+    const example = ['one', 'two', 'three']
+    const { log } = console
     return (
       <div>
         <NavBar onClick={() => alert('redirect')} title={'Dashboard'}>
@@ -50,15 +57,18 @@ class App extends Component {
             onClick={() => this.updateActiveIndex(2)}
           />
         </NavBar>
-        <Button onClick={alert}>Click Me</Button>
-        <IconIOS name="open" size={35}/>
+        <Button name="button" onClick={alert}>
+          Click Me
+        </Button>
+        <IconIOS name="open" size={35} />
         <IconLogo name="github" color="blue" size={35} />
         <IconMD name="close" color="red" size={35} />
         <Input css={inputStyles} name="test" type="number" min={34} max={50} />
-        <Dropdown>
+        <Dropdown name="dropdown">
           <DropdownNode>This is the Dropdown</DropdownNode>
           <DropdownButton
-            title={'Testing to make sure this works'}
+            name="example"
+            text={'Testing to make sure this works'}
             onClick={() => alert('DropdownButton')}
           />
           <DropdownMenu>
@@ -119,10 +129,37 @@ class App extends Component {
           />
         </NavDrawer>
         <Select css={selectStyles} name={'exampleSelect'} label={'Test Me'}>
-          <option value='option1'>Option One</option>
-          <option value='option2'>Option Two</option>
-          <option value='option3'>Option Three</option>
+          <option value="option1">Option One</option>
+          <option value="option2">Option Two</option>
+          <option value="option3">Option Three</option>
         </Select>
+        <Textarea name={'textarea'} />
+        <Tooltip
+          position={'right'}
+          title={'Example Tooltip'}
+          text={
+            'Thank you for checking out the tooltip. Put some helpful tips here.'
+          }
+        >
+          <p>Hover for tooltip information</p>
+        </Tooltip>
+        <Datalist.Input
+          css={['background: black;']}
+          name="input"
+          type={'input'}
+          canClear={true}
+          list={'example'}
+          onChange={e => this.updateDatalistValue(e.target.value)}
+          onClear={() => this.updateDatalistValue('')}
+          value={this.state.datalistValue}
+        />
+        <Datalist id={'example'}>
+          {example.map((value, i) => (
+            <Datalist.Option key={i} value={value}>
+              {value}
+            </Datalist.Option>
+          ))}
+        </Datalist>
       </div>
     )
   }
@@ -130,17 +167,6 @@ class App extends Component {
 
 const inputStyles = css`
   width: 300px;
-  border: 1px solid black;
-  i,
-  input,
-  {
-    color: black;
-  }
-  input {
-    &:disabled {
-      color: grey;
-    }
-  }
 `
 
 const dividerStyles = css`
@@ -159,7 +185,8 @@ const linkStyles = css`
 const selectStyles = css`
   border-color: black;
   width: 300px;
-  select, i {
+  select,
+  i {
     color: black;
   }
 `

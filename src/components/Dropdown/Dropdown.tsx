@@ -1,6 +1,7 @@
 import React from 'react'
-import styled, { FlattenSimpleInterpolation } from 'styled-components'
-import { ITheme } from '../../theme'
+import styled from 'styled-components'
+import { IFormElementProps, IStyledComponentProps } from '../../interfaces/'
+import FormElementWrapper from '../FormElementWrapper/FormElementWrapper'
 
 /**
  * Dropdown prop interface
@@ -9,11 +10,9 @@ interface IState {
   isActive?: boolean
 }
 
-interface IProps {
+interface IProps extends IFormElementProps, IStyledComponentProps {
   /** Text displayed inside of the button */
   children?: JSX.Element[] | JSX.Element | string
-  /** CSS style using css from styled-components */
-  css?: string[]
   /** Toggle button clickability */
   isActive?: boolean
   /** Event fired on click */
@@ -52,7 +51,7 @@ class Dropdown extends React.Component<IProps, IState> {
     const isActive = this.isActive()
 
     if (onClick) {
-      return onClick(e)
+      onClick(e)
     }
     this.setState({ isActive: !isActive })
   }
@@ -82,23 +81,31 @@ class Dropdown extends React.Component<IProps, IState> {
     // map the private on click from children up to this parent
     return React.cloneElement(child, {
       isActive: child.props.isActive || this.isActive(),
-      onClick: this.onClick,
+      onClick: (e: React.MouseEvent<HTMLButtonElement>) => {
+        if (child.props.onClick) {
+          child.props.onClick()
+        }
+        this.onClick(e)
+      },
     })
   }
 
   render() {
-    const { children, css } = this.props
+    const { children, css, errorMessage, label, name } = this.props
 
     return (
-      <DropdownContainer
-        css={css}
-        innerRef={() => null}
-        ref={ref => (this.ref = ref)}
-      >
-        {React.Children.toArray(children).map(
-          (child: React.ReactElement<any>) => this.cloneWithProps(child),
-        )}
-      </DropdownContainer>
+      <FormElementWrapper name={name} label={label} errorMessage={errorMessage}>
+        <DropdownContainer
+          name={name}
+          css={css}
+          innerRef={() => null}
+          ref={ref => (this.ref = ref)}
+        >
+          {React.Children.toArray(children).map(
+            (child: React.ReactElement<any>) => this.cloneWithProps(child),
+          )}
+        </DropdownContainer>
+      </FormElementWrapper>
     )
   }
 }
@@ -112,16 +119,15 @@ const DropdownContainer = styled.button`
   &:active {
     border: none;
   }
+  input[type='submit'] {
+    padding: 0;
+  }
 
   ${({ css }: IStyledProps) => css && css}
 `
 
-interface IStyledProps {
-  /** CSS properties using css helper from styled-components */
-  css?: FlattenSimpleInterpolation
+interface IStyledProps extends IStyledComponentProps {
   innerRef: (e: any) => any
-  /** Theme */
-  theme: ITheme
 }
 
 export default Dropdown

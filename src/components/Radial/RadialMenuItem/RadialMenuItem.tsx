@@ -27,7 +27,7 @@ export const RadialMenuItem = ({
       index={index}
       total={total}
     >
-      <IconIOS name={iconName} css={iconCss} />
+      <IconIOS name={iconName} size={20} />
     </ItemButton>
   </ItemWrapper>
 )
@@ -47,10 +47,6 @@ export interface IItemProps {
   total?: number
 }
 
-const iconCss = css`
-  color: white;
-  font-size: 20px;
-` as string[]
 
 const ItemWrapper = styled.div`
   position: absolute;
@@ -61,6 +57,9 @@ const ItemWrapper = styled.div`
   pointer-events: none;
   ${({ index, total }: { index: number; total: number }) =>
     `transform: rotate(${(360 / total) * index + 5}deg)`};
+  i {
+    color: ${({ theme }) => theme.palette.common.white};
+  }
 `
 
 const ItemButton = styled.button<{
@@ -78,7 +77,7 @@ const ItemButton = styled.button<{
   border: none;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  box-shadow: ${({ theme }) => theme.shadows[1]};
 
   ${({ index, total }) =>
     `transform: rotate(-${(360 / total) * index +
@@ -89,7 +88,7 @@ const ItemButton = styled.button<{
       ? `top: -108%; opacity: 1; pointer-events: all;`
       : `top: 0; opacity: 0; pointer-events: none;`};
 
-  background: #008270;
+  background: ${({ theme }) => theme.palette.primary.main};
 
   :focus {
     outline: none;

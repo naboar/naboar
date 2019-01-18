@@ -1,5 +1,6 @@
 import React from 'react'
-import styled, { FlattenSimpleInterpolation } from 'styled-components'
+import styled from 'styled-components'
+import { IStyledComponentProps } from '../../interfaces/IStyledComponentProps'
 
 /**
  * Label Component
@@ -7,25 +8,27 @@ import styled, { FlattenSimpleInterpolation } from 'styled-components'
  * @author Tracey King
  */
 const Label = (props: IStyledLabelProps) => (
-  <StyledLabel {...props}>{props.title}</StyledLabel>
+  <StyledLabel {...props}>{props.text}</StyledLabel>
 )
 
-interface IStyledLabelProps extends React.HTMLAttributes<HTMLLabelElement> {
+interface IStyledLabelProps
+  extends IStyledComponentProps,
+    React.HTMLAttributes<HTMLLabelElement> {
   /** For attribute for input targeting */
   htmlFor: string
-  /** CSS Styling using css from styled-components */
-  css?: FlattenSimpleInterpolation
   /** Text for label */
-  title: string
+  text: string
 }
 
 const StyledLabel = styled.label<IStyledLabelProps>`
-  font-size: 16px;
-  color: white;
-  margin: 5px 0;
-  display: block;
+  ${({ css, theme }) => `
+    font-size: 16px;
+    color: ${theme.palette.common.white};
+    margin: ${theme.spacing.base}px 0;
+    display: block;
 
-  ${({ css }) => css}
+    ${css}
+  `}
 `
 
 export default Label

@@ -1,5 +1,7 @@
 import React, { ChangeEvent } from 'react'
 import styled from 'styled-components'
+import { IFormElementProps } from '../../interfaces/'
+import FormElementWrapper from '../FormElementWrapper/FormElementWrapper'
 
 /**
  * Radio Component
@@ -9,14 +11,20 @@ import styled from 'styled-components'
  */
 const Radio = (props: IProps) => {
   return (
-    <Wrapper disabled={props.disabled}>
-      <Input {...props} onClick={e => props.onClick(props.value)} />
-      <span />
-    </Wrapper>
+    <FormElementWrapper
+      name={props.name}
+      label={props.label}
+      errorMessage={props.errorMessage}
+    >
+      <Wrapper disabled={props.disabled}>
+        <Input {...props} onClick={e => props.onClick(props.value)} />
+        <span />
+      </Wrapper>
+    </FormElementWrapper>
   )
 }
 
-interface IProps {
+interface IProps extends IFormElementProps {
   /** value */
   value: string | number
   /** whether or not the box is checked */
@@ -25,79 +33,80 @@ interface IProps {
   disabled?: boolean
   /** on click called with value */
   onClick?: (value?: string | number, e?: ChangeEvent<HTMLInputElement>) => void
-  /** Name for form validation */
-  name?: string
 }
 
 const Wrapper = styled.label<{ disabled: boolean }>`
-  position: relative;
-  display: inline-block;
-  color: rgba(255, 255, 255, .87);
-  cursor: pointer;
-  font-size: 14px;
-  line-height: 18px;
-  & > span::before {
-    content: '';
+  ${({ disabled, theme }) => `
+    position: relative;
     display: inline-block;
-    margin-right: 15px;
-    border: 2px solid rgba(255, 255, 255, .42);
-    border-radius: 100%;
-    width: 16px;
-    height: 16px;
-    vertical-align: -4px;
-    transition: border-color .5s, background-color .5s;
-  }
+    color: ${theme.palette.common.white};
+    cursor: pointer;
+    font-size: 14px;
+    line-height: 18px;
+    & > span::before {
+      content: '';
+      display: inline-block;
+      margin-right: 15px;
+      border: 2px solid rgba(255, 255, 255, .42);
+      border-radius: 100%;
+      width: 16px;
+      height: 16px;
+      vertical-align: -4px;
+      transition: border-color .5s, background-color .5s;
+    }
 
-  & > input:checked + span::before {
-      border-color: #1de9b6;
-  }
+    & > input:checked + span::before {
+        border-color: ${theme.palette.primary.main};
+    }
 
-  & > input:active + span::before {
-    border-color: #1de9b6;
-  }
+    & > input:active + span::before {
+      border-color: ${theme.palette.primary.main};
+    }
 
-  & > input:disabled + span::before {
-    opacity: .4;
-  }
+    & > input:disabled + span::before {
+      opacity: .4;
+    }
 
-  & > input:checked:disabled + span::before {
-    opacity: .8;
-    border-color: #1de9b6;
-  }
+    & > input:checked:disabled + span::before {
+      opacity: .8;
+      border-color: ${theme.palette.primary.main};
+    }
 
-  & > span::after {
-    transition: background-color .1s, opacity .1s;
-    content: '';
-    display: inline-block;
-    position: absolute;
-    top: 5px;
-    left: 3px;
-    width: 10px;
-    height: 10px;
-    border: 2px solid #3c5a53;
-    opacity: 0;
-    border-radius: 100%;
-  }
+    & > span::after {
+      transition: background-color .1s, opacity .1s;
+      content: '';
+      display: inline-block;
+      position: absolute;
+      top: 5px;
+      left: 3px;
+      width: 10px;
+      height: 10px;
+      border: 2px solid rgba(0,0,0,.7);
+      opacity: 0;
+      border-radius: 100%;
+    }
 
-  & > input:checked + span::after {
-    opacity: 1;
-    background: #1de9b6;
-    cursor: default;
-  }
+    & > input:checked + span::after {
+      opacity: 1;
+      background: ${theme.palette.primary.main};
+      cursor: default;
+    }
 
-  & > input:disabled + span::after {
-    background: #1de9b6;
-  }
+    & > input:disabled + span::after {
+      opacit: .8;
+      background: ${theme.palette.primary.main};
+    }
 
-  & :active > input {
-    opacity: 1;
-    tranform: scale(0);
-    transition: opacity 0s, transform: 0s;
-  }
+    & :active > input {
+      opacity: 1;
+      tranform: scale(0);
+      transition: opacity 0s, transform: 0s;
+    }
 
-  cursor: pointer;
+    cursor: pointer;
 
-  ${({ disabled }) => disabled && `pointer-events: none`}
+    ${disabled && `pointer-events: none`}
+  `}
 `
 
 const Input = styled.input.attrs({

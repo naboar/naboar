@@ -18,11 +18,13 @@ interface IFormElementErrorProps extends React.HTMLAttributes<HTMLParagraphEleme
 }
 
 const StyledP = styled.p<IFormElementErrorProps>`
-  font-size: 16px;
-  color: red;
-  margin: 5px 0;
+  ${({ css, theme }) => `
+    font-size: 16px;
+    color: ${theme.palette.common.red};
+    margin: ${theme.spacing.base}px 0;
 
-  ${({ css }) => css}
+    ${css}
+  `}
 `
 
 export default FormElementError

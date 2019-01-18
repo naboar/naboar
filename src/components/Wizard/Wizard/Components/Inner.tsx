@@ -24,7 +24,7 @@ const Wrapper = styled.div`
   max-height: 400px;
   overflow-y: auto;
   overflow-x: hidden;
-  background-color: #242424;
+  background-color: ${({ theme }) => theme.palette.secondary.dark};
 `
 
 export default Inner

@@ -104,7 +104,7 @@ const Effect = styled.div`
   height: 40px;
   width: 40px;
   pointer-events: none;
-  background: #1de9b6;
+  background: ${({ theme }) => theme.palette.primary.main};
   opacity: 0.5;
   position: absolute;
   z-index: -1;
@@ -124,11 +124,11 @@ const RadialButton = styled.button`
   border-radius: 100%;
   cursor: pointer;
   border: none;
-  background: #555;
+  background: ${({ theme }) => theme.palette.grey[800]};
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+  box-shadow: ${({ theme }) => theme.shadows[4]};
 
   :focus {
     outline: none;

@@ -1,6 +1,6 @@
 import React from 'react'
 import styled, { css, FlattenSimpleInterpolation } from 'styled-components'
-import { Expand } from '../..'
+import { IStyledComponentProps } from '../../interfaces/IStyledComponentProps'
 import { ITheme } from '../../theme'
 import { iOS } from '../Icon'
 import NavDrawerLink from './NavDrawerLink'
@@ -13,8 +13,9 @@ import NavDrawerLink from './NavDrawerLink'
 
 const NavDrawerHeader = (props: INavDrawerHeaderProps) => {
   return (
+    <Wrapper>
       <NavDrawerLink
-        css={linkStyle(props.css)}
+        css={linkStyle(props)}
         title={props.title}
         iconName={props.isExpanded ? 'close' : 'menu'}
         onIconClick={props.onIconClick}
@@ -22,6 +23,7 @@ const NavDrawerHeader = (props: INavDrawerHeaderProps) => {
         isExpanded={props.isExpanded}
         to={props.to}
       />
+    </Wrapper>
   )
 }
 
@@ -46,15 +48,22 @@ export interface INavDrawerHeaderProps {
   title: string
 }
 
-const linkStyle = (propsCss: FlattenSimpleInterpolation) => css`
-  padding: 15px;
+const Wrapper = styled.div`
+  ${({ theme }) => `
+    padding: ${theme.spacing.base}px;
+  `}
+`
+const linkStyle = (props: IStyledComponentProps) => css`
   font-size: 35px;
   flex-direction: row-reverse;
+  &:hover {
+    background: transparent;
+  }
   i {
     width: initial;
   }
 
-  ${propsCss}
+  ${props.css}
 `
 
 interface IProps {

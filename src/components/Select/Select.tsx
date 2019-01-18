@@ -1,5 +1,6 @@
 import React from 'react'
-import styled, { css, FlattenSimpleInterpolation } from 'styled-components'
+import styled, { FlattenSimpleInterpolation } from 'styled-components'
+import { IFormElementProps, IStyledComponentProps } from '../../interfaces'
 import FormElementWrapper from '../FormElementWrapper/FormElementWrapper'
 import { IconIOS } from '../Icon'
 
@@ -16,69 +17,71 @@ const Select = (props: ISelectProps) => (
     css={['width: 100%']}
   >
     <Wrapper css={props.css} errorMessage={props.errorMessage}>
-      <StyledSelect name={props.name} onClick={props.onClick}>{props.children}</StyledSelect>
+      <StyledSelect
+        name={props.name}
+        onClick={props.onClick}
+        value={props.value}
+        onChange={(e?: React.ChangeEvent<HTMLSelectElement>) =>
+          props.onChange(e)
+        }
+      >
+        {props.children}
+      </StyledSelect>
       <IconIOS name={'arrow-down'} css={iconStyles} />
     </Wrapper>
   </FormElementWrapper>
 )
 
-const Wrapper = styled.div<{ css?: FlattenSimpleInterpolation , errorMessage?: string}>`
-  border: 1px solid white;
-  border-radius: 4px;
-  position: relative;
-  ${({ errorMessage }) =>
-    errorMessage &&
-    `
-    border-color: red;
-    select, i {
-      color: red;
-    }
-  `};
+const Wrapper = styled.div<{
+  css?: FlattenSimpleInterpolation
+  errorMessage?: string
+}>`
+  ${({ css, errorMessage, theme }) => `
+    border-radius: ${theme.shape.borderRadius};
+    background: ${theme.palette.secondary.light};
+    position: relative;
+    ${errorMessage && `
+      background: ${theme.palette.common.red};
+    `};
 
-  ${props => props.css}
+    ${css}
+  `}
 `
 
 const StyledSelect = styled.select`
   background: transparent;
-  color: white;
+  color: ${({ theme }) => theme.palette.common.white};
   height: 40px;
   width: 100%;
   -webkit-appearance: none;
   -moz-appearance: none;
   border: none;
   outline: none;
-  text-indent: 15px;
+  text-indent: 16px;
   font-size: 16px;
   &:hover {
     cursor: pointer;
   }
 `
 
-const iconStyles = css`
+const iconStyles = [`
   color: white;
   position: absolute;
-  right: 15px;
+  right: 16px;
   top: 0;
   bottom: 0;
   display: flex;
   align-items: center;
-`
+`]
 /**
  * Select prop interface
  */
-interface ISelectProps extends React.HTMLAttributes<HTMLSelectElement> {
+interface ISelectProps extends IFormElementProps, IStyledComponentProps {
   /** Children must be HTMLOptionElements */
   children?: Array<React.ReactElement<HTMLOptionElement>>
-  /** CSS styling using css from styled-components */
-  css?: FlattenSimpleInterpolation
-  /** Label text */
-  label?: string
-  /** Error message */
-  errorMessage?: string
-  /** Name of select */
-  name: string
   /** Fired on click */
   onClick?: () => void
+  onChange?: (e?: React.ChangeEvent<HTMLSelectElement>) => void
   /** called when input changes */
   value?: string | number
 }
