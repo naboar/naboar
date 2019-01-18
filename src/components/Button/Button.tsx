@@ -9,6 +9,17 @@ import { IStyledComponentProps } from '../../interfaces/IStyledComponentProps'
  */
 
 const Button = (props: IButtonProps) => {
+  // const onButtonClick: IButtonProps['onClick'] = (e: React.MouseEvent<HTMLButtonElement>) => {
+    // const { log } = console
+    // log('hello')
+    // const { _buttonGroupIndex, value, _buttonGroupClick } = props
+    // if (_buttonGroupClick) {
+    //   _buttonGroupClick(value, _buttonGroupIndex, e)
+    // }
+    // if (props.onClick) {
+    //   props.onClick(e)
+    // }
+  // }
   return <StyledButton {...props}>{props.children}</StyledButton>
 }
 
@@ -38,13 +49,15 @@ const StyledButton = styled.button<IButtonProps>`
 
 type ButtonTypes = 'button' | 'reset' | 'submit'
 
-interface IButtonProps extends IStyledComponentProps {
+export interface IButtonProps extends IStyledComponentProps, React.HTMLAttributes<HTMLButtonElement> {
   /** component children */
   children: JSX.Element | string
+  /** active if Button value matches ButtonGroup activeValue */
+  isActive?: boolean
   /** onClick callback */
   onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void
   /** Name for javascript reference or form-data */
-  name: string
+  name?: string
   /** 
    * specify button type
    */
@@ -57,10 +70,14 @@ interface IButtonProps extends IStyledComponentProps {
    * disabled attribute
    */
   disabled?: boolean
+  /** onClick callback passed to ButtonGroup */
+  // _buttonGroupClick?: (value: string, index: number, e: React.MouseEvent<HTMLButtonElement>) => void
+  /** Button index value passed to ButtonGroup */
+  // _buttonGroupIndex?: number
 }
 
 const MainButton = styled(StyledButton)`
-  ${({ theme }) => `
+  ${({ theme, isActive }) => `
     background: ${theme.palette.primary.main};
     color: ${theme.palette.common.white};
     &:hover {
@@ -72,6 +89,7 @@ const MainButton = styled(StyledButton)`
         background: ${theme.palette.primary.dark};
       }
     }
+    ${isActive && `background:${theme.palette.primary.dark}; `}
   `}
 `
 const SecondaryButton = styled(StyledButton)`
@@ -90,7 +108,7 @@ const SecondaryButton = styled(StyledButton)`
   `}
 `
 const DangerButton = styled(StyledButton)`
-  ${({ theme }) => `
+  ${({ theme, isActive }) => `
     background: ${theme.palette.common.red};
     color: ${theme.palette.common.white};
     &:hover {
@@ -104,6 +122,7 @@ const DangerButton = styled(StyledButton)`
         opacity: .6;
       }
     }
+    ${isActive && `background:${theme.palette.common.red}; `}
   `}
 `
 

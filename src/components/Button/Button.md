@@ -3,16 +3,16 @@
     isClicked: false
   }
 
-  const toggleClick = () => {
+  const toggleClick = (e) => {
     setState({
       isClicked: !state.isClicked
     })
-    console.log(state.isClicked)
+    console.log(`${state.isClicked} ${e.target.value}`)
   }
-<div style={{ display: 'flex' }}>
+<div style={{ display: 'flex', justifyContent: 'space-evenly' }}>
   <Button.Main
     onClick={toggleClick}
-    value={state.isClicked}
+    value={1}
     disabled={false}
     type={'button'}
   >
@@ -20,7 +20,7 @@
   </Button.Main>
   <Button.Secondary
     onClick={toggleClick}
-    value={state.isClicked}
+    value={2}
     disabled={false}
     type={'button'}
   >
@@ -28,7 +28,7 @@
   </Button.Secondary>
   <Button.Danger
     onClick={toggleClick}
-    value={state.isClicked}
+    value={3}
     disabled={false}
     type={'button'}
   >
