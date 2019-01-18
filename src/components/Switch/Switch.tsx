@@ -12,7 +12,7 @@ import { IconIOS } from '../Icon'
 const Switch = (props: ISwitchProps) => {
   return (
     <StyledSwitch onClick={props.onClick}>
-      <Slider isOn={ props.isOn }/>
+      <Slider isOn={props.isOn} />
     </StyledSwitch>
   )
 }
@@ -26,7 +26,6 @@ interface ISwitchProps {
   /** On Click for Switch */
   onClick?: (e?: React.MouseEvent<HTMLDivElement>) => void
 }
-
 
 const StyledSwitch = styled.div`
   display: inline-block;
@@ -43,13 +42,14 @@ const Slider = styled.span<{ isOn: boolean }>`
   bottom: 0;
   border-radius: 24px;
   transition: 0.4s;
-  background-color: ${({ isOn, theme }) => !isOn ? theme.palette.common.red : theme.palette.common.teal };
+  background-color: ${({ isOn, theme }) =>
+    !isOn ? theme.palette.secondary.light : theme.palette.primary.main};
   &:before {
     position: absolute;
     content: ' ';
     height: 20px;
     width: 20px;
-    bottom: 3px;
+    bottom: 2px;
     left: 3px;
     background-color: white;
     transition: 0.4s;
