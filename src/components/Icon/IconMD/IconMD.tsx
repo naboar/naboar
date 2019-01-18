@@ -26,4 +26,10 @@ interface IProps {
   size?: number
 }
 
+const IconMDBlack = (props: IProps) => <IconMD {...props} color={'black'} />
+const IconMDWhite = (props: IProps) => <IconMD {...props} color={'white'} />
+
+IconMD.Black = IconMDBlack
+IconMD.White = IconMDWhite
+
 export default IconMD

@@ -22,7 +22,7 @@ interface IButtonProps
  * @author Tracey King
  */
 const DropdownButton = (props: IButtonProps) => (
-  <Button
+  <Button.Main
     onClick={props.onClick}
     css={buttonStyle}
     name={props.name}
@@ -30,9 +30,9 @@ const DropdownButton = (props: IButtonProps) => (
   >
     <Fragment>
       {props.text}
-      <IconMD name="arrow-dropdown" size={19} color={'white'} css={iconStyle} />
+      <IconMD.White name="arrow-dropdown" size={19} css={iconStyle} />
     </Fragment>
-  </Button>
+  </Button.Main>
 )
 
 const buttonStyle = css`

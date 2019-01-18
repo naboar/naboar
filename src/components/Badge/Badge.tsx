@@ -12,14 +12,13 @@ import { IconIOS } from '../Icon'
 
 const Badge = (props: IBadgeProps) => {
   return (
-    <StyledBadge css={props.css}>
+    <StyledBadge css={props.css} color={props.color}>
       {props.children}
       {props.canClose && (
-        <IconIOS
+        <IconIOS.White
           css={closeIconStyle}
           name={'close'}
           size={20}
-          color={'white'}
           onClick={props.onClose}
         />
       )}
@@ -34,20 +33,36 @@ interface IBadgeProps extends IStyledComponentProps {
   /** Toggle Badge close option */
   canClose?: boolean
   /** Text displayed inside of the badge */
-  children: JSX.Element | string
+  children: React.ReactNode
   /** Toggle badge clickability */
   disabled?: boolean
   /** On Close click */
   onClose?: (e?: React.MouseEvent<HTMLButtonElement>) => void
+  /** @ignore */
+  color?: string
 }
 
-const StyledBadge = styled.div`
+const StyledBadge = styled.div<IBadgeProps>`
   flex-grow: 0;
   font-size: 12px;
   font-weight: bold;
   min-height: 24px;
-  ${({ theme }: IProps) => `
-    background-color: ${theme.palette.primary.main};
+  ${({ color, theme }) => `
+    background-color: ${ color === 'main'
+      ? theme.palette.primary.main
+      : color === 'red'
+      ? theme.palette.common.red
+      : color === 'green'
+      ? theme.palette.common.green
+      : color === 'orange'
+      ? theme.palette.common.orange
+      : color === 'purple'
+      ? theme.palette.common.purple
+      : color === 'teal'
+      ? theme.palette.common.teal
+      : theme.palette.primary.main
+
+    }};
     color: ${theme.palette.common.white};
     padding: 0 ${theme.spacing.base}px;
     border-radius: ${theme.shape.borderRadius};
@@ -56,7 +71,7 @@ const StyledBadge = styled.div`
   flex-direction: row;
   align-items: center;
   width: fit-content;
-  ${(props: IProps) => props.css && props.css}
+  ${(props) => props.css && props.css}
 `
 const closeIconStyle = css`
   margin: 0;
@@ -65,10 +80,20 @@ const closeIconStyle = css`
     cursor: pointer;
   }
 `
-interface IProps {
-  css?: FlattenSimpleInterpolation
-  theme: ITheme
-  disabled?: boolean
-}
+
+const GreenBadge = (props: IBadgeProps) => <Badge color={'green'} { ...props } />
+const MainBadge = (props: IBadgeProps) => <Badge color={'main'} { ...props } />
+const OrangeBadge = (props: IBadgeProps) => <Badge color={'orange'} { ...props } />
+const PurpleBadge = (props: IBadgeProps) => <Badge color={'purple'} { ...props } />
+const RedBadge = (props: IBadgeProps) => <Badge color={'red'} { ...props } />
+const TealBadge = (props: IBadgeProps) => <Badge color={'teal'} { ...props } />
+
+Badge.Green = GreenBadge
+Badge.Main = MainBadge
+Badge.Orange = OrangeBadge
+Badge.Purple = PurpleBadge
+Badge.Red = RedBadge
+Badge.Teal = TealBadge
+
 
 export default Badge

@@ -1,5 +1,5 @@
 import React, { MouseEventHandler } from 'react'
-import styled, { css } from 'styled-components'
+import styled from 'styled-components'
 import { IconIOS } from '../../Icon'
 import { iOS } from '../../Icon/IconTypes'
 
@@ -27,7 +27,7 @@ export const RadialMenuItem = ({
       index={index}
       total={total}
     >
-      <IconIOS name={iconName} size={20} />
+      <IconIOS.White name={iconName} size={20} />
     </ItemButton>
   </ItemWrapper>
 )

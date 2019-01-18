@@ -1,3 +1,6 @@
 ```js
-<IconIOS name='close' size={35} color='white' />
+<div style={{ background: 'grey', padding: 10, width: 30}}>
+  <IconIOS.Black name='close' size={35} />
+  <IconIOS.White name='close' size={35} />
+</div>
 ```

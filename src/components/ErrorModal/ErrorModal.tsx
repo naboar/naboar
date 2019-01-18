@@ -13,7 +13,7 @@ const ErrorModal = (props: IErrorModalProps) => {
   return (
     <StyledModal>
       <Heading>
-        <IconMD name={'alert'} size={72} color={'white'} />
+        <IconMD.White name={'alert'} size={72} />
       </Heading>
       <Body>
         <Title>{props.title}</Title>

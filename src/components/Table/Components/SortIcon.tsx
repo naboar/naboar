@@ -17,7 +17,7 @@ const SortIcon = (props: IProps) => {
 
   return (
     <Sortable>
-      <IconIOS
+      <IconIOS.White
         name="arrow-up"
         size={16}
         css={css`
@@ -25,7 +25,7 @@ const SortIcon = (props: IProps) => {
           color: ${setColor('asc', props.order, isSorted)};
         `}
       />
-      <IconIOS
+      <IconIOS.White
         name="arrow-down"
         size={16}
         css={css`

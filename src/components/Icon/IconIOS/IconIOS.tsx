@@ -26,4 +26,10 @@ interface IProps {
   size?: number
 }
 
+const IconIOSBlack = (props: IProps) => <IconIOS {...props} color={'black'} />
+const IconIOSWhite = (props: IProps) => <IconIOS {...props} color={'white'} />
+
+IconIOS.Black = IconIOSBlack
+IconIOS.White = IconIOSWhite
+
 export default IconIOS
