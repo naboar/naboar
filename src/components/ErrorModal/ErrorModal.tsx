@@ -37,6 +37,7 @@ interface IErrorModalProps {
 }
 
 const StyledModal = styled.div`
+  color: ${({ theme }) => theme.palette.common.black};
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -44,22 +45,24 @@ const StyledModal = styled.div`
   box-sizing: border-box;
   padding: 0;
   width: 500px;
-  border-radius: 4px;
+  border-radius: ${({ theme }) => theme.shape.borderRadius};
   height: 300px;
-  background-color: white;
+  background-color: ${({ theme }) => theme.palette.common.white};
   font-family: Open-Sans, sans-serif;
   font-size: 16px;
   border: none;
 `
 const Heading = styled.div`
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  border-radius: 4px 4px 0 0;
-  background-color: rgb(242, 91, 91);
-  padding: 16px;
-  margin: 0;
+  ${({ theme }) => `
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: ${theme.shape.borderRadius} ${theme.shape.borderRadius} 0 0;
+    background-color: ${theme.palette.common.red};
+    padding: ${theme.spacing.base * 2}px;
+    margin: 0;
+  `}
 `
 const Body = styled.div`
   display: flex;
@@ -78,18 +81,22 @@ const Content = styled.p`
   font-weight: normal;
 `
 const Action = styled.button`
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  border-radius: 0 0 4px 4px;
-  background-color: rgb(242, 91, 91);
-  padding: 16px;
-  font-size: 18px;
-  color: white;
-  &:hover {
-    cursor: pointer;
-  }
+  ${({ theme }) => `
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 0 0 ${theme.shape.borderRadius} ${theme.shape.borderRadius};
+    border: none;
+    background-color: ${theme.palette.common.red};
+    padding: ${theme.spacing.base * 2}px;
+    font-size: 18px;
+    color: ${theme.palette.common.white};
+    &:hover {
+      opacity: .9;
+      cursor: pointer;
+    }
+  `}
 `
 interface IProps {
   css?: FlattenSimpleInterpolation

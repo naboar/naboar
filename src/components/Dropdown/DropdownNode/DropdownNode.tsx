@@ -1,5 +1,6 @@
 import React from 'react'
-import styled, { FlattenSimpleInterpolation } from 'styled-components'
+import styled from 'styled-components'
+import { IStyledComponentProps } from '../../../interfaces/IStyledComponentProps'
 
 /**
  * DropdownNode Component
@@ -7,11 +8,9 @@ import styled, { FlattenSimpleInterpolation } from 'styled-components'
  * @author Tracey King
  */
 
-interface IDropdownNodeProps {
+interface IDropdownNodeProps extends IStyledComponentProps {
   /** Children */
   children?: JSX.Element[] | JSX.Element | string
-  /** CSS styling using css from styled-components */
-  css?: FlattenSimpleInterpolation
   /** Boolean identifying wheather the item is the active one */
   isActive?: boolean
   /** Boolean identifying wheather the item is disabled or not */
@@ -25,32 +24,21 @@ const DropdownNode = (props: IDropdownNodeProps) => (
   <StyledDropdownNode {...props}>{props.children}</StyledDropdownNode>
 )
 
-const StyledDropdownNode = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 10px;
-  width: 100%;
-  border-radius: 0;
-  cursor: pointer;
-  box-sizing: border-box;
-  color: rgba(255,255,255, .8);
-  background-color: #444;
+const StyledDropdownNode = styled.div<IStyledComponentProps>`
+  ${({ css, theme }) => `
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: ${theme.spacing.base}px;
+    width: 100%;
+    border-radius: ${theme.shape.borderRadius};
+    cursor: pointer;
+    box-sizing: border-box;
+    color: ${theme.palette.common.white};
+    background-color: ${theme.palette.primary.main};
 
-  ${({ css }: IProps) => css && css}
+    ${css}
+  `}
 `
-
-interface IProps {
-  /** CSS styling use css from styled-components */
-  css?: FlattenSimpleInterpolation
-  /** Boolean identifying wheather the item is the active one */
-  isActive?: boolean
-  /** Boolean identifying wheather the item is disabled or not */
-  isDisabled?: boolean
-  /** Fired click event */
-  onClick?: () => void
-  /** Value of item */
-  value?: string | number
-}
 
 export default DropdownNode

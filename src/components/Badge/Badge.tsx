@@ -1,7 +1,8 @@
 import React from 'react'
 import styled, { css, FlattenSimpleInterpolation } from 'styled-components'
+import { IStyledComponentProps } from '../../interfaces/IStyledComponentProps'
 import { ITheme } from '../../theme'
-import { IconIOS, iOS } from '../Icon'
+import { IconIOS } from '../Icon'
 
 /**
  * Badge Component
@@ -17,7 +18,7 @@ const Badge = (props: IBadgeProps) => {
         <IconIOS
           css={closeIconStyle}
           name={'close'}
-          size={25}
+          size={20}
           color={'white'}
           onClick={props.onClose}
         />
@@ -29,13 +30,11 @@ const Badge = (props: IBadgeProps) => {
 /**
  * Badge prop interface
  */
-interface IBadgeProps {
+interface IBadgeProps extends IStyledComponentProps {
   /** Toggle Badge close option */
   canClose?: boolean
   /** Text displayed inside of the badge */
   children: JSX.Element | string
-  /** CSS */
-  css?: FlattenSimpleInterpolation
   /** Toggle badge clickability */
   disabled?: boolean
   /** On Close click */
@@ -44,12 +43,15 @@ interface IBadgeProps {
 
 const StyledBadge = styled.div`
   flex-grow: 0;
-  background-color: #8DA6C3;
-  font-size: 16px;
-  border: 1px solid;
-  border-radius: 4px;
-  color: ${({ theme }: IProps) => theme.white};
-  padding: 8px;
+  font-size: 12px;
+  font-weight: bold;
+  min-height: 24px;
+  ${({ theme }: IProps) => `
+    background-color: ${theme.palette.primary.main};
+    color: ${theme.palette.common.white};
+    padding: 0 ${theme.spacing.base}px;
+    border-radius: ${theme.shape.borderRadius};
+  `};
   display: flex;
   flex-direction: row;
   align-items: center;

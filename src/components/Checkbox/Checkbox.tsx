@@ -16,7 +16,7 @@ const Checkbox = (props: IProps) => {
       label={props.label}
       errorMessage={props.errorMessage}
     >
-      <Wrapper disabled={props.disabled}>
+      <Wrapper disabled={props.disabled} errorMessage={props.errorMessage}>
         <Input {...props} onChange={e => props.onChange(!props.checked, e)} />
         <span />
       </Wrapper>
@@ -33,80 +33,90 @@ interface IProps extends IFormElementProps {
   onChange?: (newVal?: boolean, e?: ChangeEvent<HTMLInputElement>) => void
 }
 
-const Wrapper = styled.label<{ disabled: boolean }>`
-  position: relative;
-  display: inline-block;
-  color: rgba(255, 255, 255, .87);
-  cursor: pointer;
-
-  & > span::before {
-    content: '';
+const Wrapper = styled.label<{ disabled: boolean, errorMessage?: string }>`
+  ${({ disabled, errorMessage, theme  }) => `
+    position: relative;
     display: inline-block;
-    margin-right: 15px;
-    border: 1px solid rgba(255, 255, 255, .42);
-    border-radius: 2px;
-    width: 16px;
-    height: 16px;
-    vertical-align: -4px;
-    transition: border-color .5s, background-color .5s;
-  }
+    color: rgba(255, 255, 255, .87);
+    cursor: pointer;
 
-  & > input:checked + span::before {
-      background-color: #3c5a53;
-  }
+    & > span::before {
+      content: '';
+      display: inline-block;
+      margin-right: 15px;
+      border: 1px solid ${theme.palette.grey[600]};
+      border-radius: 2px;
+      width: 16px;
+      height: 16px;
+      vertical-align: -4px;
+      transition: border-color .5s, background-color .5s;
+      ${errorMessage && `
+        border-color: ${theme.palette.common.red};
+        background: ${theme.palette.common.red};
+      `}
+    }
 
-  & > input:active + span::before {
-    border-color: #1de9b6;
-  }
+    & > input:checked + span::before {
+        background-color: ${theme.palette.primary.light};
+        opacity: .26;
+    }
 
-  & > input:checked:active + span::before {
-    border-color: #1de9b6;
-    background-color: rgba(255, 255, 255, .26);
-  }
+    & > input:active + span::before {
+    }
 
-  & > input:disabled + span::before {
-    border-color: rgba(255, 255, 255, .26);
-  }
+    & > input:checked:active + span::before {
+      background-color: ${theme.palette.primary.light};
+      opacity: .26;
+    }
 
-  & > input:checked:disabled + span::before {
-    border-color: transparent;
-    background-color: rgba(255, 255, 255, .26);
-  }
+    & > input:disabled + span::before {
+      opacity: .26;
+    }
 
-  & > span::after {
-    content: '';
-    display: inline-block;
-    position: absolute;
-    bottom: 4px;
-    left: 2px;
-    width: 0;
-    height: 0;
-    border: 3px solid transparent;
-    border-left: none;
-    border-top: none;
-    transform: translate(5.5px, 1px) rotate(45deg);
-    transition: width .1s, height .1s;
-  }
+    & > input:checked:disabled + span::before {
+      background-color: ${theme.palette.grey[600]};
+    }
 
-  & > input:checked + span::after {
-    border-color: #1de9b6;
-    width: 7px;
-    height: 17px;
-  }
+    & > input:checked:disabled + span::after {
+      border-color: ${theme.palette.primary.dark};
+    }
 
-  > input:checked {
-    background-color: #1de9b6;
-  }
+    & > span::after {
+      content: '';
+      display: inline-block;
+      position: absolute;
+      bottom: 4px;
+      left: 2px;
+      width: 0;
+      height: 0;
+      border: 3px solid transparent;
+      border-left: none;
+      border-top: none;
+      transform: translate(5.5px, 1px) rotate(45deg);
+      transition: width .1s, height .1s;
+    }
 
-  & :active > input {
-    opacity: 1;
-    tranform: scale(0);
-    transition: opacity 0s, transform: 0s;
-  }
+    & > input:checked + span::after {
+      border-color: ${theme.palette.primary.main};
+      width: 7px;
+      height: 17px;
+    }
 
-  cursor: pointer;
+    > input:checked {
+      background-color: ${theme.palette.primary.light};
+    }
 
-  ${({ disabled }) => disabled && `pointer-events: none`}
+    & :active > input {
+      opacity: 1;
+      tranform: scale(0);
+      transition: opacity 0s, transform: 0s;
+    }
+
+    cursor: pointer;
+
+
+    ${disabled && `pointer-events: none`}
+  `}
 `
 
 const Input = styled.input.attrs({

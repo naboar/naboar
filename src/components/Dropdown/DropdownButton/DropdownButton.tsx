@@ -3,11 +3,15 @@ import { css } from 'styled-components'
 import { Button, IconMD } from '../../../index'
 import { IStyledComponentProps } from '../../../interfaces/IStyledComponentProps'
 
-interface IButtonProps extends IStyledComponentProps {
+interface IButtonProps
+  extends IStyledComponentProps,
+    React.HTMLAttributes<HTMLButtonElement> {
+  /** Disabled */
+  disabled?: boolean
   /** Fired click event */
   onClick: () => void
   /** Button text */
-  text: string,
+  text: string
   /** Button name used for form */
   name: string
 }
@@ -18,7 +22,12 @@ interface IButtonProps extends IStyledComponentProps {
  * @author Tracey King
  */
 const DropdownButton = (props: IButtonProps) => (
-  <Button onClick={props.onClick} css={buttonStyle} name={props.name}>
+  <Button
+    onClick={props.onClick}
+    css={buttonStyle}
+    name={props.name}
+    disabled={props.disabled}
+  >
     <Fragment>
       {props.text}
       <IconMD name="arrow-dropdown" size={19} color={'white'} css={iconStyle} />
@@ -31,10 +40,7 @@ const buttonStyle = css`
   align-items: center;
   justify-content: space-between;
   cursor: pointer;
-  outline: none;
   border: none;
-  background: #444;
-  color: rgba(255,255,255, .8);
 `
 
 const iconStyle = css`

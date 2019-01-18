@@ -47,9 +47,9 @@ const Wrapper = styled.div<{ isActive?: boolean, isPrev?: boolean }>`
   transition: opacity 0.5s, transform .6s;
   margin: 0;
   padding: 30px 30px;
-  background-color: #242424;
+  background-color: ${({ theme }) => theme.palette.secondary.dark};
   box-sizing: border-box;
-  color: rgba(255, 255, 255, 0.8);
+  color: ${({ theme }) => theme.palette.common.white};
   font-family: Open-Sans, sans-serif;
 
   position: absolute;

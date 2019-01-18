@@ -41,11 +41,11 @@ const Tip = styled.div<IStyledTooltipProps>`
   };
 
   padding: 8px 8px;
-  color: white;
+  color: ${({ theme }) => theme.palette.common.white};
   background-color: rgba(0,0,0,.75);
   border-radius: 6px;
   text-align: center;
-  box-shadow: ${({ theme }) => 'none' || theme.shadows.one};
+  box-shadow: ${({ theme }) => 'none' || theme.shadows[2]};
   opacity: 0;
   width: max-content;
   word-break: break-word;
@@ -93,13 +93,11 @@ const Tip = styled.div<IStyledTooltipProps>`
 `
 
 const Title = styled.span`
-  font-family: Lato-Regular;
   display: block;
   margin-bottom: 8px;
 `
 
 const Text = styled.span`
-  font-family: Lato-Light;
   display: block;
 `
 

@@ -28,20 +28,23 @@ interface IStyledTextareaProps
 }
 
 const StyledTextarea = styled.textarea<IStyledTextareaProps>`
-  font-size: 16px;
-  margin: 5px 0;
-  display: block;
-  background: transparent;
-  color: white;
-  padding: 10px 15px;
-  border: 1px solid white;
-  resize: none;
-  width: 100%;
+  ${({ css, errorMessage, theme }) => `
+    font-size: 16px;
+    margin: 5px 0;
+    display: block;
+    background: ${theme.palette.secondary.light};
+    color: ${theme.palette.common.white};
+    padding: ${theme.spacing.base}px ${theme.spacing.base * 2}px;
+    resize: none;
+    width: 100%;
+    border: none;
+    border-radius: ${theme.shape.borderRadius};
 
-  ${({ css }) => css}
-  ${({ errorMessage }) => errorMessage && `
-    border-color: red;
-  `};
+    ${css};
+    ${errorMessage && `
+      background: ${theme.palette.common.red};
+    `};
+  `}
 `
 
 export default Textarea

@@ -9,14 +9,31 @@
     })
     console.log(state.isClicked)
   }
-
-  <Button
+<div style={{ display: 'flex' }}>
+  <Button.Main
     onClick={toggleClick}
     value={state.isClicked}
     disabled={false}
     type={'button'}
   >
     {state.isClicked ? 'You clicked me!' : 'Click me!'}
-  </Button>
+  </Button.Main>
+  <Button.Secondary
+    onClick={toggleClick}
+    value={state.isClicked}
+    disabled={false}
+    type={'button'}
+  >
+    {state.isClicked ? 'You clicked me!' : 'Click me!'}
+  </Button.Secondary>
+  <Button.Danger
+    onClick={toggleClick}
+    value={state.isClicked}
+    disabled={false}
+    type={'button'}
+  >
+    {state.isClicked ? 'You clicked me!' : 'Click me!'}
+  </Button.Danger>
+  </div>
 
 ```

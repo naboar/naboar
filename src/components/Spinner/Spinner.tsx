@@ -75,7 +75,7 @@ const Circle = styled.circle`
   cy: 50;
   r: 20;
   stroke-dashoffset: 0;
-  stroke: #FFB300;
+  stroke: ${({ theme }) => theme.palette.primary.main};
   transform-origin: center;
   animation: ${dash} 1.5s ease-in-out infinite;
 `

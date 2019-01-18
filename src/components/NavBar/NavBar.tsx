@@ -1,11 +1,10 @@
 import React from 'react'
-import styled, { css, FlattenSimpleInterpolation } from 'styled-components'
+import styled from 'styled-components'
 import { Expand } from '../..'
 import detectElementOverflow from '../../helperFns/detectElementOverflow'
-import { ITheme } from '../../theme'
-import { Dropdown, DropdownItem, DropdownMenu, DropdownNode } from '../Dropdown'
-import { IconMD, md } from '../Icon'
-import { INavBarLinkProps, NavBarHeader, NavBarLink  } from './index'
+import { IStyledComponentProps } from '../../interfaces/IStyledComponentProps'
+import { IconMD } from '../Icon'
+import { INavBarLinkProps, NavBarHeader, NavBarLink } from './index'
 
 /**
  * NavBar State interface
@@ -23,11 +22,9 @@ interface IState {
 /**
  * NavBar prop interface
  */
-interface IProps {
+interface IProps extends IStyledComponentProps {
   /** NavBar Links */
   children: React.ReactNode
-  /** CSS styling using css from styled-components */
-  css?: FlattenSimpleInterpolation
   /** isMenuOpen */
   isMenuOpen?: boolean
   /** Event fired on click */
@@ -66,7 +63,7 @@ class NavBar extends React.Component<IProps, IState> {
       })
     } else if (
       !this.navLinksWrapper &&
-      (this.wrapper.offsetWidth - 133 > this.state.navLinksWidth) &&
+      this.wrapper.offsetWidth - 133 > this.state.navLinksWidth &&
       this.state.windowWidth < windowWidth
     ) {
       return this.setState({
@@ -92,10 +89,15 @@ class NavBar extends React.Component<IProps, IState> {
   }
 
   cloneWithProps = () => {
-    return React.Children.toArray(this.props.children)
-      .map((child: React.ReactElement<INavBarLinkProps>) => React.cloneElement(child, {
-        onClick: () => { child.props.onClick(); this.toggleMenu() }
-      }))
+    return React.Children.toArray(this.props.children).map(
+      (child: React.ReactElement<INavBarLinkProps>) =>
+        React.cloneElement(child, {
+          onClick: () => {
+            child.props.onClick()
+            this.toggleMenu()
+          },
+        }),
+    )
   }
 
   render() {
@@ -131,17 +133,18 @@ class NavBar extends React.Component<IProps, IState> {
   }
 }
 
-const Wrapper = styled.div`
-  background-color: ${({ theme }: IStyledProps) => theme.black};
-  color: ${({ theme }: IStyledProps) => theme.white};
-  height: 100%;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  overflow: ${({ isMenuVisible }: IStyledProps) =>
-    isMenuVisible ? 'visible' : 'hidden'};
+const Wrapper = styled.div<IStyledProps>`
+  ${({ css, isMenuVisible, theme }) => `
+    background-color: ${theme.palette.secondary.dark};
+    color: ${theme.palette.common.white};
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    overflow: ${isMenuVisible ? 'visible' : 'hidden'};
 
-  ${(props: IStyledProps) => props.css}
+    ${css}
+  `}
 `
 
 const NavLinksWrapper = styled.div`
@@ -156,20 +159,20 @@ const MenuWrapper = styled.div`
   flex-direction: row;
   align-items: center;
   position: relative;
+  > div:last-child {
+    background: ${({ theme }) => theme.palette.secondary.dark};
+  }
 `
 
-const menuStyles = css`
+const menuStyles = [`
   position: absolute;
   top: 40px;
   right: 0;
   z-index: 99999;
-  background: black;
-`
+`]
 
-interface IStyledProps {
-  css?: FlattenSimpleInterpolation
+interface IStyledProps extends IStyledComponentProps {
   isMenuVisible?: boolean
-  theme: ITheme
 }
 
 export default NavBar
