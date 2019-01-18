@@ -167,16 +167,6 @@ class App extends Component {
 
 const inputStyles = css`
   width: 300px;
-  border: 1px solid black;
-  i,
-  input {
-    color: black;
-  }
-  input {
-    &:disabled {
-      color: grey;
-    }
-  }
 `
 
 const dividerStyles = css`

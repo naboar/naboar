@@ -1,7 +1,7 @@
 ```js 
 <div>
     <Dropdown>
-        <DropdownButton text={'Test'} onClick={console.log} name={'button'}/>
+        <DropdownButton text={'Test'} name={'button'}/>
         <DropdownMenu>
             <DropdownItem>Hello</DropdownItem>
         </DropdownMenu>
@@ -11,6 +11,9 @@
         <DropdownNode>Example Node</DropdownNode>
         <DropdownMenu>
             <DropdownItem>Hello</DropdownItem>
+            <DropdownItem>bye</DropdownItem>
+            <DropdownItem onClick={console.log} isDisabled={true}>I am disabled</DropdownItem>
+            <DropdownItem>Something</DropdownItem>
         </DropdownMenu>
     </Dropdown>
 </div>

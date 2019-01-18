@@ -51,7 +51,7 @@ class Dropdown extends React.Component<IProps, IState> {
     const isActive = this.isActive()
 
     if (onClick) {
-      return onClick(e)
+      onClick(e)
     }
     this.setState({ isActive: !isActive })
   }
@@ -81,7 +81,12 @@ class Dropdown extends React.Component<IProps, IState> {
     // map the private on click from children up to this parent
     return React.cloneElement(child, {
       isActive: child.props.isActive || this.isActive(),
-      onClick: this.onClick,
+      onClick: (e: React.MouseEvent<HTMLButtonElement>) => {
+        if (child.props.onClick) {
+          child.props.onClick()
+        }
+        this.onClick(e)
+      },
     })
   }
 
@@ -114,7 +119,7 @@ const DropdownContainer = styled.button`
   &:active {
     border: none;
   }
-  input[type="submit"] {
+  input[type='submit'] {
     padding: 0;
   }
 

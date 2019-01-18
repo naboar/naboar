@@ -1,8 +1,6 @@
 import React from 'react'
-import styled, { css, FlattenSimpleInterpolation } from 'styled-components'
-import Expand from '../../effects/Expand'
-import { ITheme } from '../../theme'
-import { IconMD, md } from '../Icon'
+import styled from 'styled-components'
+import { IStyledComponentProps } from '../../interfaces/IStyledComponentProps'
 
 /**
  * NavBarLink Component
@@ -12,12 +10,8 @@ import { IconMD, md } from '../Icon'
 
 const NavBarLink = (props: INavBarLinkProps) => {
   return (
-    <Wrapper
-      css={props.css}
-      onClick={props.onClick}
-      isActive={props.isActive}
-    >
-    {props.children || props.title}
+    <Wrapper css={props.css} onClick={props.onClick} isActive={props.isActive}>
+      {props.children || props.title}
     </Wrapper>
   )
 }
@@ -25,9 +19,7 @@ const NavBarLink = (props: INavBarLinkProps) => {
 /**
  * NavBarLink prop interface
  */
-export interface INavBarLinkProps {
-  /** Custom CSS */
-  css?: FlattenSimpleInterpolation
+export interface INavBarLinkProps extends IStyledComponentProps {
   /** Children */
   children?: React.ReactNode
   /** Is active link */
@@ -39,29 +31,24 @@ export interface INavBarLinkProps {
 }
 
 const Wrapper = styled.div`
-  align-items: center;
-  background: ${({ theme, isActive }: IProps) =>
-    isActive ? '#11a07c' : 'transparent'};
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  white-space: nowrap;
-  height: 40px;
-  padding: 0 15px;
-  font-size: 14px;
-  min-width: 133px;
-  &:hover {
-    cursor: pointer;
-    background: #11a07c;
-  }
+  ${({ css, isActive, theme }: INavBarLinkProps) => `
+    align-items: center;
+    background: ${isActive ? theme.palette.primary.main : 'transparent'};
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    white-space: nowrap;
+    height: 40px;
+    padding: 0 15px;
+    font-size: 14px;
+    min-width: 133px;
+    &:hover {
+      cursor: pointer;
+      background: ${theme.palette.primary.main};
+    }
 
-  ${(props: IProps) => props.css && props.css}
+    ${css}
+  `}
 `
-
-interface IProps {
-  css?: FlattenSimpleInterpolation
-  isActive?: boolean
-  theme: ITheme
-}
 
 export default NavBarLink

@@ -1,8 +1,7 @@
 import React from 'react'
-import styled, { FlattenSimpleInterpolation } from 'styled-components'
+import styled from 'styled-components'
 import { Expand } from '../..'
-import { ITheme } from '../../theme'
-import { iOS } from '../Icon/IconTypes'
+import { IStyledComponentProps } from '../../interfaces/IStyledComponentProps'
 import NavDrawerHeader, { INavDrawerHeaderProps } from './NavDrawerHeader'
 
 /**
@@ -16,11 +15,9 @@ interface IState {
 /**
  * NavDrawer prop interface
  */
-interface IProps {
+interface IProps extends IStyledComponentProps {
   /** NavDrawer Links */
   children: React.ReactNode
-  /** CSS styling using css from styled-components */
-  css?: FlattenSimpleInterpolation
   /** Closed width */
   from: number
   /** Expanded width */
@@ -47,7 +44,12 @@ class NavDrawer extends React.Component<IProps, IState> {
 
   render() {
     return (
-      <Expand css={['height: 500px']} from={this.props.from} to={this.props.to} isExpanded={this.state.isExpanded}>
+      <Expand
+        css={['height: 500px']}
+        from={this.props.from}
+        to={this.props.to}
+        isExpanded={this.state.isExpanded}
+      >
         <Wrapper css={this.props.css}>
           <NavDrawerHeader
             title={this.props.title}
@@ -56,31 +58,26 @@ class NavDrawer extends React.Component<IProps, IState> {
             isExpanded={this.state.isExpanded}
             to={this.props.to}
           />
-          {
-            React.Children.toArray(this.props.children)
-            .map((child: React.ReactElement<INavDrawerHeaderProps>) => React.cloneElement(child, {
-              isExpanded: this.state.isExpanded,
-              onIconClick: child.props.onIconClick || child.props.onClick,
-              to: this.props.to,
-            }))
-          }
+          {React.Children.toArray(this.props.children).map(
+            (child: React.ReactElement<INavDrawerHeaderProps>) =>
+              React.cloneElement(child, {
+                isExpanded: this.state.isExpanded,
+                onIconClick: child.props.onIconClick || child.props.onClick,
+                to: this.props.to,
+              }),
+          )}
         </Wrapper>
       </Expand>
     )
   }
 }
 
-const Wrapper = styled.div`
-  background-color: ${({ theme }: IStyledProps) => theme.black};
-  color: ${({ theme }: IStyledProps) => theme.white};
-  height: 100%;
-
-  ${({ css }: IStyledProps) => css && css}
+const Wrapper = styled.div<IStyledComponentProps>`
+  ${({ css, theme }) => `
+    background-color: ${theme.palette.secondary.dark};
+    color: ${theme.palette.common.white};
+    height: 100%;
+    ${css}
+  `}
 `
-
-interface IStyledProps {
-  css?: FlattenSimpleInterpolation
-  theme: ITheme
-}
-
 export default NavDrawer

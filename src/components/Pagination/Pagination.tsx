@@ -262,36 +262,34 @@ const PageControl = styled.li<{
   disabled?: boolean
   selected?: boolean
 }>`
-  transition: color 0.2s, background-color 0.2s;
-  color: rgba(255, 255, 255, 0.8);
-  border-radius: 4px;
-  height: 32px;
-  text-align: center;
-  line-height: 30px;
-  margin-right: 8px;
-  cursor: ${({ noBorder }) => (noBorder ? 'default' : 'pointer')};
-  min-width: ${({ noBorder }) => (noBorder ? '24px' : '32px')};
-  border: ${({ noBorder }) => (noBorder ? 'none' : '1px solid #444')};
-  background-color: ${({ noBorder }) => (noBorder ? 'none' : '#363636')};
-  font-family: Lato-Light, sans-serif;
-  ${({ disabled }) =>
-    disabled &&
-    `
-    opacity: .7;
-    cursor: not-allowed;
-    & * {
-      opacity: .7
+  ${({ disabled, noBorder, selected, theme }) => `
+    transition: color 0.2s, background-color 0.2s;
+    color: ${theme.palette.common.white};
+    border-radius: 4px;
+    height: 32px;
+    text-align: center;
+    line-height: 30px;
+    margin-right: ${theme.spacing.base}px;
+    cursor: ${noBorder ? 'default' : 'pointer'};
+    min-width: ${noBorder ? '24px' : '32px'};
+    border: ${noBorder ? 'none' : '1px solid #444'};
+    background-color: ${noBorder ? 'none' : theme.palette.grey[800]};
+    font-family: Lato-Light, sans-serif;
+    ${disabled && `
+      opacity: .7;
+      cursor: not-allowed;
+      & * {
+        opacity: .7
+      }
+    `};
+    ${selected && `
+      border-color: ${theme.palette.primary.main};
+      color: ${theme.palette.primary.main};
+    `};
+    &:hover {
+      background: ${noBorder ? 'inherit' : theme.palette.grey.A700};
     }
- `};
-  ${({ selected }) =>
-    selected &&
-    `
-    border-color: #1de9b6;
-    color: #1de9b6
-  `};
-  &:hover {
-    background: ${({ noBorder }) => (noBorder ? 'inherit' : '#404040')};
-  }
+  `}
 `
 
 const Ellipses = styled.li`

@@ -1,5 +1,5 @@
 import React from 'react'
-import styled, { css, FlattenSimpleInterpolation } from 'styled-components'
+import styled, { FlattenSimpleInterpolation } from 'styled-components'
 import { IFormElementProps, IStyledComponentProps } from '../../interfaces'
 import FormElementWrapper from '../FormElementWrapper/FormElementWrapper'
 import { IconIOS } from '../Icon'
@@ -36,46 +36,43 @@ const Wrapper = styled.div<{
   css?: FlattenSimpleInterpolation
   errorMessage?: string
 }>`
-  border: 1px solid white;
-  border-radius: 4px;
-  position: relative;
-  ${({ errorMessage }) =>
-    errorMessage &&
-    `
-    border-color: red;
-    select, i {
-      color: red;
-    }
-  `};
+  ${({ css, errorMessage, theme }) => `
+    border-radius: ${theme.shape.borderRadius};
+    background: ${theme.palette.secondary.light};
+    position: relative;
+    ${errorMessage && `
+      background: ${theme.palette.common.red};
+    `};
 
-  ${props => props.css}
+    ${css}
+  `}
 `
 
 const StyledSelect = styled.select`
   background: transparent;
-  color: white;
+  color: ${({ theme }) => theme.palette.common.white};
   height: 40px;
   width: 100%;
   -webkit-appearance: none;
   -moz-appearance: none;
   border: none;
   outline: none;
-  text-indent: 15px;
+  text-indent: 16px;
   font-size: 16px;
   &:hover {
     cursor: pointer;
   }
 `
 
-const iconStyles = css`
+const iconStyles = [`
   color: white;
   position: absolute;
-  right: 15px;
+  right: 16px;
   top: 0;
   bottom: 0;
   display: flex;
   align-items: center;
-`
+`]
 /**
  * Select prop interface
  */

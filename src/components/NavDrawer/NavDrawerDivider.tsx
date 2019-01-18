@@ -31,7 +31,7 @@ const Wrapper = styled.div`
 
 const Divider = styled.div<{css?: FlattenSimpleInterpolation}>`
   margin: 5px 0;
-  background: white;
+  background: ${theme.palette.common.white};
   width: 100%;
   height: 1px;
 

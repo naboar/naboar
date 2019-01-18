@@ -1,7 +1,7 @@
 import React from 'react'
-import styled, { css, FlattenSimpleInterpolation } from 'styled-components'
+import styled from 'styled-components'
 import Expand from '../../effects/Expand'
-import { ITheme } from '../../theme'
+import { IStyledComponentProps } from '../../interfaces/IStyledComponentProps'
 import { IconMD, md } from '../Icon'
 
 const handleIconClick = (e: React.MouseEvent, iconClick: () => void) => {
@@ -51,9 +51,7 @@ const NavDrawerLink = (props: INavDrawerLinkProps) => {
 /**
  * NavDrawerLink prop interface
  */
-interface INavDrawerLinkProps {
-  /** Custom CSS */
-  css?: FlattenSimpleInterpolation
+interface INavDrawerLinkProps extends IStyledComponentProps {
   /** Toggle input clickability */
   disabled?: boolean
   /** Expanded width */
@@ -74,20 +72,23 @@ interface INavDrawerLinkProps {
 }
 
 const Wrapper = styled.div`
-  align-items: center;
-  background: ${({ theme, isActive }: IProps) =>
-    isActive ? '#11a07c' : 'transparent'};
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  &:hover {
-    cursor: pointer;
-  }
+  ${({ css, isActive, theme }: IProps) => `
+    align-items: center;
+    background: ${isActive ? theme.palette.primary.main : 'transparent'};
+    padding: ${theme.spacing.base}px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    &:hover {
+      background: ${theme.palette.primary.main};
+      cursor: pointer;
+    }
 
-  ${(props: IProps) => props.css && props.css}
+    ${css}
+  `}
 `
 
-const iconStyle = css`
+const iconStyle = [`
   width: 50px;
   display: flex;
   justify-content: center;
@@ -95,12 +96,10 @@ const iconStyle = css`
   &:hover {
     cursor: pointer;
   }
-`
+`]
 
-interface IProps {
-  css?: FlattenSimpleInterpolation
+interface IProps extends IStyledComponentProps {
   isActive?: boolean
-  theme: ITheme
 }
 
 export default NavDrawerLink

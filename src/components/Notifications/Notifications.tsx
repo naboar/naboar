@@ -218,50 +218,61 @@ const Wrapper = styled.div<{ canClick: boolean }>`
 `
 
 const StyledNotification = styled.div`
-  transition: box-shadow 0.2s;
-  cursor: pointer;
-  padding: 16px 24px;
-  border-radius: 4px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-  background: #444;
-  color: white;
-  line-height: 1.5;
-  position: relative;
-  overflow: hidden;
-  margin: 0 24px 16px 8px;
-  :hover {
-    box-shadow: 0 10px 16px rgba(0, 0, 0, 0.2);
-  }
+  ${({ theme }) => `
+    transition: box-shadow 0.2s;
+    cursor: pointer;
+    padding: ${theme.spacing.base * 2}px ${theme.spacing.base * 3}px;
+    border-radius: 4px;
+    box-shadow:${theme.shadows[3]};
+    background: #444;
+    color: white;
+    line-height: 1.5;
+    position: relative;
+    overflow: hidden;
+    margin: 0 ${theme.spacing.base * 3}px ${theme.spacing.base * 2}px ${
+    theme.spacing.base
+  }px;
+    :hover {
+      box-shadow:${theme.shadows[10]};
+    }
+  `}
 `
 
 const Title = styled.h2`
-  font-size: 18px;
-  color: rgba(255, 255, 255, 0.85);
-  margin-bottom: 8px;
-  line-height: 24px;
-  display: inline-block;
+  ${({ theme }) => `
+    font-size: 18px;
+    color: ${theme.palette.common.white};
+    margin-bottom: ${theme.spacing.base}px;
+    line-height: 24px;
+    display: inline-block;
+  `}
 `
 
 const Body = styled.p`
-  color: rgba(255, 255, 255, 0.65);
-  font-size: 16px;
+  ${({ theme }) => `
+    color: ${theme.palette.grey[300]};
+    font-size: 16px;
+  `}
 `
 
 const CloseButton = styled.button`
-  transition: background 0.2s;
-  position: absolute;
-  top: 0;
-  right: 0;
-  background: none;
-  color: rgba(255, 255, 255, 0.85);
-  font-size: 16px;
-  font-weight: bold;
-  padding: 0px 11px 9px 11px;
-  border: none;
-  cursor: pointer;
-  :hover {
-    background: #555;
-  }
+  ${({ theme }) => `
+    transition: background 0.2s;
+    position: absolute;
+    top: 0;
+    right: 0;
+    background: none;
+    color: ${theme.palette.common.white};
+    font-size: 16px;
+    font-weight: bold;
+    padding: ${theme.spacing.base * 2}px;
+    padding-top: 0;
+    border: none;
+    cursor: pointer;
+    :hover {
+      background: transparent;
+    }
+  `}
 `
 
 export default Notifications

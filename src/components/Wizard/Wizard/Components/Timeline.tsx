@@ -62,18 +62,23 @@ interface IProps {
 }
 
 const Wrapper = styled.div`
-  display: flex;
-  align-items: flex-start;
-  flex-direction: row;
-  padding: 24px 24px 40px;
-  background-color: #272727;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
-  position: relative;
-  z-index: 2;
+  ${({ theme }) => `
+    display: flex;
+    align-items: flex-start;
+    flex-direction: row;
+    padding:
+      ${theme.spacing.base * 3}px
+      ${theme.spacing.base * 3}px
+      ${theme.spacing.base * 5}px;
+    background-color: ${theme.palette.secondary.main};
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+    position: relative;
+    z-index: 2;
 
-  @media (max-width: 700px){
-    padding: 24px;
-  }
+    @media (max-width: 700px){
+      padding: ${theme.spacing.base * 3}px;
+    }
+  `}
 `
 
 const Item = styled.div<{
@@ -83,7 +88,7 @@ const Item = styled.div<{
   canClick: boolean
 }>`
   flex: 1;
-  padding: 0 8px;
+  padding: ${({ theme }) => `0 ${theme.spacing.base}px`};
   position: relative;
 
   ${({ isFirst }) => isFirst && `padding-left: 0;`}
@@ -97,7 +102,7 @@ const Item = styled.div<{
     > span {
       display: flex;
       flex-shrink: 0;
-      padding-right: 8px;
+      padding-right: ${({ theme }) => theme.spacing.base}px;
       ${({ isFirst, isLast }) => !isFirst && !isLast && `padding-right: 0;`}
       > svg {
         fill: currentColor;
@@ -109,10 +114,10 @@ const Item = styled.div<{
         transition: fill 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
         user-select: none;
         flex-shrink: 0;
-        ${({ isActive }) => isActive && `color: #1de9b6;`}
+        ${({ isActive, theme }) => isActive && `color: ${theme.palette.primary.main};`}
 
         > text {
-          fill: #555;
+          fill: ${({ theme }) => theme.palette.grey[400]};
           font-weight: bold;
           font-size: 0.85rem;
           font-family: Open-Sans, sans-serif;
@@ -124,7 +129,7 @@ const Item = styled.div<{
       font-size: 0.875rem;
       font-weight: 400;
       line-height: 1.5;
-      color: rgba(255, 255, 255, 0.54);
+      color: ${({ theme }) => theme.palette.grey[400]};
       margin-top: 8px;
       font-family: Open-Sans, sans-serif;
       text-align: center;
@@ -141,13 +146,17 @@ const Item = styled.div<{
     right: calc(50% + 20px);
     position: absolute;
     flex: 1 1 auto;
-    border-top: 1px solid #666;
+    border-top: 1px solid ${({ theme }) => theme.palette.grey[500]};
 
     > span {
       transition: width .2s;
       display: block;
       width: 0%;
-      ${({ isActive }) => isActive && `width: 100%; border-top: 1px solid #1de9b6;`}
+      ${({ isActive, theme }) => isActive && `
+        margin-top: -1px;
+        width: 100%;
+        border-top: 1px solid ${theme.palette.primary.main};
+      `}
     }
   }
 `

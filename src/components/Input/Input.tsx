@@ -16,7 +16,7 @@ const Input = (props: IInputProps) => {
       name={props.name}
       errorMessage={props.errorMessage}
     >
-      <Wrapper css={props.css} isErrored={!!props.errorMessage}>
+      <Wrapper css={props.css} isErrored={!!props.errorMessage} disabled={props.disabled}>
         {props.iconName && (
           <IconIOS name={props.iconName} size={19} color={'white'} />
         )}
@@ -40,11 +40,10 @@ const Input = (props: IInputProps) => {
  */
 interface IInputProps
   extends IFormElementProps,
+    IStyledComponentProps,
     React.HTMLAttributes<HTMLInputElement> {
   /** Toggle input clear option */
   canClear?: boolean
-  /** Custom CSS */
-  css?: FlattenSimpleInterpolation
   /** Toggle input clickability */
   disabled?: boolean
   /** Name of left icon */
@@ -75,49 +74,56 @@ interface IProps extends IStyledComponentProps {
 }
 
 const StyledInput = styled.input`
-  background: transparent;
-  border: none;
-  box-sizing: border-box;
-  font-size: 16px;
-  height: 40px;
-  outline: none;
-  padding-left: ${({ iconName }: IProps) =>
-    iconName && iconName.length ? '16px' : '0'};
-  padding-right: ${({ canClear }: IProps) => (canClear ? '16px' : '0')};
-  width: 100%;
+  ${({ canClear, iconName, theme }: IProps) => `
+    background: transparent;
+    border: none;
+    box-sizing: border-box;
+    font-size: 16px;
+    height: 40px;
+    outline: none;
+    padding-left: ${
+      iconName && iconName.length ? `${theme.spacing.base * 2}px` : '0'
+    };
+    padding-right: ${canClear ? `${theme.spacing.base * 2}px` : '0'};
+    width: 100%;
 
-  ::-webkit-calendar-picker-indicator {
-    background: none;
-    cursor: pointer;
-  }
+    ::-webkit-calendar-picker-indicator {
+      background: none;
+      cursor: pointer;
+    }
+  `}
 `
 
 const Wrapper = styled.div<{
   isErrored: boolean
   css?: FlattenSimpleInterpolation
+  disabled: boolean
 }>`
-  border: 1px solid;
-  border-radius: 4px;
-  border-color: white;
-  color: ${({ theme }: IProps) => theme.white};
-  padding: 0 16px;
+  ${({ css, disabled, isErrored, theme }) => `
+  background: ${theme.palette.secondary.light};
+  border-radius: ${theme.shape.borderRadius};
+  color: ${theme.palette.common.white};
+  padding: 0 ${theme.spacing.base * 2}px;
   display: flex;
   flex-direction: row;
   align-items: center;
   input {
-    color: ${({ theme }: IProps) => theme.white};
+    color: ${theme.palette.common.white};
   }
+  input::placeholder {
+    color: ${theme.palette.common.white};
+    opacity: .4;
+  }
+  ${disabled && `
+    opacity: .6;
+  `}
 
-  ${({ css }) => css};
+  ${css};
 
-  ${({ isErrored }) =>
-    isErrored &&
-    `
-    border-color: red;
-    input, i {
-      color: red;
-    }
-  `};
+  ${isErrored && `
+      background: ${theme.palette.common.red};
+    `};
+  `}
 `
 
 const clearIconStyle = [

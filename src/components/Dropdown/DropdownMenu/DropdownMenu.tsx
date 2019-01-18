@@ -31,7 +31,7 @@ const StyledDropdownMenu = styled.div`
     !isDisabled && isActive ? 'visible' : 'hidden'};
   opacity: ${({ isActive, isDisabled = false }: IProps) =>
     !isDisabled && isActive ? 1 : 0};
-  background-color: #333;
+  background-color: white;
   margin-top: 3px;
   border-radius: 2px;
   z-index: 10000;

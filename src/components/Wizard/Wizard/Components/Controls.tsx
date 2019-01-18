@@ -28,7 +28,6 @@ const Controls = (props: IProps) => {
             {props.completeText}
             <IconIOS
               css={iconRightCss}
-              color="#333"
               name={'checkmark-circle-outline'}
             />
           </NextButton>
@@ -70,14 +69,16 @@ const iconRightCss = css`
 ` as string[]
 
 const Wrapper = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 16px;
-  background-color: #272727;
-  box-shadow: 0 -1px 5px rgba(0, 0, 0, 0.12), 0 0 2px rgba(0, 0, 0, 0.14);
-  position: relative;
-  z-index: 2;
+  ${({ theme }) => `
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: ${theme.spacing.base * 2}px;
+    background-color: ${theme.palette.secondary.main};
+    box-shadow: 0 -1px 5px rgba(0, 0, 0, 0.12), 0 0 2px rgba(0, 0, 0, 0.14);
+    position: relative;
+    z-index: 2;
+  `}
 `
 const ButtonWrap = styled.div`
   display: flex;
@@ -86,14 +87,12 @@ const ButtonWrap = styled.div`
 `
 const baseButtonStyle = css`
   font-size: 14px;
-  border-radius: 2px;
   transition: all 0.3s;
   border: none;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 5px 16px;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
 
   :hover {
@@ -102,18 +101,35 @@ const baseButtonStyle = css`
 `
 const NextButton = styled.button<{ isSubmit?: boolean }>`
   ${baseButtonStyle}
-  background-color: #008270;
-  color: white;
-  ${({ isSubmit }) => isSubmit && `background-color: #1de9b6; color: #333;`}
-  :disabled {
-    pointer-events: none;
-    opacity: 0.6;
-  }
+  ${({ isSubmit, theme }) => `
+    background-color: ${theme.palette.primary.main};
+    color: white;
+    border-radius: ${theme.shape.borderRadius};
+    padding: ${theme.spacing.base}px ${theme.spacing.base * 2}px;
+    ${isSubmit && `
+      background-color: ${theme.palette.primary.main};
+      color: ${theme.palette.common.white};
+      i {
+        color: ${theme.palette.common.white};
+      }
+    `}
+    :disabled {
+      pointer-events: none;
+      opacity: 0.6;
+    }
+  `}
 `
 const BackButton = styled.button`
   ${baseButtonStyle};
-  background-color: #555;
-  color: #1de9b6;
+  ${({ theme }) => `
+    background-color: ${theme.palette.grey[700]};
+    color: ${theme.palette.primary.light};
+    border-radius: ${theme.shape.borderRadius};
+    padding: ${theme.spacing.base}px ${theme.spacing.base * 2}px;
+    i {
+      color: ${theme.palette.primary.light};
+    }
+  `}
 
   :disabled {
     pointer-events: none;

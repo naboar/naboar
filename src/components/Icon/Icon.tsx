@@ -1,5 +1,5 @@
-import styled, { FlattenSimpleInterpolation } from 'styled-components'
-import { ITheme } from '../../theme'
+import styled from 'styled-components'
+import { IStyledComponentProps } from '../../interfaces/IStyledComponentProps'
 
 /**
  * Icon Component
@@ -8,23 +8,19 @@ import { ITheme } from '../../theme'
  */
 
 const Icon = styled.i`
-  color: ${({ theme, color }: IProps) => color || theme.black};
+  color: ${({ theme, color }: IProps) => color || theme.palette.common.black};
   font-size: ${({ size }: IProps) => size || 19}px;
 
   ${({ css }: IProps) => css && css}
 `
 
-interface IProps {
+interface IProps extends IStyledComponentProps {
   /** Color of icon */
   color?: string
-  /** CSS properties using css helper from styled-components */
-  css?: FlattenSimpleInterpolation
   /** Event fired on click */
   onClick?: (e: any) => void
   /** Size of font in px */
   size?: number
-  /** Theme */
-  theme: ITheme
 }
 
 export default Icon
