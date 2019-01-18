@@ -26,7 +26,7 @@ const Controls = (props: IProps) => {
         {props.steps === props.selectedIndex + 1 ? (
           <NextButton onClick={props.completeClick} isSubmit={true}>
             {props.completeText}
-            <IconIOS
+            <IconIOS.White
               css={iconRightCss}
               name={'checkmark-circle-outline'}
             />
@@ -122,7 +122,7 @@ const NextButton = styled.button<{ isSubmit?: boolean }>`
 const BackButton = styled.button`
   ${baseButtonStyle};
   ${({ theme }) => `
-    background-color: ${theme.palette.grey[700]};
+    background-color: ${theme.palette.grey[600]};
     color: ${theme.palette.primary.light};
     border-radius: ${theme.shape.borderRadius};
     padding: ${theme.spacing.base}px ${theme.spacing.base * 2}px;

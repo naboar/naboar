@@ -18,11 +18,11 @@ const Input = (props: IInputProps) => {
     >
       <Wrapper css={props.css} isErrored={!!props.errorMessage} disabled={props.disabled}>
         {props.iconName && (
-          <IconIOS name={props.iconName} size={19} color={'white'} />
+          <IconIOS.White name={props.iconName} size={19} />
         )}
         <StyledInput {...{ ...props, css: [] }} />
         {props.canClear && (
-          <IconIOS
+          <IconIOS.White
             css={clearIconStyle}
             name={'close'}
             size={25}
@@ -100,29 +100,30 @@ const Wrapper = styled.div<{
   disabled: boolean
 }>`
   ${({ css, disabled, isErrored, theme }) => `
-  background: ${theme.palette.secondary.light};
-  border-radius: ${theme.shape.borderRadius};
-  color: ${theme.palette.common.white};
-  padding: 0 ${theme.spacing.base * 2}px;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  input {
+    background: ${theme.palette.secondary.light};
+    border-radius: ${theme.shape.borderRadius};
     color: ${theme.palette.common.white};
-  }
-  input::placeholder {
-    color: ${theme.palette.common.white};
-    opacity: .4;
-  }
-  ${disabled && `
-    opacity: .6;
-  `}
+    padding: 0 ${theme.spacing.base * 2}px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    input {
+      color: ${theme.palette.common.white};
+    }
+    input::placeholder {
+      color: ${theme.palette.common.white};
+      opacity: .4;
+    }
+    ${disabled && `
+      opacity: .6;
+    `}
 
-  ${css};
+    ${css};
 
-  ${isErrored && `
-      background: ${theme.palette.common.red};
-    `};
+    ${isErrored && `
+        background: ${theme.palette.common.red};
+      `};
+    ${css}
   `}
 `
 

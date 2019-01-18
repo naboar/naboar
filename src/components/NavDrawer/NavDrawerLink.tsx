@@ -29,11 +29,10 @@ const NavDrawerLink = (props: INavDrawerLinkProps) => {
       isActive={props.isActive}
       title={props.title}
     >
-      <IconMD
+      <IconMD.White
         css={iconStyle}
         name={props.iconName}
         size={props.iconSize || 25}
-        color={'white'}
         onClick={(e: React.MouseEvent) => handleIconClick(e, props.onIconClick)}
       />
       <Expand

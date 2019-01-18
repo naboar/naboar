@@ -11,10 +11,9 @@ import { IconIOS } from '../Icon'
 const Message = (props: IMessageProps) => {
   return (
     <StyledMessage>
-      <IconIOS
+      <IconIOS.Black
         name={'close'}
         size={24}
-        color={'black'}
         css={IconCSS}
         onClick={props.onClose}
       />

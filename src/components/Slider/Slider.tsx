@@ -1,7 +1,6 @@
 import React from 'react'
 import styled, { css } from 'styled-components'
 import { IFormElementProps } from '../../interfaces/'
-import { ITheme } from '../../theme/index'
 import FormElementWrapper from '../FormElementWrapper/FormElementWrapper'
 
 /**

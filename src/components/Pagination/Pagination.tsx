@@ -101,7 +101,7 @@ const Pagination = ({
         1
       </PageControl>,
       <PageControl style={{ width: 32 }} key="left-ellipses" noBorder={true}>
-        <IconIOS name="more" size={30} color={'rgba(255,255,255,.8)'} />
+        <IconIOS.White name="more" size={30} />
       </PageControl>,
     ]
   }
@@ -120,7 +120,7 @@ const Pagination = ({
 
     return [
       <PageControl style={{ width: 32 }} key="right-ellipses" noBorder={true}>
-        <IconIOS name="more" size={30} color={'rgba(255,255,255,.8)'} />
+        <IconIOS.White name="more" size={30} />
       </PageControl>,
       <PageControl key="skip-right" onClick={e => handleSkip(pageCount, e)}>
         {pageCount}

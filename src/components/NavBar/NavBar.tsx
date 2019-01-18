@@ -115,7 +115,7 @@ class NavBar extends React.Component<IProps, IState> {
         ) : (
           <MenuWrapper>
             <NavBarLink onClick={this.toggleMenu}>
-              <IconMD name={'menu'} color={'white'} />
+              <IconMD.White name={'menu'} />
             </NavBarLink>
             <Expand
               from={0}

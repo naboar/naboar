@@ -1,5 +1,5 @@
-import React, { ReactChild } from 'react'
-import styled, { css, FlattenSimpleInterpolation, keyframes } from 'styled-components'
+import React from 'react'
+import styled, { FlattenSimpleInterpolation, keyframes } from 'styled-components'
 
 /**
  * Datalist Component

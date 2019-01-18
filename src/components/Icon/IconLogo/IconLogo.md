@@ -1,3 +1,6 @@
 ```js
-<IconLogo name='github' size={35} color='white' />
+<div style={{ background: 'grey', padding: 10, width: 50}}>
+  <IconLogo.Black name='github' size={35} />
+  <IconLogo.White name='github' size={35} />
+</div>
 ```

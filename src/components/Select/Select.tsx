@@ -27,7 +27,7 @@ const Select = (props: ISelectProps) => (
       >
         {props.children}
       </StyledSelect>
-      <IconIOS name={'arrow-down'} css={iconStyles} />
+      <IconIOS.White name={'arrow-down'} css={iconStyles} />
     </Wrapper>
   </FormElementWrapper>
 )

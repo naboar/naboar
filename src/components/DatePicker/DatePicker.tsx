@@ -108,7 +108,7 @@ class DatePicker extends Component<IProps> {
           />
           {isRangePicker && (
             <Fragment>
-              <IconIOS css={iconCss} size={24} color="white" name="remove" />
+              <IconIOS.White css={iconCss} size={24} name="remove" />
               <Input
                 value={String(until)}
                 onChange={e => this.handleChangeDate('until', e)}

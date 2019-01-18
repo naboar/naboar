@@ -1,3 +1,6 @@
 ```js
-<IconMD name='close' size={35} color='white' />
+<div style={{ background: 'grey', padding: 10, width: 40}}>
+  <IconMD.Black name='close' size={35} />
+  <IconMD.White name='close' size={35} />
+</div>
 ```

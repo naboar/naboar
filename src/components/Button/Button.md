@@ -34,6 +34,14 @@
   >
     {state.isClicked ? 'You clicked me!' : 'Click me!'}
   </Button.Danger>
+  <Button.MainInverse
+    onClick={toggleClick}
+    value={state.isClicked}
+    disabled={false}
+    type={'button'}
+  >
+    {state.isClicked ? 'You clicked me!' : 'Click me!'}
+  </Button.MainInverse>
   </div>
 
 ```

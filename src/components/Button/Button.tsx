@@ -126,7 +126,23 @@ const DangerButton = styled(StyledButton)`
   `}
 `
 
+const MainInverse = styled(StyledButton)`
+  ${({ theme }) => `
+    background: ${theme.palette.grey[600]};
+    color: ${theme.palette.primary.light};
+    &:hover {
+      opacity: .8;
+    }
+    &:disabled{
+      opacity: .8;
+      &:hover {
+        opacity: .8
+      }
+    }
+  `}
+`
 Button.Main = MainButton
+Button.MainInverse = MainInverse
 Button.Secondary = SecondaryButton
 Button.Danger = DangerButton
 
