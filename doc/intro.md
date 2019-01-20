@@ -1,3 +1,1 @@
-Introduce the package here
-
 Naboar is a UI component library built for React apps using typescript.

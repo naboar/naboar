@@ -1,5 +1,11 @@
 ## NABOAR UI Component Library
 
+#### Intro
+
+Naboar is a UI component library built for React apps using typescript.
+
+#### Usage
+
 install these peer deps.
 
 ```json
@@ -14,14 +20,16 @@ Install the components
 
 ```npm install --save naboar```
 
-Wrap app in Themer
+Wrap app in Themer, and pass it an optional theme object with overrides to the default theme.
 
-```js
-import { Themer, theme } from 'naboar'
+The default theme is found [here](https://github.com/naboar/naboar/blob/master/src/theme/index.tsx)
+
+```ts
+import { Themer } from 'naboar'
 
 function App() {
   return (
-    <Themer theme={theme}>
+    <Themer theme={yourTheme}>
       {/* your app here */}
     </Themer>
   )

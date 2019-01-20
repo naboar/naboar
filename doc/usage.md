@@ -10,7 +10,9 @@ install these peer deps.
 
 Install the components
 
-```npm install --save naboar```
+```bash
+npm install --save naboar
+```
 
 Wrap app in Themer, and pass it an optional theme object with overrides to the default theme.
 
