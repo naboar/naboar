@@ -91,36 +91,39 @@ class DatePicker extends Component<IProps> {
       untilRequired,
       sinceName,
       untilName,
+      outline,
     } = this.props
     const { since, until } = this.state
     return (
-        <Wrapper>
-          <Input
-            label={label}
-            errorMessage={errorMessage}
-            value={String(since)}
-            onChange={e => this.handleChangeDate('since', e)}
-            css={inputCss}
-            name={sinceName}
-            iconName="calendar"
-            type={isTimePicker ? 'datetime-local' : 'date'}
-            required={sinceRequired}
-          />
-          {isRangePicker && (
-            <Fragment>
-              <IconIOS.White css={iconCss} size={24} name="remove" />
-              <Input
-                value={String(until)}
-                onChange={e => this.handleChangeDate('until', e)}
-                css={inputCss}
-                name={untilName}
-                iconName="calendar"
-                type={isTimePicker ? 'datetime-local' : 'date'}
-                required={untilRequired}
-              />
-            </Fragment>
-          )}
-        </Wrapper>
+      <Wrapper>
+        <Input
+          label={label}
+          errorMessage={errorMessage}
+          value={String(since)}
+          onChange={e => this.handleChangeDate('since', e)}
+          css={inputCss}
+          name={sinceName}
+          iconName="calendar"
+          type={isTimePicker ? 'datetime-local' : 'date'}
+          required={sinceRequired}
+          outline={outline}
+        />
+        {isRangePicker && (
+          <Fragment>
+            <IconIOS.White css={iconCss} size={24} name="remove" />
+            <Input
+              value={String(until)}
+              onChange={e => this.handleChangeDate('until', e)}
+              css={inputCss}
+              name={untilName}
+              iconName="calendar"
+              type={isTimePicker ? 'datetime-local' : 'date'}
+              required={untilRequired}
+              outline={outline}
+            />
+          </Fragment>
+        )}
+      </Wrapper>
     )
   }
 }
@@ -145,6 +148,8 @@ interface IProps extends IFormElementProps {
   sinceName: string
   /** override default until name */
   untilName: string
+  /** should inputs be outline */
+  outline?: boolean
 }
 
 // Styled Components

@@ -143,7 +143,7 @@ const Wrapper = styled.div<IStyledProps>`
     justify-content: space-between;
     overflow: ${isMenuVisible ? 'visible' : 'hidden'};
 
-    ${css}
+    ${css ? css : ''}
   `}
 `
 

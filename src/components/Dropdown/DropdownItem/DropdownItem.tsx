@@ -35,11 +35,11 @@ const StyledDropdownItem = styled.div<IProps>`
     font-size: 16px;
     cursor: pointer;
     transition: 0.2s all;
-    background-color: ${isActive ? theme.palette.common.white : theme.palette.grey[300]};
-    border-bottom: 1px solid #dcdcdc;
-    color: ${theme.palette.common.black};
+    background-color: ${isActive ? theme.palette.grey[600] : theme.palette.grey[700]}};
+    border-bottom: 1px solid ${theme.palette.grey[900]}};
+    color: ${theme.palette.common.white};
     &:hover {
-      background-color: ${theme.palette.common.white};
+      background-color: ${theme.palette.grey[600]};
       cursor: pointer;
     }
 
@@ -62,7 +62,7 @@ const StyledDropdownItem = styled.div<IProps>`
       border-radius: 0 0 2px 2px;
     }
 
-    ${css}
+    ${css ? css : ''}
   `}
 `
 

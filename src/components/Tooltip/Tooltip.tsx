@@ -88,7 +88,7 @@ const Tip = styled.div<IStyledTooltipProps>`
       position === 'left' &&
       'border-color: transparent transparent rgba(0,0,0,.75) transparent;'}
   }
-  ${({ css }) => css}
+  ${({ css }) => css && css}
 `
 
 const Title = styled.span`

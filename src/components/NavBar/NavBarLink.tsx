@@ -32,6 +32,7 @@ export interface INavBarLinkProps extends IStyledComponentProps {
 
 const Wrapper = styled.div`
   ${({ css, isActive, theme }: INavBarLinkProps) => `
+    transition: background-color .2s;
     align-items: center;
     background: ${isActive ? theme.palette.primary.main : 'transparent'};
     display: flex;
@@ -47,7 +48,7 @@ const Wrapper = styled.div`
       background: ${theme.palette.primary.main};
     }
 
-    ${css}
+    ${css ? css : ''}
   `}
 `
 

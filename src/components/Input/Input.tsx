@@ -16,10 +16,13 @@ const Input = (props: IInputProps) => {
       name={props.name}
       errorMessage={props.errorMessage}
     >
-      <Wrapper css={props.css} isErrored={!!props.errorMessage} disabled={props.disabled}>
-        {props.iconName && (
-          <IconIOS.White name={props.iconName} size={19} />
-        )}
+      <Wrapper
+        css={props.css}
+        isErrored={!!props.errorMessage}
+        disabled={props.disabled}
+        outline={props.outline}
+      >
+        {props.iconName && <IconIOS.White name={props.iconName} size={19} />}
         <StyledInput {...{ ...props, css: [] }} />
         {props.canClear && (
           <IconIOS.White
@@ -66,6 +69,8 @@ interface IInputProps
   value?: string
   /** is this input required */
   required?: boolean
+  /** Should the input be of the outline variant */
+  outline?: boolean
 }
 
 interface IProps extends IStyledComponentProps {
@@ -98,8 +103,9 @@ const Wrapper = styled.div<{
   isErrored: boolean
   css?: FlattenSimpleInterpolation
   disabled: boolean
+  outline?: boolean
 }>`
-  ${({ css, disabled, isErrored, theme }) => `
+  ${({ css, isErrored, theme, outline }) => `
     background: ${theme.palette.secondary.light};
     border-radius: ${theme.shape.borderRadius};
     color: ${theme.palette.common.white};
@@ -114,16 +120,26 @@ const Wrapper = styled.div<{
       color: ${theme.palette.common.white};
       opacity: .4;
     }
-    ${disabled && `
+    :disabled {
       opacity: .6;
-    `}
+    }
 
-    ${css};
-
-    ${isErrored && `
+    ${
+      isErrored
+        ? `
         background: ${theme.palette.common.red};
-      `};
-    ${css}
+      `
+        : ''
+    };
+
+    ${
+      outline
+        ? `background: none; border: 1px solid ${
+            theme.palette.secondary.light
+          };`
+        : ''
+    }
+    ${css ? css : ''}
   `}
 `
 

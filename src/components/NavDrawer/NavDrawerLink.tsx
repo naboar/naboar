@@ -72,6 +72,7 @@ interface INavDrawerLinkProps extends IStyledComponentProps {
 
 const Wrapper = styled.div`
   ${({ css, isActive, theme }: IProps) => `
+    transition: background-color .2s;
     align-items: center;
     background: ${isActive ? theme.palette.primary.main : 'transparent'};
     padding: ${theme.spacing.base}px;
@@ -83,7 +84,7 @@ const Wrapper = styled.div`
       cursor: pointer;
     }
 
-    ${css}
+    ${css ? css : ''}
   `}
 `
 

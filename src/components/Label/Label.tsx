@@ -27,7 +27,7 @@ const StyledLabel = styled.label<IStyledLabelProps>`
     margin: ${theme.spacing.base}px 0;
     display: block;
 
-    ${css}
+    ${css ? css : ''}
   `}
 `
 

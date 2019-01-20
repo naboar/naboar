@@ -24,7 +24,7 @@ interface IStyledTextareaProps
     IStyledComponentProps {
   /** Fired onChange event */
   onChange?: (e?: React.ChangeEvent<HTMLTextAreaElement>) => void
-  variant?: 'primary' |  'secondary' | 'tertiary'
+  variant?: 'primary' | 'secondary' | 'tertiary'
 }
 
 const StyledTextarea = styled.textarea<IStyledTextareaProps>`
@@ -40,10 +40,8 @@ const StyledTextarea = styled.textarea<IStyledTextareaProps>`
     border: none;
     border-radius: ${theme.shape.borderRadius};
 
-    ${css};
-    ${errorMessage && `
-      background: ${theme.palette.common.red};
-    `};
+    ${css ? css : ''};
+    ${errorMessage ? `background: ${theme.palette.common.red};` : ''};
   `}
 `
 

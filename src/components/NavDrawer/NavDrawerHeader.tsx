@@ -63,7 +63,7 @@ const linkStyle = (props: IStyledComponentProps) => css`
     width: initial;
   }
 
-  ${props.css}
+  ${props.css ? props.css : ''}
 `
 
 interface IProps {
