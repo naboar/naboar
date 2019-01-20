@@ -1,7 +1,7 @@
 /* tslint:disable:interface-name */
 
-import React, { ReactChild } from 'react'
-import styled, { FlattenSimpleInterpolation } from 'styled-components'
+import React from 'react'
+import styled from 'styled-components'
 import Input from '../Input'
 import DatalistOption from './DatalistOption/DatalistOption'
 

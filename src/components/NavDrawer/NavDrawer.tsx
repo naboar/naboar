@@ -77,7 +77,7 @@ const Wrapper = styled.div<IStyledComponentProps>`
     background-color: ${theme.palette.secondary.dark};
     color: ${theme.palette.common.white};
     height: 100%;
-    ${css}
+    ${css ? css : ''}
   `}
 `
 export default NavDrawer

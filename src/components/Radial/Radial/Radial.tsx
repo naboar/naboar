@@ -4,9 +4,9 @@ import { IItemProps } from '../RadialMenuItem/RadialMenuItem'
 
 /**
  * Radial Menu Component
- * 
+ *
  * Takes children of type ```<RadialMenuItem />```
- * 
+ *
  * @since v1.0.0
  * @author [Anthony Freda](https://github.com/Afreda323)
  */

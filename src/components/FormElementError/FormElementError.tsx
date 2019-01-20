@@ -23,7 +23,7 @@ const StyledP = styled.p<IFormElementErrorProps>`
     color: ${theme.palette.common.red};
     margin: ${theme.spacing.base}px 0;
 
-    ${css}
+    ${css ? css : ''}
   `}
 `
 

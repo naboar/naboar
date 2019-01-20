@@ -16,10 +16,12 @@ const Input = (props: IInputProps) => {
       name={props.name}
       errorMessage={props.errorMessage}
     >
-      <Wrapper css={props.css} isErrored={!!props.errorMessage} disabled={props.disabled}>
-        {props.iconName && (
-          <IconIOS.White name={props.iconName} size={19} />
-        )}
+      <Wrapper
+        css={props.css}
+        isErrored={!!props.errorMessage}
+        disabled={props.disabled}
+      >
+        {props.iconName && <IconIOS.White name={props.iconName} size={19} />}
         <StyledInput {...{ ...props, css: [] }} />
         {props.canClear && (
           <IconIOS.White
@@ -99,7 +101,7 @@ const Wrapper = styled.div<{
   css?: FlattenSimpleInterpolation
   disabled: boolean
 }>`
-  ${({ css, disabled, isErrored, theme }) => `
+  ${({ css, isErrored, theme }) => `
     background: ${theme.palette.secondary.light};
     border-radius: ${theme.shape.borderRadius};
     color: ${theme.palette.common.white};
@@ -114,16 +116,18 @@ const Wrapper = styled.div<{
       color: ${theme.palette.common.white};
       opacity: .4;
     }
-    ${disabled && `
+    :disabled {
       opacity: .6;
-    `}
+    }
 
-    ${css};
-
-    ${isErrored && `
+    ${
+      isErrored
+        ? `
         background: ${theme.palette.common.red};
-      `};
-    ${css}
+      `
+        : ''
+    };
+    ${css ? css : ''}
   `}
 `
 

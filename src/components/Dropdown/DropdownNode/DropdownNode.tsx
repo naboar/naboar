@@ -37,7 +37,7 @@ const StyledDropdownNode = styled.div<IStyledComponentProps>`
     color: ${theme.palette.common.white};
     background-color: ${theme.palette.primary.main};
 
-    ${css}
+    ${css ? css : ''}
   `}
 `
 

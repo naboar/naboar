@@ -62,7 +62,7 @@ const StyledDropdownItem = styled.div<IProps>`
       border-radius: 0 0 2px 2px;
     }
 
-    ${css}
+    ${css ? css : ''}
   `}
 `
 

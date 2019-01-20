@@ -18,7 +18,7 @@ interface IFormElementWrapperProps extends IFormElementProps {
 }
 
 const Wrapper = styled.div<{ css?: FlattenSimpleInterpolation }>`
-  ${({ css }) => css}
+  ${({ css }) => css && css}
 `
 
 export default FormElementWrapper

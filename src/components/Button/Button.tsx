@@ -4,21 +4,21 @@ import { IStyledComponentProps } from '../../interfaces/IStyledComponentProps'
 
 /**
  * Button Component
- * @since v1.0.0 
+ * @since v1.0.0
  * @author [Jonathan Currie](https://github.com/jbcurrie)
  */
 
 const Button = (props: IButtonProps) => {
   // const onButtonClick: IButtonProps['onClick'] = (e: React.MouseEvent<HTMLButtonElement>) => {
-    // const { log } = console
-    // log('hello')
-    // const { _buttonGroupIndex, value, _buttonGroupClick } = props
-    // if (_buttonGroupClick) {
-    //   _buttonGroupClick(value, _buttonGroupIndex, e)
-    // }
-    // if (props.onClick) {
-    //   props.onClick(e)
-    // }
+  // const { log } = console
+  // log('hello')
+  // const { _buttonGroupIndex, value, _buttonGroupClick } = props
+  // if (_buttonGroupClick) {
+  //   _buttonGroupClick(value, _buttonGroupIndex, e)
+  // }
+  // if (props.onClick) {
+  //   props.onClick(e)
+  // }
   // }
   return <StyledButton {...props}>{props.children}</StyledButton>
 }
@@ -34,7 +34,9 @@ const StyledButton = styled.button<IButtonProps>`
   box-sizing: border-box;
   font-size: 16px;
   transition: all 0.2s;
-  &:active{box-shadow: none};
+  &:active {
+    box-shadow: none;
+  }
   ${({ theme }) => `
     padding: ${theme.spacing.base}px;
     border-radius: ${theme.shape.borderRadius};
@@ -49,7 +51,9 @@ const StyledButton = styled.button<IButtonProps>`
 
 type ButtonTypes = 'button' | 'reset' | 'submit'
 
-export interface IButtonProps extends IStyledComponentProps, React.HTMLAttributes<HTMLButtonElement> {
+export interface IButtonProps
+  extends IStyledComponentProps,
+    React.HTMLAttributes<HTMLButtonElement> {
   /** component children */
   children: JSX.Element | string
   /** active if Button value matches ButtonGroup activeValue */
@@ -58,7 +62,7 @@ export interface IButtonProps extends IStyledComponentProps, React.HTMLAttribute
   onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void
   /** Name for javascript reference or form-data */
   name?: string
-  /** 
+  /**
    * specify button type
    */
   type?: ButtonTypes
@@ -145,6 +149,5 @@ Button.Main = MainButton
 Button.MainInverse = MainInverse
 Button.Secondary = SecondaryButton
 Button.Danger = DangerButton
-
 
 export default Button

@@ -44,7 +44,7 @@ const Wrapper = styled.div<{
       background: ${theme.palette.common.red};
     `};
 
-    ${css}
+    ${css ? css : ''}
   `}
 `
 
