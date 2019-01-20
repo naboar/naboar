@@ -39,7 +39,7 @@ const StyledDropdownItem = styled.div<IProps>`
     border-bottom: 1px solid ${theme.palette.grey[900]}};
     color: ${theme.palette.common.white};
     &:hover {
-      background-color: ${theme.palette.grey[800]};
+      background-color: ${theme.palette.grey[600]};
       cursor: pointer;
     }
 
