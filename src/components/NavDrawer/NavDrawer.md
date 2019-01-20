@@ -4,7 +4,7 @@ initialState = {
 };
 <NavDrawer 
   from={45}
-  onClick={() => alert('redirect')}
+  onClick={() => console.log("clicked")}
   to={300} 
   title={'Dashboard'} >
   <NavDrawerLink
@@ -13,14 +13,12 @@ initialState = {
     isActive={state.activeIndex === 0}
     onClick={()=> setState({ activeIndex: 0 })}
   />
-  <NavDrawerDivider/>
   <NavDrawerLink
     title={'Second Item'}
     iconName={'rocket'}
     isActive={state.activeIndex === 1}
     onClick={()=> setState({ activeIndex: 1 })}
   />
-  <NavDrawerDivider/>
   <NavDrawerLink
     title={'Third Item'}
     iconName={'outlet'}

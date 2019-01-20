@@ -16,7 +16,11 @@ const Select = (props: ISelectProps) => (
     errorMessage={props.errorMessage}
     css={['width: 100%']}
   >
-    <Wrapper css={props.css} errorMessage={props.errorMessage}>
+    <Wrapper
+      css={props.css}
+      outline={props.outline}
+      errorMessage={props.errorMessage}
+    >
       <StyledSelect
         name={props.name}
         onClick={props.onClick}
@@ -35,14 +39,24 @@ const Select = (props: ISelectProps) => (
 const Wrapper = styled.div<{
   css?: FlattenSimpleInterpolation
   errorMessage?: string
+  outline?: boolean
 }>`
-  ${({ css, errorMessage, theme }) => `
+  ${({ css, errorMessage, theme, outline }) => `
     border-radius: ${theme.shape.borderRadius};
     background: ${theme.palette.secondary.light};
     position: relative;
-    ${errorMessage && `
+    ${errorMessage &&
+      `
       background: ${theme.palette.common.red};
     `};
+
+    ${
+      outline
+        ? `background: none; border: 1px solid ${
+            theme.palette.secondary.light
+          };`
+        : ''
+    }
 
     ${css ? css : ''}
   `}
@@ -64,7 +78,8 @@ const StyledSelect = styled.select`
   }
 `
 
-const iconStyles = [`
+const iconStyles = [
+  `
   color: white;
   position: absolute;
   right: 16px;
@@ -72,7 +87,8 @@ const iconStyles = [`
   bottom: 0;
   display: flex;
   align-items: center;
-`]
+`,
+]
 /**
  * Select prop interface
  */
@@ -84,6 +100,8 @@ interface ISelectProps extends IFormElementProps, IStyledComponentProps {
   onChange?: (e?: React.ChangeEvent<HTMLSelectElement>) => void
   /** called when input changes */
   value?: string | number
+  /** should outline variant */
+  outline?: boolean
 }
 
 export default Select

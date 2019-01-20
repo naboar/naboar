@@ -91,6 +91,7 @@ class DatePicker extends Component<IProps> {
       untilRequired,
       sinceName,
       untilName,
+      outline,
     } = this.props
     const { since, until } = this.state
     return (
@@ -105,6 +106,7 @@ class DatePicker extends Component<IProps> {
           iconName="calendar"
           type={isTimePicker ? 'datetime-local' : 'date'}
           required={sinceRequired}
+          outline={outline}
         />
         {isRangePicker && (
           <Fragment>
@@ -117,6 +119,7 @@ class DatePicker extends Component<IProps> {
               iconName="calendar"
               type={isTimePicker ? 'datetime-local' : 'date'}
               required={untilRequired}
+              outline={outline}
             />
           </Fragment>
         )}
@@ -145,6 +148,8 @@ interface IProps extends IFormElementProps {
   sinceName: string
   /** override default until name */
   untilName: string
+  /** should inputs be outline */
+  outline?: boolean
 }
 
 // Styled Components

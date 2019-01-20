@@ -14,7 +14,7 @@ const removeAtIndex = (i, arr) => arr[i] ? [...arr.slice(0, i), ...arr.slice(i +
 
 
 {/** Button generates notifs */}
-<Button 
+<Button.Main 
   onClick={() => setState({
     notifs: [
       ...state.notifs,
@@ -22,6 +22,6 @@ const removeAtIndex = (i, arr) => arr[i] ? [...arr.slice(0, i), ...arr.slice(i +
     ]})
   }>
   Click To Add
-</Button>
+</Button.Main>
 </div>
 ```

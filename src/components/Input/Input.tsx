@@ -20,6 +20,7 @@ const Input = (props: IInputProps) => {
         css={props.css}
         isErrored={!!props.errorMessage}
         disabled={props.disabled}
+        outline={props.outline}
       >
         {props.iconName && <IconIOS.White name={props.iconName} size={19} />}
         <StyledInput {...{ ...props, css: [] }} />
@@ -68,6 +69,8 @@ interface IInputProps
   value?: string
   /** is this input required */
   required?: boolean
+  /** Should the input be of the outline variant */
+  outline?: boolean
 }
 
 interface IProps extends IStyledComponentProps {
@@ -100,8 +103,9 @@ const Wrapper = styled.div<{
   isErrored: boolean
   css?: FlattenSimpleInterpolation
   disabled: boolean
+  outline?: boolean
 }>`
-  ${({ css, isErrored, theme }) => `
+  ${({ css, isErrored, theme, outline }) => `
     background: ${theme.palette.secondary.light};
     border-radius: ${theme.shape.borderRadius};
     color: ${theme.palette.common.white};
@@ -127,6 +131,14 @@ const Wrapper = styled.div<{
       `
         : ''
     };
+
+    ${
+      outline
+        ? `background: none; border: 1px solid ${
+            theme.palette.secondary.light
+          };`
+        : ''
+    }
     ${css ? css : ''}
   `}
 `

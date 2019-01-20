@@ -192,6 +192,7 @@ class Table extends Component<IProps> {
               type="text"
               canClear={this.props.term !== ''}
               onClear={() => this.props.onSearchChange('')}
+              outline={true}
             />
           )}
           {this.props.showDatePicker && (
@@ -201,13 +202,18 @@ class Table extends Component<IProps> {
               onChange={this.handleDateChange}
               since={this.props.since}
               until={this.props.until}
+              outline={true}
             />
           )}
 
           {this.props.showLimit && (
             <LimitWrap>
               <span style={{ marginRight: 8 }}>Show:</span>{' '}
-              <Select name={'limit'} onChange={this.handleLimitChange}>
+              <Select
+                name={'limit'}
+                onChange={this.handleLimitChange}
+                outline={true}
+              >
                 <option value={10}>10</option>
                 <option value={25}>25</option>
                 <option value={50}>50</option>

@@ -47,7 +47,7 @@ const linkStyle = (propsCss: FlattenSimpleInterpolation) => css`
     width: initial;
   }
 
-  ${propsCss}
+  ${propsCss ? propsCss : ''}
 `
 
 interface IProps {
