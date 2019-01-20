@@ -26,7 +26,7 @@ const DropdownMenu = (props: IDropdownMenuProps) => (
 const StyledDropdownMenu = styled.div`
   position: absolute;
   width: auto;
-  min-width: 300px;
+  min-width: 150px;
   visibility: ${({ isActive, isDisabled = false }: IProps) =>
     !isDisabled && isActive ? 'visible' : 'hidden'};
   opacity: ${({ isActive, isDisabled = false }: IProps) =>
