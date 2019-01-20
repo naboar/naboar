@@ -6,6 +6,10 @@ Naboar is a UI component library built for React apps using typescript.
 
 #### Usage
 
+Documentation can be found [here](https://naboar.netlify.com/)
+
+##### At a glance
+
 install these peer deps.
 
 ```json
@@ -35,3 +39,5 @@ function App() {
   )
 }
 ```
+
+### Documenta
