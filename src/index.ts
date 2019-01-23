@@ -35,6 +35,8 @@ import Select from './components/Select/Select'
 import Slider from './components/Slider/'
 import Spinner from './components/Spinner'
 import Table, { Td, Th, Thead, Tr } from './components/Table/'
+import TabItem from './components/Tabs/TabItem'
+import Tabs from './components/Tabs/Tabs'
 import Textarea from './components/Textarea'
 import Tooltip from './components/Tooltip'
 import Wizard from './components/Wizard/Wizard/'
@@ -89,6 +91,8 @@ export {
   Slider,
   Spinner,
   Table,
+  Tabs,
+  TabItem,
   Td,
   Textarea,
   Th,
