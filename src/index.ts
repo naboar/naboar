@@ -13,6 +13,7 @@ import {
   DropdownMenu,
   DropdownNode,
 } from './components/Dropdown'
+import ErrorModal from './components/ErrorModal'
 import FormElementError from './components/FormElementError'
 import FormElementWrapper from './components/FormElementWrapper/FormElementWrapper'
 import IconIOS from './components/Icon/IconIOS/IconIOS'
@@ -34,6 +35,7 @@ import Radio from './components/Radio/'
 import Select from './components/Select/Select'
 import Slider from './components/Slider/'
 import Spinner from './components/Spinner'
+import Switch from './components/Switch/'
 import Table, { Td, Th, Thead, Tr } from './components/Table/'
 import TabItem from './components/Tabs/TabItem'
 import Tabs from './components/Tabs/Tabs'
@@ -66,6 +68,7 @@ export {
   DropdownItem,
   DropdownMenu,
   DropdownNode,
+  ErrorModal,
   FormElementError,
   FormElementWrapper,
   IconIOS,
@@ -90,6 +93,7 @@ export {
   Select,
   Slider,
   Spinner,
+  Switch,
   Table,
   Tabs,
   TabItem,
