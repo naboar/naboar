@@ -178,7 +178,7 @@ export const theme: ITheme = {
 }
 
 interface IProviderProps {
-  theme?: ITheme
+  theme?: any
   children: JSX.Element[] | JSX.Element
 }
 
