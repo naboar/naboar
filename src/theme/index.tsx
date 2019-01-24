@@ -3,8 +3,6 @@ import React, { Fragment } from 'react'
 import { ThemeProvider } from 'styled-components'
 import Reset from './reset'
 
-import 'ionicons/dist/css/ionicons.css'
-
 /**
  * Palette Interface
  */

@@ -95,7 +95,7 @@ const TopItem = styled.button<{
   border-bottom: ${({ theme, isActive }) =>
     isActive
       ? `2px solid ${theme.palette.primary.main}`
-      : `2px solid ${theme.palette.grey[800]}`};
+      : `2px solid transparent`};
 
   ${({ isDisabled }) => isDisabled && 'opacity: .7;'}
   :hover {
