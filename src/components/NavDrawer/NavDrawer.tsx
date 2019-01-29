@@ -45,7 +45,6 @@ class NavDrawer extends React.Component<IProps, IState> {
   render() {
     return (
       <Expand
-        css={['height: 500px']}
         from={this.props.from}
         to={this.props.to}
         isExpanded={this.state.isExpanded}

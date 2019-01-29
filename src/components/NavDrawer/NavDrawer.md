@@ -3,6 +3,7 @@ initialState = {
   activeIndex: 1
 };
 <NavDrawer 
+  css={['height: 500px;']}
   from={45}
   onClick={() => console.log("clicked")}
   to={300} 
