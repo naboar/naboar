@@ -1,6 +1,6 @@
 import React from 'react'
-import styled, { css, FlattenSimpleInterpolation } from 'styled-components'
-import { ITheme } from '../../theme'
+import styled from 'styled-components'
+import { IStyledComponentProps } from '../../interfaces/IStyledComponentProps'
 import { IconMD } from '../Icon'
 
 /**
@@ -98,9 +98,7 @@ const Action = styled.button`
     }
   `}
 `
-interface IProps {
-  css?: FlattenSimpleInterpolation
-  theme: ITheme
+interface IProps extends IStyledComponentProps {
   disabled?: boolean
 }
 

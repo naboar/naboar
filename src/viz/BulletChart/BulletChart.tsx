@@ -1,6 +1,7 @@
 import React, { Component, ReactNode } from 'react'
 import styled, {
   css as cssOverride,
+  FlattenInterpolation,
   FlattenSimpleInterpolation,
   keyframes,
 } from 'styled-components'
@@ -318,7 +319,10 @@ const Tick = styled.span`
     width: 1px;
   }
 `
-const ScaleItem = styled.div<{ css?: FlattenSimpleInterpolation; i: number }>`
+const ScaleItem = styled.div<{
+  css?: FlattenSimpleInterpolation | FlattenInterpolation<any>
+  i: number
+}>`
   ${({ css }) => css && css}
 `
 

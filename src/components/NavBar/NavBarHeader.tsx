@@ -1,7 +1,10 @@
 import React from 'react'
-import styled, { css, FlattenSimpleInterpolation } from 'styled-components'
-import { Expand } from '../..'
-import { ITheme } from '../../theme'
+import {
+  css,
+  FlattenInterpolation,
+  FlattenSimpleInterpolation,
+} from 'styled-components'
+import { IStyledComponentProps } from '../../interfaces/IStyledComponentProps'
 import { IconIOS } from '../Icon'
 import NavBarLink from './NavBarLink'
 
@@ -13,25 +16,20 @@ import NavBarLink from './NavBarLink'
 
 const NavBarHeader = (props: INavBarHeaderProps) => {
   return (
-      <NavBarLink
-        css={linkStyle(props.css)}
-        onClick={props.onClick}
-      >
+    <NavBarLink css={linkStyle(props.css)} onClick={props.onClick}>
       <IconIOS
         name={'flash'}
         css={['margin-right: 5px; font-size: 24px; color: #ffb300;']}
       />
       {props.title}
-      </NavBarLink>
+    </NavBarLink>
   )
 }
 
 /**
  * NavBarHeader prop interface
  */
-export interface INavBarHeaderProps {
-  /** Custom CSS */
-  css?: FlattenSimpleInterpolation
+export interface INavBarHeaderProps extends IStyledComponentProps {
   /** Toggle input clickability */
   disabled?: boolean
   /** On Click callback */
@@ -40,7 +38,9 @@ export interface INavBarHeaderProps {
   title: string
 }
 
-const linkStyle = (propsCss: FlattenSimpleInterpolation) => css`
+const linkStyle = (
+  propsCss: FlattenSimpleInterpolation | FlattenInterpolation<any>,
+) => css`
   font-size: 16px;
   font-weight: bold;
   i {
@@ -49,10 +49,5 @@ const linkStyle = (propsCss: FlattenSimpleInterpolation) => css`
 
   ${propsCss ? propsCss : ''}
 `
-
-interface IProps {
-  css?: FlattenSimpleInterpolation
-  theme: ITheme
-}
 
 export default NavBarHeader

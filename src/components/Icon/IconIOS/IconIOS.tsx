@@ -1,5 +1,5 @@
 import React from 'react'
-import { FlattenSimpleInterpolation } from 'styled-components'
+import { IStyledComponentProps } from '../../../interfaces/IStyledComponentProps'
 import Icon from '../Icon'
 import { iOS } from '../IconTypes'
 
@@ -13,11 +13,9 @@ const IconIOS = (props: IProps) => (
   <Icon {...props} className={`icon ion-ios-${props.name}`} />
 )
 
-interface IProps {
+interface IProps extends IStyledComponentProps {
   /** Color of icon */
   color?: string
-  /** CSS properties using css helper from styled-components */
-  css?: FlattenSimpleInterpolation
   /** Ionicon icon name */
   name: iOS
   /** Event fired on click */

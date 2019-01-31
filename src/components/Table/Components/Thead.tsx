@@ -1,5 +1,8 @@
 import React, { ReactNode } from 'react'
-import styled, { FlattenSimpleInterpolation } from 'styled-components'
+import styled, {
+  FlattenInterpolation,
+  FlattenSimpleInterpolation,
+} from 'styled-components'
 
 /**
  * Thead Component
@@ -12,12 +15,14 @@ const Thead = ({
   css,
 }: {
   children: ReactNode
-  css?: FlattenSimpleInterpolation
+  css?: FlattenSimpleInterpolation | FlattenInterpolation<any>
 }) => {
   return <Wrapper css={css}>{children}</Wrapper>
 }
 
-const Wrapper = styled.div<{ css?: FlattenSimpleInterpolation }>`
+const Wrapper = styled.div<{
+  css?: FlattenSimpleInterpolation | FlattenInterpolation<any>
+}>`
   display: flex;
   ${({ css }) => css}
 `

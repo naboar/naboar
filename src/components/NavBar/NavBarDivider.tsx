@@ -1,25 +1,19 @@
 import React from 'react'
-import styled, { FlattenSimpleInterpolation } from 'styled-components'
-import Expand from '../../effects/Expand'
+import styled from 'styled-components'
+import { IStyledComponentProps } from '../../interfaces/IStyledComponentProps'
 import { theme } from '../../theme/index'
-
 
 /**
  * NavBarDivider Component
  * @since v1.0.0
  * @author Tracey King
  */
-const NavBarDivider = (props: INavBarDividerProps) => {
+const NavBarDivider = (props: IStyledComponentProps) => {
   return (
     <Wrapper>
-      <Divider css={props.css}/>
+      <Divider css={props.css} />
     </Wrapper>
   )
-}
-
-interface INavBarDividerProps {
-  /** CSS styling using css from styled-components */
-  css?: FlattenSimpleInterpolation
 }
 
 const Wrapper = styled.div`
@@ -29,7 +23,7 @@ const Wrapper = styled.div`
   align-items: center;
 `
 
-const Divider = styled.div<{css?: FlattenSimpleInterpolation}>`
+const Divider = styled.div<IStyledComponentProps>`
   margin: 0 5px;
   background: ${theme.palette.common.white};
   width: 1px;

@@ -1,5 +1,6 @@
 import React, { Component, ReactElement, ReactNode } from 'react'
 import styled from 'styled-components'
+import { IStyledComponentProps } from '../../../interfaces/IStyledComponentProps'
 import { IStepProps } from '../WizardStep/WizardStep'
 import Controls from './Components/Controls'
 import Inner from './Components/Inner'
@@ -159,7 +160,7 @@ class Wizard extends Component<IProps, IState> {
   }
 }
 
-interface IProps {
+interface IProps extends IStyledComponentProps {
   /** Children of type ```<WizardStep />``` */
   children?: Array<ReactElement<IStepProps>>
   /** Content displayed in bottom left of wizard */
@@ -180,8 +181,6 @@ interface IProps {
   onPrevious?: () => void
   /** should the timeline be displayed */
   shouldShowTimeline?: boolean
-  /** css`` */
-  css?: string[]
 }
 
 interface IState {
@@ -190,7 +189,7 @@ interface IState {
   nextActive: boolean
 }
 
-const Wrapper = styled.div<{ css?: string[] }>`
+const Wrapper = styled.div<IStyledComponentProps>`
   display: flex;
   flex-direction: column;
   width: 100%;

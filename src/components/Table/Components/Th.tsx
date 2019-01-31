@@ -1,5 +1,6 @@
 import React, { ReactNode } from 'react'
-import styled, { FlattenSimpleInterpolation } from 'styled-components'
+import styled from 'styled-components'
+import { IStyledComponentProps } from '../../../interfaces/IStyledComponentProps'
 import SortIcon from './SortIcon'
 
 /**
@@ -32,7 +33,7 @@ const Th = (props: IProps) => {
   )
 }
 
-interface IProps {
+interface IProps extends IStyledComponentProps {
   heading: ReactNode
   key?: string
   _key?: string
@@ -40,7 +41,6 @@ interface IProps {
   order?: 'asc' | 'desc'
   onClick?: (key: string, order: 'asc' | 'desc') => void
   isSortable?: boolean
-  css?: FlattenSimpleInterpolation
 }
 
 const camelToUppercase = (str: string) =>
@@ -49,7 +49,7 @@ const camelToUppercase = (str: string) =>
 // Styled Components ---------
 const Base = styled.div.attrs({
   role: 'columnheader',
-})<{ css?: FlattenSimpleInterpolation }>`
+})<IStyledComponentProps>`
   display: table-cell;
   font-family: Open-Sans, sans-serif;
   padding: 10px;
@@ -57,7 +57,7 @@ const Base = styled.div.attrs({
   font-weight: bold;
   white-space: nowrap;
   vertical-align: center;
-  color: rgba(255, 255, 255, .8);
+  color: rgba(255, 255, 255, 0.8);
   flex: 1;
   ${({ css }) => css}
 `

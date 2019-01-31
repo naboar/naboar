@@ -1,5 +1,6 @@
 import React, { Component, ReactElement } from 'react'
-import styled, { FlattenSimpleInterpolation } from 'styled-components'
+import styled, { FlattenInterpolation, FlattenSimpleInterpolation } from 'styled-components'
+import { IStyledComponentProps } from '../../../interfaces/IStyledComponentProps'
 import { ITabItemProps } from '../TabItem/TabItem'
 
 /**
@@ -57,15 +58,13 @@ class Tabs extends Component<ITabsProps, ITabsState> {
   }
 }
 
-interface ITabsProps {
+interface ITabsProps extends IStyledComponentProps {
   /** Tab content */
   children: Array<ReactElement<ITabItemProps>>
   /** Function called with new key */
   onChange?: (key: number | string) => void
   /** Default active key */
   defaultActiveKey?: string | number
-  /** CSS overrides */
-  css?: FlattenSimpleInterpolation
 }
 
 interface ITabsState {
@@ -79,7 +78,7 @@ const TopBar = styled.div`
 const TopItem = styled.button<{
   isActive: boolean
   isDisabled: boolean
-  css: FlattenSimpleInterpolation
+  css?: FlattenSimpleInterpolation | FlattenInterpolation<any>
 }>`
   transition: all 0.2s;
   border: none;

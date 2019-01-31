@@ -1,12 +1,10 @@
 import React from 'react'
-import styled, { FlattenSimpleInterpolation } from 'styled-components'
+import styled from 'styled-components'
 import { IStyledComponentProps } from '../../../interfaces/IStyledComponentProps'
 
-interface IDropdownItemProps {
+interface IDropdownItemProps extends IStyledComponentProps {
   /** Children */
   children?: JSX.Element[] | JSX.Element | string
-  /** CSS styling using css from styled-components */
-  css?: FlattenSimpleInterpolation
   /** Fired click event */
   onClick?: () => void
   /** Boolean identifying wheather the item is the active one */

@@ -1,14 +1,14 @@
 import React from 'react'
-import styled, { css, FlattenSimpleInterpolation } from 'styled-components'
+import styled from 'styled-components'
 import { Button } from '../../../src'
 import { IButtonProps } from '../../components/Button/Button'
+import { IStyledComponentProps } from '../../interfaces/IStyledComponentProps'
 
 /**
  * ButtonGroup Component
  * @since v1.0.0
  * @author [Jonathan Currie](https://github.com/jbcurrie)
  */
-
 
 const ButtonGroup = (props: IButtonGroupProps) => {
   return (
@@ -18,8 +18,8 @@ const ButtonGroup = (props: IButtonGroupProps) => {
           return React.cloneElement(child, {
             // _buttonGroupClick: props.onChange,
             // _buttonGroupIndex: index,
-            isActive: child.props.value === props.activeValue
-        })
+            isActive: child.props.value === props.activeValue,
+          })
         },
       )}
     </ButtonGroupWrapper>
@@ -27,7 +27,7 @@ const ButtonGroup = (props: IButtonGroupProps) => {
 }
 
 ButtonGroup.defaultProps = {
-  activeValue: null
+  activeValue: null,
 }
 
 const ButtonGroupWrapper = styled.div<IButtonGroupWrapperProps>`
@@ -49,12 +49,10 @@ const ButtonGroupWrapper = styled.div<IButtonGroupWrapperProps>`
   }
 `
 
-interface IButtonGroupProps {
+interface IButtonGroupProps extends IStyledComponentProps {
   activeValue: string | number
   /** Button Group Child */
   children: React.ReactElement<IButtonGroupWrapperProps>
-  /** CSS styling using styled-components css */
-  css?: FlattenSimpleInterpolation
   /** onChange event trigged by button click */
   // onChange: (value: any, index: number, e: React.MouseEvent<HTMLButtonElement>) => void
 }

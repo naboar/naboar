@@ -1,5 +1,6 @@
 import React, { ReactNode } from 'react'
-import styled, { FlattenSimpleInterpolation } from 'styled-components'
+import styled from 'styled-components'
+import { IStyledComponentProps } from '../../../interfaces/IStyledComponentProps'
 
 /**
  * Tr Component
@@ -21,15 +22,14 @@ Tr.defaultProps = {
   },
 }
 
-interface IProps {
+interface IProps extends IStyledComponentProps {
   children: ReactNode
-  css?: FlattenSimpleInterpolation
   onClick?: () => void
 }
 
 const Wrapper = styled.div.attrs({
   role: 'row',
-})<{ css?: FlattenSimpleInterpolation }>`
+})<IStyledComponentProps>`
   transition: background-color 0.1s;
   display: flex;
   flex: 1;

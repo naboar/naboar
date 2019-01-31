@@ -1,5 +1,6 @@
 import React from 'react'
-import styled, { FlattenSimpleInterpolation } from 'styled-components'
+import styled from 'styled-components'
+import { IStyledComponentProps } from '../../interfaces/IStyledComponentProps'
 
 /**
  * FormElementError Component
@@ -10,9 +11,9 @@ const FormElementError = (props: IFormElementErrorProps) => (
   <StyledP {...props}>{props.text}</StyledP>
 )
 
-interface IFormElementErrorProps extends React.HTMLAttributes<HTMLParagraphElement> {
-  /** CSS Styling using css from styled-components */
-  css?: FlattenSimpleInterpolation
+interface IFormElementErrorProps
+  extends IStyledComponentProps,
+    React.HTMLAttributes<HTMLParagraphElement> {
   /** Text for label */
   text: string
 }

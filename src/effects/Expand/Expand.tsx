@@ -1,5 +1,6 @@
 import React, { ReactNode } from 'react'
-import styled, { css, FlattenSimpleInterpolation } from 'styled-components'
+import styled, { css } from 'styled-components'
+import { IStyledComponentProps } from '../../interfaces/IStyledComponentProps'
 
 /**
  * Expand Component
@@ -11,7 +12,7 @@ const Expand = (props: IProps) => (
   <Expandable {...props}>{props.children}</Expandable>
 )
 
-interface IProps {
+interface IProps extends IStyledComponentProps {
   /** One or more elements */
   children: ReactNode
   /** width or height(px) */
@@ -22,8 +23,6 @@ interface IProps {
   vertical?: boolean
   /** Whether or not the component is at full width/height */
   isExpanded?: boolean
-  /** custom css */
-  css?: FlattenSimpleInterpolation
 }
 
 const verticalStyle = css`
