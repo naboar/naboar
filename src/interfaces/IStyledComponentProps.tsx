@@ -6,7 +6,7 @@ import { ITheme } from '../theme/index'
 
 export interface IStyledComponentProps {
   /** CSS styling using css from styled-components */
-  css?: FlattenInterpolation<any> | FlattenSimpleInterpolation
+  css?: FlattenSimpleInterpolation | FlattenInterpolation<any>
   /** Theme */
   theme?: ITheme
 }
