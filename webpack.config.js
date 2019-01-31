@@ -1,6 +1,8 @@
 const path = require('path')
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+const createStyledComponentsTransformer = require('typescript-plugin-styled-components').default
+const styledComponentsTransformer = createStyledComponentsTransformer();
 
 module.exports = {
   context: __dirname,
@@ -27,7 +29,8 @@ module.exports = {
         test: /\.tsx?$/,
         loader: 'ts-loader',
         options: {
-          transpileOnly: true
+          transpileOnly: true,
+          getCustomTransformers: () => ({ before: [styledComponentsTransformer] })
         }
       },
       {
