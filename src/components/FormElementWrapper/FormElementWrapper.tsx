@@ -1,6 +1,7 @@
 import React from 'react'
-import styled, { FlattenSimpleInterpolation } from 'styled-components'
+import styled from 'styled-components'
 import { IFormElementProps } from '../../interfaces/IFormElementProps'
+import { IStyledComponentProps } from '../../interfaces/IStyledComponentProps'
 import FormElementError from '../FormElementError/FormElementError'
 import Label from '../Label/Label'
 
@@ -12,12 +13,13 @@ const FormElementWrapper = (props: IFormElementWrapperProps) => (
   </Wrapper>
 )
 
-interface IFormElementWrapperProps extends IFormElementProps {
-  css?: FlattenSimpleInterpolation
+interface IFormElementWrapperProps
+  extends IFormElementProps,
+    IStyledComponentProps {
   children?: React.ReactNode
 }
 
-const Wrapper = styled.div<{ css?: FlattenSimpleInterpolation }>`
+const Wrapper = styled.div<IStyledComponentProps>`
   ${({ css }) => css && css}
 `
 

@@ -1,5 +1,6 @@
 import React, { Component, ReactNode, SyntheticEvent  } from 'react'
 import styled, { css } from 'styled-components'
+import { IStyledComponentProps } from '../../interfaces/IStyledComponentProps'
 
 /**
  * Modal Component
@@ -36,15 +37,13 @@ class Modal extends Component<IProps> {
   }
 }
 
-interface IProps {
+interface IProps extends IStyledComponentProps {
   /** One or more elements */
   children: ReactNode
   /** Whether or not the component is at full width/height */
   shouldShow?: boolean
   /** What happens when you click the outside */
   onOuterClick: () => void
-  /** Custom CSS */
-  css?: string[]
 }
 
 const hiddenStyle = css`

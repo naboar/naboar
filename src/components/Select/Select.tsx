@@ -1,5 +1,5 @@
 import React from 'react'
-import styled, { FlattenSimpleInterpolation } from 'styled-components'
+import styled, { FlattenInterpolation, FlattenSimpleInterpolation } from 'styled-components'
 import { IFormElementProps, IStyledComponentProps } from '../../interfaces'
 import FormElementWrapper from '../FormElementWrapper/FormElementWrapper'
 import { IconIOS } from '../Icon'
@@ -37,7 +37,7 @@ const Select = (props: ISelectProps) => (
 )
 
 const Wrapper = styled.div<{
-  css?: FlattenSimpleInterpolation
+  css?: FlattenSimpleInterpolation | FlattenInterpolation<any>
   errorMessage?: string
   outline?: boolean
 }>`

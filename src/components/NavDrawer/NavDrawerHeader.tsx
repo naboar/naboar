@@ -1,7 +1,6 @@
 import React from 'react'
-import styled, { css, FlattenSimpleInterpolation } from 'styled-components'
+import styled, { css } from 'styled-components'
 import { IStyledComponentProps } from '../../interfaces/IStyledComponentProps'
-import { ITheme } from '../../theme'
 import { iOS } from '../Icon'
 import NavDrawerLink from './NavDrawerLink'
 
@@ -30,9 +29,7 @@ const NavDrawerHeader = (props: INavDrawerHeaderProps) => {
 /**
  * NavDrawerHeader prop interface
  */
-export interface INavDrawerHeaderProps {
-  /** Custom CSS */
-  css?: FlattenSimpleInterpolation
+export interface INavDrawerHeaderProps extends IStyledComponentProps {
   /** Toggle input clickability */
   disabled?: boolean
   /** Expanded width */
@@ -65,10 +62,5 @@ const linkStyle = (props: IStyledComponentProps) => css`
 
   ${props.css ? props.css : ''}
 `
-
-interface IProps {
-  css?: FlattenSimpleInterpolation
-  theme: ITheme
-}
 
 export default NavDrawerHeader

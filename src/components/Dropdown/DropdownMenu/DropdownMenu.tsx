@@ -1,11 +1,10 @@
 import React from 'react'
-import styled, { FlattenSimpleInterpolation } from 'styled-components'
+import styled from 'styled-components'
+import { IStyledComponentProps } from '../../../interfaces/IStyledComponentProps'
 
-interface IDropdownMenuProps {
+interface IDropdownMenuProps extends IStyledComponentProps {
   /** Children */
-  children?: JSX.Element[] | JSX.Element | string,
-  /** CSS styling using css from styled-components */
-  css?: FlattenSimpleInterpolation
+  children?: JSX.Element[] | JSX.Element | string
   /** Boolean identifying wheather the item is the active one */
   isActive?: boolean
   /** Boolean identifying wheather the item is disabled or not */
@@ -41,9 +40,7 @@ const StyledDropdownMenu = styled.div`
   ${({ css }: IProps) => css && css}
 `
 
-interface IProps {
-  /** CSS styling use css from styled-components */
-  css?: FlattenSimpleInterpolation
+interface IProps extends IStyledComponentProps {
   /** Boolean identifying wheather the item is the active one */
   isActive?: boolean
   /** Boolean identifying wheather the item is disabled or not */

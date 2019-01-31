@@ -1,5 +1,6 @@
 import React, { ReactNode } from 'react'
-import styled, { FlattenSimpleInterpolation } from 'styled-components'
+import styled from 'styled-components'
+import { IStyledComponentProps } from '../../../interfaces/IStyledComponentProps'
 
 /**
  * Td Component
@@ -11,13 +12,12 @@ const Td = (props: IProps) => {
   return <Wrapper css={props.css}>{props.children}</Wrapper>
 }
 
-interface IProps {
-  css?: FlattenSimpleInterpolation
+interface IProps extends IStyledComponentProps {
   children: ReactNode
 }
 
 // Styled Components ---------
-const Wrapper = styled.div<{ css?: FlattenSimpleInterpolation }>`
+const Wrapper = styled.div<IStyledComponentProps>`
   display: table-cell;
   padding: 10px;
   font-size: 16px;

@@ -1,5 +1,8 @@
 import React from 'react'
-import styled, { FlattenSimpleInterpolation, keyframes } from 'styled-components'
+import styled, {
+  keyframes,
+} from 'styled-components'
+import { IStyledComponentProps } from '../../interfaces/IStyledComponentProps'
 
 /**
  * Datalist Component
@@ -7,7 +10,7 @@ import styled, { FlattenSimpleInterpolation, keyframes } from 'styled-components
  * @author [Jonathan Currie](https://github.com/jbcurrie)
  */
 
-const Spinner = (props: ISpinnerProps) => {
+const Spinner = (props: IStyledComponentProps) => {
   return (
     <SpinnerContainer css={props.css}>
       <SvgElement viewBox={'25 25 50 50'}>
@@ -15,11 +18,6 @@ const Spinner = (props: ISpinnerProps) => {
       </SvgElement>
     </SpinnerContainer>
   )
-}
-
-interface ISpinnerProps {
-  /** CSS styling using css from styled-components */
-  css?: FlattenSimpleInterpolation
 }
 
 const opacityChange = keyframes`
@@ -50,14 +48,12 @@ const dash = keyframes`
   }
 `
 
-const SpinnerContainer = styled.div<{
-  css?: FlattenSimpleInterpolation
-}>`
+const SpinnerContainer = styled.div<IStyledComponentProps>`
   display: flex;
-  align-items:center;
-  justify-content:center;
+  align-items: center;
+  justify-content: center;
   z-index: 1;
-  animation: ${opacityChange} .3s ease-in-out fowards;
+  animation: ${opacityChange} 0.3s ease-in-out fowards;
   ${props => props.css}
 `
 const SvgElement = styled.svg`
