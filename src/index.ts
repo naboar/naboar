@@ -49,12 +49,23 @@ import Themer, { theme } from './theme'
  * Import effects
  */
 import Expand from './effects/Expand/'
+import Fade from './effects/Fade'
 import Modal from './effects/Modal/'
 
 /**
  * Import Viz
  */
 import BulletChart from './viz/BulletChart/'
+
+/**
+ * Interfaces
+ */
+import {
+  iOS as IconIOSTypes,
+  logo as IconLogoTypes,
+  md as IconMDTypes,
+} from './components/Icon/IconTypes'
+import { IFormElementProps, IStyledComponentProps } from './interfaces/'
 
 export {
   Badge,
@@ -69,12 +80,18 @@ export {
   DropdownMenu,
   DropdownNode,
   ErrorModal,
+  Fade,
   FormElementError,
   FormElementWrapper,
   IconIOS,
   IconLogo,
   IconMD,
+  IconIOSTypes,
+  IconMDTypes,
+  IconLogoTypes,
+  IFormElementProps,
   Input,
+  IStyledComponentProps,
   Label,
   NavBar,
   NavBarDivider,

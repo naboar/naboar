@@ -31,7 +31,7 @@ interface IDatalistProps extends React.HTMLAttributes<HTMLDataListElement> {
   /** onChange - same event handler as input */
   onChange?: (e: React.ChangeEvent<HTMLDataListElement>) => void
   /** children - Option Array */
-  children: Array<React.ReactElement<HTMLOptionElement>>
+  children: React.ReactElement<HTMLOptionElement> | Array<React.ReactElement<HTMLOptionElement>>
 }
 
 interface IWrapperProps {

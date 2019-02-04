@@ -1,5 +1,6 @@
 import React, { Component, ReactNode, SyntheticEvent } from 'react'
 import styled, { css, keyframes } from 'styled-components'
+import { IStyledComponentProps } from '../../interfaces/IStyledComponentProps'
 
 type foo = 'left' | 'top' | 'right' | 'bottom'
 /**
@@ -11,7 +12,7 @@ type foo = 'left' | 'top' | 'right' | 'bottom'
 const Fade = (props: IProps) => (
   <StyledFade {...props}>{props.children}</StyledFade>
 )
-interface IProps {
+interface IProps extends IStyledComponentProps {
   /** One or more elements */
   children: ReactNode
   /** How far off is the component */
@@ -66,6 +67,7 @@ const StyledFade = styled.div`
   opacity: 0;
   ${({ from }: IProps) => getFrom(from)}
   ${(props: IProps) => (props.shouldShow && animString)}
+  ${(props: IProps) => props.css}
 `
 
 export default Fade
