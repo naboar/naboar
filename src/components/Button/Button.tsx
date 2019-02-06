@@ -55,7 +55,7 @@ export interface IButtonProps
   extends IStyledComponentProps,
     React.HTMLAttributes<HTMLButtonElement> {
   /** component children */
-  children: JSX.Element | string
+  children: React.ReactNode
   /** active if Button value matches ButtonGroup activeValue */
   isActive?: boolean
   /** onClick callback */
