@@ -17,7 +17,7 @@ export interface ITabItemProps {
   /** Title of tab */
   title: string
   /** unique identifier for TabItem */
-  key: string | number
+  key: string
   /** Is this tab disabled */
   isDisabled?: boolean
   /** @ignore */

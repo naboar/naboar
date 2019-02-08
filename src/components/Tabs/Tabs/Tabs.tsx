@@ -1,5 +1,8 @@
 import React, { Component, ReactElement } from 'react'
-import styled, { FlattenInterpolation, FlattenSimpleInterpolation } from 'styled-components'
+import styled, {
+  FlattenInterpolation,
+  FlattenSimpleInterpolation,
+} from 'styled-components'
 import { IStyledComponentProps } from '../../../interfaces/IStyledComponentProps'
 import { ITabItemProps } from '../TabItem/TabItem'
 
@@ -11,64 +14,41 @@ import { ITabItemProps } from '../TabItem/TabItem'
  * @since v1.0.0
  * @author [Anthony Freda](https://github.com/Afreda323)
  */
-class Tabs extends Component<ITabsProps, ITabsState> {
-  state: ITabsState = {
-    activeKey: this.props.defaultActiveKey || 0,
-  }
+const Tabs = (props: ITabsProps) => {
+  const { children, css } = props
 
-  componentWillMount() {
-    if (!this.props.defaultActiveKey) {
-      this.setState({ activeKey: this.props.children[0].key })
-    }
-  }
-
-  handleChange = (key: string | number) => {
-    this.setState({ activeKey: key })
-
-    if (this.props.onChange) {
-      this.props.onChange(key)
-    }
-  }
-
-  render() {
-    const { children, css } = this.props
-    return (
-      <Wrapper>
-        <TopBar>
-          {this.props.children.map((item, i) => (
-            <TopItem
-              key={`item_${i}_${item.key}`}
-              id={`item_${i}_${item.key}`}
-              isActive={item.key === this.state.activeKey}
-              isDisabled={item.props.isDisabled}
-              onClick={() => this.handleChange(item.key)}
-              css={css}
-            >
-              {item.props.title}
-            </TopItem>
-          ))}
-        </TopBar>
-        {React.Children.map(children, (child, i) =>
-          React.cloneElement(child, {
-            isActive: this.state.activeKey === child.key,
-          }),
-        )}
-      </Wrapper>
-    )
-  }
+  return (
+    <Wrapper>
+      <TopBar>
+        {props.children.map((item, i) => (
+          <TopItem
+            key={`item_${i}_${item.key}`}
+            id={`item_${i}_${item.key}`}
+            isActive={item.key === props.activeKey}
+            isDisabled={item.props.isDisabled}
+            onClick={() => props.onChange(String(item.key))}
+            css={css}
+          >
+            {item.props.title}
+          </TopItem>
+        ))}
+      </TopBar>
+      {React.Children.map(children, (child, i) =>
+        React.cloneElement(child, {
+          isActive: props.activeKey === child.key,
+        }),
+      )}
+    </Wrapper>
+  )
 }
 
 interface ITabsProps extends IStyledComponentProps {
   /** Tab content */
   children: Array<ReactElement<ITabItemProps>>
   /** Function called with new key */
-  onChange?: (key: number | string) => void
-  /** Default active key */
-  defaultActiveKey?: string | number
-}
-
-interface ITabsState {
-  activeKey: string | number
+  onChange?: (key: string) => void
+  /** Active key */
+  activeKey?: string
 }
 
 const Wrapper = styled.div``
