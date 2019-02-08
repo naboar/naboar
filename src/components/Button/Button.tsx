@@ -37,7 +37,7 @@ const StyledButton = styled.button<IButtonProps>`
   &:active {
     box-shadow: none;
   }
-  ${({ theme }) => `
+  ${({ theme, css }) => `
     padding: ${theme.spacing.base}px;
     border-radius: ${theme.shape.borderRadius};
     box-shadow: ${theme.shadows[1]};
@@ -45,8 +45,8 @@ const StyledButton = styled.button<IButtonProps>`
       opacity: 0.5;
       cursor: default;
     }
+    ${css ? css : ''}
   `}
-  ${({ css }) => css && css}
 `
 
 type ButtonTypes = 'button' | 'reset' | 'submit'
@@ -55,7 +55,7 @@ export interface IButtonProps
   extends IStyledComponentProps,
     React.HTMLAttributes<HTMLButtonElement> {
   /** component children */
-  children: JSX.Element | string
+  children: React.ReactNode
   /** active if Button value matches ButtonGroup activeValue */
   isActive?: boolean
   /** onClick callback */
