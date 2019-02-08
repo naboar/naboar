@@ -33,7 +33,7 @@ interface IProps extends IFormElementProps {
   onChange?: (newVal?: boolean, e?: ChangeEvent<HTMLInputElement>) => void
 }
 
-const Wrapper = styled.label<{ disabled: boolean, errorMessage?: string }>`
+const Wrapper = styled.label<{ disabled: boolean, errorMessage?: string | boolean }>`
   ${({ disabled, errorMessage, theme  }) => `
     position: relative;
     display: inline-block;

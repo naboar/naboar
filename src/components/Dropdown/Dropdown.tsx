@@ -12,7 +12,7 @@ interface IState {
 
 interface IProps extends IFormElementProps, IStyledComponentProps {
   /** Text displayed inside of the button */
-  children?: JSX.Element[] | JSX.Element | string
+  children?: React.ReactNode
   /** Toggle button clickability */
   isActive?: boolean
   /** Event fired on click */

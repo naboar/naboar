@@ -8,14 +8,16 @@ import { IStyledComponentProps } from '../../interfaces/IStyledComponentProps'
  * @author Tracey King
  */
 const FormElementError = (props: IFormElementErrorProps) => (
-  <StyledP {...props}>{props.text}</StyledP>
+    (typeof props.error === 'string')
+      ? <StyledP {...props}>{props.error}</StyledP>
+      : null
 )
 
 interface IFormElementErrorProps
   extends IStyledComponentProps,
     React.HTMLAttributes<HTMLParagraphElement> {
   /** Text for label */
-  text: string
+  error: string | boolean
 }
 
 const StyledP = styled.p<IFormElementErrorProps>`
