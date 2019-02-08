@@ -95,6 +95,7 @@ const MainButton = styled(StyledButton)`
     }
     ${isActive && `background:${theme.palette.primary.dark}; `}
   `}
+  ${({ css }) => css && css}
 `
 const SecondaryButton = styled(StyledButton)`
   ${({ theme }) => `
@@ -110,6 +111,7 @@ const SecondaryButton = styled(StyledButton)`
       }
     }
   `}
+  ${({ css }) => css && css}
 `
 const DangerButton = styled(StyledButton)`
   ${({ theme, isActive }) => `
@@ -128,6 +130,7 @@ const DangerButton = styled(StyledButton)`
     }
     ${isActive && `background:${theme.palette.common.red}; `}
   `}
+  ${({ css }) => css && css}
 `
 
 const MainInverse = styled(StyledButton)`
@@ -144,6 +147,7 @@ const MainInverse = styled(StyledButton)`
       }
     }
   `}
+  ${({ css }) => css && css}
 `
 Button.Main = MainButton
 Button.MainInverse = MainInverse

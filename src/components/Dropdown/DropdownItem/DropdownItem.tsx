@@ -4,7 +4,7 @@ import { IStyledComponentProps } from '../../../interfaces/IStyledComponentProps
 
 interface IDropdownItemProps extends IStyledComponentProps {
   /** Children */
-  children?: JSX.Element[] | JSX.Element | string
+  children?: React.ReactNode
   /** Fired click event */
   onClick?: () => void
   /** Boolean identifying wheather the item is the active one */

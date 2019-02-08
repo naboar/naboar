@@ -9,7 +9,7 @@ const FormElementWrapper = (props: IFormElementWrapperProps) => (
   <Wrapper css={props.css}>
     {props.label && <Label text={props.label} htmlFor={props.name} />}
     {props.children}
-    {props.errorMessage && <FormElementError text={props.errorMessage} />}
+    {props.errorMessage && <FormElementError error={props.errorMessage} />}
   </Wrapper>
 )
 
