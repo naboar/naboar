@@ -38,7 +38,7 @@ const Select = (props: ISelectProps) => (
 
 const Wrapper = styled.div<{
   css?: FlattenSimpleInterpolation | FlattenInterpolation<any>
-  errorMessage?: string
+  errorMessage?: string | boolean
   outline?: boolean
 }>`
   ${({ css, errorMessage, theme, outline }) => `
