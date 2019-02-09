@@ -10,7 +10,7 @@ import { IStyledComponentProps } from '../../../interfaces/IStyledComponentProps
 
 interface IDropdownNodeProps extends IStyledComponentProps {
   /** Children */
-  children?: JSX.Element[] | JSX.Element | string
+  children?: React.ReactNode
   /** Boolean identifying wheather the item is the active one */
   isActive?: boolean
   /** Boolean identifying wheather the item is disabled or not */

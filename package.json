@@ -1,6 +1,6 @@
 {
   "name": "naboar-ui",
-  "version": "1.2.5",
+  "version": "1.2.6",
   "description": "Component Lib",
   "main": "lib/index.js",
   "files": [
