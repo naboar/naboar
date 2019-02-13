@@ -31,7 +31,7 @@ export interface INavBarLinkProps extends IStyledComponentProps {
 }
 
 const Wrapper = styled.div`
-  ${({ css, isActive, theme }: INavBarLinkProps) => `
+  ${({ isActive, theme }: INavBarLinkProps) => `
     transition: background-color .2s;
     align-items: center;
     background: ${isActive ? theme.palette.primary.main : 'transparent'};
@@ -47,9 +47,8 @@ const Wrapper = styled.div`
       cursor: pointer;
       background: ${theme.palette.primary.main};
     }
-
-    ${css ? css : ''}
   `}
+  ${({ css }) => css}
 `
 
 export default NavBarLink

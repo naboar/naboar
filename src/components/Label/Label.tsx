@@ -21,14 +21,13 @@ interface IStyledLabelProps
 }
 
 const StyledLabel = styled.label<IStyledLabelProps>`
-  ${({ css, theme }) => `
+  ${({ theme }) => `
     font-size: 16px;
     color: ${theme.palette.common.white};
     margin: ${theme.spacing.base}px 0;
     display: block;
-
-    ${css ? css : ''}
   `}
+  ${({ css }) => css}
 `
 
 export default Label

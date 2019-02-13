@@ -105,7 +105,7 @@ const Wrapper = styled.div<{
   disabled: boolean
   outline?: boolean
 }>`
-  ${({ css, isErrored, theme, outline }) => `
+  ${({ isErrored, theme, outline }) => `
     background: ${theme.palette.secondary.light};
     border-radius: ${theme.shape.borderRadius};
     color: ${theme.palette.common.white};
@@ -139,8 +139,8 @@ const Wrapper = styled.div<{
           };`
         : ''
     }
-    ${css ? css : ''}
   `}
+  ${({ css }) => css}
 `
 
 const clearIconStyle = [
