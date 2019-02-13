@@ -134,7 +134,7 @@ class NavBar extends React.Component<IProps, IState> {
 }
 
 const Wrapper = styled.div<IStyledProps>`
-  ${({ css, isMenuVisible, theme }) => `
+  ${({ isMenuVisible, theme }) => `
     background-color: ${theme.palette.secondary.dark};
     color: ${theme.palette.common.white};
     height: 100%;
@@ -142,9 +142,8 @@ const Wrapper = styled.div<IStyledProps>`
     flex-direction: row;
     justify-content: space-between;
     overflow: ${isMenuVisible ? 'visible' : 'hidden'};
-
-    ${css ? css : ''}
   `}
+  ${({ css }) => css}
 `
 
 const NavLinksWrapper = styled.div`

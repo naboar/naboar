@@ -72,11 +72,11 @@ class NavDrawer extends React.Component<IProps, IState> {
 }
 
 const Wrapper = styled.div<IStyledComponentProps>`
-  ${({ css, theme }) => `
+  ${({ theme }) => `
     background-color: ${theme.palette.secondary.dark};
     color: ${theme.palette.common.white};
     height: 100%;
-    ${css ? css : ''}
   `}
+  ${({ css }) => css}
 `
 export default NavDrawer

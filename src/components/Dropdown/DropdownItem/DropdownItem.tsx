@@ -28,7 +28,7 @@ const DropdownItem = (props: IDropdownItemProps) => (
 )
 
 const StyledDropdownItem = styled.div<IProps>`
-  ${({ css, isActive, isDisabled, theme }: IProps) => `
+  ${({ isActive, isDisabled, theme }: IProps) => `
     padding: ${theme.spacing.base}px;
     font-size: 16px;
     cursor: pointer;
@@ -59,9 +59,8 @@ const StyledDropdownItem = styled.div<IProps>`
       border-bottom: none;
       border-radius: 0 0 2px 2px;
     }
-
-    ${css ? css : ''}
   `}
+  ${({ css }) => css}
 `
 
 interface IProps extends IStyledComponentProps {

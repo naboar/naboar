@@ -45,8 +45,8 @@ const StyledButton = styled.button<IButtonProps>`
       opacity: 0.5;
       cursor: default;
     }
-    ${css ? css : ''}
   `}
+  ${({ css }) => css}
 `
 
 type ButtonTypes = 'button' | 'reset' | 'submit'

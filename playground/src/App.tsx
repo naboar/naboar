@@ -76,7 +76,7 @@ class App extends Component {
             <DropdownItem onClick={() => alert('Item Two')}>
               Item Two
             </DropdownItem>
-            <DropdownItem>Item Three</DropdownItem>
+            <DropdownItem css={dropdownItemCss}>Item Three</DropdownItem>
             <DropdownItem>Item Four</DropdownItem>
           </DropdownMenu>
         </Dropdown>
@@ -187,8 +187,12 @@ const selectStyles = css`
   width: 300px;
   select,
   i {
-    color: black;
+    color: white;
   }
+`
+
+const dropdownItemCss = css`
+  background-color: ${({ theme }) => theme.palette.common.black};
 `
 
 export default App

@@ -21,13 +21,12 @@ interface IFormElementErrorProps
 }
 
 const StyledP = styled.p<IFormElementErrorProps>`
-  ${({ css, theme }) => `
+  ${({ theme }) => `
     font-size: 16px;
     color: ${theme.palette.common.red};
     margin: ${theme.spacing.base}px 0;
-
-    ${css ? css : ''}
   `}
+  ${({ css }) => css}
 `
 
 export default FormElementError

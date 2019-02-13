@@ -71,7 +71,7 @@ interface INavDrawerLinkProps extends IStyledComponentProps {
 }
 
 const Wrapper = styled.div`
-  ${({ css, isActive, theme }: IProps) => `
+  ${({ isActive, theme }: IProps) => `
     transition: background-color .2s;
     align-items: center;
     background: ${isActive ? theme.palette.primary.main : 'transparent'};
@@ -83,9 +83,8 @@ const Wrapper = styled.div`
       background: ${theme.palette.primary.main};
       cursor: pointer;
     }
-
-    ${css ? css : ''}
   `}
+  ${({ css }) => css}
 `
 
 const iconStyle = [`

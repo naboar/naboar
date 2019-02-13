@@ -25,7 +25,7 @@ const DropdownNode = (props: IDropdownNodeProps) => (
 )
 
 const StyledDropdownNode = styled.div<IStyledComponentProps>`
-  ${({ css, theme }) => `
+  ${({ theme }) => `
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -36,9 +36,9 @@ const StyledDropdownNode = styled.div<IStyledComponentProps>`
     box-sizing: border-box;
     color: ${theme.palette.common.white};
     background-color: ${theme.palette.primary.main};
-
-    ${css ? css : ''}
   `}
+
+  ${({ css }) => css}
 `
 
 export default DropdownNode

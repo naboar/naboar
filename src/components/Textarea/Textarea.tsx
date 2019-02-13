@@ -24,11 +24,12 @@ interface IStyledTextareaProps
     IStyledComponentProps {
   /** Fired onChange event */
   onChange?: (e?: React.ChangeEvent<HTMLTextAreaElement>) => void
+  rows?: number
   variant?: 'primary' | 'secondary' | 'tertiary'
 }
 
 const StyledTextarea = styled.textarea<IStyledTextareaProps>`
-  ${({ css, errorMessage, theme }) => `
+  ${({ errorMessage, theme }) => `
     font-size: 16px;
     margin: 5px 0;
     display: block;
@@ -39,10 +40,14 @@ const StyledTextarea = styled.textarea<IStyledTextareaProps>`
     width: 100%;
     border: none;
     border-radius: ${theme.shape.borderRadius};
+    ::placeholder {
+      color: ${theme.palette.common.white};
+      opacity: .4;
+    }
 
-    ${css ? css : ''};
     ${errorMessage ? `background: ${theme.palette.common.red};` : ''};
   `}
+  ${({ css }) => css}
 `
 
 export default Textarea

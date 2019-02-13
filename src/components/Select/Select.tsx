@@ -41,7 +41,7 @@ const Wrapper = styled.div<{
   errorMessage?: string | boolean
   outline?: boolean
 }>`
-  ${({ css, errorMessage, theme, outline }) => `
+  ${({ errorMessage, theme, outline }) => `
     border-radius: ${theme.shape.borderRadius};
     background: ${theme.palette.secondary.light};
     position: relative;
@@ -57,9 +57,8 @@ const Wrapper = styled.div<{
           };`
         : ''
     }
-
-    ${css ? css : ''}
   `}
+  ${({ css }) => css}
 `
 
 const StyledSelect = styled.select`
