@@ -20,7 +20,7 @@ const Thead = ({
   return <Wrapper css={css}>{children}</Wrapper>
 }
 
-const Wrapper = styled.div<{
+const Wrapper = styled.thead<{
   css?: FlattenSimpleInterpolation | FlattenInterpolation<any>
 }>`
   display: flex;

@@ -47,7 +47,7 @@ const camelToUppercase = (str: string) =>
   str.replace(/([A-Z])/g, ' $1').replace(/^./, s => s.toUpperCase())
 
 // Styled Components ---------
-const Base = styled.div.attrs({
+const Base = styled.th.attrs({
   role: 'columnheader',
 })<IStyledComponentProps>`
   display: table-cell;
