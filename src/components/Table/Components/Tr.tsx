@@ -27,7 +27,7 @@ interface IProps extends IStyledComponentProps {
   onClick?: () => void
 }
 
-const Wrapper = styled.div.attrs({
+const Wrapper = styled.tr.attrs({
   role: 'row',
 })<IStyledComponentProps>`
   transition: background-color 0.1s;

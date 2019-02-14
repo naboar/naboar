@@ -32,7 +32,9 @@ interface ICell {
 #### Example
 
 ```js
-const fakeData = { isChecked: false, 1: "test", 2: "test", 3: "test", 4: "test", 5: "test" }
+const Th = require('./Components/Th')
+const Td = require('./Components/Td')
+const fakeData = { isChecked: false, 1: "test", 2: "test", 3: "test", 4: "test", 5: "test",6: "test",7: "test" }
 
 initialState = {
   sort: "",
@@ -47,13 +49,16 @@ initialState = {
 
   columns: [
     {key: "isChecked", heading: "headerTest"},
-    {key: "1", heading: "headerTest"},
+    {key: "1", heading: "headerTest",},
     {key: "2", heading: "headerTest"},
     {key: "3", heading: "headerTest"},
     {key: "4", heading: "headerTest"},
     {key: "5", heading: "headerTest"},
+    {key: "6", heading: "headerTest"},
+    {key: "7", heading: "headerTest"},
   ],
-  data: [fakeData, fakeData, fakeData, fakeData]
+  data: [fakeData, fakeData, fakeData, fakeData],
+  selectValue: undefined
 }
 
 // Helpers for updating state ---
@@ -72,9 +77,11 @@ const handleAllCheckboxes = () =>
 ;
 
 <>
+<div>
 <h1 style={{ margin: '0 0 8px', color: 'white', fontSize: 16 }}>
   Basic Usage:
 </h1>
+
 <Table 
   columns={state.columns}
   data={state.data}
@@ -82,7 +89,8 @@ const handleAllCheckboxes = () =>
   onCheckbox={handleCheckbox}
   onRowClick={console.log}
 />
-
+</div>
+<div>
 <h1 style={{ margin: '24px 0 8px', color: 'white', fontSize: 16 }}>
   With Controls:
 </h1>
@@ -113,6 +121,13 @@ const handleAllCheckboxes = () =>
   showLimit
   limit={state.limit}
   onLimitChange={(limit) => setState({ limit })}
+
+  showCustomSelect
+  onSelectChange={(e)=> setState({selectValue: e.target.value})}
+  selectLabel={'Custom List:'}
+  selectValue={state.selectValue}
+  selectList={[{text: 'option 1', value: '1'},{text: 'option 2', value: '2'}]}
 />
+</div>
 </>
 ```

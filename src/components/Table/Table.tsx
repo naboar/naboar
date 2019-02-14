@@ -9,7 +9,6 @@ import Td from './Components/Td'
 import Th from './Components/Th'
 import Thead from './Components/Thead'
 import Tr from './Components/Tr'
-
 /**
  * Table Component
  *
@@ -26,8 +25,10 @@ class Table extends Component<IProps> {
     onLimitChange: () => undefined,
     onRowClick: () => undefined,
     onSearchChange: () => undefined,
+    onSelectChange: () => undefined,
     onSort: () => undefined,
     onUpdatePage: () => undefined,
+    selectLabel: 'Select:',
   }
 
   /** call props onSort  */
@@ -55,7 +56,7 @@ class Table extends Component<IProps> {
     this.props.onUpdatePage(page)
   }
 
-  /** call props onSeaechChange  */
+  /** call props onSearchChange  */
   handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     this.props.onSearchChange(e.target.value)
   }
@@ -70,6 +71,9 @@ class Table extends Component<IProps> {
     this.props.onLimitChange(e.target.value)
   }
 
+  handleSelectChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    this.props.onSelectChange(e)
+  }
   /**
    * Render table headers using either the
    * key/heading or custom renderHeading method
@@ -182,59 +186,106 @@ class Table extends Component<IProps> {
   render() {
     return (
       <Wrapper>
-        <Controls>
-          {this.props.showSearch && (
-            <Input
-              name="table_search"
-              iconName="search"
-              value={this.props.term}
-              onChange={this.handleSearchChange}
-              type="text"
-              canClear={this.props.term !== ''}
-              onClear={() => this.props.onSearchChange('')}
-              outline={true}
-            />
-          )}
-          {this.props.showDatePicker && (
-            <DatePicker
-              name="datapicker"
-              isRangePicker={true}
-              onChange={this.handleDateChange}
-              since={this.props.since}
-              until={this.props.until}
-              outline={true}
-            />
-          )}
+        <table>
+          <tbody>
+            <Tr css={toolbarCss}>
+              <Td>
+                <Controls>
+                  {this.props.showSearch && (
+                    <ElementWrapper>
+                      <Input
+                        name="table_search"
+                        iconName="search"
+                        value={this.props.term}
+                        onChange={this.handleSearchChange}
+                        type="text"
+                        canClear={this.props.term !== ''}
+                        onClear={() => this.props.onSearchChange('')}
+                        outline={true}
+                        css={tableInputCss}
+                      />
+                    </ElementWrapper>
+                  )}
+                  {this.props.showDatePicker && (
+                    <ElementWrapper>
+                      <DatePicker
+                        name="datepicker"
+                        isRangePicker={true}
+                        onChange={this.handleDateChange}
+                        since={this.props.since}
+                        until={this.props.until}
+                        outline={true}
+                      />
+                    </ElementWrapper>
+                  )}
 
-          {this.props.showLimit && (
-            <LimitWrap>
-              <span style={{ marginRight: 8 }}>Show:</span>{' '}
-              <Select
-                name={'limit'}
-                onChange={this.handleLimitChange}
-                outline={true}
-              >
-                <option value={10}>10</option>
-                <option value={25}>25</option>
-                <option value={50}>50</option>
-                <option value={100}>100</option>
-              </Select>
-            </LimitWrap>
-          )}
-        </Controls>
+                  {this.props.showLimit && (
+                    <ElementWrapper>
+                      <LimitWrap>
+                        <span style={{ marginRight: 8 }}>Show:</span>{' '}
+                        <Select
+                          name={'limit'}
+                          onChange={this.handleLimitChange}
+                          outline={true}
+                        >
+                          <option value={10}>10</option>
+                          <option value={25}>25</option>
+                          <option value={50}>50</option>
+                          <option value={100}>100</option>
+                        </Select>
+                      </LimitWrap>
+                    </ElementWrapper>
+                  )}
 
-        {this.renderHead()}
-        {this.renderData()}
-        {this.props.showPagination && (
-          <PaginationWrap>
-            <Pagination
-              page={this.props.page}
-              pageCount={this.props.pageCount}
-              onClick={this.handleUpdatePage}
-              showEllipses={true}
-            />
-          </PaginationWrap>
-        )}
+                  {this.props.showCustomSelect && (
+                    <ElementWrapper>
+                      <CustomSelectWrap>
+                        <span style={{ marginRight: 8, whiteSpace: 'nowrap' }}>
+                          {this.props.selectLabel}
+                        </span>{' '}
+                        <Select
+                          name={'customSelect'}
+                          onChange={this.handleSelectChange}
+                          value={this.props.selectValue}
+                          outline={true}
+                        >
+                          {this.props.selectList.map((option, i) => {
+                            return (
+                              <option
+                                key={option.key ? option.key : i}
+                                value={option.value}
+                              >
+                                {option.text}
+                              </option>
+                            )
+                          })}
+                        </Select>
+                      </CustomSelectWrap>
+                    </ElementWrapper>
+                  )}
+                </Controls>
+              </Td>
+            </Tr>
+          </tbody>
+          {this.renderHead()}
+          <tbody>{this.renderData()}</tbody>
+          <tbody>
+            <Tr>
+              <Td>
+                {this.props.showPagination && (
+                  <PaginationWrap>
+                    <Pagination
+                      page={this.props.page}
+                      pageCount={this.props.pageCount}
+                      onClick={this.handleUpdatePage}
+                      showEllipses={true}
+                    />
+                  </PaginationWrap>
+                )}
+              </Td>
+            </Tr>
+          </tbody>
+        </table>
       </Wrapper>
     )
   }
@@ -314,22 +365,38 @@ interface IProps {
   onLimitChange?: (limit: number | string) => void
   /** current limit */
   limit?: number | string
+  /** whether or not to show a custom select filter */
+  showCustomSelect?: boolean
+  /** custom select label */
+  selectLabel: string
+  /** called when custom select option is clicked */
+  onSelectChange: (e?: React.ChangeEvent<HTMLSelectElement>) => void
+  /** dropdown list */
+  selectList?: Array<{ key?: string; text: string; value: string }>
+  /** value shown in select dropdown */
+  selectValue?: any
 }
 
 // Styled Components -----
 const Wrapper = styled.div.attrs({
   role: 'table',
 })`
-  width: 100%;
+  overflow-y: hidden;
   overflow-x: auto;
-  border-collapse: collapse;
+  width: 100%;
   background: #222;
 `
 const Controls = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
+  flex-wrap: wrap;
+`
+const ElementWrapper = styled.div`
+  flex: 1;
+  width: 100%;
   margin-bottom: 8px;
+  margin: 8px;
 `
 const PaginationWrap = styled.div`
   display: flex;
@@ -344,5 +411,20 @@ const LimitWrap = styled.div`
   font-family: Open-Sans, sans-serif;
   color: rgba(255, 255, 255, 0.8);
   width: 135px;
+`
+
+const CustomSelectWrap = styled(LimitWrap)`
+  min-width: 256px;
+  max-width: 612px;
+`
+
+const tableInputCss = css`
+  min-width: 256px;
+`
+
+const toolbarCss = css`
+:hover {
+  background-color: initial;
+}
 `
 export default Table

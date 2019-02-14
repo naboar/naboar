@@ -18,15 +18,49 @@ import {
   NavDrawerDivider,
   NavDrawerLink,
   Select,
+  Table,
+  Td,
   Textarea,
+  Th,
   Tooltip,
 } from '../../src'
 
+const fakeData = {
+  isChecked: false,
+  1: 'test',
+  2: 'test',
+  3: 'double test',
+  4: 'test',
+  5: 'test',
+  6: 'test',
+  7: 'test',
+}
 class App extends Component {
   state = {
     activeIndex: 0,
+    columns: [
+      {
+        heading: 'headerTest',
+        key: 'isChecked',
+      },
+      {
+        isSortable: true,
+        key: '1',
+        renderCell: (data, index, row) => {
+        return (<Td>{row[0]['3']}</Td>)},
+        renderHeading: () => (<Th heading={'Header Test'} />),
+      },
+      { key: '2', heading: 'headerTest' },
+      { key: '3', heading: 'headerTest' },
+      { key: '4', heading: 'headerTest' },
+      { key: '5', heading: 'headerTest' },
+      { key: '6', heading: 'headerTest' },
+      { key: '7', heading: 'headerTest' },
+    ],
+    data: [fakeData, fakeData, fakeData, fakeData],
     datalistValue: '',
     notifs: [],
+    selectValue: undefined,
     text: 'Clear Me',
   }
 
@@ -37,7 +71,6 @@ class App extends Component {
 
   render() {
     const example = ['one', 'two', 'three']
-    const { log } = console
     return (
       <div>
         <NavBar onClick={() => alert('redirect')} title={'Dashboard'}>
@@ -160,6 +193,22 @@ class App extends Component {
             </Datalist.Option>
           ))}
         </Datalist>
+        <Table
+          columns={this.state.columns}
+          data={this.state.data}
+          showCustomSelect={true}
+          onSelectChange={e => this.setState({ selectValue: e.target.value })}
+          selectLabel={'Custom List:'}
+          selectValue={this.state.selectValue}
+          selectList={[
+            {
+              text:
+                'really long text that should extend past the option window',
+              value: '1',
+            },
+            { text: 'option 2', value: '2' },
+          ]}
+        />
       </div>
     )
   }
