@@ -186,7 +186,7 @@ class Table extends Component<IProps> {
   render() {
     return (
       <Wrapper>
-        <table>
+        <StyledTable>
           <tbody>
             <Tr css={toolbarCss}>
               <Td>
@@ -269,23 +269,24 @@ class Table extends Component<IProps> {
           </tbody>
           {this.renderHead()}
           <tbody>{this.renderData()}</tbody>
-          <tbody>
-            <Tr>
-              <Td>
-                {this.props.showPagination && (
+          {this.props.showPagination && (
+            <tbody>
+              <Tr css={toolbarCss}>
+                <Td css={toolbarCellCss}>
                   <PaginationWrap>
                     <Pagination
                       page={this.props.page}
                       pageCount={this.props.pageCount}
                       onClick={this.handleUpdatePage}
                       showEllipses={true}
+                      palette={this.props.paginationTheme}
                     />
                   </PaginationWrap>
-                )}
-              </Td>
-            </Tr>
-          </tbody>
-        </table>
+                </Td>
+              </Tr>
+            </tbody>
+          )}
+        </StyledTable>
       </Wrapper>
     )
   }
@@ -345,6 +346,8 @@ interface IProps {
   page?: number
   /** total number of pages */
   pageCount?: number
+  /** theme for pagination components */
+  paginationTheme?: 'light' | undefined
   /** whether or not to render search input */
   showSearch?: boolean
   /** search input current value */
@@ -377,6 +380,12 @@ interface IProps {
   selectValue?: any
 }
 
+const StyledTable = styled.table`
+  width: 100%;
+  table {
+    width: 100%;
+  }
+`
 // Styled Components -----
 const Wrapper = styled.div.attrs({
   role: 'table',
@@ -389,7 +398,7 @@ const Wrapper = styled.div.attrs({
 const Controls = styled.div`
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-start;
   flex-wrap: wrap;
 `
 const ElementWrapper = styled.div`
@@ -423,8 +432,13 @@ const tableInputCss = css`
 `
 
 const toolbarCss = css`
-:hover {
-  background-color: initial;
-}
+  border-bottom: none;
+  :hover {
+    background-color: initial;
+  }
+`
+
+const toolbarCellCss = css`
+  padding: 0;
 `
 export default Table

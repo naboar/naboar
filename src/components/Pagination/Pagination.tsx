@@ -23,6 +23,7 @@ const Pagination = ({
   nextText,
   maintainSkipWidth,
   onClick,
+  palette,
 }: IProps) => {
   /** call props.onClick with next page */
   const handleNext = (e: React.MouseEvent<HTMLLIElement>) => {
@@ -69,7 +70,7 @@ const Pagination = ({
       return null
     }
     return (
-      <PageControl disabled={page <= 1} onClick={handleFirst}>
+      <PageControl disabled={page <= 1} onClick={handleFirst} palette={palette}>
         {firstText}
       </PageControl>
     )
@@ -78,7 +79,7 @@ const Pagination = ({
   /** render back control */
   const Prev = () => {
     return (
-      <PageControl disabled={page <= 1} onClick={handlePrev}>
+      <PageControl disabled={page <= 1} onClick={handlePrev} palette={palette}>
         {prevText}
       </PageControl>
     )
@@ -97,10 +98,10 @@ const Pagination = ({
     }
 
     return [
-      <PageControl key="skip-right" onClick={e => handleSkip(1, e)}>
+      <PageControl key="skip-right" onClick={e => handleSkip(1, e)} palette={palette}>
         1
       </PageControl>,
-      <PageControl style={{ width: 32 }} key="left-ellipses" noBorder={true}>
+      <PageControl style={{ width: 32 }} key="left-ellipses" noBorder={true} palette={palette}>
         <IconIOS.White name="more" size={30} />
       </PageControl>,
     ]
@@ -119,10 +120,10 @@ const Pagination = ({
     }
 
     return [
-      <PageControl style={{ width: 32 }} key="right-ellipses" noBorder={true}>
+      <PageControl style={{ width: 32 }} key="right-ellipses" noBorder={true} palette={palette}>
         <IconIOS.White name="more" size={30} />
       </PageControl>,
-      <PageControl key="skip-right" onClick={e => handleSkip(pageCount, e)}>
+      <PageControl key="skip-right" onClick={e => handleSkip(pageCount, e)} palette={palette}>
         {pageCount}
       </PageControl>,
     ]
@@ -167,6 +168,7 @@ const Pagination = ({
         key={pageNumber}
         selected={page === pageNumber}
         onClick={e => handleSkip(pageNumber, e)}
+        palette={palette}
       >
         {pageNumber}
       </PageControl>
@@ -176,7 +178,7 @@ const Pagination = ({
   /** render next page control */
   const Next = () => {
     return (
-      <PageControl disabled={page >= pageCount} onClick={handleNext}>
+      <PageControl disabled={page >= pageCount} onClick={handleNext} palette={palette}>
         {nextText}
       </PageControl>
     )
@@ -188,7 +190,7 @@ const Pagination = ({
       return null
     }
     return (
-      <PageControl disabled={page >= pageCount} onClick={handleLast}>
+      <PageControl disabled={page >= pageCount} onClick={handleLast} palette={palette}>
         {lastText}
       </PageControl>
     )
@@ -214,6 +216,7 @@ Pagination.defaultProps = {
   page: 1,
   pageCount: 1,
   pageSkip: 1,
+  palette: undefined,
   prevText: <IconIOS name={'arrow-back'} color={'rgba(255,255,255,.8)'} />,
   showEllipses: false,
   showFirst: false,
@@ -226,6 +229,8 @@ interface IProps {
   page: number
   /** amount of pages to control */
   pageCount: number
+  /** predefined theming for pagination components */
+  palette: 'light' | undefined
   /** called with selected page and event */
   onClick: (page?: number, e?: React.MouseEvent<HTMLLIElement>) => void
   /** amount of pages displayed */
@@ -261,8 +266,9 @@ const PageControl = styled.li<{
   noBorder?: boolean
   disabled?: boolean
   selected?: boolean
+  palette?: 'light' | undefined
 }>`
-  ${({ disabled, noBorder, selected, theme }) => `
+  ${({ disabled, noBorder, selected, theme, palette }) => `
     transition: color 0.2s, background-color 0.2s;
     color: ${theme.palette.common.white};
     border-radius: 4px;
@@ -289,6 +295,18 @@ const PageControl = styled.li<{
     &:hover {
       background: ${noBorder ? 'inherit' : theme.palette.grey.A700};
     }
+    ${ palette === 'light' && `
+      color: ${theme.palette.common.white};
+      background-color: ${theme.palette.secondary.light};
+      ${selected && `
+        border-color: ${theme.palette.primary.main};
+        background-color: ${theme.palette.primary.main};
+      `};
+      &:hover {
+        opacity: 0.8;
+        background: ${theme.palette.primary.main};
+      }
+    `}
   `}
 `
 

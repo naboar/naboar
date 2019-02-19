@@ -58,7 +58,8 @@ initialState = {
     {key: "7", heading: "headerTest"},
   ],
   data: [fakeData, fakeData, fakeData, fakeData],
-  selectValue: undefined
+  selectValue: undefined,
+  isPaginationLight: false,
 }
 
 // Helpers for updating state ---
@@ -75,6 +76,8 @@ const handleAllCheckboxes = () =>
    ? setState({ data: state.data.map(unCheck) })
    : setState({ data: state.data.map(check) })
 ;
+
+const togglePageTheme = () => setState({isPaginationLight: !state.isPaginationLight});
 
 <>
 <div>
@@ -94,7 +97,7 @@ const handleAllCheckboxes = () =>
 <h1 style={{ margin: '24px 0 8px', color: 'white', fontSize: 16 }}>
   With Controls:
 </h1>
-
+<div><button onClick={togglePageTheme}>Click to toggle pagination theme </button></div>
 <Table 
   columns={state.columns}
   data={state.data}
@@ -110,6 +113,7 @@ const handleAllCheckboxes = () =>
   page={state.page}
   pageCount={state.pageCount}
   onUpdatePage={page => setState({ page })}
+  paginationTheme={state.isPaginationLight ? 'light' : undefined}
 
   showSearch
   term={state.term}
