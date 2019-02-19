@@ -68,6 +68,7 @@ const Container = styled.div`
   flex-wrap: nowrap;
   justify-content: space-between;
   align-items: center;
+  height: 100%;
 `
 
 const Heading = styled.span`

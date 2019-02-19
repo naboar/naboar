@@ -60,7 +60,7 @@ initialState = {
   data: [fakeData, fakeData, fakeData, fakeData],
   selectValue: undefined,
   isPaginationLightShowing: false,
-  isToolbarLabelShowing: false
+  isToolbarLabelShowing: true
 }
 
 // Helpers for updating state ---

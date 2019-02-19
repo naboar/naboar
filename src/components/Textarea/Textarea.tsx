@@ -25,6 +25,7 @@ interface IStyledTextareaProps
   /** Fired onChange event */
   onChange?: (e?: React.ChangeEvent<HTMLTextAreaElement>) => void
   rows?: number
+  value?: string
   variant?: 'primary' | 'secondary' | 'tertiary'
 }
 

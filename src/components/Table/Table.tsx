@@ -29,7 +29,7 @@ class Table extends Component<IProps> {
     onSelectChange: () => undefined,
     onSort: () => undefined,
     onUpdatePage: () => undefined,
-    showToolbarLabels: true
+    showToolbarLabels: true,
   }
 
   /** call props onSort  */
@@ -194,9 +194,6 @@ class Table extends Component<IProps> {
                 <Controls>
                   {this.props.showSearch && (
                     <ElementWrapper>
-                      {this.props.showToolbarLabels && (
-                        <Label htmlFor={'table_search'} text={'Search'} />
-                      )}
                       <Input
                         name="table_search"
                         iconName="search"
@@ -207,6 +204,7 @@ class Table extends Component<IProps> {
                         onClear={() => this.props.onSearchChange('')}
                         outline={true}
                         css={tableInputCss}
+                        label={this.props.showToolbarLabels ? 'Search' : ''}
                       />
                     </ElementWrapper>
                   )}
@@ -228,12 +226,10 @@ class Table extends Component<IProps> {
 
                   {this.props.showLimit && (
                     <ElementWrapper wrapperType={'limit'}>
-                      {this.props.showToolbarLabels && (
-                        <Label htmlFor={'limit'} text={'Show'} />
-                      )}
                       <LimitWrap>
                         {/* <span style={{ marginRight: 8 }}>Show:</span>{' '} */}
                         <Select
+                          label={this.props.showToolbarLabels ? 'Show' : ''}
                           name={'limit'}
                           onChange={this.handleLimitChange}
                           outline={true}
@@ -249,14 +245,13 @@ class Table extends Component<IProps> {
 
                   {this.props.showCustomSelect && (
                     <ElementWrapper wrapperType={'select'}>
-                      {this.props.showToolbarLabels && (
-                        <Label
-                          htmlFor={'customSelect'}
-                          text={this.props.selectLabel || 'Select'}
-                        />
-                      )}
                       <CustomSelectWrap>
                         <Select
+                          label={
+                            this.props.showToolbarLabels
+                              ? this.props.selectLabel
+                              : ''
+                          }
                           name={'customSelect'}
                           onChange={this.handleSelectChange}
                           value={this.props.selectValue}
