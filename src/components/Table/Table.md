@@ -58,7 +58,9 @@ initialState = {
     {key: "7", heading: "headerTest"},
   ],
   data: [fakeData, fakeData, fakeData, fakeData],
-  selectValue: undefined
+  selectValue: undefined,
+  isPaginationLightShowing: false,
+  isToolbarLabelShowing: true
 }
 
 // Helpers for updating state ---
@@ -76,6 +78,8 @@ const handleAllCheckboxes = () =>
    : setState({ data: state.data.map(check) })
 ;
 
+const togglePaginationTheme = (toggleKey) => setState({isPaginationLightShowing: !state.isPaginationLightShowing});
+const toggleLabels = (toggleKey) => setState({isToolbarLabelShowing: !state.isToolbarLabelShowing});
 <>
 <div>
 <h1 style={{ margin: '0 0 8px', color: 'white', fontSize: 16 }}>
@@ -94,13 +98,15 @@ const handleAllCheckboxes = () =>
 <h1 style={{ margin: '24px 0 8px', color: 'white', fontSize: 16 }}>
   With Controls:
 </h1>
-
+<div><button onClick={togglePaginationTheme}>Click to toggle pagination theme </button></div>
+<div><button onClick={toggleLabels}>Click to toggle toolbar labels </button></div>
 <Table 
   columns={state.columns}
   data={state.data}
   onAllCheckboxes={handleAllCheckboxes}
   onCheckbox={handleCheckbox}
   onRowClick={console.log}
+  showToolbarLabels={state.isToolbarLabelShowing}
 
   sort={state.sort} 
   order={state.order}
@@ -110,6 +116,7 @@ const handleAllCheckboxes = () =>
   page={state.page}
   pageCount={state.pageCount}
   onUpdatePage={page => setState({ page })}
+  paginationTheme={state.isPaginationLightShowing ? 'light' : undefined}
 
   showSearch
   term={state.term}
@@ -124,7 +131,7 @@ const handleAllCheckboxes = () =>
 
   showCustomSelect
   onSelectChange={(e)=> setState({selectValue: e.target.value})}
-  selectLabel={'Custom List:'}
+  selectLabel={'Custom List'}
   selectValue={state.selectValue}
   selectList={[{text: 'option 1', value: '1'},{text: 'option 2', value: '2'}]}
 />

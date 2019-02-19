@@ -3,6 +3,7 @@ import styled, { css } from 'styled-components'
 import Checkbox from '../Checkbox'
 import DatePicker from '../DatePicker/DatePicker'
 import Input from '../Input'
+import Label from '../Label'
 import Pagination from '../Pagination'
 import Select from '../Select/Select'
 import Td from './Components/Td'
@@ -28,7 +29,7 @@ class Table extends Component<IProps> {
     onSelectChange: () => undefined,
     onSort: () => undefined,
     onUpdatePage: () => undefined,
-    selectLabel: 'Select:',
+    showToolbarLabels: true,
   }
 
   /** call props onSort  */
@@ -186,7 +187,7 @@ class Table extends Component<IProps> {
   render() {
     return (
       <Wrapper>
-        <table>
+        <StyledTable>
           <tbody>
             <Tr css={toolbarCss}>
               <Td>
@@ -203,11 +204,15 @@ class Table extends Component<IProps> {
                         onClear={() => this.props.onSearchChange('')}
                         outline={true}
                         css={tableInputCss}
+                        label={this.props.showToolbarLabels ? 'Search' : ''}
                       />
                     </ElementWrapper>
                   )}
                   {this.props.showDatePicker && (
                     <ElementWrapper>
+                      {this.props.showToolbarLabels && (
+                        <Label htmlFor={'datepicker'} text={'Date'} />
+                      )}
                       <DatePicker
                         name="datepicker"
                         isRangePicker={true}
@@ -220,10 +225,11 @@ class Table extends Component<IProps> {
                   )}
 
                   {this.props.showLimit && (
-                    <ElementWrapper>
+                    <ElementWrapper wrapperType={'limit'}>
                       <LimitWrap>
-                        <span style={{ marginRight: 8 }}>Show:</span>{' '}
+                        {/* <span style={{ marginRight: 8 }}>Show:</span>{' '} */}
                         <Select
+                          label={this.props.showToolbarLabels ? 'Show' : ''}
                           name={'limit'}
                           onChange={this.handleLimitChange}
                           outline={true}
@@ -238,12 +244,14 @@ class Table extends Component<IProps> {
                   )}
 
                   {this.props.showCustomSelect && (
-                    <ElementWrapper>
+                    <ElementWrapper wrapperType={'select'}>
                       <CustomSelectWrap>
-                        <span style={{ marginRight: 8, whiteSpace: 'nowrap' }}>
-                          {this.props.selectLabel}
-                        </span>{' '}
                         <Select
+                          label={
+                            this.props.showToolbarLabels
+                              ? this.props.selectLabel
+                              : ''
+                          }
                           name={'customSelect'}
                           onChange={this.handleSelectChange}
                           value={this.props.selectValue}
@@ -269,23 +277,24 @@ class Table extends Component<IProps> {
           </tbody>
           {this.renderHead()}
           <tbody>{this.renderData()}</tbody>
-          <tbody>
-            <Tr>
-              <Td>
-                {this.props.showPagination && (
+          {this.props.showPagination && (
+            <tbody>
+              <Tr css={toolbarCss}>
+                <Td css={toolbarCellCss}>
                   <PaginationWrap>
                     <Pagination
                       page={this.props.page}
                       pageCount={this.props.pageCount}
                       onClick={this.handleUpdatePage}
                       showEllipses={true}
+                      palette={this.props.paginationTheme}
                     />
                   </PaginationWrap>
-                )}
-              </Td>
-            </Tr>
-          </tbody>
-        </table>
+                </Td>
+              </Tr>
+            </tbody>
+          )}
+        </StyledTable>
       </Wrapper>
     )
   }
@@ -345,6 +354,8 @@ interface IProps {
   page?: number
   /** total number of pages */
   pageCount?: number
+  /** theme for pagination components */
+  paginationTheme?: 'light' | undefined
   /** whether or not to render search input */
   showSearch?: boolean
   /** search input current value */
@@ -368,15 +379,23 @@ interface IProps {
   /** whether or not to show a custom select filter */
   showCustomSelect?: boolean
   /** custom select label */
-  selectLabel: string
+  selectLabel?: string
   /** called when custom select option is clicked */
   onSelectChange: (e?: React.ChangeEvent<HTMLSelectElement>) => void
   /** dropdown list */
   selectList?: Array<{ key?: string; text: string; value: string }>
   /** value shown in select dropdown */
   selectValue?: any
+  /** show toolbar labels */
+  showToolbarLabels?: boolean
 }
 
+const StyledTable = styled.table`
+  width: 100%;
+  table {
+    width: 100%;
+  }
+`
 // Styled Components -----
 const Wrapper = styled.div.attrs({
   role: 'table',
@@ -389,15 +408,37 @@ const Wrapper = styled.div.attrs({
 const Controls = styled.div`
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-start;
   flex-wrap: wrap;
 `
-const ElementWrapper = styled.div`
+const ElementWrapper = styled.div<{
+  wrapperType?: 'limit' | 'select' | 'standard'
+}>`
+  ${({ wrapperType }) => `
   flex: 1;
   width: 100%;
   margin-bottom: 8px;
   margin: 8px;
+  ${
+    wrapperType === 'limit'
+      ? `
+    flex: 0 1 80px;
+  `
+      : ``
+  }
+  ${
+    wrapperType === 'select'
+      ? `
+    flex: 0 1 256px;
 `
+      : ``
+  }
+`}
+`
+ElementWrapper.defaultProps = {
+  wrapperType: 'standard',
+}
+
 const PaginationWrap = styled.div`
   display: flex;
   align-items: center;
@@ -410,21 +451,22 @@ const LimitWrap = styled.div`
   justify-content: space-between;
   font-family: Open-Sans, sans-serif;
   color: rgba(255, 255, 255, 0.8);
-  width: 135px;
 `
 
-const CustomSelectWrap = styled(LimitWrap)`
-  min-width: 256px;
-  max-width: 612px;
-`
+const CustomSelectWrap = styled(LimitWrap)``
 
 const tableInputCss = css`
   min-width: 256px;
 `
 
 const toolbarCss = css`
-:hover {
-  background-color: initial;
-}
+  border-bottom: none;
+  :hover {
+    background-color: initial;
+  }
+`
+
+const toolbarCellCss = css`
+  padding: 0;
 `
 export default Table
