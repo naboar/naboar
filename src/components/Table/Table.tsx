@@ -187,114 +187,107 @@ class Table extends Component<IProps> {
   render() {
     return (
       <Wrapper>
-        <StyledTable>
-          <tbody>
-            <Tr css={toolbarCss}>
-              <Td>
-                <Controls>
-                  {this.props.showSearch && (
-                    <ElementWrapper>
-                      <Input
-                        name="table_search"
-                        iconName="search"
-                        value={this.props.term}
-                        onChange={this.handleSearchChange}
-                        type="text"
-                        canClear={this.props.term !== ''}
-                        onClear={() => this.props.onSearchChange('')}
-                        outline={true}
-                        css={tableInputCss}
-                        label={this.props.showToolbarLabels ? 'Search' : ''}
-                      />
-                    </ElementWrapper>
-                  )}
-                  {this.props.showDatePicker && (
-                    <ElementWrapper>
-                      {this.props.showToolbarLabels && (
-                        <Label htmlFor={'datepicker'} text={'Date'} />
-                      )}
-                      <DatePicker
-                        name="datepicker"
-                        isRangePicker={true}
-                        onChange={this.handleDateChange}
-                        since={this.props.since}
-                        until={this.props.until}
-                        outline={true}
-                      />
-                    </ElementWrapper>
-                  )}
+        <ControlsContainer>
+          <Controls>
+            {this.props.showSearch && (
+              <ElementWrapper>
+                <Input
+                  name="table_search"
+                  iconName="search"
+                  value={this.props.term}
+                  onChange={this.handleSearchChange}
+                  type="text"
+                  canClear={this.props.term !== ''}
+                  onClear={() => this.props.onSearchChange('')}
+                  outline={true}
+                  css={tableInputCss}
+                  label={this.props.showToolbarLabels ? 'Search' : ''}
+                />
+              </ElementWrapper>
+            )}
+            {this.props.showDatePicker && (
+              <ElementWrapper>
+                {this.props.showToolbarLabels && (
+                  <Label htmlFor={'datepicker'} text={'Date'} />
+                )}
+                <DatePicker
+                  name="datepicker"
+                  isRangePicker={true}
+                  onChange={this.handleDateChange}
+                  since={this.props.since}
+                  until={this.props.until}
+                  outline={true}
+                />
+              </ElementWrapper>
+            )}
 
-                  {this.props.showLimit && (
-                    <ElementWrapper wrapperType={'limit'}>
-                      <LimitWrap>
-                        {/* <span style={{ marginRight: 8 }}>Show:</span>{' '} */}
-                        <Select
-                          label={this.props.showToolbarLabels ? 'Show' : ''}
-                          name={'limit'}
-                          onChange={this.handleLimitChange}
-                          outline={true}
-                        >
-                          <option value={10}>10</option>
-                          <option value={25}>25</option>
-                          <option value={50}>50</option>
-                          <option value={100}>100</option>
-                        </Select>
-                      </LimitWrap>
-                    </ElementWrapper>
-                  )}
+            {this.props.showLimit && (
+              <ElementWrapper wrapperType={'limit'}>
+                <LimitWrap>
+                  {/* <span style={{ marginRight: 8 }}>Show:</span>{' '} */}
+                  <Select
+                    label={this.props.showToolbarLabels ? 'Show' : ''}
+                    name={'limit'}
+                    onChange={this.handleLimitChange}
+                    outline={true}
+                  >
+                    <option value={10}>10</option>
+                    <option value={25}>25</option>
+                    <option value={50}>50</option>
+                    <option value={100}>100</option>
+                  </Select>
+                </LimitWrap>
+              </ElementWrapper>
+            )}
 
-                  {this.props.showCustomSelect && (
-                    <ElementWrapper wrapperType={'select'}>
-                      <CustomSelectWrap>
-                        <Select
-                          label={
-                            this.props.showToolbarLabels
-                              ? this.props.selectLabel
-                              : ''
-                          }
-                          name={'customSelect'}
-                          onChange={this.handleSelectChange}
-                          value={this.props.selectValue}
-                          outline={true}
+            {this.props.showCustomSelect && (
+              <ElementWrapper wrapperType={'select'}>
+                <CustomSelectWrap>
+                  <Select
+                    label={
+                      this.props.showToolbarLabels ? this.props.selectLabel : ''
+                    }
+                    name={'customSelect'}
+                    onChange={this.handleSelectChange}
+                    value={this.props.selectValue}
+                    outline={true}
+                  >
+                    {this.props.selectList.map((option, i) => {
+                      return (
+                        <option
+                          key={option.key ? option.key : i}
+                          value={option.value}
                         >
-                          {this.props.selectList.map((option, i) => {
-                            return (
-                              <option
-                                key={option.key ? option.key : i}
-                                value={option.value}
-                              >
-                                {option.text}
-                              </option>
-                            )
-                          })}
-                        </Select>
-                      </CustomSelectWrap>
-                    </ElementWrapper>
-                  )}
-                </Controls>
-              </Td>
-            </Tr>
-          </tbody>
-          {this.renderHead()}
-          <tbody>{this.renderData()}</tbody>
-          {this.props.showPagination && (
-            <tbody>
-              <Tr css={toolbarCss}>
-                <Td css={toolbarCellCss}>
-                  <PaginationWrap>
-                    <Pagination
-                      page={this.props.page}
-                      pageCount={this.props.pageCount}
-                      onClick={this.handleUpdatePage}
-                      showEllipses={true}
-                      palette={this.props.paginationTheme}
-                    />
-                  </PaginationWrap>
-                </Td>
-              </Tr>
-            </tbody>
-          )}
-        </StyledTable>
+                          {option.text}
+                        </option>
+                      )
+                    })}
+                  </Select>
+                </CustomSelectWrap>
+              </ElementWrapper>
+            )}
+          </Controls>
+        </ControlsContainer>
+        <TableWrapper>
+          <StyledTable>
+            {this.renderHead()}
+
+            <tbody>{this.renderData()}</tbody>
+          </StyledTable>
+        </TableWrapper>
+        {this.props.showPagination && (
+          <ControlsContainer>
+            <PaginationWrap>
+              <Pagination
+                page={this.props.page}
+                pageCount={this.props.pageCount}
+                onClick={this.handleUpdatePage}
+                showEllipses={true}
+                palette={this.props.paginationTheme}
+              />
+            </PaginationWrap>
+          </ControlsContainer>
+        )}
       </Wrapper>
     )
   }
@@ -391,19 +384,27 @@ interface IProps {
 }
 
 const StyledTable = styled.table`
+  box-sizing: border-box;
   width: 100%;
   table {
     width: 100%;
   }
 `
+
 // Styled Components -----
-const Wrapper = styled.div.attrs({
-  role: 'table',
-})`
-  overflow-y: hidden;
-  overflow-x: auto;
+const Wrapper = styled.div`
   width: 100%;
   background: #222;
+`
+const ControlsContainer = styled.div`
+  border-bottom: none;
+  :hover {
+    background-color: initial;
+  }
+`
+const TableWrapper = styled.div`
+  overflow-x: auto;
+  overflow-y: hidden;
 `
 const Controls = styled.div`
   display: flex;
@@ -459,12 +460,7 @@ const tableInputCss = css`
   min-width: 256px;
 `
 
-const toolbarCss = css`
-  border-bottom: none;
-  :hover {
-    background-color: initial;
-  }
-`
+const toolbarCss = css``
 
 const toolbarCellCss = css`
   padding: 0;
