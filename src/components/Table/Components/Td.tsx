@@ -19,6 +19,7 @@ interface IProps extends IStyledComponentProps {
 // Styled Components ---------
 const Wrapper = styled.td<IStyledComponentProps>`
   display: table-cell;
+  box-sizing: border-box;
   padding: 10px;
   font-size: 16px;
   color: rgba(255, 255, 255, 0.8);

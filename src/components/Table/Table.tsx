@@ -384,7 +384,6 @@ interface IProps {
 }
 
 const StyledTable = styled.table`
-  box-sizing: border-box;
   width: 100%;
   table {
     width: 100%;
@@ -393,6 +392,7 @@ const StyledTable = styled.table`
 
 // Styled Components -----
 const Wrapper = styled.div`
+  box-sizing: border-box;
   width: 100%;
   background: #222;
 `
