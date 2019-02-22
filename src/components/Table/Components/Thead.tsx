@@ -23,7 +23,7 @@ const Thead = ({
 const Wrapper = styled.thead<{
   css?: FlattenSimpleInterpolation | FlattenInterpolation<any>
 }>`
-  display: flex;
+  display: table-header-group
   ${({ css }) => css}
 `
 

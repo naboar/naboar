@@ -30,9 +30,9 @@ interface IProps extends IStyledComponentProps {
 const Wrapper = styled.tr.attrs({
   role: 'row',
 })<IStyledComponentProps>`
+  box-sizing: border-box;
   transition: background-color 0.1s;
-  display: flex;
-  flex: 1;
+  display: table-row;
   border-bottom: 1px solid #555;
   cursor: pointer;
 
