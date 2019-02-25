@@ -30,6 +30,7 @@ class Table extends Component<IProps> {
     onSort: () => undefined,
     onUpdatePage: () => undefined,
     showToolbarLabels: true,
+    toolbarTheme: 'fill'
   }
 
   /** call props onSort  */
@@ -75,6 +76,7 @@ class Table extends Component<IProps> {
   handleSelectChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     this.props.onSelectChange(e)
   }
+
   /**
    * Render table headers using either the
    * key/heading or custom renderHeading method
@@ -185,6 +187,7 @@ class Table extends Component<IProps> {
   }
 
   render() {
+    const isToolbarOutlineTheme = this.props.toolbarTheme === 'outline' ? true : false
     return (
       <Wrapper>
         <ControlsContainer>
@@ -199,7 +202,7 @@ class Table extends Component<IProps> {
                   type="text"
                   canClear={this.props.term !== ''}
                   onClear={() => this.props.onSearchChange('')}
-                  outline={true}
+                  outline={isToolbarOutlineTheme}
                   css={tableInputCss}
                   label={this.props.showToolbarLabels ? 'Search' : ''}
                 />
@@ -216,7 +219,7 @@ class Table extends Component<IProps> {
                   onChange={this.handleDateChange}
                   since={this.props.since}
                   until={this.props.until}
-                  outline={true}
+                  outline={isToolbarOutlineTheme}
                 />
               </ElementWrapper>
             )}
@@ -229,7 +232,7 @@ class Table extends Component<IProps> {
                     label={this.props.showToolbarLabels ? 'Show' : ''}
                     name={'limit'}
                     onChange={this.handleLimitChange}
-                    outline={true}
+                    outline={isToolbarOutlineTheme}
                   >
                     <option value={10}>10</option>
                     <option value={25}>25</option>
@@ -250,7 +253,7 @@ class Table extends Component<IProps> {
                     name={'customSelect'}
                     onChange={this.handleSelectChange}
                     value={this.props.selectValue}
-                    outline={true}
+                    outline={isToolbarOutlineTheme}
                   >
                     {this.props.selectList.map((option, i) => {
                       return (
@@ -348,7 +351,7 @@ interface IProps {
   /** total number of pages */
   pageCount?: number
   /** theme for pagination components */
-  paginationTheme?: 'light' | undefined
+  paginationTheme?: 'outline' | 'fill'
   /** whether or not to render search input */
   showSearch?: boolean
   /** search input current value */
@@ -381,6 +384,8 @@ interface IProps {
   selectValue?: any
   /** show toolbar labels */
   showToolbarLabels?: boolean
+  /** toolbar theming */
+  toolbarTheme?: 'outline' | 'fill'
 }
 
 const StyledTable = styled.table`
