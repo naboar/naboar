@@ -230,7 +230,7 @@ interface IProps {
   /** amount of pages to control */
   pageCount: number
   /** predefined theming for pagination components */
-  palette: 'light' | undefined
+  palette: 'outline' | 'fill'
   /** called with selected page and event */
   onClick: (page?: number, e?: React.MouseEvent<HTMLLIElement>) => void
   /** amount of pages displayed */
@@ -266,7 +266,7 @@ const PageControl = styled.li<{
   noBorder?: boolean
   disabled?: boolean
   selected?: boolean
-  palette?: 'light' | undefined
+  palette?: 'outline' | 'fill'
 }>`
   ${({ disabled, noBorder, selected, theme, palette }) => `
     transition: color 0.2s, background-color 0.2s;
@@ -295,7 +295,7 @@ const PageControl = styled.li<{
     &:hover {
       background: ${noBorder ? 'inherit' : theme.palette.grey.A700};
     }
-    ${ palette === 'light' && `
+    ${ palette === 'fill' && `
       color: ${theme.palette.common.white};
       background-color: ${theme.palette.secondary.light};
       ${selected && `

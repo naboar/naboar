@@ -59,8 +59,9 @@ initialState = {
   ],
   data: [fakeData, fakeData, fakeData, fakeData],
   selectValue: undefined,
-  isPaginationLightShowing: false,
-  isToolbarLabelShowing: true
+  isPaginationOutlineShowing: true,
+  isToolbarLabelShowing: true, 
+  isToolbarOutlineTheme: true
 }
 
 // Helpers for updating state ---
@@ -78,8 +79,10 @@ const handleAllCheckboxes = () =>
    : setState({ data: state.data.map(check) })
 ;
 
-const togglePaginationTheme = (toggleKey) => setState({isPaginationLightShowing: !state.isPaginationLightShowing});
+const togglePaginationTheme = (toggleKey) => setState({isPaginationOutlineShowing: !state.isPaginationOutlineShowing});
 const toggleLabels = (toggleKey) => setState({isToolbarLabelShowing: !state.isToolbarLabelShowing});
+const toggleToolbarTheme = (isOutlineTheme) => setState({isToolbarOutlineTheme: !state.isToolbarOutlineTheme});
+
 <>
 <div>
 <h1 style={{ margin: '0 0 8px', color: 'white', fontSize: 16 }}>
@@ -100,13 +103,16 @@ const toggleLabels = (toggleKey) => setState({isToolbarLabelShowing: !state.isTo
 </h1>
 <div><button onClick={togglePaginationTheme}>Click to toggle pagination theme </button></div>
 <div><button onClick={toggleLabels}>Click to toggle toolbar labels </button></div>
+<div><button onClick={toggleToolbarTheme}>Click to toggle toolbar theme </button></div>
 <Table 
   columns={state.columns}
   data={state.data}
   onAllCheckboxes={handleAllCheckboxes}
   onCheckbox={handleCheckbox}
   onRowClick={console.log}
+
   showToolbarLabels={state.isToolbarLabelShowing}
+  toolbarTheme={state.isToolbarOutlineTheme ? 'outline' : 'fill'}
 
   sort={state.sort} 
   order={state.order}
@@ -116,7 +122,7 @@ const toggleLabels = (toggleKey) => setState({isToolbarLabelShowing: !state.isTo
   page={state.page}
   pageCount={state.pageCount}
   onUpdatePage={page => setState({ page })}
-  paginationTheme={state.isPaginationLightShowing ? 'light' : undefined}
+  paginationTheme={state.isPaginationOutlineShowing ? 'outline' : 'fill'}
 
   showSearch
   term={state.term}
