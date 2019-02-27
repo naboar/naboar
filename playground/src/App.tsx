@@ -97,7 +97,7 @@ class App extends Component {
         <IconIOS name="open" size={35} />
         <IconLogo name="github" color="blue" size={35} />
         <IconMD name="close" color="red" size={35} />
-        <Input css={inputStyles} name="test" type="number" min={34} max={50} />
+        <Input placeholder={'sample placeholder'} css={inputStyles} name="test" type="text" />
         <Dropdown name="dropdown">
           <DropdownNode>This is the Dropdown</DropdownNode>
           <DropdownButton
@@ -167,7 +167,7 @@ class App extends Component {
           <option value="option2">Option Two</option>
           <option value="option3">Option Three</option>
         </Select>
-        <Textarea rows={10} css={textareaCss} name={'textarea'} />
+        <Textarea placeholder={'sample placeholder'} rows={10} css={textareaCss} name={'textarea'} />
         <Tooltip
           position={'right'}
           title={'Example Tooltip'}
@@ -195,6 +195,8 @@ class App extends Component {
           ))}
         </Datalist>
         <Table
+          paginationCss={css`* {color: red;};`}
+          controlsCss={css`* {color: red;}`}
           columns={this.state.columns}
           data={this.state.data}
           showCustomSelect={true}
@@ -209,6 +211,10 @@ class App extends Component {
             },
             { text: 'option 2', value: '2' },
           ]}
+          showPagination={true}
+          page={1}
+          pageCount={300}
+          onUpdatePage={() => ''}
         />
       </div>
     )
@@ -218,6 +224,9 @@ class App extends Component {
 const inputStyles = css`
   width: 300px;
   background: ${({ theme }) => theme.palette.common.blue};
+  input::placeholder {
+    color: ${({ theme }) => theme.palette.common.red};
+  }
 `
 
 const dividerStyles = css`
@@ -248,6 +257,9 @@ const dropdownItemCss = css`
 
 const textareaCss = css`
   background: ${({ theme }) => theme.palette.common.orange};
+  ::placeholder {
+    color: green;
+  }
 `
 
 export default App

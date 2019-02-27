@@ -1,5 +1,10 @@
 import React, { Component, ReactElement } from 'react'
-import styled, { css } from 'styled-components'
+import styled, {
+  css,
+  FlattenInterpolation,
+  FlattenSimpleInterpolation,
+} from 'styled-components'
+import { IStyledComponentProps } from '../../interfaces/'
 import Checkbox from '../Checkbox'
 import DatePicker from '../DatePicker/DatePicker'
 import Input from '../Input'
@@ -30,7 +35,7 @@ class Table extends Component<IProps> {
     onSort: () => undefined,
     onUpdatePage: () => undefined,
     showToolbarLabels: true,
-    toolbarTheme: 'fill'
+    toolbarTheme: 'fill',
   }
 
   /** call props onSort  */
@@ -187,10 +192,11 @@ class Table extends Component<IProps> {
   }
 
   render() {
-    const isToolbarOutlineTheme = this.props.toolbarTheme === 'outline' ? true : false
+    const isToolbarOutlineTheme =
+      this.props.toolbarTheme === 'outline' ? true : false
     return (
       <Wrapper>
-        <ControlsContainer>
+        <ControlsContainer controlsCss={this.props.controlsCss}>
           <Controls>
             {this.props.showSearch && (
               <ElementWrapper>
@@ -279,7 +285,7 @@ class Table extends Component<IProps> {
           </StyledTable>
         </TableWrapper>
         {this.props.showPagination && (
-          <ControlsContainer>
+          <PaginationContainer paginationCss={this.props.paginationCss}>
             <PaginationWrap>
               <Pagination
                 page={this.props.page}
@@ -289,7 +295,7 @@ class Table extends Component<IProps> {
                 palette={this.props.paginationTheme}
               />
             </PaginationWrap>
-          </ControlsContainer>
+          </PaginationContainer>
         )}
       </Wrapper>
     )
@@ -386,6 +392,10 @@ interface IProps {
   showToolbarLabels?: boolean
   /** toolbar theming */
   toolbarTheme?: 'outline' | 'fill'
+  /** controls container css */
+  controlsCss?: FlattenSimpleInterpolation | FlattenInterpolation<any>
+  /** pagination container css */
+  paginationCss?: FlattenSimpleInterpolation | FlattenInterpolation<any>
 }
 
 const StyledTable = styled.table`
@@ -401,12 +411,27 @@ const Wrapper = styled.div`
   width: 100%;
   background: #222;
 `
-const ControlsContainer = styled.div`
+
+const ControlsContainer = styled.div<{
+  controlsCss: FlattenSimpleInterpolation | FlattenInterpolation<any>
+}>`
   border-bottom: none;
   :hover {
     background-color: initial;
   }
+  ${({ controlsCss }) => controlsCss}
 `
+
+const PaginationContainer = styled.div<{
+  paginationCss: FlattenSimpleInterpolation | FlattenInterpolation<any>
+}>`
+  border-bottom: none;
+  :hover {
+    background-color: initial;
+  }
+  ${({ paginationCss }) => paginationCss}
+`
+
 const TableWrapper = styled.div`
   overflow-x: auto;
   overflow-y: hidden;

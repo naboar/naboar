@@ -1,5 +1,6 @@
 import React from 'react'
 import styled, { FlattenSimpleInterpolation } from 'styled-components'
+import { IStyledComponentProps } from '../../..'
 
 
 /**
@@ -15,7 +16,7 @@ import styled, { FlattenSimpleInterpolation } from 'styled-components'
    )
  }
 
-  export interface IOptionProps extends React.HTMLAttributes<HTMLOptionElement> {
+  export interface IOptionProps extends React.HTMLAttributes<HTMLOptionElement>, IStyledComponentProps {
    /** specifies option value */
    value: string | number | string[]
    /** specify if option should be disabled */
