@@ -3,7 +3,7 @@ initialState = {
   text: ''
 };
 <div>
-  <Textarea placeholder={'Testing'} css={['margin-bottom: 20px;']} name={'textarea'} onChange={(e) => console.log(e.target.value)}/>
+  <Textarea placeholder={'Testing'} name={'textarea'} onChange={(e) => console.log(e.target.value)}/>
   <Textarea 
     errorMessage={state.text ? '' : 'Please enter a description'}
     label={'Description'}

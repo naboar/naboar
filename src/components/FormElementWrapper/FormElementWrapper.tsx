@@ -20,7 +20,11 @@ interface IFormElementWrapperProps
 }
 
 const Wrapper = styled.div<IStyledComponentProps>`
-  ${({ css }) => css && css}
+  ${({ css, theme }) => `
+  position: relative;
+  margin-bottom: ${theme.spacing.base}px;
+  ${css && css}
+  `}
 `
 
 export default FormElementWrapper

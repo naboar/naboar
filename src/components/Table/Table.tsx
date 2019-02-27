@@ -423,8 +423,7 @@ const ElementWrapper = styled.div<{
   ${({ wrapperType }) => `
   flex: 1;
   width: 100%;
-  margin-bottom: 8px;
-  margin: 8px;
+  margin: 8px 8px 0 8px;
   ${
     wrapperType === 'limit'
       ? `

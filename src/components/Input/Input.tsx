@@ -1,5 +1,5 @@
 import React from 'react'
-import styled, { FlattenInterpolation, FlattenSimpleInterpolation } from 'styled-components'
+import styled from 'styled-components'
 import { IFormElementProps, IStyledComponentProps } from '../../interfaces'
 import FormElementWrapper from '../FormElementWrapper/'
 import { IconIOS, iOS } from '../Icon'
@@ -98,13 +98,13 @@ const StyledInput = styled.input`
     }
   `}
 `
-
-const Wrapper = styled.div<{
+interface IWrapper extends IStyledComponentProps {
   isErrored: boolean
-  css?: FlattenSimpleInterpolation | FlattenInterpolation<any>
   disabled: boolean
   outline?: boolean
-}>`
+}
+
+const Wrapper = styled.div<IWrapper>`
   ${({ isErrored, theme, outline }) => `
     background: ${theme.palette.secondary.light};
     border-radius: ${theme.shape.borderRadius};
