@@ -22,9 +22,11 @@ interface IFormElementErrorProps
 
 const StyledP = styled.p<IFormElementErrorProps>`
   ${({ theme }) => `
-    font-size: 16px;
+    position: absolute;
+    right: 0;
+    bottom: -20px;
+    font-size: 14px;
     color: ${theme.palette.common.red};
-    margin: ${theme.spacing.base}px 0;
   `}
   ${({ css }) => css}
 `

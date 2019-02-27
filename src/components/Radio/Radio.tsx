@@ -17,7 +17,7 @@ const Radio = (props: IProps) => {
       errorMessage={props.errorMessage}
     >
       <Wrapper disabled={props.disabled}>
-        <Input {...props} onClick={e => props.onClick(props.value)} />
+        <Input {...props} onChange={e => props.onChange(props.value)} />
         <span />
       </Wrapper>
     </FormElementWrapper>
@@ -32,7 +32,7 @@ interface IProps extends IFormElementProps {
   /** toggle active state of input */
   disabled?: boolean
   /** on click called with value */
-  onClick?: (value?: string | number, e?: ChangeEvent<HTMLInputElement>) => void
+  onChange?: (value?: string | number, e?: ChangeEvent<HTMLInputElement>) => void
 }
 
 const Wrapper = styled.label<{ disabled: boolean }>`

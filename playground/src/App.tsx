@@ -47,8 +47,9 @@ class App extends Component {
         isSortable: true,
         key: '1',
         renderCell: (data, index, row) => {
-        return (<Td>{row[0]['3']}</Td>)},
-        renderHeading: () => (<Th heading={'Header Test'} />),
+          return <Td>{row[0]['3']}</Td>
+        },
+        renderHeading: () => <Th heading={'Header Test'} />,
       },
       { key: '2', heading: 'headerTest' },
       { key: '3', heading: 'headerTest' },
@@ -166,7 +167,7 @@ class App extends Component {
           <option value="option2">Option Two</option>
           <option value="option3">Option Three</option>
         </Select>
-        <Textarea name={'textarea'} />
+        <Textarea rows={10} css={textareaCss} name={'textarea'} />
         <Tooltip
           position={'right'}
           title={'Example Tooltip'}
@@ -216,6 +217,7 @@ class App extends Component {
 
 const inputStyles = css`
   width: 300px;
+  background: ${({ theme }) => theme.palette.common.blue};
 `
 
 const dividerStyles = css`
@@ -242,6 +244,10 @@ const selectStyles = css`
 
 const dropdownItemCss = css`
   background-color: ${({ theme }) => theme.palette.common.black};
+`
+
+const textareaCss = css`
+  background: ${({ theme }) => theme.palette.common.orange};
 `
 
 export default App

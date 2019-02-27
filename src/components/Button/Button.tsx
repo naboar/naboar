@@ -9,17 +9,6 @@ import { IStyledComponentProps } from '../../interfaces/IStyledComponentProps'
  */
 
 const Button = (props: IButtonProps) => {
-  // const onButtonClick: IButtonProps['onClick'] = (e: React.MouseEvent<HTMLButtonElement>) => {
-  // const { log } = console
-  // log('hello')
-  // const { _buttonGroupIndex, value, _buttonGroupClick } = props
-  // if (_buttonGroupClick) {
-  //   _buttonGroupClick(value, _buttonGroupIndex, e)
-  // }
-  // if (props.onClick) {
-  //   props.onClick(e)
-  // }
-  // }
   return <StyledButton {...props}>{props.children}</StyledButton>
 }
 
@@ -74,10 +63,6 @@ export interface IButtonProps
    * disabled attribute
    */
   disabled?: boolean
-  /** onClick callback passed to ButtonGroup */
-  // _buttonGroupClick?: (value: string, index: number, e: React.MouseEvent<HTMLButtonElement>) => void
-  /** Button index value passed to ButtonGroup */
-  // _buttonGroupIndex?: number
 }
 
 const MainButton = styled(StyledButton)`
