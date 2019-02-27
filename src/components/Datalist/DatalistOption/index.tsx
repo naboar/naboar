@@ -1,1 +1,1 @@
-export { default as default } from './DatalistOption'
+export { default as DatalistOption } from './DatalistOption'
