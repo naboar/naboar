@@ -126,9 +126,11 @@ const toggleToolbarTheme = (isOutlineTheme) => setState({isToolbarOutlineTheme: 
 
   showSearch
   term={state.term}
-  onSearchChange={(term) => setState({ term })}
-
-  showDatePicker
+  onSearchChange={(e) => setState({ term: e.target.value})}
+  canClear={true}
+  onClearSearch={(value) => setState({term: ''})}
+  
+  showDatePicker={true}
   onDateChange={(since, until) => setState({ since, until })}
 
   showLimit

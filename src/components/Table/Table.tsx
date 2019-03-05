@@ -27,6 +27,7 @@ class Table extends Component<IProps> {
     data: [],
     onAllCheckboxes: () => undefined,
     onCheckbox: () => undefined,
+    onClearSearch: () => undefined,
     onDateChange: () => undefined,
     onLimitChange: () => undefined,
     onRowClick: () => undefined,
@@ -68,6 +69,10 @@ class Table extends Component<IProps> {
     this.props.onSearchChange(e)
   }
 
+  /** call clear search  */
+  handleClearSearch = () => {
+    this.props.onClearSearch(undefined)
+  }
   /** call props onDateChange  */
   handleDateChange = (since: Date, until: Date) => {
     this.props.onDateChange(since, until)
@@ -207,7 +212,7 @@ class Table extends Component<IProps> {
                   onChange={this.handleSearchChange}
                   type="text"
                   canClear={this.props.term !== ''}
-                  onClear={() => this.props.onSearchChange('')}
+                  onClear={this.handleClearSearch}
                   outline={isToolbarOutlineTheme}
                   css={tableInputCss}
                   label={this.props.showToolbarLabels ? 'Search' : ''}
@@ -364,6 +369,10 @@ interface IProps {
   term?: string
   /** called when search input is updated */
   onSearchChange?: (e: React.ChangeEvent<HTMLInputElement>) => void
+  /** boolean can clear seach */
+  canClearSearch?: boolean
+  /** called when search input is cleared */
+  onClearSearch?: (value: null | undefined) => void
   /** whether or not to render datepicker component */
   showDatePicker?: boolean
   /** called on date change */
