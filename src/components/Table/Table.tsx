@@ -65,7 +65,7 @@ class Table extends Component<IProps> {
 
   /** call props onSearchChange  */
   handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    this.props.onSearchChange(e.target.value)
+    this.props.onSearchChange(e)
   }
 
   /** call props onDateChange  */
@@ -363,7 +363,7 @@ interface IProps {
   /** search input current value */
   term?: string
   /** called when search input is updated */
-  onSearchChange?: (val: string) => void
+  onSearchChange?: (e: React.ChangeEvent<HTMLInputElement>) => void
   /** whether or not to render datepicker component */
   showDatePicker?: boolean
   /** called on date change */
