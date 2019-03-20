@@ -20,12 +20,12 @@ interface IProps extends IStyledComponentProps {
   children: React.ReactNode
   /** Closed width */
   from: number
+  /** Location when link is clicked */
+  linkRoute: string
   /** Expanded width */
-  to: number
+  expandTo: number
   /** isExpanded */
   isExpanded?: boolean
-  /** Event fired on click */
-  onClick?: () => void
   /** Nav title */
   title: string
 }
@@ -46,23 +46,23 @@ class NavDrawer extends React.Component<IProps, IState> {
     return (
       <Expand
         from={this.props.from}
-        to={this.props.to}
+        to={this.props.expandTo}
         isExpanded={this.state.isExpanded}
       >
         <Wrapper css={this.props.css}>
           <NavDrawerHeader
             title={this.props.title}
             onIconClick={this.toggleExpand}
-            onClick={this.props.onClick}
             isExpanded={this.state.isExpanded}
-            to={this.props.to}
+            expandTo={this.props.expandTo}
+            linkRoute={this.props.linkRoute}
           />
           {React.Children.toArray(this.props.children).map(
             (child: React.ReactElement<INavDrawerHeaderProps>) =>
               React.cloneElement(child, {
+                expandTo: this.props.expandTo,
                 isExpanded: this.state.isExpanded,
-                onIconClick: child.props.onIconClick || child.props.onClick,
-                to: this.props.to,
+                onIconClick: child.props.onIconClick,
               }),
           )}
         </Wrapper>
