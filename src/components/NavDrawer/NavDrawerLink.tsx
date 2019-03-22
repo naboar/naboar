@@ -63,6 +63,7 @@ interface INavDrawerLinkProps extends IStyledComponentProps {
   iconSize?: number
   /** Is used to animate link */
   isExpanded?: boolean
+  /** On Click event for Icon */
   onIconClick?: (e?: React.MouseEvent) => void
   /** Header text */
   title: string

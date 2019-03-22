@@ -160,10 +160,10 @@ class App extends Component {
               linkRoute={'/link4'}
             />
           </NavDrawer>
-          <Route path={'/link1'} component={(props) => <div {...props} >Link 1</div>}/>
-          <Route path={'/link2'} component={(props) => <div {...props} >Link 2</div>}/>
-          <Route path={'/link3'} component={(props) => <div {...props} >Link 3</div>}/>
-          <Route path={'/link4'} component={(props) => <div {...props} >Link 4</div>}/>
+          <Route path={'/link1'} component={(props) => <div {...props} style={{background: 'red'}}>Link 1</div>}/>
+          <Route path={'/link2'} component={(props) => <div {...props} style={{background: 'blue'}}>Link 2</div>}/>
+          <Route path={'/link3'} component={(props) => <div {...props} style={{background: 'green'}}>Link 3</div>}/>
+          <Route path={'/link4'} component={(props) => <div {...props} style={{background: 'orange'}}>Link 4</div>}/>
           <Select css={selectStyles} name={'exampleSelect'} label={'Test Me'}>
             <option value="option1">Option One</option>
             <option value="option2">Option Two</option>
