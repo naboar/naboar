@@ -16,7 +16,7 @@ const Checkbox = (props: IProps) => {
       label={props.label}
       errorMessage={props.errorMessage}
     >
-      <Wrapper disabled={props.disabled} errorMessage={props.errorMessage}>
+      <Wrapper disabled={props.disabled} errorMessage={props.errorMessage} className={'checkbox'}>
         <Input {...props} onChange={e => props.onChange(!props.checked, e)} />
         <span />
       </Wrapper>
@@ -33,7 +33,12 @@ interface IProps extends IFormElementProps {
   onChange?: (newVal?: boolean, e?: ChangeEvent<HTMLInputElement>) => void
 }
 
-const Wrapper = styled.label<{ disabled: boolean, errorMessage?: string | boolean }>`
+interface IWrapperProps {
+  disabled: boolean
+  errorMessage?: string | boolean
+}
+
+const Wrapper = styled.label<IWrapperProps>`
   ${({ disabled, errorMessage, theme  }) => `
     position: relative;
     display: inline-block;

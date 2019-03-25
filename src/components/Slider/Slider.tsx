@@ -15,11 +15,12 @@ const Slider = (props: ISliderProps) => {
       label={props.label}
       errorMessage={props.errorMessage}
     >
-      <Wrapper>
-        <Active width={(props.value / props.max) * 100} />
+      <Wrapper className={'slider'}>
+        <Active width={(props.value / props.max) * 100} className={'active'}/>
         <Range
           {...props}
           onChange={e => props.onChange(Number(e.target.value))}
+          className={'range'}
         />
       </Wrapper>
     </FormElementWrapper>
@@ -63,7 +64,7 @@ const thumbStyle = css`
     z-index: 2;
     transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
     :active,
-    :hover,
+    :hover {}
   ` as string[]
 
 const Range = styled.input.attrs({

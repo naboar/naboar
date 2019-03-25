@@ -19,7 +19,7 @@ const WizardStep = ({
   isPrev
 }: IStepProps) => {
   return (
-    <Wrapper isActive={isActive} isPrev={isPrev}>
+    <Wrapper isActive={isActive} isPrev={isPrev} className={'wizardStep'}>
       {!hideTitle && <Title>{timelineTitle || title}</Title>}
       {children}
     </Wrapper>

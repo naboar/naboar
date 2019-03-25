@@ -10,7 +10,7 @@ type foo = 'left' | 'top' | 'right' | 'bottom'
  * @author [Anthony Freda](https://github.com/Afreda323)
  */
 const Fade = (props: IProps) => (
-  <StyledFade {...props}>{props.children}</StyledFade>
+  <StyledFade {...props} className={'fade'}>{props.children}</StyledFade>
 )
 interface IProps extends IStyledComponentProps {
   /** One or more elements */

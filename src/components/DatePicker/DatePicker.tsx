@@ -1,9 +1,9 @@
 import { format, isAfter, isBefore } from 'date-fns'
+import { IFormElementProps } from '../../interfaces/IFormElementProps'
+import { IStyledComponentProps } from '../../../lib/src/interfaces/IStyledComponentProps'
 import React, { ChangeEvent, Component, Fragment } from 'react'
 import styled, { css } from 'styled-components'
 import { IconIOS, Input } from '../..'
-import { IFormElementProps } from '../../interfaces/IFormElementProps'
-import FormElementWrapper from '../FormElementWrapper/'
 
 /**
  * DatePicker Component
@@ -95,7 +95,7 @@ class DatePicker extends Component<IProps> {
     } = this.props
     const { since, until } = this.state
     return (
-      <Wrapper>
+      <Wrapper className={'datePicker'}>
         <Input
           label={label}
           errorMessage={errorMessage}
@@ -129,7 +129,7 @@ class DatePicker extends Component<IProps> {
 }
 
 // Types
-interface IProps extends IFormElementProps {
+interface IProps extends IFormElementProps, IStyledComponentProps {
   /** does it have a since and until */
   isRangePicker?: boolean
   /** Can the user select a time */

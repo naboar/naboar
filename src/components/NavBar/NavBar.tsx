@@ -106,8 +106,11 @@ class NavBar extends React.Component<IProps, IState> {
         css={this.props.css}
         ref={ref => (this.wrapper = ref)}
         isMenuVisible={this.state.isMenuVisible}
+        className={'navBar'}
       >
-        <NavBarHeader title={this.props.title} onClick={this.props.onClick} />
+        <NavBarHeaderWrapper className={'navBarHeader'}>
+          <NavBarHeader title={this.props.title} onClick={this.props.onClick} />
+        </NavBarHeaderWrapper>
         {!this.state.isMenuVisible ? (
           <NavLinksWrapper ref={(ref: any) => (this.navLinksWrapper = ref)}>
             {this.cloneWithProps()}
@@ -152,6 +155,7 @@ const NavLinksWrapper = styled.div`
   justify-content: flex-end;
   align-items: center;
 `
+const NavBarHeaderWrapper = styled.div``
 
 const MenuWrapper = styled.div`
   display: flex;

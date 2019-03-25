@@ -204,7 +204,7 @@ class Table extends Component<IProps> {
         <ControlsContainer controlsCss={this.props.controlsCss}>
           <Controls>
             {this.props.showSearch && (
-              <ElementWrapper>
+              <ElementWrapper className={'search'}>
                 <Input
                   name="table_search"
                   iconName="search"
@@ -220,7 +220,7 @@ class Table extends Component<IProps> {
               </ElementWrapper>
             )}
             {this.props.showDatePicker && (
-              <ElementWrapper>
+              <ElementWrapper className={'datePicker'}>
                 {this.props.showToolbarLabels && (
                   <Label htmlFor={'datepicker'} text={'Date'} />
                 )}
@@ -236,7 +236,7 @@ class Table extends Component<IProps> {
             )}
 
             {this.props.showLimit && (
-              <ElementWrapper wrapperType={'limit'}>
+              <ElementWrapper wrapperType={'limit'} className={'limit'}>
                 <LimitWrap>
                   {/* <span style={{ marginRight: 8 }}>Show:</span>{' '} */}
                   <Select
@@ -255,7 +255,7 @@ class Table extends Component<IProps> {
             )}
 
             {this.props.showCustomSelect && (
-              <ElementWrapper wrapperType={'select'}>
+              <ElementWrapper wrapperType={'select'} className={'customSelect'}>
                 <CustomSelectWrap>
                   <Select
                     label={
@@ -290,7 +290,7 @@ class Table extends Component<IProps> {
           </StyledTable>
         </TableWrapper>
         {this.props.showPagination && (
-          <PaginationContainer paginationCss={this.props.paginationCss}>
+          <PaginationContainer paginationCss={this.props.paginationCss} className={'pagination'}>
             <PaginationWrap>
               <Pagination
                 page={this.props.page}

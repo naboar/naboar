@@ -19,7 +19,7 @@ export const RadialMenuItem = ({
   index,
   total,
 }: IItemProps) => (
-  <ItemWrapper index={index} total={total}>
+  <ItemWrapper index={index} total={total} className={'radialMenuItem'}>
     <ItemButton
       onClick={onClick}
       active={active}

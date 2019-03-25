@@ -21,6 +21,7 @@ const Input = (props: IInputProps) => {
         isErrored={!!props.errorMessage}
         disabled={props.disabled}
         outline={props.outline}
+        className={'input'}
       >
         {props.iconName && <IconIOS.White name={props.iconName} size={19} />}
         <StyledInput {...{ ...props, css: [] }} />

@@ -9,7 +9,7 @@ import { IStyledComponentProps } from '../../interfaces/IStyledComponentProps'
  */
 
 const Button = (props: IButtonProps) => {
-  return <StyledButton {...props}>{props.children}</StyledButton>
+  return <StyledButton {...props} className={'button'}>{props.children}</StyledButton>
 }
 
 Button.defaultProps = {

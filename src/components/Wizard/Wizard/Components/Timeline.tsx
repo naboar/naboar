@@ -9,7 +9,7 @@ import styled from 'styled-components'
 
 const Timeline = ({ isNextActive, items, selectedIndex, onClick }: IProps) => {
   return (
-    <Wrapper>
+    <Wrapper className={'timeline'}>
       {items.map((item, i) => (
         <Item
           isFirst={i === 0}
@@ -95,7 +95,7 @@ const Item = styled.div<{
   ${({ isLast }) => isLast && `padding-right: 0;`}
 
   > span {
-    ${({ canClick }) => canClick && `cursor: pointer;`}
+    ${({ canClick }) => canClick && `cursor: pointer;`};
     display: flex;
     align-items: center;
     flex-direction: column;

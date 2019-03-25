@@ -8,7 +8,7 @@ import { IStyledComponentProps } from '../../interfaces/IStyledComponentProps'
  * @author Tracey King
  */
 const Label = (props: IStyledLabelProps) => (
-  <StyledLabel {...props}>{props.text}</StyledLabel>
+  <StyledLabel {...props} className={'label'}>{props.text}</StyledLabel>
 )
 
 interface IStyledLabelProps

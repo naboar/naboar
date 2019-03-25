@@ -30,7 +30,7 @@ class Modal extends Component<IProps> {
 
   render() {
     return (
-      <Outer {...this.props} onClick={this.onOuterClick}>
+      <Outer {...this.props} onClick={this.onOuterClick} className={'modal'}>
         <Inner ref={this.setInnerRef}>{this.props.children}</Inner>
       </Outer>
     )

@@ -20,6 +20,7 @@ const Select = (props: ISelectProps) => (
       css={props.css}
       outline={props.outline}
       errorMessage={props.errorMessage}
+      className={'select'}
     >
       <StyledSelect
         name={props.name}

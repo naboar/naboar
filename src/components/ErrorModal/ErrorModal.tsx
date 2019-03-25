@@ -11,7 +11,7 @@ import { IconMD } from '../Icon'
 
 const ErrorModal = (props: IErrorModalProps) => {
   return (
-    <StyledModal>
+    <StyledModal className={'errorModal'}>
       <Heading>
         <IconMD.White name={'alert'} size={72} />
       </Heading>

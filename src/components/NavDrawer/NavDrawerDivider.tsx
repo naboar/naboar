@@ -10,7 +10,7 @@ import { theme } from '../../theme/index'
  */
 const NavDrawerDivider = (props: IStyledComponentProps) => {
   return (
-    <Wrapper>
+    <Wrapper className={'navDrawerDivider'}>
       <Divider css={props.css} />
     </Wrapper>
   )

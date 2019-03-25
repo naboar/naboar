@@ -11,7 +11,7 @@ import { IconIOS } from '../Icon'
 
 const Switch = (props: ISwitchProps) => {
   return (
-    <StyledSwitch onClick={props.onClick}>
+    <StyledSwitch onClick={props.onClick} className={'switch'}>
       <Slider isOn={props.isOn} />
     </StyledSwitch>
   )

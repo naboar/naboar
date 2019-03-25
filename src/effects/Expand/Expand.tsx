@@ -9,7 +9,7 @@ import { IStyledComponentProps } from '../../interfaces/IStyledComponentProps'
  * @author [Anthony Freda](https://github.com/Afreda323)
  */
 const Expand = (props: IProps) => (
-  <Expandable {...props}>{props.children}</Expandable>
+  <Expandable {...props} className={'expand'}>{props.children}</Expandable>
 )
 
 interface IProps extends IStyledComponentProps {

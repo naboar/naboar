@@ -19,7 +19,7 @@ interface IDropdownMenuProps extends IStyledComponentProps {
  * @author Tracey King
  */
 const DropdownMenu = (props: IDropdownMenuProps) => (
-  <StyledDropdownMenu {...props}>{props.children}</StyledDropdownMenu>
+  <StyledDropdownMenu {...props} className={'dropdownMenu'}>{props.children}</StyledDropdownMenu>
 )
 
 const StyledDropdownMenu = styled.div`

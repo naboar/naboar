@@ -18,7 +18,7 @@ const Tabs = (props: ITabsProps) => {
   const { children, css } = props
 
   return (
-    <Wrapper>
+    <Wrapper className={'tabs'}>
       <TopBar>
         {props.children.map((item, i) => (
           <TopItem

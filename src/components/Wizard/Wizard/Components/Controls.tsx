@@ -8,7 +8,7 @@ import { IconIOS } from '../../../..'
  */
 const Controls = (props: IProps) => {
   return (
-    <Wrapper>
+    <Wrapper className={'controls'}>
       <div>{props.children}</div>
       <ButtonWrap>
         {props.selectedIndex === 0 ? (

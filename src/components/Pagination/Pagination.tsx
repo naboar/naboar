@@ -70,7 +70,7 @@ const Pagination = ({
       return null
     }
     return (
-      <PageControl disabled={page <= 1} onClick={handleFirst} palette={palette}>
+      <PageControl disabled={page <= 1} onClick={handleFirst} palette={palette} className={'first'}>
         {firstText}
       </PageControl>
     )
@@ -79,7 +79,7 @@ const Pagination = ({
   /** render back control */
   const Prev = () => {
     return (
-      <PageControl disabled={page <= 1} onClick={handlePrev} palette={palette}>
+      <PageControl disabled={page <= 1} onClick={handlePrev} palette={palette} className={'prev'}>
         {prevText}
       </PageControl>
     )
@@ -98,10 +98,10 @@ const Pagination = ({
     }
 
     return [
-      <PageControl key="skip-right" onClick={e => handleSkip(1, e)} palette={palette}>
+      <PageControl key="skip-right" onClick={e => handleSkip(1, e)} palette={palette} className={'page'}>
         1
       </PageControl>,
-      <PageControl style={{ width: 32 }} key="left-ellipses" noBorder={true} palette={palette}>
+      <PageControl style={{ width: 32 }} key="left-ellipses" noBorder={true} palette={palette} className={'leftEllipses'}>
         <IconIOS.White name="more" size={30} />
       </PageControl>,
     ]
@@ -120,10 +120,10 @@ const Pagination = ({
     }
 
     return [
-      <PageControl style={{ width: 32 }} key="right-ellipses" noBorder={true} palette={palette}>
+      <PageControl style={{ width: 32 }} key="right-ellipses" noBorder={true} palette={palette} className={'rightEllipses'}>
         <IconIOS.White name="more" size={30} />
       </PageControl>,
-      <PageControl key="skip-right" onClick={e => handleSkip(pageCount, e)} palette={palette}>
+      <PageControl key="skip-right" onClick={e => handleSkip(pageCount, e)} palette={palette} className={'page'}>
         {pageCount}
       </PageControl>,
     ]
@@ -169,6 +169,7 @@ const Pagination = ({
         selected={page === pageNumber}
         onClick={e => handleSkip(pageNumber, e)}
         palette={palette}
+        className={'page'}
       >
         {pageNumber}
       </PageControl>
@@ -178,7 +179,7 @@ const Pagination = ({
   /** render next page control */
   const Next = () => {
     return (
-      <PageControl disabled={page >= pageCount} onClick={handleNext} palette={palette}>
+      <PageControl disabled={page >= pageCount} onClick={handleNext} palette={palette} className={'next'}>
         {nextText}
       </PageControl>
     )
@@ -190,14 +191,14 @@ const Pagination = ({
       return null
     }
     return (
-      <PageControl disabled={page >= pageCount} onClick={handleLast} palette={palette}>
+      <PageControl disabled={page >= pageCount} onClick={handleLast} palette={palette} className={'last'}>
         {lastText}
       </PageControl>
     )
   }
 
   return (
-    <List>
+    <List className={'pagination'}>
       <Prev />
       <First />
       {LeftEllipses()}

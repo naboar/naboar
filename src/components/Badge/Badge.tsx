@@ -12,7 +12,7 @@ import { IconIOS } from '../Icon'
 
 const Badge = (props: IBadgeProps) => {
   return (
-    <StyledBadge css={props.css} color={props.color}>
+    <StyledBadge css={props.css} color={props.color} className={'badge'}>
       {props.children}
       {props.canClose && (
         <IconIOS.White
