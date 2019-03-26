@@ -125,7 +125,7 @@ class Wizard extends Component<IProps, IState> {
       selectedIndex < children.length - 1 ? selectedIndex + 1 : selectedIndex
 
     return (
-      <Wrapper css={css}>
+      <Wrapper css={css} className={'wizard'}>
         {shouldShowTimeline && (
           <Timeline
             items={items}

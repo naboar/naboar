@@ -9,4 +9,6 @@ export interface IStyledComponentProps {
   css?: FlattenSimpleInterpolation | FlattenInterpolation<any>
   /** Theme */
   theme?: ITheme
+  /** The class name */
+  className?: string
 }

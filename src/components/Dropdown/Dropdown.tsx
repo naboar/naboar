@@ -100,6 +100,7 @@ class Dropdown extends React.Component<IProps, IState> {
           css={css}
           innerRef={(): any => null}
           ref={(ref: any) => (this.ref = ref)}
+          className={'dropdown'}
         >
           {React.Children.toArray(children).map(
             (child: React.ReactElement<any>) => this.cloneWithProps(child),

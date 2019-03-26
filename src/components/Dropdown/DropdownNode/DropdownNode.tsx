@@ -21,7 +21,7 @@ interface IDropdownNodeProps extends IStyledComponentProps {
   value?: string | number
 }
 const DropdownNode = (props: IDropdownNodeProps) => (
-  <StyledDropdownNode {...props}>{props.children}</StyledDropdownNode>
+  <StyledDropdownNode {...props} className={'dropdownNode'}>{props.children}</StyledDropdownNode>
 )
 
 const StyledDropdownNode = styled.div<IStyledComponentProps>`

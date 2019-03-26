@@ -14,7 +14,7 @@ const Textarea = (props: IStyledTextareaProps) => (
     name={props.name}
     errorMessage={props.errorMessage}
   >
-    <StyledTextarea {...props}>{props.title}</StyledTextarea>
+    <StyledTextarea {...props} className={'textArea'}>{props.title}</StyledTextarea>
   </FormElementWrapper>
 )
 

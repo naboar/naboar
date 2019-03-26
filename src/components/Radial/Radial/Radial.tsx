@@ -52,7 +52,7 @@ class Radial extends Component<IRadialProps, IRadialState> {
           zIndex: 3,
         }
     return (
-      <div style={divStyle}>
+      <div style={divStyle} className={'radial'}>
         <RadialButton onClick={this.onButtonClick}>
           <Effect isActive={active} />
           <Burger>
@@ -145,7 +145,7 @@ const RadialButton = styled.button`
 const Burger = styled.div`
   display: inline-block;
   transition-property: opacity, filter;
-  transition: duration: .15s;
+  transition: duration .15s;
   transition-timing-function: linear;
   font: inherit;
   color: inherit;

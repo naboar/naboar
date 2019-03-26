@@ -6,7 +6,7 @@ import FormElementError from '../FormElementError/FormElementError'
 import Label from '../Label/Label'
 
 const FormElementWrapper = (props: IFormElementWrapperProps) => (
-  <Wrapper css={props.css}>
+  <Wrapper css={props.css} className={'formElement'}>
     {props.label && <Label text={props.label} htmlFor={props.name} />}
     {props.children}
     {props.errorMessage && <FormElementError error={props.errorMessage} />}

@@ -24,6 +24,7 @@ const DropdownItem = (props: IDropdownItemProps) => (
   <StyledDropdownItem
     {...props}
     onClick={props.isDisabled ? null : props.onClick}
+    className={'dropdownItem'}
   >{props.children}</StyledDropdownItem>
 )
 

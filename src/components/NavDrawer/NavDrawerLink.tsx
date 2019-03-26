@@ -28,6 +28,7 @@ const NavDrawerLink = (props: INavDrawerLinkProps) => {
       to={props.linkRoute}
       css={props.css}
       title={props.title}
+      className={'navDrawerLink'}
     >
       <IconMD.White
         css={iconStyle}

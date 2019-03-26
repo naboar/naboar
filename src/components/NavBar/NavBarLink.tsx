@@ -10,7 +10,7 @@ import { IStyledComponentProps } from '../../interfaces/IStyledComponentProps'
 
 const NavBarLink = (props: INavBarLinkProps) => {
   return (
-    <Wrapper css={props.css} onClick={props.onClick} isActive={props.isActive}>
+    <Wrapper css={props.css} onClick={props.onClick} isActive={props.isActive} className={'navBarLink'}>
       {props.children || props.title}
     </Wrapper>
   )

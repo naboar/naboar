@@ -119,6 +119,7 @@ const Wrapper = styled.div`
 const Tooltip = (props: IStyledTooltipProps) => (
       <Wrapper
         onClick={props.onClick}
+        className={'tooltip'}
       >
         <TipWrapper position={props.position}>
           <Tip

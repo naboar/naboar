@@ -10,7 +10,7 @@ import { IconIOS } from '../Icon'
 
 const Message = (props: IMessageProps) => {
   return (
-    <StyledMessage>
+    <StyledMessage className={'message'}>
       <IconIOS.Black
         name={'close'}
         size={24}

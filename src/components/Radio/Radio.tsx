@@ -16,7 +16,7 @@ const Radio = (props: IProps) => {
       label={props.label}
       errorMessage={props.errorMessage}
     >
-      <Wrapper disabled={props.disabled}>
+      <Wrapper disabled={props.disabled} className={'radio'}>
         <Input {...props} onChange={e => props.onChange(props.value)} />
         <span />
       </Wrapper>

@@ -12,7 +12,7 @@ import NavDrawerLink from './NavDrawerLink'
 
 const NavDrawerHeader = (props: INavDrawerHeaderProps) => {
   return (
-    <Wrapper>
+    <Wrapper className={'navDrawerHeader'}>
       <NavDrawerLink
         css={linkStyle(props)}
         title={props.title}

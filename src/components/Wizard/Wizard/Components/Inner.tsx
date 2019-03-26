@@ -9,7 +9,7 @@ import styled from 'styled-components'
  */
 
 const Inner = (props: IInnerProps) => {
-  return <Wrapper>{props.children}</Wrapper>
+  return <Wrapper className={'inner'}>{props.children}</Wrapper>
 }
 
 export interface IInnerProps {

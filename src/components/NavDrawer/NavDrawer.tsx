@@ -49,7 +49,7 @@ class NavDrawer extends React.Component<IProps, IState> {
         to={this.props.expandTo}
         isExpanded={this.state.isExpanded}
       >
-        <Wrapper css={this.props.css}>
+        <Wrapper css={this.props.css} className={'navDrawer'}>
           <NavDrawerHeader
             title={this.props.title}
             onIconClick={this.toggleExpand}

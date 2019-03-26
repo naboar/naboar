@@ -131,7 +131,7 @@ class Notifications extends Component<IProps, IState> {
 
   renderWrapper = () => {
     return (
-      <Wrapper canClick={this.props.notifications.length > 0}>
+      <Wrapper canClick={this.props.notifications.length > 0} className={'notifications'}>
         {this.props.notifications.map((notif, i) => (
           <Fade key={'notif' + i} shouldShow={true} from="right" distance={100}>
             <StyledNotification onClick={e => this.onClick(e, i)}>

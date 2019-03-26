@@ -12,9 +12,9 @@ import { IStyledComponentProps } from '../../interfaces/IStyledComponentProps'
 
 const Spinner = (props: IStyledComponentProps) => {
   return (
-    <SpinnerContainer css={props.css}>
-      <SvgElement viewBox={'25 25 50 50'}>
-        <Circle />
+    <SpinnerContainer css={props.css} className={'spinner'}>
+      <SvgElement viewBox={'25 25 50 50'} className={'svgElement'}>
+        <Circle className={'circle'}/>
       </SvgElement>
     </SpinnerContainer>
   )
@@ -53,7 +53,7 @@ const SpinnerContainer = styled.div<IStyledComponentProps>`
   align-items: center;
   justify-content: center;
   z-index: 1;
-  animation: ${opacityChange} 0.3s ease-in-out fowards;
+  animation: ${opacityChange} 0.3s ease-in-out forwards;
   ${props => props.css}
 `
 const SvgElement = styled.svg`

@@ -12,7 +12,7 @@ import { IStyledComponentProps } from '../../interfaces/IStyledComponentProps'
 
 const ButtonGroup = (props: IButtonGroupProps) => {
   return (
-    <ButtonGroupWrapper>
+    <ButtonGroupWrapper className={'buttonGroup'}>
       {React.Children.toArray(props.children).map(
         (child: React.ReactElement<IButtonProps>, index) => {
           return React.cloneElement(child, {

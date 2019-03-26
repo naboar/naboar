@@ -9,7 +9,7 @@ import { IStyledComponentProps } from '../../interfaces/IStyledComponentProps'
  */
 const FormElementError = (props: IFormElementErrorProps) => (
     (typeof props.error === 'string')
-      ? <StyledP {...props}>{props.error}</StyledP>
+      ? <StyledP {...props} className={'formElementError'}>{props.error}</StyledP>
       : null
 )
 

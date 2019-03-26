@@ -13,7 +13,7 @@ import DatalistOption from './DatalistOption/DatalistOption'
 
 const Datalist: Datalist = (props: IDatalistProps) => {
   return (
-    <Wrapper>
+    <Wrapper className={'dataList'}>
       <StyledDatalist {...props}>
         {props.children}
       </StyledDatalist>
