@@ -1,3 +1,4 @@
+import { BrowserRouter } from 'react-router-dom'
 import merge from 'lodash.merge'
 import React, { Fragment } from 'react'
 import { ThemeProvider } from 'styled-components'
@@ -189,12 +190,14 @@ interface IProviderProps {
 const Themer = (props: IProviderProps) => {
   return (
     // lodash merge theme
-    <ThemeProvider theme={merge(theme, props.theme)}>
-      <Fragment>
-        <Reset />
-        {props.children}
-      </Fragment>
-    </ThemeProvider>
+    <BrowserRouter>
+      <ThemeProvider theme={merge(theme, props.theme)}>
+        <Fragment>
+          <Reset />
+          {props.children}
+        </Fragment>
+      </ThemeProvider>
+    </BrowserRouter>
   )
 }
 

@@ -45,6 +45,8 @@ interface IInputProps
   extends IFormElementProps,
     IStyledComponentProps,
     React.HTMLAttributes<HTMLInputElement> {
+  /** Toggles input Focus */
+  autoFocus?: boolean
   /** Toggle input clear option */
   canClear?: boolean
   /** Toggle input clickability */

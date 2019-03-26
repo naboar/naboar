@@ -19,6 +19,8 @@ interface IProps extends IStyledComponentProps {
   color?: string
   /** Event fired on click */
   onClick?: (e: any) => void
+  /** Event fired on mouse down */
+  onMouseDown?: (e: any) => void
   /** Size of font in px */
   size?: number
 }

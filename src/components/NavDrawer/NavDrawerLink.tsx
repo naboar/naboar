@@ -1,4 +1,5 @@
 import React from 'react'
+import { NavLink } from 'react-router-dom'
 import styled from 'styled-components'
 import Expand from '../../effects/Expand'
 import { IStyledComponentProps } from '../../interfaces/IStyledComponentProps'
@@ -24,9 +25,8 @@ const handleIconClick = (e: React.MouseEvent, iconClick: () => void) => {
 const NavDrawerLink = (props: INavDrawerLinkProps) => {
   return (
     <Wrapper
+      to={props.linkRoute}
       css={props.css}
-      onClick={props.onClick}
-      isActive={props.isActive}
       title={props.title}
     >
       <IconMD.White
@@ -37,7 +37,7 @@ const NavDrawerLink = (props: INavDrawerLinkProps) => {
       />
       <Expand
         from={0}
-        to={props.to}
+        to={props.expandTo}
         isExpanded={props.isExpanded}
         css={['flex: 1; overflow: hidden; white-space: nowrap;']}
       >
@@ -53,28 +53,29 @@ const NavDrawerLink = (props: INavDrawerLinkProps) => {
 interface INavDrawerLinkProps extends IStyledComponentProps {
   /** Toggle input clickability */
   disabled?: boolean
-  /** Expanded width */
-  to?: number
+  /** Amount to be expanded in pixels */
+  expandTo: number
+  /** Location when link is clicked */
+  linkRoute: string
   /** Name of left icon */
   iconName?: md
   /** Size of icon */
   iconSize?: number
-  /** Is active link */
-  isActive?: boolean
   /** Is used to animate link */
   isExpanded?: boolean
-  /** On Click callback */
-  onClick: (e?: React.MouseEvent<HTMLInputElement>) => void
+  /** On Click event for Icon */
   onIconClick?: (e?: React.MouseEvent) => void
   /** Header text */
   title: string
 }
 
-const Wrapper = styled.div`
-  ${({ isActive, theme }: IProps) => `
+const Wrapper = styled(NavLink)<IProps>`
+  ${({ theme }) => `
+    color: white;
+    text-decoration: none;
     transition: background-color .2s;
     align-items: center;
-    background: ${isActive ? theme.palette.primary.main : 'transparent'};
+    background: 'transparent'
     padding: ${theme.spacing.base}px;
     display: flex;
     flex-direction: row;
@@ -82,6 +83,9 @@ const Wrapper = styled.div`
     &:hover {
       background: ${theme.palette.primary.main};
       cursor: pointer;
+    }
+    &.active {
+      background: ${theme.palette.primary.main};
     }
   `}
   ${({ css }) => css}

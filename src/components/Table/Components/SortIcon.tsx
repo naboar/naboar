@@ -1,6 +1,6 @@
 import React from 'react'
 import styled, { css } from 'styled-components'
-import { IconIOS } from '../../Icon'
+import { IconMD } from '../../Icon'
 
 /**
  * SortIcon Component
@@ -17,16 +17,16 @@ const SortIcon = (props: IProps) => {
 
   return (
     <Sortable>
-      <IconIOS.White
-        name="arrow-up"
+      <IconMD.White
+        name="arrow-dropup"
         size={16}
         css={css`
           margin-top: -2px;
           color: ${setColor('asc', props.order, isSorted)};
         `}
       />
-      <IconIOS.White
-        name="arrow-down"
+      <IconMD.White
+        name="arrow-dropdown"
         size={16}
         css={css`
           margin-top: -5px;
