@@ -1,6 +1,6 @@
 import { format, isAfter, isBefore } from 'date-fns'
 import { IFormElementProps } from '../../interfaces/IFormElementProps'
-import { IStyledComponentProps } from '../../../lib/src/interfaces/IStyledComponentProps'
+import { IStyledComponentProps } from '../../interfaces/IStyledComponentProps'
 import React, { ChangeEvent, Component, Fragment } from 'react'
 import styled, { css } from 'styled-components'
 import { IconIOS, Input } from '../..'
