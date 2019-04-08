@@ -32,7 +32,7 @@ const fakeData = {
   2: 'test',
   3: 'double test',
   4: 'test',
-  5: 'test',
+  'fileName': 'test',
   6: 'test',
   7: 'test',
 }
@@ -52,10 +52,10 @@ class App extends Component {
         },
         renderHeading: () => <Th heading={'Header Test'} />,
       },
-      { key: '2', heading: 'headerTest' },
+      { key: '2', heading: 'HEADING TEST' },
       { key: '3', heading: 'headerTest' },
       { key: '4', heading: 'headerTest' },
-      { key: '5', heading: 'headerTest' },
+      { key: 'fileName' },
       { key: '6', heading: 'headerTest' },
       { key: '7', heading: 'headerTest' },
     ],
@@ -198,6 +198,8 @@ class App extends Component {
           </Datalist>
           <Table
             paginationCss={css`* {color: red;};`}
+            showSearch={true}
+            searchPlaceholder={'Testing'}
             controlsCss={css`* {color: red;}`}
             columns={this.state.columns}
             data={this.state.data}
@@ -214,7 +216,7 @@ class App extends Component {
               { text: 'option 2', value: '2' },
             ]}
             showPagination={true}
-            page={1}
+            page={2}
             pageCount={300}
             onUpdatePage={() => ''}
           />
