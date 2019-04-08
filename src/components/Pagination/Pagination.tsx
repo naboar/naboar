@@ -169,7 +169,7 @@ const Pagination = ({
         selected={page === pageNumber}
         onClick={e => handleSkip(pageNumber, e)}
         palette={palette}
-        className={'page'}
+        className={`page ${page === pageNumber ? 'activePage' : ''}`}
       >
         {pageNumber}
       </PageControl>

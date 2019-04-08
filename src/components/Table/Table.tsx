@@ -133,6 +133,7 @@ class Table extends Component<IProps> {
                 css={css`
                   ${column.key === 'isChecked' && `flex: initial;`}
                 `}
+                customHeading={column.heading}
                 heading={
                   column.key !== 'isChecked' ? (
                     column.heading || column.key
@@ -216,6 +217,7 @@ class Table extends Component<IProps> {
                   outline={isToolbarOutlineTheme}
                   css={tableInputCss}
                   label={this.props.showToolbarLabels ? 'Search' : ''}
+                  placeholder={this.props.searchPlaceholder}
                 />
               </ElementWrapper>
             )}
@@ -405,6 +407,8 @@ interface IProps {
   controlsCss?: FlattenSimpleInterpolation | FlattenInterpolation<any>
   /** pagination container css */
   paginationCss?: FlattenSimpleInterpolation | FlattenInterpolation<any>
+  /** search field placeholder */
+  searchPlaceholder?: string
 }
 
 const StyledTable = styled.table`

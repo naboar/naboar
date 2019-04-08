@@ -18,9 +18,11 @@ const Th = (props: IProps) => {
     <Base css={props.css}>
       <Container>
         <Heading onClick={props.isSortable ? handleSort : null}>
-          {typeof props.heading === 'string'
-            ? camelToUppercase(props.heading)
-            : props.heading}
+          {typeof props.heading !== 'string'
+            ? props.heading
+            : props.customHeading
+            ? props.customHeading
+            : camelToUppercase(props.heading)}
           <SortIcon
             isSortable={props.isSortable}
             _key={props._key}
@@ -41,6 +43,7 @@ interface IProps extends IStyledComponentProps {
   order?: 'asc' | 'desc'
   onClick?: (key: string, order: 'asc' | 'desc') => void
   isSortable?: boolean
+  customHeading?: string
 }
 
 const camelToUppercase = (str: string) =>
